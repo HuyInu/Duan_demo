@@ -1,0 +1,1 @@
+<input class="InputText textwsearch" type="text" name="tlq10s" id="tlq10s" value="<!--{$tlq10s}-->" placeholder="Tìm tổng lượng q10" autocomplete="off"/>

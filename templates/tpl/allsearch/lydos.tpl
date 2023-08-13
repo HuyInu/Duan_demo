@@ -1,0 +1,1 @@
+<input class="InputText textwsearch" type="text" name="lydos" id="lydos" value="<!--{$lydos}-->" placeholder="Tìm Lý Do" autocomplete="off"/>

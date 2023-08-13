@@ -1,0 +1,1 @@
+<input class="InputText textwsearch" type="text" name="tennguyenlieus" id="tennguyenlieus" value="<!--{$tennguyenlieus}-->" placeholder="Tìm tên nguyên liệu" autocomplete="off"/>

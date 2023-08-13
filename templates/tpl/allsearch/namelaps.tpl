@@ -1,0 +1,1 @@
+<input class="InputText textwsearch" type="text" name="namelaps" id="namelaps" value="<!--{$namelaps}-->" placeholder="Tìm Người Lập" autocomplete="off"/>

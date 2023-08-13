@@ -1,0 +1,1 @@
+<input class="InputText textwsearch" type="text" name="trongluonghots" id="trongluonghots" value="<!--{$trongluonghots}-->" placeholder="Tìm trọng lượng hột" autocomplete="off"/>

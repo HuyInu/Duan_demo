@@ -1,0 +1,1 @@
+<input class="InputText textwsearch" type="text" name="cannangvhs" id="cannangvhs" value="<!--{$cannangvhs}-->" placeholder="Tìm cân nặng V+H" autocomplete="off"/>

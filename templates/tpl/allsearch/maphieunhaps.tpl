@@ -1,0 +1,1 @@
+<input class="InputText textwsearch" type="text" name="idpnks" id="idpnks" value="<!--{$idpnks}-->" placeholder="Tìm Mã Phiếu NHập Kho" autocomplete="off"/>

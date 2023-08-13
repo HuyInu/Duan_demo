@@ -1,0 +1,1 @@
+<input class="InputText textwsearch" type="text" name="mscanhgtas" id="mscanhgtas" value="<!--{$mscanhgtas}-->" placeholder="Tìm MS cạch GTA" autocomplete="off"/>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pure Modal – A lightweight, accessible, vanilla JavaScript modal component.</title>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="dist/modal.min.css">
+    <link rel="stylesheet" href="index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body class="page">
+
+    
+
+    <main class="content container">
+        <div class="container">
+            <h2 class="mt-0 mb-l ta-center fw-4">Examples</h2>
+            <div class="flex justify-center items-center">
+                <div class="mr-s">
+                    <button class="openBtn btn btn--l btn--primary" data-toggle="modal" data-target="modal1">Basic modal</button>
+                </div>
+                <div class="mr-s">
+                    <button class="openBtn btn btn--l btn--primary" data-toggle="modal" data-target="modal2">Modal without transition</button>
+                </div>
+                <div class="mr-s">
+                    <a href="#" data-toggle="modal" data-target="modal1">Open modal 1 by link</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="modal1" role="dialog" aria-labelledby="modal-1" aria-describedby="basic-modal" tabindex="-1" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title 1</h5>
+                        <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+                            <svg width="16" height="16" viewBox="0 0 40 40">
+                                <path stroke-linecap="round" class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" stroke="#000" fill="transparent" stroke-width="5"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Content of modal 1
+                    </div>
+                    <div class="modal-footer">
+                        <div class="mr-xs">
+                            <button class="btn btn--basic" data-dismiss="modal" aria-label="Close">Close</button>
+                        </div>
+                        <button class="btn btn--primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="modal2" role="dialog" aria-labelledby="modal-2" aria-describedby="basic-modal" tabindex="-1" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Modal title 2333</h5>
+                        <button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">
+                            <svg width="16" height="16" viewBox="0 0 40 40">
+                                <path stroke-linecap="round" class="close-x" d="M 10,10 L 30,30 M 30,10 L 10,30" stroke="#000" fill="transparent" stroke-width="5"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Content of modal 2
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+  <script src="dist/modal.min.js"></script>
+<script>
+// Modal1
+const modal1 = new PureModal('modal1');
+
+// Modal2
+const modal2 = new PureModal('modal2');
+
+modal1.init();
+modal2.init();
+
+$('.openBtn').on('click',function(){
+    $('.modal-body').load('content.html',function(){
+        $('#modal1').modal({show:true});
+    });
+});
+</script>
+</body>
+</html>

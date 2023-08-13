@@ -1,0 +1,1 @@
+<input class="InputText textwsearch" type="text" name="haos" id="haos" value="<!--{$haos}-->" placeholder="Tìm Hao" autocomplete="off"/>

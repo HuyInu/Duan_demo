@@ -1,0 +1,1 @@
+<input class="InputText textwsearch" type="text" name="codes" id="codes" value="<!--{$codes}-->" placeholder="Tìm Mã Phiếu" autocomplete="off"/>

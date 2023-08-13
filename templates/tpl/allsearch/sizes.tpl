@@ -1,0 +1,1 @@
+<input class="InputText textwsearch" type="text" name="sizes" id="sizes" value="<!--{$sizes}-->" placeholder="Tìm Size" autocomplete="off"/>

@@ -1,0 +1,136 @@
+body{
+    background-color: #f1f1f1;
+}
+.container{
+    
+}
+.header{
+    height: 49px;
+    background-color: #ededed;
+}
+.goAction{
+    letter-spacing: 5px;
+}
+.content{
+    margin: 3% 5% 3% 5%;
+}
+table, th td{
+    border-collapse: collapse;
+}
+table{
+   
+}
+table tr:first-child td:first-child {
+    border-top-left-radius: 10px;
+}
+table tr:first-child td:last-child {
+    border-top-right-radius: 10px;
+}
+table tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+table tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+th, td{
+    padding: 12px 12px 12px 12px;  
+}
+.center-content-col{
+    text-align: center;
+}
+.tableTxtbox{
+    width: 50px;
+}
+.tbheader{
+    background-color: #17233d !important;
+    color: rgb(255 255 255);
+}
+.tbRow{
+    color: black;
+    font-size: 15px;
+    font-weight: 200
+
+}
+.tbRow:hover{
+    background-color: #ffe9c8;
+}
+table tr:nth-child(2n+1)
+{
+    background-color: #dbdbdb;
+}
+table tr:nth-child(2n)
+{
+    background-color: #ffffff;
+}
+.short_textbox{
+    width: 100px !important;
+    text-align: center;
+}
+
+input[type=text]{
+    padding: 1px 2px 1px 2px;
+    border-radius: 8px;
+    border: 1px solid #002283;
+}
+
+input[type=submit], input[type=button]{
+    border-radius: 15px;
+    transition: background-color 0.3s;
+    font-size: 17px;
+    min-width: 86px;
+    height: 37px;
+
+}
+.button{
+    color: white;
+    font-weight: bold;
+    border: 1px solid #c1c1c1;
+}
+.button:hover{
+    cursor: pointer; 
+}
+.button-success{
+    background-color: #23e439;
+}
+
+.button-success:hover{
+    background-color: #1bbf2e;
+}
+
+.button-exit{
+    background-color: #f33b3b;
+}
+
+.button-exit:hover{
+    background-color: #c60c0c;
+}
+
+.card{
+    margin: 0 15% 0 15%;
+    width: 70%;
+}
+.card-header{
+    height: 59px;
+    background-color: #17233d;
+    border-radius: 10px 10px 0 0;
+    color: white;
+    font-size: 2em;
+    font-weight: bold;
+    padding: 10px;
+}
+.card-body{
+    background-color: white;
+    padding: 10px 0 20px 0;
+    justify-content: center;
+    display: flex;
+    border-radius: 0 0 10px 10px;
+}
+
+.shadow-box{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+div.card-body form
+{   
+    width: 80%;
+}

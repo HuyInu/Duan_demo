@@ -1,0 +1,1 @@
+<input class="InputText textwsearch" type="text" name="nhomnguyenlieus" id="nhomnguyenlieus" value="<!--{$nhomnguyenlieus}-->" placeholder="Tìm nhóm nguyên liệu" autocomplete="off"/>

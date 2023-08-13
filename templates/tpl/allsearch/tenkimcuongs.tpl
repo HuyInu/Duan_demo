@@ -1,0 +1,1 @@
+<input class="InputText textwsearch" type="text" name="tenkimcuongs" id="tenkimcuongs" value="<!--{$tenkimcuongs}-->" placeholder="Tìm tên kim cương" autocomplete="off"/>

@@ -1,0 +1,1 @@
+<input class="InputText textwsearch" type="text" name="tuoivangs" id="tuoivangs" value="<!--{$tuoivangs}-->" placeholder="Tìm tuổi vàng" autocomplete="off"/>

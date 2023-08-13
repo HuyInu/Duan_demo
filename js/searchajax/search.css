@@ -1,0 +1,94 @@
+/* SEARCH FORM */
+#suggestions, #suggestionsDhsx{
+    background-color: #fff;
+    border: 2px solid #eee;
+    display: none;
+    height: 360px;
+    overflow-y: scroll;
+    padding: 5px 0;
+    position: absolute;
+    width: 56%;
+    z-index: 99999;
+	margin: 32px 0 0 221px;
+}
+.suggestionCatalog{
+	width: 430px !important;
+	margin-top: -25px !important;
+	right: 32px;	
+}
+.suggestionCatalogDieuChinhSoLieu{
+	width: 44% !important;	
+}
+.suggestionsCat{
+	margin: 0 !important;
+	width: 50% !important;
+
+}
+	#suggestions a, #suggestionsDhsx a{
+		clear:both;
+		padding:8px 10px;
+		overflow:hidden;
+		display:block;
+		border-bottom:2px solid #eee;
+		font-size:14px;
+	}
+	#suggestions .img_search{
+		float:left;
+		width:95px;
+		margin-right:3px;
+	}
+		#suggestions a span, #suggestionsDhsx a span{
+			color:#222;
+		}
+	#suggestions a:nth-child(2n+2), #suggestionsDhsx a:nth-child(2n+2) {
+		background-color: #f4f5f2;
+	}	
+	#suggestions a:hover, #suggestionsDhsx a:hover{
+		background:#fff1e4;	
+	}
+.Fl{
+	float:left;
+}
+
+/* SEARCH FORM */
+/*==Vũ thêm 15-11-19==*/
+.suggestionsKKLM{
+    background-color: #fff;
+    border: 2px solid #eee;
+    display: none;
+    height: 360px;
+    overflow-y: scroll;
+    padding: 5px 0;
+    /*position: fixed;*/
+	position: absolute;
+    width: 56%;
+    z-index: 99999;
+	
+	}
+.suggestionsKKLM a{
+	clear:both;
+	padding:8px 10px;
+	overflow:hidden;
+	display:block;
+	border-bottom:2px solid #eee;
+	font-size:14px;
+	}
+.suggestionsKKLM a span{
+	color:#222;	
+	}
+.suggestionsKKLM a:nth-child(2n+2) {
+	background-color: #f4f5f2;
+	}	
+.suggestionsKKLM a:hover{
+	background:#fff1e4;	
+	}
+.suggestionsKKLM .img_search{
+	float:left;
+	width:95px;
+	margin-right:3px;
+	}
+.suggestionCatalogLM{
+	width: auto !important;
+	margin-top: auto !important;		
+	}
+/*====================*/

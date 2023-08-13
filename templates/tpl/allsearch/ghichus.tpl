@@ -1,0 +1,1 @@
+<input class="InputText textwsearch" type="text" name="ghichus" id="ghichus" value="<!--{$ghichus}-->" placeholder="Tìm ghi chú" autocomplete="off"/>

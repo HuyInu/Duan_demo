@@ -1,0 +1,28 @@
+.main-popup{
+	width:800px;
+	height:500px;
+	padding:20px 10px;
+}
+.SubAll .SubLeft{
+	width:30%	
+}
+.SubAll .SubRight{
+	width:69%;	
+}
+.box-thongin-popup{
+	width:740px;
+	height:430px;
+	
+}
+.box-thongin-popup h2{
+	font-size:15px; 
+	margin-bottom:10px;
+}
+.box-thongin-popup select{
+    padding: 5px 8px;
+	min-width:350px;
+}
+.addRowGirl {
+    padding: 8px 15px;
+	margin-top:20px;
+}

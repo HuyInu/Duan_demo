@@ -1,0 +1,1 @@
+<input class="InputText textwsearch" type="text" name="tlq10gcs" id="tlq10gcs" value="<!--{$tlq10gcs}-->" placeholder="Tìm tổng lượng q10 gia công" autocomplete="off"/>

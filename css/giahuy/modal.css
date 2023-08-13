@@ -1,0 +1,39 @@
+.modal-background{
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    background-color: #65646449;
+    padding-top: 100px;  
+    display: block;
+    transition: all 0.3s linear;
+}
+.hidden{
+    padding-top: 0px;  
+    opacity: 0;
+}
+.displayNon{
+    display: none;
+}
+.modal{
+    max-width: 8in;
+    margin: auto;
+}
+.modal-body{
+    flex-direction: column;
+    padding: 20px 20px 20px 20px;
+}
+.modal-content{
+    font-size: 26px;
+    min-height: 65px;
+}
+
+.card-action{
+    padding-top: 14px;
+    margin-left: auto; 
+    margin-right: 0;
+}
+

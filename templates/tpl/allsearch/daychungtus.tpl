@@ -1,0 +1,1 @@
+ <input type="text" class="InputText textwsearch" name="daychungtus" id="daychungtus" value="<!--{$daychungtus}-->" placeholder="dd/mm/yyyy" autocomplete="off"/>

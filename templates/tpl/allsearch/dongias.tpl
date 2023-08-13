@@ -1,0 +1,1 @@
+<input class="InputText textwsearch" type="text" name="dongias" id="dongias" value="<!--{$dongias}-->" placeholder="Tìm đơn giá" autocomplete="off"/>

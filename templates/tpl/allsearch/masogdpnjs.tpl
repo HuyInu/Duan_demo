@@ -1,0 +1,1 @@
+<input class="InputText textwsearch" type="text" name="masogdpnjs" id="masogdpnjs" value="<!--{$masogdpnjs}-->" placeholder="Tìm mã số GĐPNJ" autocomplete="off"/>

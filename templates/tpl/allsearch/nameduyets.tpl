@@ -1,0 +1,1 @@
+<input class="InputText textwsearch" type="text" name="nameduyets" id="nameduyets" value="<!--{$nameduyets}-->" placeholder="Tìm Người Duyệt" autocomplete="off"/>

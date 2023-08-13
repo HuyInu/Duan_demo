@@ -1,0 +1,1 @@
+<input type="text" class="InputText textwsearch" name="dayghisos" id="dayghisos" value="<!--{$dayghisos}-->" placeholder="Tìm Ngày Ghi Sổ" autocomplete="off"/>

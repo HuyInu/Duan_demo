@@ -1,0 +1,1 @@
+<input class="InputText textwsearch" type="text" name="capdomaus" id="capdomaus" value="<!--{$capdomaus}-->" placeholder="Tìm cấp độ màu" autocomplete="off"/>

@@ -1,0 +1,1 @@
+<input class="InputText textwsearch" type="text" name="trongluongvangtrenso" id="trongluongvangtrenso" value="<!--{$trongluongvangtrenso}-->" placeholder="Tổng TL Vàng Trên Sổ" autocomplete="off"/>

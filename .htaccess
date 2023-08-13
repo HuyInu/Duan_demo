@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteBase /duan_demo/
+RewriteRule ^index.html index.php

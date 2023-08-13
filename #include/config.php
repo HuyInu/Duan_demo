@@ -1,0 +1,20 @@
+<?php
+session_start();
+error_reporting(E_ALL);
+ini_set("display_errors",0);
+$config = array();
+//echo ini_get('session.gc_maxlifetime');
+date_default_timezone_set("Asia/Ho_Chi_Minh");
+// =============== CONFIGURATION ===================================================================
+$config['BASE_DIR']     = $_SERVER['DOCUMENT_ROOT'].'/duan_demo'; 
+$config['BASE_URL']     =  "http://".$_SERVER['SERVER_NAME'].':81/duan_demo'; 
+//=======================Config Database=============================================================
+
+$DBTYPE = 'mysqli';
+$DBHOST = 'localhost';
+$DBUSER = 'root';
+$DBPASSWORD = '';
+$DBNAME = 'duan_demo';
+//=======================Path to url=============================================================
+require_once($config['BASE_DIR'].'/#include/bootstrap.php'); 
+?>

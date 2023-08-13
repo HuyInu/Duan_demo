@@ -1,0 +1,1 @@
+<input class="InputText textwsearch" type="text" name="tienmats" id="tienmats" value="<!--{$tienmats}-->" placeholder="Tìm tiền mặt" autocomplete="off"/>

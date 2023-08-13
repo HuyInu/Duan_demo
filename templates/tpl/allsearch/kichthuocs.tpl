@@ -1,0 +1,1 @@
+<input class="InputText textwsearch" type="text" name="kichthuocs" id="kichthuocs" value="<!--{$kichthuocs}-->" placeholder="Tìm kích thước" autocomplete="off"/>
