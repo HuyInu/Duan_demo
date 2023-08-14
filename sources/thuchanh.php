@@ -1,8 +1,6 @@
 <?php
 include_once("../maininclude.php");
-
 $act = isset($_REQUEST['act'])?$_REQUEST['act']:"";
-
 switch($act){
     case "add":
 		if(!checkPermision($_GET["cid"],1)){
@@ -111,6 +109,24 @@ switch($act){
 			page_transfer2($url);
 		}
 	break;
+	case "order":
+		if(!checkPermision($_GET["cid"],2)){
+			page_permision();
+			$page = $path_url."/sources/main.php";
+			page_transfer2($page);
+		}
+		else{
+			$id = $_POST["id"];	
+			$ordering=$_POST["ordering"];
+			//die(print_r($_POST["ordering"]));		
+			for($i=0;$i<count($id);$i++){
+				$sql="update $GLOBALS[db_sp].categories SET num=".$ordering[$i]." where id=".$id[$i];
+				$GLOBALS["sp"]->execute($sql);		
+			}
+			$url = $path_url."/sources/categories.php?cid=".$_GET['cid'];
+			page_transfer2($url);
+		}	
+	break;
     default:
 		if(!checkPermision($_GET["cid"],5)){
 			page_permision();
@@ -118,9 +134,9 @@ switch($act){
 			page_transfer2($page);
 		}
 		else{
-			if($_GET["cid"] == 2 || $_GET["cid"] == 1828)
+			if($_GET["cid"] == 2 || $_GET["cid"] == 1848)
 			{
-				$pidWhereSQL = 'pid in (2,1828)';
+				$pidWhereSQL = 'pid in (2,1848)';
 			}
 			else{
 				$pidWhereSQL = 'pid = '.$_GET["cid"];
@@ -201,8 +217,6 @@ function Editsm()
 	$tablect = isset($_POST['tablect'])?$_POST['tablect']:"";
 	$tablehachtoan = isset($_POST['tablehachtoan'])?$_POST['tablehachtoan']:"";
 	
-	
-		
 	if(!empty($table)){
 		$arr['table'] = trim($table);	
 	}

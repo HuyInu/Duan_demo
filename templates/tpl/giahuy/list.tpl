@@ -2,8 +2,7 @@
 <html lang="vi">
 <head>
 <!--{include 'header.tpl'}-->
-<link rel="stylesheet" type="text/css" href="<!--{$path_url}-->/css/giahuy/style.css">
-<link rel="stylesheet" type="text/css" href="<!--{$path_url}-->/css/giahuy/fontAwsome.css">
+
 </head>
 <body>
     <!--{include 'giahuy/modal.tpl'}-->
@@ -15,45 +14,45 @@
                 <li>
                     <!--{if $checkPer1 eq true}-->
                         <a href="javascript:void(0)" title="Thêm" onclick="return ChangeAdd('<!--{$path_url}-->/sources/thuchanh.php?act=add&cid=<!--{$smarty.request.cid}-->');">
-                            <span class=add_icon></span>
+                            <span class='add_icon icon-size-small'></span>
                         </a> 
                     <!--{else}-->  
                             <a>
-                            <span class='add_icon disable_icon'></span>
+                            <span class='add_icon icon-size-small disable_icon'></span>
                         </a> 	
                     <!--{/if}--> 
                     
                     <!--{if $checkPer3 eq "true" }-->
                         <a href="javascript:void(0)" title="Delete" onclick="GiaHuy_openModal('modal','Bạn có muốn xóa?',Giahuy_ChangeAction,'<!--{$path_url}-->/sources/thuchanh.php?act=dellist&cid=<!--{$smarty.request.cid}-->')">
-                            <span class=delete_icon></span>
+                            <span class='delete_icon icon-size-small'></span>
                         </a> 
                     <!--{else}-->   
                         <a>
-                            <span class='delete_icon disable_icon'></span>
+                            <span class='delete_icon icon-size-small disable_icon'></span>
                         </a> 
                     <!--{/if}--> 
                     
                     <!--{if $checkPer2 eq "true" }--> 
                         <a href="javascript:void(0)" title="Show" onclick="GiaHuy_openModal('modal','Bạn có muốn hiện?',Giahuy_ChangeAction,'<!--{$path_url}-->/sources/thuchanh.php?act=show&cid=<!--{$smarty.request.cid}-->')" >
-                            <span class='check_icon'></span>
+                            <span class='check_icon icon-size-small'></span>
                         </a> 
 
                         <a href="javascript:void(0)" title="Hide" onclick="GiaHuy_openModal('modal','Bạn có muốn ẩn?',Giahuy_ChangeAction,'<!--{$path_url}-->/sources/thuchanh.php?act=hide&cid=<!--{$smarty.request.cid}-->');">
-                            <span class='stop_icon'></span>
+                            <span class='stop_icon icon-size-small'></span>
                         </a> 
                         
                         <a href="javascript:void(0)" title="Order" onclick="GiaHuy_openModal('modal','Bạn có muốn lưu?',Giahuy_ChangeAction,'<!--{$path_url}-->/sources/thuchanh.php?act=order&cid=<!--{$smarty.request.cid}-->');">
-                            <span class='save_icon'></span>
+                            <span class='save_icon icon-size-small'></span>
                         </a>  
                     <!--{else}-->  
                         <a>
-                            <span class='check_icon disable_icon'></span>
+                            <span class='check_icon icon-size-small disable_icon'></span>
                         </a> 
                         <a>
-                            <span class='stop_icon disable_icon'></span>
+                            <span class='stop_icon icon-size-small disable_icon'></span>
                         </a> 
                         <a>
-                            <span class='save_icon disable_icon'></span>
+                            <span class='save_icon icon-size-small disable_icon'></span>
                         </a> 
                     <!--{/if}-->
                 </li>
@@ -66,7 +65,7 @@
                         <table class='shadow-box' style='width:100%'>
                             <tr class='tbheader'>
                                 <td width='25px' class='tdcheck'><input type='checkbox' onclick="checkAll();" name='all'></td>
-                                <td width='50px'>STT</td>
+                                <td width='55px'>STT</td>
                                 <td width='74px'>Thứ tự</td>
                                 <td>Tên</td>
                                 <td>Table</td>
@@ -75,7 +74,7 @@
                                 <td width='95px'>Type phòng ban</td>
                                 <td>Component</td>
                                 <td>Mã phòng ban</td>
-                                <td width='135px'>Phòng ban catalog</td>
+                                <td width='139px'>Phòng ban catalog</td>
                                 <td width='111px'>No permission</td>
                                 <td width='96px'>Hiện ẩn</td>
                                 <td width='96px'>Sửa</td>
@@ -84,7 +83,7 @@
                             <tr class='tbRow'>
                                 <td><input type='checkbox' value="<!--{$view[i].id}-->" name="iddel[]" id='check<!--{$smarty.section.i.index}-->' ></td>
                                 <td><!--{$smarty.section.i.index}--></td>
-                                <td><input class='tableTxtbox text_box' type='textbox' value='<!--{$view[i].num}-->'></td>
+                                <td><input class='tableTxtbox text_box align-center' type='textbox' name='ordering[]' value='<!--{$view[i].num}-->'></td>
                                 <td>
                                 <!--{if $view[i].has_child eq 1 }-->
                                     <a href="thuchanh.php?cid=<!--{$view[i].id}-->" border="0">
@@ -134,25 +133,25 @@
                                 <td><!--{$view[i].phongbancatalog}--></td>
                                 <td align="center">   
                                     <!--{if $view[i].nopermission eq 1}-->
-                                        <span class='check_icon'></span>
+                                        <span class='check_icon icon-size-small2'></span>
                                     <!--{else}--> 
-                                        <span class='ban_icon'></span>
+                                        <span class='ban_icon icon-size-small2'></span>
                                     <!--{/if}-->
                                 </td>
                                 <td align="center">
                                     <!--{if $view[i].active eq "1"}-->
-                                        <span class='check_icon'></span>
+                                        <span class='check_icon icon-size-small2'></span>
                                     <!--{else}--> 
-                                        <span class='ban_icon'></span>
+                                        <span class='ban_icon icon-size-small2'></span>
                                     <!--{/if}-->
                                 </td>
                                 <td align="center">
                                     <!--{if $checkPer2 eq "true" }-->
                                     <a href="<!--{$path_url}-->/sources/thuchanh.php?act=edit&cid=<!--{$smarty.request.cid}-->&id=<!--{$view[i].id}-->" title="Sửa"> 
-                                        <span class='edit_icon'></span>
+                                        <span class='edit_icon icon-size-small2'></span>
                                     </a>
                                     <!--{else}-->
-                                        <span class='edit_icon disable_icon'></span> 
+                                        <span class='edit_icon icon-size-small2 disable_icon'></span> 
                                     <!--{/if}--> 
                                 </td>
                             </tr>

@@ -181,7 +181,7 @@
                                 <!--{if $view[i].has_child eq "0"}-->
                                     <!--{insert name="GetNameComponent" comp=$view[i].comp assign="comp" }-->
                                     <a href="<!--{$comp.do}-->?cid=<!--{$view[i].id}-->">
-                                        <!--{$comp.name}--> 
+                                        <!--{$comp.name}-->
                                     </a>
                                 <!--{/if}-->
                             <!--{/if}-->

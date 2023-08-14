@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-11 08:42:10
+/* Smarty version 4.1.1, created on 2023-08-14 14:19:40
   from 'D:\wamp64\www\duan_demo\templates\tpl\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64d591f2ac4e34_22632132',
+  'unifunc' => 'content_64d9d58c372089_29693342',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f9f1f9af3fa088339b7c1491ee44274cd0daa62e' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\header.tpl',
-      1 => 1691717814,
+      1 => 1691997370,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,11 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64d591f2ac4e34_22632132 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64d9d58c372089_29693342 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="vi">
 <head>
+<meta content="width=device-width, initial-scale=1" name="viewport" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="robots" content="NOINDEX, NOFOLLOW" />
 <meta http-equiv="Pragma" content="no-cache">
@@ -55,6 +56,12 @@ function content_64d591f2ac4e34_22632132 (Smarty_Internal_Template $_smarty_tpl)
  src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /js/option-search/js/select2.full.min.js"><?php echo '</script'; ?>
 >
+
+<?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/js/giahuy/function.js"><?php echo '</script'; ?>
+>
+
 <?php echo '<script'; ?>
  type="text/javascript">
 	$(window).load(function(){

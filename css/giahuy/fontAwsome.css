@@ -2,54 +2,59 @@
 .add_icon::before{
     color: #009100;
     font-weight: bold;
-    font-size: 3em;
     content: '\0271A';
 }
 .delete_icon::before{
     color: #e92935;
     font-weight: bold;
-    font-size: 3em;
     content: '\02716';
 }
 
 .check_icon::before{
     color: #23ed10;
     font-weight: bold;
-    font-size: 3em;
     content: '\02714';
 }
 
 .edit_icon::before{
-    color: #f1ee21;
-    font-weight: bold;
-    font-size: 3em;
+    color: #f3ef0c;
+    -webkit-text-stroke: 0.15px black;
+    font-weight: bold; 
     content: '\0270E';
 }
 
 .ban_icon::before{
     color: #bd0000;
-    font-weight: bold;
-    font-size: 3em;
+    font-weight: bold; 
     content: '\02B59';
 }
 
 .stop_icon::before{
     color: #bd0000;
-    font-weight: bold;
-    font-size: 3em;
+    font-weight: bold;  
     content: '\270B';
 }
 
 .save_icon::before{
     color: #658bfb;
-    font-weight: bold;
-    font-size: 3em;
+    font-weight: bold;  
     content: '\1F5AA';
 }
 
-.icon-size-3em{
-    font-size: 3em;
+.icon-size-small{
+    font-size: 2vw;
 }
+
+.icon-size-small2{
+    font-size: 1.5vw;
+}
+
+@media screen and (max-width: 1090px) {
+    .icon-size-small, .icon-size-small2 {
+        font-size: 30px;
+    }
+}
+
 .disable_icon::before{
     color: #c8c7c7 !important;
 }

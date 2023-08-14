@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-11 11:36:46
+/* Smarty version 4.1.1, created on 2023-08-14 13:42:57
   from 'D:\wamp64\www\duan_demo\templates\tpl\categories\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64d5badee66398_41646504',
+  'unifunc' => 'content_64d9ccf1badda9_10537259',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     'e26bb7407d6a1823e941b0bf62408699d42df209' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\categories\\list.tpl',
-      1 => 1691725962,
+      1 => 1691995358,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64d5badee66398_41646504 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64d9ccf1badda9_10537259 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="breadcrumb">
     <ul>
         <li>
@@ -261,7 +261,7 @@ for ($__section_j_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_j']-
 ?cid=<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
 ">
                                         <?php echo $_smarty_tpl->tpl_vars['comp']->value['name'];?>
- 
+
                                     </a>
                                 <?php }?>
                             <?php }?>

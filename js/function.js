@@ -156,7 +156,6 @@ function checkAll()
 
 function ChangeAction(url)
 {
-	
 	var answer = confirm("Bạn chất muốn thực hiện không?");
 	if (answer)
 	{

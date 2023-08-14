@@ -7,7 +7,7 @@ $config = array();
 date_default_timezone_set("Asia/Ho_Chi_Minh");
 // =============== CONFIGURATION ===================================================================
 $config['BASE_DIR']     = $_SERVER['DOCUMENT_ROOT'].'/duan_demo'; 
-$config['BASE_URL']     =  "http://".$_SERVER['SERVER_NAME'].':81/duan_demo'; 
+$config['BASE_URL']     =  "http://".$_SERVER['SERVER_NAME'].'/duan_demo'; 
 //=======================Config Database=============================================================
 
 $DBTYPE = 'mysqli';

@@ -21,6 +21,7 @@ google.setOnLoadCallback(function()
 });
 
 function lookup(path_url,act,inputString) {
+	console.log(inputString);
 	if(inputString.length == 0) {
 		$('#suggestions').fadeOut(); // Hide the suggestions box
 	} else {
