@@ -215,7 +215,7 @@ body{margin:0;padding:0;background: #ffe01c url(images/shattered.png) repeat;}
 }
 </style>
  
- <div id="cssmenu">
+<div id="cssmenu">
   <div class="Member">
   	 Hôm nay: <?php echo $datenow .' - '.$timnow; ?>  <br />
       Chào: <?php echo $_SESSION['admin_qlsxntjcorg_username']; ?> | <a href="javascript:void(0)" onclick="resetPmscontent();">Reset Menu</a> <br />
@@ -294,8 +294,7 @@ body{margin:0;padding:0;background: #ffe01c url(images/shattered.png) repeat;}
 		}
 	?>
   </ul>
-
-    </div>
+</div>
  <script>
 $('#cssmenu li.active').addClass('open').children('ul').show(); 
 $('#cssmenu li.has-sub>a').on('click', function(){

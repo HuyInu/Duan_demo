@@ -188,6 +188,8 @@ function SubmitFrom(a,dir_img) {
 	}
 }
 
+
+
 function check_file(name)
 {
    if(name == "img_thumb_vn")	

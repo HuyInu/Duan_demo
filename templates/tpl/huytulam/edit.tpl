@@ -3,9 +3,10 @@
 <link rel="stylesheet" type="text/css" href="<!--{$path_url}-->/js/searchajax/search.css" />
 <script type="text/javascript" src="<!--{$path_url}-->/js/searchajax/jsapi.js"></script>
 <script type="text/javascript" src="<!--{$path_url}-->/js/searchajax/script.js"></script>
+<script type="text/javascript" src="<!--{$path_url}-->/js/searchajax/Giahuy_script.js"></script>
 
 <div class="MainContent">
-	<form name="allsubmit" class="form-horizontal" id="frmEdit" action="" method="post" enctype="multipart/form-data">
+<form name="allsubmit" class="form-horizontal" id="frmEdit" action="huymenu2.php?act=<!--{if $smarty.request.act === 'add'}-->addsm<!--{else}-->editsm<!--{/if}-->&cid=<!--{$smarty.request.cid}-->" method="post" enctype="multipart/form-data">
     	<div class="form-group">
             <label class="col-sm-3 control-label">Tên</label>
             <div class="col-sm-6">
@@ -57,32 +58,39 @@
          <div class="form-group">
             <label class="col-sm-3 control-label">No Permission</label>
             <div class="col-sm-6">
-                <input type="checkbox" class="CheckBox" name="nopermission" value="nopermission"  />    
+                <input type="checkbox" class="CheckBox" name="nopermission" value="1"  />    
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">Hiện/Ẩn</label>
             <div class="col-sm-6">
-                <input type="checkbox" class="CheckBox" name="active" value="active" />    
+                <input type="checkbox" class="CheckBox" name="active" value="1" />    
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">Có Menu Con?</label>
             <div class="col-sm-6">
-                <input type="checkbox" class="CheckBox"  value="has_child" name="has_child" />    
+                <input type="checkbox" class="CheckBox"  value="1" name="has_child" onclick="Giahuy_disable_Componet_TextBox(this)"/>    
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">Component</label>
             <div class="col-sm-6">
-                <input style="width:60%;" name="namecomp" id="namecomp" autocomplete="off" class="InputText" type="text" value="" />
+                <input style="width:60%;" name="namecomp" id="namecomp" autocomplete="off" class="InputText" type="text" value="" onkeyup="Giahuy_componentLookup('<!--{$path_url}-->', 'conponent', this.value)"/>
                 <input type="text" name="comp" id="comp" value="" class="InputNum" readonly>
                 <div id="suggestions" class="suggestionsCat"></div>
             </div>
-            
         </div>
         <div class="col-xs-9 TextCenter"> 
-            <input type="submit" class="btn-save" onclick=" return SubmitFrom('checkForm','');"  value="Lưu"> 
+            <input type="button" class="btn-save" onclick="Giahuy_SubmitFrom(this)"  value="Lưu"> 
         </div>
     </form>    
 </div>
+<script>
+
+function insertComponent(idcomponent, tencomponent){
+    $('#comp').val(idcomponent);
+    $('#namecomp').val(tencomponent);
+}
+
+</script>

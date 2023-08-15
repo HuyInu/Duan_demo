@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-14 16:12:16
+/* Smarty version 4.1.1, created on 2023-08-15 14:41:50
   from 'D:\wamp64\www\duan_demo\templates\tpl\huytulam\edit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64d9eff03df577_14561105',
+  'unifunc' => 'content_64db2c3edf42d4_49466983',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4c179132bfdb0432bca9626cb3d3ca93d73e6af7' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\huytulam\\edit.tpl',
-      1 => 1692004333,
+      1 => 1692083738,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64d9eff03df577_14561105 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64db2c3edf42d4_49466983 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /select-checkbox/sol.js"><?php echo '</script'; ?>
@@ -37,9 +37,14 @@ echo '<script'; ?>
  type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /js/searchajax/script.js"><?php echo '</script'; ?>
 >
+<?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/js/searchajax/Giahuy_script.js"><?php echo '</script'; ?>
+>
 
 <div class="MainContent">
-	<form name="allsubmit" class="form-horizontal" id="frmEdit" action="" method="post" enctype="multipart/form-data">
+<form name="allsubmit" class="form-horizontal" id="frmEdit" action="huymenu2.php?act=<?php if ($_REQUEST['act'] === 'add') {?>addsm<?php } else { ?>editsm<?php }?>&cid=<?php echo $_REQUEST['cid'];?>
+" method="post" enctype="multipart/form-data">
     	<div class="form-group">
             <label class="col-sm-3 control-label">Tên</label>
             <div class="col-sm-6">
@@ -91,33 +96,43 @@ echo '<script'; ?>
          <div class="form-group">
             <label class="col-sm-3 control-label">No Permission</label>
             <div class="col-sm-6">
-                <input type="checkbox" class="CheckBox" name="nopermission" value="nopermission"  />    
+                <input type="checkbox" class="CheckBox" name="nopermission" value="1"  />    
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">Hiện/Ẩn</label>
             <div class="col-sm-6">
-                <input type="checkbox" class="CheckBox" name="active" value="active" />    
+                <input type="checkbox" class="CheckBox" name="active" value="1" />    
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">Có Menu Con?</label>
             <div class="col-sm-6">
-                <input type="checkbox" class="CheckBox"  value="has_child" name="has_child" />    
+                <input type="checkbox" class="CheckBox"  value="1" name="has_child" onclick="Giahuy_disable_Componet_TextBox(this)"/>    
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">Component</label>
             <div class="col-sm-6">
-                <input style="width:60%;" name="namecomp" id="namecomp" autocomplete="off" class="InputText" type="text" value="" />
+                <input style="width:60%;" name="namecomp" id="namecomp" autocomplete="off" class="InputText" type="text" value="" onkeyup="Giahuy_componentLookup('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+', 'conponent', this.value)"/>
                 <input type="text" name="comp" id="comp" value="" class="InputNum" readonly>
                 <div id="suggestions" class="suggestionsCat"></div>
             </div>
-            
         </div>
         <div class="col-xs-9 TextCenter"> 
-            <input type="submit" class="btn-save" onclick=" return SubmitFrom('checkForm','');"  value="Lưu"> 
+            <input type="button" class="btn-save" onclick="Giahuy_SubmitFrom(this)"  value="Lưu"> 
         </div>
     </form>    
-</div><?php }
+</div>
+<?php echo '<script'; ?>
+>
+
+function insertComponent(idcomponent, tencomponent){
+    $('#comp').val(idcomponent);
+    $('#namecomp').val(tencomponent);
+}
+
+<?php echo '</script'; ?>
+><?php }
 }
