@@ -1,62 +1,109 @@
 <?php
 include_once("../maininclude.php");
 $act = (isset($_REQUEST['act']))? $_REQUEST['act'] : '';
+$template;
 
 $UrlToList = $path_url."/sources/huymenu2.php?cid=".$_REQUEST['cid'];
 switch($act) {
     case "add":
-
-        $smarty->display('header.tpl');
-        $smarty->display('huytulam/edit.tpl');
-        $smarty->display('footer.tpl');
+        $template = 'huytulam/edit.tpl';
     break;
     case "addsm":
-        $data = requestToArray();
-        $data['pid'] = $_REQUEST['cid'];
+        try{
+            $data = requestToArray();
+            $data['pid'] = $_REQUEST['cid'];
+            $result = Giahuy_Insert('categories',$data);
 
-        $result = Giahuy_Insert('categories',$data);
-
-        if($result === 'success') {
-            page_transfer2($UrlToList); 
-            var_dump('success');
-        } else {
-            var_dump('error');
-            die();
+            $UrlToList .= getSuccesActResultToUrl();
+        } catch(Exception $e) {
+            $UrlToList .= getErrorActResultToUrl();
         }
+        page_transfer2($UrlToList); 
+    break;
+    case "edit":
+        $catogID = $_REQUEST['id'];
+        $sql = "select * from $GLOBALS[db_sp].categories where id = $catogID";
+        $category = $GLOBALS["sp"]->getRow($sql);
+
+        $template = 'huytulam/edit.tpl';
+        $smarty->assign('category', $category);
+    break;
+    case "editsm":
+        try {
+            $data = requestToArray();
+            $result = Giahuy_update('categories',$data, "id='".$data['id']."'");
+
+            $UrlToList .= getSuccesActResultToUrl();
+        } catch (Exception $e) {
+            $UrlToList .= getErrorActResultToUrl();
+        }
+        page_transfer2($UrlToList); 
+    break;
     case "dellist":
         $itemsID = $_POST['checkedItemID'];
-        foreach($itemsID as $id) {
-            $sql = "select has_child, id from $GLOBALS[db_sp].categories where id = '$id'";
-            $item = $GLOBALS["sp"]->getRow($sql);
-            delete_Categories_And_Child($item);
+        $whereSQL = create_Where_IN_Query_By_ID($itemsID);
+        $sql = "select has_child, id from $GLOBALS[db_sp].categories where $whereSQL";
+        $categories = $GLOBALS["sp"]->getAll($sql);
+        $result = delete_Categories_And_Child($categories);
+        if($result === 'success') {
+            $UrlToList .= getSuccesActResultToUrl();
+        } else {
+            $UrlToList .= getErrorActResultToUrl();
         }
-        die();
-    break;
+        page_transfer2($UrlToList);
     break;
     case "show":
-        updateCategoriesActive(1);
+        try {
+            updateCategoriesActive(1);
+            $UrlToList .= getSuccesActResultToUrl();
+        } catch(Exception $e) {
+            $UrlToList .= getErrorActResultToUrl();
+        }     
         page_transfer2($UrlToList);     
     break;
     case "hide":
-        updateCategoriesActive(0);
+        try{
+            updateCategoriesActive(0);
+            $UrlToList .= getSuccesActResultToUrl();
+        } catch(Exception $e) {
+            $UrlToList .= getErrorActResultToUrl();
+        }
         page_transfer2($UrlToList); 
+    break;
+    case 'order':
+        try{
+            $ordersID = $_POST['id'];
+            $ordersNum = $_POST['num'];
+            foreach($ordersID as $index => $order) {
+                $sql = "update $GLOBALS[db_sp].categories set num = '".$ordersNum[$index]."' where id = '$order'";
+                $GLOBALS["sp"]->execute($sql);
+            }
+            $UrlToList .= getSuccesActResultToUrl();
+        } catch(Exception $e) {
+            $UrlToList .= getErrorActResultToUrl();
+        }
+        page_transfer2($UrlToList);
+    break;
     default:
         $pidSQL;
-        if($_REQUEST['cid'] === '2' || $_REQUEST['cid'] === '1856') {
-            $pidSQL = 'pid in (2,1856)';
+        if($_REQUEST['cid'] === '2' || $_REQUEST['cid'] === '1834') {
+            $pidSQL = 'pid in (2,1834)';
         } 
         else{
             $pidSQL = 'pid = '.$_REQUEST['cid'];
         }
         $sql = "select * from $GLOBALS[db_sp].categories where $pidSQL order by id desc";
         $categoriesList = $GLOBALS['sp']->getAll($sql);
-
-        $smarty->assign('categoriesList', $categoriesList);
-        $smarty->display('header.tpl');
-        $smarty->display('huytulam/list.tpl');
-        $smarty->display('footer.tpl');
+        $template = 'huytulam/list.tpl';
+        
+        $actResult = getActResultMsg();
+        $smarty->assign('actResult', $actResult);
+        $smarty->assign('categoriesList', $categoriesList);   
     break;
 }
+$smarty->display('header.tpl');
+$smarty->display($template);
+$smarty->display('footer.tpl');
 
 function updateCategoriesActive ($active) {
     $checkedItemID = $_POST['checkedItemID'];
@@ -69,25 +116,38 @@ function updateCategoriesActive ($active) {
     $GLOBALS["sp"]->execute($sql);
 }
 
-function delete_Categories_And_Child ($item) {
-    if($item['has_child'] === '1') {
-        Giahuy_delete('catogories', $item['id']);
-        $sql
-    }
+function delete_Categories_And_Child ($categories) {
+    $GLOBALS["sp"]->BeginTrans();
+    try {
+        foreach($categories as $category) {
+            Giahuy_delete('categories', "id = '".$category['id']."'");
+            if($category['has_child'] === '1') {
+                $sql = "select id, has_child from $GLOBALS[db_sp].categories where pid = '".$category['id']."'";
+                $Child_category = $GLOBALS["sp"]->getAll($sql);
+                
+                delete_Categories_And_Child($Child_category);
+            }
+        }
+        $GLOBALS["sp"]->CommitTrans();
+    } catch(Exception $e) {
+        $GLOBALS["sp"]->RollbackTrans();
+        return 'error';
+    }  
+    return 'success';
 }
 
 function create_Where_IN_Query_By_ID ($ItemIDArray) {
     $whereSQl = 'id in (';
     foreach($ItemIDArray as $index => $item)
     {
-        $whereSQl .= ($index !== count($checkedItemID)-1) ? $item.',' : $item.')';
+        $whereSQl .= ($index !== count($ItemIDArray)-1) ? $item.',' : $item.')';
     }
     return $whereSQl;
 }
 
 function requestToArray () {
     $data = [];
-    $data['id'] = ''; 
+    $data['id'] = isset($_REQUEST['id']) ? $_REQUEST['id'] : ''; 
     $data['name_vn'] = $_POST['name_vn']; 
     $data['table'] = $_POST['table']; 
     $data['tablect'] = $_POST['tablect']; 
@@ -98,12 +158,27 @@ function requestToArray () {
     $data['nopermission'] = $_POST['nopermission'] === '1' ? 1 : 0;
     $data['active'] = $_POST['active'] === '1' ? 1 : 0;
     $data['has_child'] = $_POST['has_child'] === '1' ? 1 : 0;
-    $data['comp'] = $data['has_child'] === 1 ? '' : $_POST['comp'];
+    $data['comp'] = $data['has_child'] === 1 ? 0 : $_POST['comp'];
     
     return $data;
 }
 
-function addCatogery ($data) {
+function getSuccesActResultToUrl() {
+    return '&actResult=1';
+}
 
+function getErrorActResultToUrl() {
+    return '&actResult=0';
+}
+
+function getActResultMsg() {
+    $actResult = [];
+    if(isset($_REQUEST['actResult'])) {
+        $actResult['msg'] = $_REQUEST['actResult'] === '1' ? 'Thao tác thành công!' : 'Thao tác thất bại!';
+        $actResult['result'] = $_REQUEST['actResult'] === '1' ? '1' : '0';
+    } else {
+        return null;
+    } 
+    return $actResult;
 }
 ?>

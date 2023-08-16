@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-14 13:42:57
+/* Smarty version 4.1.1, created on 2023-08-16 08:18:33
   from 'D:\wamp64\www\duan_demo\templates\tpl\categories\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64d9ccf1badda9_10537259',
+  'unifunc' => 'content_64dc23e952c9f7_39219489',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     'e26bb7407d6a1823e941b0bf62408699d42df209' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\categories\\list.tpl',
-      1 => 1691995358,
+      1 => 1692148424,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64d9ccf1badda9_10537259 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64dc23e952c9f7_39219489 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="breadcrumb">
     <ul>
         <li>
@@ -31,7 +31,7 @@ function content_64d9ccf1badda9_10537259 (Smarty_Internal_Template $_smarty_tpl)
         </li>
         <?php echo insert_HearderCatMenu(array('cid' => $_REQUEST['cid'], 'root' => $_REQUEST['root'], 'act' => $_REQUEST['act']),$_smarty_tpl);?>
     </ul>
-</div>
+</div>``
 <div class="goAction">
 	<ul>
     	<li>

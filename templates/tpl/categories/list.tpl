@@ -7,7 +7,7 @@
         </li>
         <!--{insert name="HearderCatMenu" cid=$smarty.request.cid root=$smarty.request.root act=$smarty.request.act}-->
     </ul>
-</div>
+</div>``
 <div class="goAction">
 	<ul>
     	<li>

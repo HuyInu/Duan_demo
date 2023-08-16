@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-11 11:39:00
+/* Smarty version 4.1.1, created on 2023-08-16 15:39:37
   from 'D:\wamp64\www\duan_demo\templates\tpl\categories\edit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64d5bb64e532d8_57162714',
+  'unifunc' => 'content_64dc8b491d2946_48743207',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     '77b5308b70c87dd0694d3691a88260e5d14c25f6' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\categories\\edit.tpl',
-      1 => 1691726258,
+      1 => 1692154812,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64d5bb64e532d8_57162714 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64dc8b491d2946_48743207 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /select-checkbox/sol.js"><?php echo '</script'; ?>

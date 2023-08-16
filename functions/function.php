@@ -1431,8 +1431,6 @@ function insert_getNamPhongBanCatalog($a){
 	return $html;
 }
 
-
-
 function insert_checkKhoanTuNgayDenNgayXuatKho($a){
 	$datedxuat = $a['datedxuat'];
 	$fromdays = $a['fromdays'];

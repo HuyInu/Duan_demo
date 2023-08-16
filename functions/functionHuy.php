@@ -23,24 +23,28 @@
             }
             $index++;
         }
-        $sql = "insert into $GLOBALS[db_sp]"."."."$table"."$colSQL values $valueSQL";
-        
-        try {
-            $GLOBALS['sp']->execute($sql);
-        } catch(Exception $e) {
-            return 'error'; 
+        $sql = "insert into $GLOBALS[db_sp].$table"."$colSQL values $valueSQL";
+        $GLOBALS['sp']->execute($sql);
+    }
+
+    function Giahuy_update ($table, $data, $where) {
+        $valueSQL = '';
+        $index = 1;
+        $dataLenght = count($data);
+        foreach($data as $key => $value) {
+            $valueSQL .= "`$key` = '$value'";
+            if($index !== $dataLenght) {
+                $valueSQL .= ',';
+            }
+            $index++;
         }
-        return 'success';
+        $sql = "update $GLOBALS[db_sp].$table set $valueSQL where $where";     
+        $GLOBALS['sp']->execute($sql);
     }
 
     function Giahuy_delete ($table, $where) {
-        try{
-            $sql = "delete from $table where $where";
-            $GLOBALS['sp']->execute($sql);
-        } catch(Exception $e) {
-            return 'error'; 
-        }
-        return 'success';
+        $sql = "delete from $table where $where";
+        $GLOBALS['sp']->execute($sql);
     }
 
 ?>

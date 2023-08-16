@@ -1,7 +1,7 @@
+<!--{if $actResult !== null}-->
+    <!--{include 'huytulam/sweetAlert.tpl'}-->
+<!--{/if}-->
 <div class='container'>
-    <a href="<!--{$path_url}-->/sources/huymenu2?act=show">
-        test
-    </a>
     <div class="goAction">
         <ul>
             <li>
@@ -94,7 +94,8 @@
                         </td>
                         
                         <td class="tdOrder">
-                            <input type='text' class='InputOrder' name='num[]' value='<!--{$categoriesList[i].num}-->'>
+                            <input type='text' class='InputOrder' name='num[]' value='<!--{$categoriesList[i].num}-->' onkeypress="return onlyNumberKey(event)">
+                            <input type='hidden' name='id[]' value= '<!--{$categoriesList[i].id}-->'>
                         </td>
                         
                         <td>
@@ -120,17 +121,17 @@
                         </td>
 
                         <td width="10%">
-                            Type Phòng Ban 
+                            <!--{$categoriesList[i].typephongban}-->
                         </td>
                         <td width="10%">
                             <!--{Giahuy_getComponentById($categoriesList[i].comp) assign='component'}-->
-                            <!--{if count($component) > 0}-->
+                            <!--{if count($component) > 0 && $component.id !== '0'}-->
                                 <a href="<!--{$component.do}-->/?cid=<!--{$categoriesList[i].id}-->"><!--{$component.name}--></a>
                             <!--{/if}-->
                             
                         </td>
                         <td width="10%">
-                             Mã Phòng Ban(PM A.Tuấn) 
+                            <!--{$categoriesList[i].maphongban}-->
                         </td>
                         <td width="12%">
                             <!--{$categoriesList[i].phongbancatalog}-->
@@ -142,7 +143,9 @@
                             <img width="20" src="<!--{$path_url}-->/images/<!--{($categoriesList[i].active === '1') ? 'active.png' : 'hide.png'}-->" alt="Show\Hide"  />
                         </td>                                     
                         <td class="tdEdit">
-                            <img src="<!--{$path_url}-->/images/edit.png"/> 
+                            <a href="huymenu2?act=edit&cid=<!--{$smarty.request.cid}-->&id=<!--{$categoriesList[i].id}-->">
+                                <img src="<!--{$path_url}-->/images/edit.png"/> 
+                            </a>
                         </td>
                     </tr>
                     <!--{/section}-->

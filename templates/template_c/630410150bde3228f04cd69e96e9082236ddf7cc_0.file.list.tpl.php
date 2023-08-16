@@ -1,31 +1,31 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-14 15:04:56
+/* Smarty version 4.1.1, created on 2023-08-16 16:07:20
   from 'D:\wamp64\www\duan_demo\templates\tpl\huytulam\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64d9e02838edd2_94038280',
+  'unifunc' => 'content_64dc91c8abcfa0_69913273',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '630410150bde3228f04cd69e96e9082236ddf7cc' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\huytulam\\list.tpl',
-      1 => 1692000267,
+      1 => 1692176814,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:huytulam/sweetAlert.tpl' => 1,
   ),
 ),false)) {
-function content_64d9e02838edd2_94038280 (Smarty_Internal_Template $_smarty_tpl) {
-?><div class='container'>
-    <a href="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
-/sources/huymenu2?act=show">
-        test
-    </a>
+function content_64dc91c8abcfa0_69913273 (Smarty_Internal_Template $_smarty_tpl) {
+if ($_smarty_tpl->tpl_vars['actResult']->value !== null) {?>
+    <?php $_smarty_tpl->_subTemplateRender('file:huytulam/sweetAlert.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+}?>
+<div class='container'>
     <div class="goAction">
         <ul>
             <li>
@@ -144,6 +144,8 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
                         
                         <td class="tdOrder">
                             <input type='text' class='InputOrder' name='num[]' value='<?php echo $_smarty_tpl->tpl_vars['categoriesList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['num'];?>
+' onkeypress="return onlyNumberKey(event)">
+                            <input type='hidden' name='id[]' value= '<?php echo $_smarty_tpl->tpl_vars['categoriesList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
 '>
                         </td>
                         
@@ -177,11 +179,12 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
                         </td>
 
                         <td width="10%">
-                            Type Phòng Ban 
+                            <?php echo $_smarty_tpl->tpl_vars['categoriesList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['typephongban'];?>
+
                         </td>
                         <td width="10%">
                             <?php $_smarty_tpl->assign('component',Giahuy_getComponentById($_smarty_tpl->tpl_vars['categoriesList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['comp']));?>
-                            <?php if (count($_smarty_tpl->tpl_vars['component']->value) > 0) {?>
+                            <?php if (count($_smarty_tpl->tpl_vars['component']->value) > 0 && $_smarty_tpl->tpl_vars['component']->value['id'] !== '0') {?>
                                 <a href="<?php echo $_smarty_tpl->tpl_vars['component']->value['do'];?>
 /?cid=<?php echo $_smarty_tpl->tpl_vars['categoriesList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
 "><?php echo $_smarty_tpl->tpl_vars['component']->value['name'];?>
@@ -190,7 +193,8 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
                             
                         </td>
                         <td width="10%">
-                             Mã Phòng Ban(PM A.Tuấn) 
+                            <?php echo $_smarty_tpl->tpl_vars['categoriesList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['maphongban'];?>
+
                         </td>
                         <td width="12%">
                             <?php echo $_smarty_tpl->tpl_vars['categoriesList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['phongbancatalog'];?>
@@ -207,8 +211,12 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 " alt="Show\Hide"  />
                         </td>                                     
                         <td class="tdEdit">
-                            <img src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+                            <a href="huymenu2?act=edit&cid=<?php echo $_REQUEST['cid'];?>
+&id=<?php echo $_smarty_tpl->tpl_vars['categoriesList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
+">
+                                <img src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /images/edit.png"/> 
+                            </a>
                         </td>
                     </tr>
                     <?php
