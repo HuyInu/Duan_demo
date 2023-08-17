@@ -1,6 +1,3 @@
-<!--{if $actResult !== null}-->
-    <!--{include 'huytulam/sweetAlert.tpl'}-->
-<!--{/if}-->
 <div class='container'>
     <div class="goAction">
         <ul>

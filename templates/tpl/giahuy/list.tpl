@@ -2,7 +2,9 @@
 <html lang="vi">
 <head>
 <!--{include 'header.tpl'}-->
-
+<link rel="stylesheet" type="text/css" href="<!--{$path_url}-->/css/giahuy/style.css">
+<link rel="stylesheet" type="text/css" href="<!--{$path_url}-->/css/giahuy/modal.css">
+<link rel="stylesheet" type="text/css" href="<!--{$path_url}-->/css/giahuy/fontAwsome.css">
 </head>
 <body>
     <!--{include 'giahuy/modal.tpl'}-->

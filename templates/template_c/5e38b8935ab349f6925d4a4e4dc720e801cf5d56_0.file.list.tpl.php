@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-16 08:38:25
+/* Smarty version 4.1.1, created on 2023-08-17 08:21:09
   from 'D:\wamp64\www\duan_demo\templates\tpl\giahuy\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64dc2891a56816_14234241',
+  'unifunc' => 'content_64dd7605b5e7d4_74367958',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     '5e38b8935ab349f6925d4a4e4dc720e801cf5d56' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\giahuy\\list.tpl',
-      1 => 1691997236,
+      1 => 1692235267,
       2 => 'file',
     ),
   ),
@@ -23,13 +23,18 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_64dc2891a56816_14234241 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64dd7605b5e7d4_74367958 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="vi">
 <head>
 <?php $_smarty_tpl->_subTemplateRender('file:header.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-
+<link rel="stylesheet" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/css/giahuy/style.css">
+<link rel="stylesheet" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/css/giahuy/modal.css">
+<link rel="stylesheet" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/css/giahuy/fontAwsome.css">
 </head>
 <body>
     <?php $_smarty_tpl->_subTemplateRender('file:giahuy/modal.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);

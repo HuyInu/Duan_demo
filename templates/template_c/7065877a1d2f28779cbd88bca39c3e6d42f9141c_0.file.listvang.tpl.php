@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-05-08 10:18:51
+/* Smarty version 4.1.1, created on 2023-08-17 09:51:43
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-A9-Xuat-Kho\listvang.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64586a1b1e33d7_50765280',
+  'unifunc' => 'content_64dd8b3fe3c1d7_44855877',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     '7065877a1d2f28779cbd88bca39c3e6d42f9141c' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-A9-Xuat-Kho\\listvang.tpl',
-      1 => 1683515928,
+      1 => 1692240701,
       2 => 'file',
     ),
   ),
@@ -32,7 +32,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./allsearch/ghichus.tpl' => 1,
   ),
 ),false)) {
-function content_64586a1b1e33d7_50765280 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64dd8b3fe3c1d7_44855877 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\libraries\\smarty4\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
 <div class="breadcrumb">
@@ -207,12 +207,8 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\
 
                 <!--623,1826-->
 
-                <?php $_smarty_tpl->assign("khoSanXuat_KhoVMNT" , insert_optionChuyenDen (array('id' => '1826'),$_smarty_tpl), true);?>
-                <?php $_smarty_tpl->assign("khoSanXuat_KhoThanhPham" , insert_optionChuyenDen (array('id' => '811'),$_smarty_tpl), true);?>
-                <?php $_smarty_tpl->assign("khoKhac_KhoTongDeCuc" , insert_optionChuyenDen (array('id' => '169'),$_smarty_tpl), true);?>
-                <?php $_smarty_tpl->assign("khoSanXuat_KhoLamMoi" , insert_optionChuyenDen (array('id' => '647'),$_smarty_tpl), true);?>
+                <?php $_smarty_tpl->assign("khoSanXuat_KhoVMNT" , insert_optionChuyenDen (array('id' => '623'),$_smarty_tpl), true);?>
                 
-                <?php $_smarty_tpl->assign("khoVangChuSonNhan_KhoNguonVao" , insert_optionChuyenDen (array('id' => '706'),$_smarty_tpl), true);?>
                 <?php
 $__section_i_0_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['view']->value) ? count($_loop) : max(0, (int) $_loop));
 $__section_i_0_total = $__section_i_0_loop;
@@ -309,22 +305,8 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 ,<?php echo $_smarty_tpl->tpl_vars['phongbanchuyen']->value;?>
 ,'khonguonvao_achinh')">
                                         <option value="">--chuyển đến--</option> 
-                                        <?php if ($_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['nhomnguyenlieuvang'] == 372 || $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['nhomnguyenlieuvang'] == 371) {?>   <!--nhẫn trơn, JSC--> 
-                                        	<?php echo optionChuyenDenTest(array('id'=>1835));?>
-
-                                        <?php }?>
-                                        <?php if ($_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['nhomnguyenlieuvang'] == 75) {?>   <!--Dẻ Cục--> 
-                                        	<?php echo $_smarty_tpl->tpl_vars['khoKhac_KhoTongDeCuc']->value;?>
+                                        <?php echo $_smarty_tpl->tpl_vars['khoSanXuat_KhoVMNT']->value;?>
  
-                                        <?php }?>
-                                        <?php if ($_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['nhomnguyenlieuvang'] == 76) {?>   <!--Nữ Trang Làm Mới--> 
-                                        	<?php echo $_smarty_tpl->tpl_vars['khoSanXuat_KhoLamMoi']->value;?>
- 
-                                        <?php }?>
-                                        <?php echo $_smarty_tpl->tpl_vars['khoSanXuat_KhoThanhPham']->value;?>
-     
-                                        <?php echo $_smarty_tpl->tpl_vars['khoVangChuSonNhan_KhoNguonVao']->value;?>
-
                                     </select> 
                                 </div> 
                             <?php } else { ?>

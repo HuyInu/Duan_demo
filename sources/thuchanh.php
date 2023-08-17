@@ -134,9 +134,9 @@ switch($act){
 			page_transfer2($page);
 		}
 		else{
-			if($_GET["cid"] == 2 || $_GET["cid"] == 1848)
+			if($_GET["cid"] == 2 || $_GET["cid"] == 1848 || $_GET["cid"] == 1853)
 			{
-				$pidWhereSQL = 'pid in (2,1848)';
+				$pidWhereSQL = 'pid in (2,1848,1853)';
 			}
 			else{
 				$pidWhereSQL = 'pid = '.$_GET["cid"];

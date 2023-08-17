@@ -2693,7 +2693,7 @@ function hachToanHaoDuAdd($idloaivang, $hao, $du, $haochenhlech, $duchenhlech,  
 		$arrnx1day['idloaivang'] = $idloaivang; // chỉ có nhập mới inser loại vàng
 		$arrnx1day['hao'] = $hao;
 		$arrnx1day['du'] = $du;
-		
+		 
 		$arrnx1day['haochenhlech'] = $haochenhlech;
 		$arrnx1day['duchenhlech'] = $duchenhlech;
 		

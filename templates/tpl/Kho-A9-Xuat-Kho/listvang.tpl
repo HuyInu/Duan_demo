@@ -147,12 +147,8 @@
 
                 <!--623,1826-->
 
-                <!--{insert name='optionChuyenDen' id='1826' assign="khoSanXuat_KhoVMNT"}-->
-                <!--{insert name='optionChuyenDen' id='811' assign="khoSanXuat_KhoThanhPham"}-->
-                <!--{insert name='optionChuyenDen' id='169' assign="khoKhac_KhoTongDeCuc"}-->
-                <!--{insert name='optionChuyenDen' id='647' assign="khoSanXuat_KhoLamMoi"}-->
+                <!--{insert name='optionChuyenDen' id='623' assign="khoSanXuat_KhoVMNT"}-->
                 
-                <!--{insert name='optionChuyenDen' id='706' assign="khoVangChuSonNhan_KhoNguonVao"}-->
                 <!--{section name=i loop=$view}--> 
                     <tr id="g<!--{$view[i].id}-->">
                     	<td>
@@ -218,17 +214,7 @@
 								<div id="siteIDload">                       		
                                     <select class="chuyenPhonbanSanXuat" id="chuyenkho<!--{$view[i].id}-->" onchange="chuyenKhoKhac('chuyenkhokhac', this.value, <!--{$view[i].id}-->,<!--{$phongbanchuyen}-->,'khonguonvao_achinh')">
                                         <option value="">--chuyển đến--</option> 
-                                        <!--{if $view[i].nhomnguyenlieuvang eq 372 || $view[i].nhomnguyenlieuvang eq 371}-->   <!--nhẫn trơn, JSC--> 
-                                        	<!--{optionChuyenDenTest(array(id=>1835))}-->
-                                        <!--{/if}-->
-                                        <!--{if $view[i].nhomnguyenlieuvang eq 75}-->   <!--Dẻ Cục--> 
-                                        	<!--{$khoKhac_KhoTongDeCuc}--> 
-                                        <!--{/if}-->
-                                        <!--{if $view[i].nhomnguyenlieuvang eq 76}-->   <!--Nữ Trang Làm Mới--> 
-                                        	<!--{$khoSanXuat_KhoLamMoi}--> 
-                                        <!--{/if}-->
-                                        <!--{$khoSanXuat_KhoThanhPham}-->     
-                                        <!--{$khoVangChuSonNhan_KhoNguonVao}-->
+                                        <!--{$khoSanXuat_KhoVMNT}--> 
                                     </select> 
                                 </div> 
                             <!--{else}-->

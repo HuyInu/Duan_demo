@@ -15,7 +15,7 @@ $DBTYPE = 'mysqli';
 $DBHOST = 'localhost';
 $DBUSER = 'root';
 $DBPASSWORD = '';
-$DBNAME = 'duan_demo';
+$DBNAME = 'demo_huy';
 //=======================Path to url=============================================================
 require_once($config['BASE_DIR'].'/#include/bootstrap.php'); 
 ?>

@@ -1,31 +1,27 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-16 16:07:20
+/* Smarty version 4.1.1, created on 2023-08-17 07:55:21
   from 'D:\wamp64\www\duan_demo\templates\tpl\huytulam\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64dc91c8abcfa0_69913273',
+  'unifunc' => 'content_64dd6ff9926727_34863213',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '630410150bde3228f04cd69e96e9082236ddf7cc' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\huytulam\\list.tpl',
-      1 => 1692176814,
+      1 => 1692233703,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
-    'file:huytulam/sweetAlert.tpl' => 1,
   ),
 ),false)) {
-function content_64dc91c8abcfa0_69913273 (Smarty_Internal_Template $_smarty_tpl) {
-if ($_smarty_tpl->tpl_vars['actResult']->value !== null) {?>
-    <?php $_smarty_tpl->_subTemplateRender('file:huytulam/sweetAlert.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-}?>
-<div class='container'>
+function content_64dd6ff9926727_34863213 (Smarty_Internal_Template $_smarty_tpl) {
+?><div class='container'>
     <div class="goAction">
         <ul>
             <li>

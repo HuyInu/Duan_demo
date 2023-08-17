@@ -102,12 +102,11 @@ function exportExcelKhoKhac(url){
 		$(".vang").show();	
 		$(".kimcuong").hide();
 		if(a !='noajax' ){
-			createCookie('typeVangKimCuong','vang',1);
+			createCookie('0','vang',1);
 			if(a !='' )
 				$(location).attr('href',a);
 			reload_js('<!--{$path_url}-->/js/colResizable-1.6.js');	
 		}
-		
 	}
 	function clickKimCuong(a){
 		$("#clickVang").removeClass("active");						   

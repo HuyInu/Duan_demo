@@ -14,9 +14,9 @@ switch($act) {
             $data['pid'] = $_REQUEST['cid'];
             $result = Giahuy_Insert('categories',$data);
 
-            $UrlToList .= getSuccesActResultToUrl();
+            //$UrlToList .= getSuccesActResultToUrl();
         } catch(Exception $e) {
-            $UrlToList .= getErrorActResultToUrl();
+            //$UrlToList .= getErrorActResultToUrl();
         }
         page_transfer2($UrlToList); 
     break;
@@ -33,40 +33,53 @@ switch($act) {
             $data = requestToArray();
             $result = Giahuy_update('categories',$data, "id='".$data['id']."'");
 
-            $UrlToList .= getSuccesActResultToUrl();
+            //$UrlToList .= getSuccesActResultToUrl();
         } catch (Exception $e) {
-            $UrlToList .= getErrorActResultToUrl();
+            //$UrlToList .= getErrorActResultToUrl();
         }
         page_transfer2($UrlToList); 
     break;
     case "dellist":
-        $itemsID = $_POST['checkedItemID'];
-        $whereSQL = create_Where_IN_Query_By_ID($itemsID);
-        $sql = "select has_child, id from $GLOBALS[db_sp].categories where $whereSQL";
-        $categories = $GLOBALS["sp"]->getAll($sql);
-        $result = delete_Categories_And_Child($categories);
+        $idarr = $_POST['checkedItemID'];
+        if(count($idarr) > 0){
+            $id = implode(',',$idarr);
+            // $sql="delete from $GLOBALS[db_sp].categories  where id in (".$id.")";
+            // $GLOBALS["sp"]->execute($sql);
+            //vaDelete('categories', ' id in ('.$id.') ');
+            delete_Categories_And_Child($id, $id);
+        }
+        
+        
+        // for($i=0;$i<count($id);$i++){
+        //     $sql="delete from $GLOBALS[db_sp].categories  where id=".$id[$i];
+        //     $GLOBALS["sp"]->execute($sql);
+        // }
+        //$whereSQL = create_Where_IN_Query_By_ID($itemsID);
+        // $sql = "select has_child, id from $GLOBALS[db_sp].categories where $whereSQL";
+        // $categories = $GLOBALS["sp"]->getAll($sql);
+        // $result = delete_Categories_And_Child($categories);
         if($result === 'success') {
-            $UrlToList .= getSuccesActResultToUrl();
+            //$UrlToList .= getSuccesActResultToUrl();
         } else {
-            $UrlToList .= getErrorActResultToUrl();
+            //$UrlToList .= getErrorActResultToUrl();
         }
         page_transfer2($UrlToList);
     break;
     case "show":
         try {
             updateCategoriesActive(1);
-            $UrlToList .= getSuccesActResultToUrl();
+            //$UrlToList .= getSuccesActResultToUrl();
         } catch(Exception $e) {
-            $UrlToList .= getErrorActResultToUrl();
+            //$UrlToList .= getErrorActResultToUrl();
         }     
         page_transfer2($UrlToList);     
     break;
     case "hide":
         try{
             updateCategoriesActive(0);
-            $UrlToList .= getSuccesActResultToUrl();
+            //$UrlToList .= getSuccesActResultToUrl();
         } catch(Exception $e) {
-            $UrlToList .= getErrorActResultToUrl();
+            //$UrlToList .= getErrorActResultToUrl();
         }
         page_transfer2($UrlToList); 
     break;
@@ -78,9 +91,9 @@ switch($act) {
                 $sql = "update $GLOBALS[db_sp].categories set num = '".$ordersNum[$index]."' where id = '$order'";
                 $GLOBALS["sp"]->execute($sql);
             }
-            $UrlToList .= getSuccesActResultToUrl();
+            //$UrlToList .= getSuccesActResultToUrl();
         } catch(Exception $e) {
-            $UrlToList .= getErrorActResultToUrl();
+            //$UrlToList .= getErrorActResultToUrl();
         }
         page_transfer2($UrlToList);
     break;
@@ -92,12 +105,12 @@ switch($act) {
         else{
             $pidSQL = 'pid = '.$_REQUEST['cid'];
         }
-        $sql = "select * from $GLOBALS[db_sp].categories where $pidSQL order by id desc";
+        $sql = "select * from $GLOBALS[db_sp].categories where $pidSQL order by num asc";
         $categoriesList = $GLOBALS['sp']->getAll($sql);
         $template = 'huytulam/list.tpl';
         
-        $actResult = getActResultMsg();
-        $smarty->assign('actResult', $actResult);
+        //$actResult = getActResultMsg();
+        //$smarty->assign('actResult', $actResult);
         $smarty->assign('categoriesList', $categoriesList);   
     break;
 }
@@ -116,18 +129,21 @@ function updateCategoriesActive ($active) {
     $GLOBALS["sp"]->execute($sql);
 }
 
-function delete_Categories_And_Child ($categories) {
+function delete_Categories_And_Child ($idToDelete, $id) {
     $GLOBALS["sp"]->BeginTrans();
     try {
-        foreach($categories as $category) {
-            Giahuy_delete('categories', "id = '".$category['id']."'");
-            if($category['has_child'] === '1') {
-                $sql = "select id, has_child from $GLOBALS[db_sp].categories where pid = '".$category['id']."'";
-                $Child_category = $GLOBALS["sp"]->getAll($sql);
-                
-                delete_Categories_And_Child($Child_category);
-            }
+        $sql = "select id from $GLOBALS[db_sp].categories where pid in ($id)";
+        $Child_category = $GLOBALS["sp"]->getAll($sql);
+        if(count($Child_category) > 0) {
+            $childID = implode(',', array_map(function ($category) {
+                return $category['id'];
+            }, $Child_category));
+            $idToDelete .= ','.$childID;
+            delete_Categories_And_Child($idToDelete, $childID);
+        } else {
+            vaDelete('categories', "id in ($idToDelete)");
         }
+        
         $GLOBALS["sp"]->CommitTrans();
     } catch(Exception $e) {
         $GLOBALS["sp"]->RollbackTrans();
