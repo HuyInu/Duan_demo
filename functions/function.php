@@ -1313,8 +1313,9 @@ function loadloaivang($idloaivang,$checkdisabled,$idnum){
 	if($checkdisabled == 1){
 		$disabled = 'disabled="disabled"';	
 	}
+	$html = '';
 	foreach($rs as $item){
-		if($idnhomda == $item['id'])
+		if($idloaivang == $item['id'])
 			$checked = "selected";
 		else
 			$checked = ""; 

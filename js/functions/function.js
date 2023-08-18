@@ -37,7 +37,7 @@ function addNewRowGirlVang(path_url,nhomdanhmuc) {
 		 var obj = jQuery.parseJSON(data);
 		 $("#idnumvang").val(obj.idnumvang);
 		 $("#addRowGirlVang").append(obj.status);
-		 reload_js(path_url+'/js/colResizable-1.6.js');	
+		 reload_js(path_url+'/js/colResizable-1.6.js');
 	});	
 }
 
@@ -270,7 +270,6 @@ function SubmitFromPTKhoNguonVao(){
 	var checkNhomNguyenLieuVang = checkNhomNguyenLieuKimCuong = 0;
 	var idnumvang = $('#idnumvang').val();
 	var idnumkimcuong = $('#idnumkimcuong').val();
-	
 	var idnum =  Math.round(idnumvang);
 	var idnumkimcuong =  Math.round(idnumkimcuong);
 	for (i=1; i < idnum; i++) {/// kiểm tra vàng

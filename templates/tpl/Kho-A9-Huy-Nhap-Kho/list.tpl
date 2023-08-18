@@ -126,11 +126,8 @@
                         <strong>Duyệt Chuyển</strong>
                     </td>
                     <td class="tdShowHide">
-                        <a href="<!--{$path_url}-->/sources/Kho-A9-Huy-Nhap-Kho.php?act=edit&cid=<!--{$smarty.request.cid}-->&id=<!--{$view[i].id}-->" title="Sửa"> 
+                        <a href="Kho-A9-Huy-Nhap-Kho.php?act=edit&cid=<!--{$smarty.request.cid}-->&id=<!--{$phieuNhap[i].id}-->" title="Sửa"> 
                             <img src="<!--{$path_url}-->/images/edit.png"/> 
-                        </a>
-                        <a href="javascript:void(0)" onclick="popupwindow('<!--{$path_url}-->/print/khonguonvao.php?act=nhapkho&table=khonguonvao_khoachin&id=<!--{$view[i].id}-->&type=1','mywindow')" title="Print">
-                            <img class="margin-left10" width="25px" src="<!--{$path_url}-->/images/printer.png" align="top"> 
                         </a>
                     </td> 
                     <td class="tdEdit">

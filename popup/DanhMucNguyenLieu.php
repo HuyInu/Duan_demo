@@ -6,7 +6,6 @@ $idnhomdm = ceil($_REQUEST['idnhomdm']);
 $idshow = ceil($_REQUEST['idshow']);
 $smarty->assign("idnhomdm",$idnhomdm);
 $smarty->assign("idshow",$idshow);
-
 $sql = "select * from $GLOBALS[db_sp].categories where pid=$idnhomdm and active=1 order by num asc, id asc ";
 $rs = $GLOBALS["sp"]->getAll($sql);
 $smarty->assign("nhomnguyenlieu",$rs);

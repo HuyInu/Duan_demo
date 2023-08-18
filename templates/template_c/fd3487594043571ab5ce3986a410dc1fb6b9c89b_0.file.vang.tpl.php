@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-05-08 09:58:19
+/* Smarty version 4.1.1, created on 2023-08-18 10:12:58
   from 'D:\wamp64\www\duan_demo\templates\tpl\popup\DanhMucNguyenLieu\vang.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_6458654b196999_52182563',
+  'unifunc' => 'content_64dee1ba04bb17_58719208',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'fd3487594043571ab5ce3986a410dc1fb6b9c89b' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\popup\\DanhMucNguyenLieu\\vang.tpl',
-      1 => 1578385540,
+      1 => 1692327907,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6458654b196999_52182563 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64dee1ba04bb17_58719208 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="main-popup">
 	<div class="box-thongin box-thongin-popup">
     <div class="title-thongtin ">Nhóm Nguyên Liệu</div>

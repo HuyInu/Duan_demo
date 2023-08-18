@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-17 16:16:30
+/* Smarty version 4.1.1, created on 2023-08-18 08:08:20
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-A9-Huy-Nhap-Kho\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64dde56e0058c1_59873376',
+  'unifunc' => 'content_64dec484b8f3e9_36356180',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd8da4aecd1d6cd5f039713201f51a988c2eff8b2' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-A9-Huy-Nhap-Kho\\list.tpl',
-      1 => 1692263385,
+      1 => 1692320861,
       2 => 'file',
     ),
   ),
@@ -29,7 +29,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./allsearch/lydos.tpl' => 1,
   ),
 ),false)) {
-function content_64dde56e0058c1_59873376 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64dec484b8f3e9_36356180 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\libraries\\smarty4\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
 <div class="goAction">
@@ -189,18 +189,11 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
                         <strong>Duyệt Chuyển</strong>
                     </td>
                     <td class="tdShowHide">
-                        <a href="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
-/sources/Kho-A9-Huy-Nhap-Kho.php?act=edit&cid=<?php echo $_REQUEST['cid'];?>
-&id=<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
+                        <a href="Kho-A9-Huy-Nhap-Kho.php?act=edit&cid=<?php echo $_REQUEST['cid'];?>
+&id=<?php echo $_smarty_tpl->tpl_vars['phieuNhap']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
 " title="Sửa"> 
                             <img src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /images/edit.png"/> 
-                        </a>
-                        <a href="javascript:void(0)" onclick="popupwindow('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
-/print/khonguonvao.php?act=nhapkho&table=khonguonvao_khoachin&id=<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
-&type=1','mywindow')" title="Print">
-                            <img class="margin-left10" width="25px" src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
-/images/printer.png" align="top"> 
                         </a>
                     </td> 
                     <td class="tdEdit">
