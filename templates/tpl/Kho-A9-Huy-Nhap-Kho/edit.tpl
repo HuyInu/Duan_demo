@@ -190,7 +190,7 @@
                                 <input type="text" autocomplete="off" name="tienmatvang[]" id="tienmatvang<!--{$smarty.section.i.index+1}-->" value="<!--{$ctToaVang[i].tienmatvang}-->" class="txtdatagirld text-right autoNumeric"/> 
                             </td>
                             <td width="17%" align="center">
-                                <input type="text" autocomplete="off" name="ghichuvang[]" id="ghichuvang<!--{$smarty.section.i.index+1}-->" value="<!--{$ctToaVang[i].ghichuvang}-->" class="txtdatagirld text-right autoNumeric"/>
+                                <input type="text" autocomplete="off" name="ghichuvang[]" id="ghichuvang<!--{$smarty.section.i.index+1}-->" value="<!--{$ctToaVang[i].ghichuvang}-->" class="txtdatagirld text-right"/>
                             </td>
                         </tr>
                         <!--{/section}-->

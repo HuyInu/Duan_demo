@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-12 07:45:43
+/* Smarty version 4.1.1, created on 2023-08-19 13:57:43
   from 'C:\wamp64\www\duan_demo\templates\tpl\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64d6d637d28a32_46920847',
+  'unifunc' => 'content_64e067e79f6308_38113238',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1903be22bf8d6a8c573bdf710ad482f734095d6e' => 
     array (
       0 => 'C:\\wamp64\\www\\duan_demo\\templates\\tpl\\footer.tpl',
-      1 => 1691632298,
+      1 => 1692428261,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64d6d637d28a32_46920847 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e067e79f6308_38113238 (Smarty_Internal_Template $_smarty_tpl) {
 ?><span id="loadingAjax">
     <div class="ajax-loader"></div>
     <div class="loadajax"></div>
@@ -132,13 +132,12 @@ function exportExcelKhoKhac(url){
 		$(".vang").show();	
 		$(".kimcuong").hide();
 		if(a !='noajax' ){
-			createCookie('typeVangKimCuong','vang',1);
+			createCookie('0','vang',1);
 			if(a !='' )
 				$(location).attr('href',a);
 			reload_js('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /js/colResizable-1.6.js');	
 		}
-		
 	}
 	function clickKimCuong(a){
 		$("#clickVang").removeClass("active");						   
@@ -257,6 +256,32 @@ function chuyenKhoNguonVaogo(act, id, phongban, phongbanchuyen, maphieu){//id l�
 	}
 }
 
+function giahuy_chuyenKhoNguonVaogo(act, id, phongban, phongbanchuyen, maphieu){//id là phòng chuyển đến
+	if(phongban > 0){
+		var answer = confirm("Bạn chất muốn chuyển không ?");
+		if (answer)
+		{
+			$('#loadingAjax').show();
+			$.post('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/ajax/giahuy_chuyenphong_khonguonvao.php',{act:act,id:id,phongban:phongban,phongbanchuyen:phongbanchuyen,maphieu:maphieu},function(data) {																				
+				var obj = jQuery.parseJSON(data);
+				console.log(obj);
+				 if(obj.status == 'success'){
+					$('#loadingAjax').hide();
+					$('#g'+id).hide(); 
+				 }
+				 else{
+					$('#loadingAjax').hide();
+					$('#chuyenKhoNguonVao'+id).val('');	
+					alert(obj.status);	 
+				 }
+			});
+		}
+		else{
+			$('#chuyenKhoNguonVao'+id).val('');	
+		}
+	}
+}
 function chuyenKhoKhacTest(act, cid, id, phongbanchuyen, typeKho){
 	if(id>0){
 		var msg = confirm("Bạn muốn chuyển không?");

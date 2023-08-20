@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-13 10:54:52
+/* Smarty version 4.1.1, created on 2023-08-19 07:51:22
   from 'C:\wamp64\www\duan_demo\templates\tpl\giahuy\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64d8540c8dcbd9_72617815',
+  'unifunc' => 'content_64e0120a685d77_49882029',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     'fe4683898add2a5b50b55a89db000f14a919a53c' => 
     array (
       0 => 'C:\\wamp64\\www\\duan_demo\\templates\\tpl\\giahuy\\list.tpl',
-      1 => 1691898886,
+      1 => 1692405747,
       2 => 'file',
     ),
   ),
@@ -23,7 +23,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:footer.tpl' => 1,
   ),
 ),false)) {
-function content_64d8540c8dcbd9_72617815 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e0120a685d77_49882029 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -31,6 +31,8 @@ function content_64d8540c8dcbd9_72617815 (Smarty_Internal_Template $_smarty_tpl)
 ?>
 <link rel="stylesheet" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /css/giahuy/style.css">
+<link rel="stylesheet" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/css/giahuy/modal.css">
 <link rel="stylesheet" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /css/giahuy/fontAwsome.css">
 </head>
@@ -47,11 +49,11 @@ function content_64d8540c8dcbd9_72617815 (Smarty_Internal_Template $_smarty_tpl)
                         <a href="javascript:void(0)" title="Thêm" onclick="return ChangeAdd('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /sources/thuchanh.php?act=add&cid=<?php echo $_REQUEST['cid'];?>
 ');">
-                            <span class=add_icon></span>
+                            <span class='add_icon icon-size-small'></span>
                         </a> 
                     <?php } else { ?>  
                             <a>
-                            <span class='add_icon disable_icon'></span>
+                            <span class='add_icon icon-size-small disable_icon'></span>
                         </a> 	
                     <?php }?> 
                     
@@ -59,11 +61,11 @@ function content_64d8540c8dcbd9_72617815 (Smarty_Internal_Template $_smarty_tpl)
                         <a href="javascript:void(0)" title="Delete" onclick="GiaHuy_openModal('modal','Bạn có muốn xóa?',Giahuy_ChangeAction,'<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /sources/thuchanh.php?act=dellist&cid=<?php echo $_REQUEST['cid'];?>
 ')">
-                            <span class=delete_icon></span>
+                            <span class='delete_icon icon-size-small'></span>
                         </a> 
                     <?php } else { ?>   
                         <a>
-                            <span class='delete_icon disable_icon'></span>
+                            <span class='delete_icon icon-size-small disable_icon'></span>
                         </a> 
                     <?php }?> 
                     
@@ -71,29 +73,29 @@ function content_64d8540c8dcbd9_72617815 (Smarty_Internal_Template $_smarty_tpl)
                         <a href="javascript:void(0)" title="Show" onclick="GiaHuy_openModal('modal','Bạn có muốn hiện?',Giahuy_ChangeAction,'<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /sources/thuchanh.php?act=show&cid=<?php echo $_REQUEST['cid'];?>
 ')" >
-                            <span class='check_icon'></span>
+                            <span class='check_icon icon-size-small'></span>
                         </a> 
 
                         <a href="javascript:void(0)" title="Hide" onclick="GiaHuy_openModal('modal','Bạn có muốn ẩn?',Giahuy_ChangeAction,'<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /sources/thuchanh.php?act=hide&cid=<?php echo $_REQUEST['cid'];?>
 ');">
-                            <span class='stop_icon'></span>
+                            <span class='stop_icon icon-size-small'></span>
                         </a> 
                         
                         <a href="javascript:void(0)" title="Order" onclick="GiaHuy_openModal('modal','Bạn có muốn lưu?',Giahuy_ChangeAction,'<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /sources/thuchanh.php?act=order&cid=<?php echo $_REQUEST['cid'];?>
 ');">
-                            <span class='save_icon'></span>
+                            <span class='save_icon icon-size-small'></span>
                         </a>  
                     <?php } else { ?>  
                         <a>
-                            <span class='check_icon disable_icon'></span>
+                            <span class='check_icon icon-size-small disable_icon'></span>
                         </a> 
                         <a>
-                            <span class='stop_icon disable_icon'></span>
+                            <span class='stop_icon icon-size-small disable_icon'></span>
                         </a> 
                         <a>
-                            <span class='save_icon disable_icon'></span>
+                            <span class='save_icon icon-size-small disable_icon'></span>
                         </a> 
                     <?php }?>
                 </li>
@@ -106,7 +108,7 @@ function content_64d8540c8dcbd9_72617815 (Smarty_Internal_Template $_smarty_tpl)
                         <table class='shadow-box' style='width:100%'>
                             <tr class='tbheader'>
                                 <td width='25px' class='tdcheck'><input type='checkbox' onclick="checkAll();" name='all'></td>
-                                <td width='50px'>STT</td>
+                                <td width='55px'>STT</td>
                                 <td width='74px'>Thứ tự</td>
                                 <td>Tên</td>
                                 <td>Table</td>
@@ -115,7 +117,7 @@ function content_64d8540c8dcbd9_72617815 (Smarty_Internal_Template $_smarty_tpl)
                                 <td width='95px'>Type phòng ban</td>
                                 <td>Component</td>
                                 <td>Mã phòng ban</td>
-                                <td width='135px'>Phòng ban catalog</td>
+                                <td width='139px'>Phòng ban catalog</td>
                                 <td width='111px'>No permission</td>
                                 <td width='96px'>Hiện ẩn</td>
                                 <td width='96px'>Sửa</td>
@@ -133,7 +135,7 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 ' ></td>
                                 <td><?php echo (isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null);?>
 </td>
-                                <td><input class='tableTxtbox text_box' type='textbox' value='<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['num'];?>
+                                <td><input class='tableTxtbox text_box align-center' type='textbox' name='ordering[]' value='<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['num'];?>
 '></td>
                                 <td>
                                 <?php if ($_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['has_child'] == 1) {?>
@@ -210,16 +212,16 @@ for ($__section_j_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_j']-
 </td>
                                 <td align="center">   
                                     <?php if ($_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['nopermission'] == 1) {?>
-                                        <span class='check_icon'></span>
+                                        <span class='check_icon icon-size-small2'></span>
                                     <?php } else { ?> 
-                                        <span class='ban_icon'></span>
+                                        <span class='ban_icon icon-size-small2'></span>
                                     <?php }?>
                                 </td>
                                 <td align="center">
                                     <?php if ($_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['active'] == "1") {?>
-                                        <span class='check_icon'></span>
+                                        <span class='check_icon icon-size-small2'></span>
                                     <?php } else { ?> 
-                                        <span class='ban_icon'></span>
+                                        <span class='ban_icon icon-size-small2'></span>
                                     <?php }?>
                                 </td>
                                 <td align="center">
@@ -228,10 +230,10 @@ for ($__section_j_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_j']-
 /sources/thuchanh.php?act=edit&cid=<?php echo $_REQUEST['cid'];?>
 &id=<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
 " title="Sửa"> 
-                                        <span class='edit_icon'></span>
+                                        <span class='edit_icon icon-size-small2'></span>
                                     </a>
                                     <?php } else { ?>
-                                        <span class='edit_icon disable_icon'></span> 
+                                        <span class='edit_icon icon-size-small2 disable_icon'></span> 
                                     <?php }?> 
                                 </td>
                             </tr>

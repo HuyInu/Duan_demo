@@ -88,11 +88,14 @@
                     <td align="center"></td>
                     <td align="center"></td>
                 </tr>
+                <!--{getName('categories','name_vn',4) assign="chuyenden"}-->
  				<!--{section name=i loop=$phieuNhap}-->
                 <tr class="">
-                    <td class="tdcheck"></td>
+                    <td class="tdcheck">
+                        <input type='checkbox' value ='<!--{$phieuNhap[i].id}-->' name='iddel[]' id='check<!--{$smarty.section.i.index + 1}-->'
+                    </td>
                     <td class="tdSTT" align="center">
-                        <!--{$smarty.section.i.index}-->
+                        <!--{$smarty.section.i.index + 1}-->
                     </td>
                     
                     <td width="8%">
@@ -123,7 +126,10 @@
                         <!--{$phieuNhap[i].lydo}-->
                     </td>
                     <td>
-                        <strong>Duyệt Chuyển</strong>
+                        <select class="chonchuyenphong" onchange="giahuy_chuyenKhoNguonVaogo('TaoPhieuXuatKho',  <!--{$phieuNhap[i].id}-->, this.value, <!--{$phongbanchuyen}-->, 'PXKACHIN')">
+                            <option><!--{$chuyenden}--></option>
+                            <option value="24"><!--{getName('categories', 'name_vn', 24)}--></option>
+                        </select>
                     </td>
                     <td class="tdShowHide">
                         <a href="Kho-A9-Huy-Nhap-Kho.php?act=edit&cid=<!--{$smarty.request.cid}-->&id=<!--{$phieuNhap[i].id}-->" title="Sửa"> 

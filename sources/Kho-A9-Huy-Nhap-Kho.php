@@ -1,13 +1,17 @@
 <?php
 include_once("../maininclude.php");
 $act = isset($_REQUEST['act']) ? $_REQUEST['act'] : '';
-$idpem = $_REQUEST['cid'];
+$idpem = $_GET['cid'];
 $nhomdanhmuc = getTableRow('categories', 'and id = 70 and active = 1');
+
+$smarty->assign('phongbanchuyen',$idpem);
 $smarty->assign('nhomdanhmuc',$nhomdanhmuc);
+
 switch($act) {
     case 'add':
         $dateNow = date('d/m/Y');
-        $maxNum = "select max(numphieu) from $GLOBALS[db_sp].khonguonvao_khoachin";
+        $sql = "select max(numphieu)+1 from $GLOBALS[db_sp].khonguonvao_khoachin";
+        $maxNum = $GLOBALS['sp']->getOne($sql);
         if($maxNum <= 0) {
             $maxNum = 1;
         }
@@ -35,9 +39,29 @@ switch($act) {
     break;
     case 'addsm': case 'editsm':
         Editsm();
+        $url = "Kho-A9-Huy-Nhap-Kho.php?cid=".$_GET['cid'];
+		page_transfer2($url);
+    break;
+    case 'dellist':
+        $GLOBALS["sp"]->BeginTrans();
+        try {
+            $iddel = isset($_POST['iddel']) ? $_POST['iddel'] : null;
+            if(count($iddel) > 0) {
+                $idToaDel = implode(",", $iddel);
+                vaDelete('khonguonvao_khoachin', "id in ($idToaDel)");
+                vaDelete('khonguonvao_khoachinct', "idctnx in ($idToaDel)");
+            }
+            $GLOBALS["sp"]->CommitTrans();
+            $url = "Kho-A9-Huy-Nhap-Kho.php?cid=".$_GET['cid'];
+		    page_transfer2($url);
+        } catch (Exception $e) {
+            $GLOBALS["sp"]->RollbackTrans();
+            die();
+        }
+        
     break;
     default:
-        $sql = "select * from $GLOBALS[db_sp].khonguonvao_khoachin where type = 1 order by datedchungtu desc, maphieu asc";
+        $sql = "select * from $GLOBALS[db_sp].khonguonvao_khoachin where type = 1 and phongban = $idpem order by datedchungtu desc, maphieu asc";
         $phieuNhap = $GLOBALS["sp"]->getAll($sql);
 
         $smarty->assign('phieuNhap',$phieuNhap);
@@ -50,7 +74,7 @@ $smarty->display($template);
 $smarty->display('footer.tpl');
 
 function Editsm () {
-    global $idpem;
+    global $idpem, $nhomdanhmuc;
     $act = $_GET['act'];
     $idToa = isset($_POST['id']) ? $_POST['id'] : '';
 
@@ -58,73 +82,93 @@ function Editsm () {
     $timeNow = date('H:i:s');
     $datedchungtu = explode('/',trim($_POST["datedchungtu"]));
     $datedhachtoan = explode('/',trim($_POST["datedhachtoan"]));
+    $maphieu = $_POST['maphieu'];
+    $numphieu = StringToNum($maphieu);
 
     $toa = [];
     $ctToa = [];
     
-    try {
-    $toa['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
-    $toa['nguoilapphieu'] = $_POST['nguoilapphieu'];
-    $toa['donvilapphieu'] = $_POST['donvilapphieu'];
-    $toa['nguoiduyetphieu'] = $_POST['nguoiduyetphieu'];
-    $toa['donviduyetphieu'] = $_POST['donviduyetphieu'];
-    $toa['lydo'] = $_POST['lydo'];
-    $ctToa['dated'] = $toa['datedchungtu'] = $datedchungtu[2].'-'.$datedchungtu[1].'-'.$datedchungtu[0];
-    $toa['datedhachtoan'] = $datedhachtoan[2].'-'.$datedhachtoan[1].'-'.$datedhachtoan[0];
-    
-    if ($act === 'addsm') {
-        $sql = "select max(numphieu)+1 from $GLOBALS[db_sp].khonguonvao_khoachin";
-        $maxNum = $GLOBALS['sp']->getOne($sql);
-        if($maxNum <= 0) {
-            $maxNum = 1;
-        }
-        var_dump($maxNum);
-        $maso = convertMaso($maxNum);
-        $toa['numphieu'] = $maso;
-        $toa['maphieu'] = 'PNKACHIN'.$maso;
-        $toa['phongban'] = $idpem;
-        $toa['type'] = 1;
+    try {  
+        $toa['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
+        $toa['nguoilapphieu'] = $_POST['nguoilapphieu'];
+        $toa['donvilapphieu'] = $_POST['donvilapphieu'];
+        $toa['nguoiduyetphieu'] = $_POST['nguoiduyetphieu'];
+        $toa['donviduyetphieu'] = $_POST['donviduyetphieu'];
+        $toa['lydo'] = $_POST['lydo'];
+        $ctToa['dated'] = $toa['datedchungtu'] = $datedchungtu[2].'-'.$datedchungtu[1].'-'.$datedchungtu[0];
+        $toa['datedhachtoan'] = $datedhachtoan[2].'-'.$datedhachtoan[1].'-'.$datedhachtoan[0];
         
-        $idctnx = vaInsert('khonguonvao_khoachin', $toa); 
-    }
-    die();
-    $idctnxvang = $_POST['idctnxvang'];
-    $nhomnguyenlieuvangct = $_POST['nhomnguyenlieuvang'];
-    $tennguyenlieuvangct = $_POST['tennguyenlieuvang'];
-    $loaivangct = $_POST['loaivang'];
-    $cannangvhct = $_POST['cannangvh'];
-    $cannanghct = $_POST['cannangh'];
-    //$cannangvct = $_POST['cannangv'];
-    $tuoivangct = $_POST['tuoivang'];
-    $tienmatvangct = $_POST['tienmatvang'];
-    $ghichuvangct = $_POST['ghichuvang'];
-
-    foreach($idctnxvang as $index => $idctvang) {
-        $cannangvh = str_replace(',','',trim($cannangvhct[$index]));
-        $cannangh = str_replace(',','',trim($cannanghct[$index]));
-        if($nhomnguyenlieuvangct[$index] > 0 && $tennguyenlieuvangct[$index] > 0 && $loaivangct[$index] >0) {
-            $ctToa['nhomnguyenlieuvang'] = $nhomnguyenlieuvangct[$index];
-            $ctToa['tennguyenlieuvang'] = $tennguyenlieuvangct[$index];
-            $ctToa['loaivang'] = $loaivangct[$index];
-            $ctToa['cannangvh'] =  $cannangvh;
-            $ctToa['cannangh'] = $cannangh;
-            $ctToa['cannangv'] = $cannangvh - $cannangh;
-            $ctToa['tuoivang'] = $tuoivangct[$index];
-            $ctToa['tienmatvang'] = $tienmatvangct[$index];
-            $ctToa['ghichuvang'] = $ghichuvangct[$index];
-            if($idctvang > 0) {
-                vaUpdate('khonguonvao_khoachinct',$ctToa, "id = $idctvang");
-            } else {
-                $ctToa['idctnx'] = $idctnx;
-                $ctToa['mid'] = 
-            }
+        if ($act === 'addsm') {
+            $toa['numphieu'] = $numphieu;
+            $toa['maphieu'] = $maphieu;
+            $toa['phongban'] = $idpem;
+            $toa['type'] = 1;
+            
+            $idctnx = vaInsert('khonguonvao_khoachin', $toa); 
         } else {
-
+            $idctnx = $_POST['id'];
+            vaUpdate('khonguonvao_khoachin', $toa, "id = $idctnx");
+            
         }
-    }
+        $idctnxvang = $_POST['idctnxvang'];
+        $nhomnguyenlieuvangct = $_POST['nhomnguyenlieuvang'];
+        $tennguyenlieuvangct = $_POST['tennguyenlieuvang'];
+        $idloaivangct = $_POST['idloaivang'];
+        $cannangvhct = $_POST['cannangvh'];
+        $cannanghct = $_POST['cannangh'];
+        //$cannangvct = $_POST['cannangv'];
+        $tuoivangct = $_POST['tuoivang'];
+        $tienmatvangct = $_POST['tienmatvang'];
+        $ghichuvangct = $_POST['ghichuvang'];
 
+        foreach($idctnxvang as $index => $idctvang) {         
+            $cannangvh = str_replace(',','',trim($cannangvhct[$index]));
+            $cannangh = str_replace(',','',trim($cannanghct[$index]));
+            $tuoivang = str_replace(',','',trim($tuoivangct[$index]));
+            if((int)$nhomnguyenlieuvangct[$index] > 0 && (int)$tennguyenlieuvangct[$index] > 0 && (int)$idloaivangct[$index] > 0) {
+                $ctToa['nhomnguyenlieuvang'] = $nhomnguyenlieuvangct[$index];
+                $ctToa['tennguyenlieuvang'] = $tennguyenlieuvangct[$index];
+                $ctToa['idloaivang'] = $idloaivangct[$index];
+                $ctToa['cannangvh'] = $cannangvh;
+                $ctToa['cannangh'] = $cannangh;
+                $ctToa['cannangv'] = $cannangvh - $cannangh;
+                $ctToa['tuoivang'] = $tuoivang;
+                $ctToa['tienmatvang'] = trim($tienmatvangct[$index]);
+                $ctToa['ghichuvang'] = trim($ghichuvangct[$index]);
+                $ctToa['type'] = 1;
+                $ctToa['typevkc'] = 1;
+                $ctToa['time'] = $timeNow;
+                if($idctvang > 0) {
+                    //var_dump(1);
+                    vaUpdate('khonguonvao_khoachinct',$ctToa, "id = $idctvang");
+                } else {
+                    $ctToa['idctnx'] = $idctnx;
+                    $ctToa['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
+                    $ctToa['maphieu'] = $maphieu;
+                    $ctToa['nhomdm'] = $nhomdanhmuc[id];
+                    //var_dump(0);
+                    vaInsert('khonguonvao_khoachinct', $ctToa);
+                }
+            } else {
+                if($idctvang > 0) {
+                    vaDelete('khonguonvao_khoachinct', "id = $idctvang");
+                }
+            }
+        }
     } catch (Exception $e) {
         var_dump($e);
+        die();
     }
+}
+
+function StringToNum($str) {
+    $num;
+    foreach (str_split($str) as $index => $char) {
+        if($char != '0' && is_numeric($char)) {
+            $num = substr($str, $index);
+            return $num;
+        }
+    }
+    die("Đã xảy ra lỗi!.");
 }
 ?>

@@ -4127,6 +4127,20 @@ function ghiSoHachToan($tablehachtoan, $tablenhan, $id, $typehachtoan){
 		vaUpdate($tablehachtoan,$arrnx1day,' id='.$rsdate['id']);
 	}		
 }
+function giahuy_ghiSoHachToan($tablehachtoan, $tablenhan, $id, $typehachtoan) {
+	$dateDauThang = date('Y').'-'.date('m').'-1';
+	$slnhapvh = $slnhapv = $slnhaph = 0;
+	$slxuatvh = $slxuatv = $slxuath = 0;
+	$ctToa = getTableAll($tablenhan, " and id = $id");
+
+	if($ctToa['type'] == 1) {
+		$slnhapvh = $ctToa['slnhapvh'];
+		$slxuatvh = $ctToa['slxuatvh'];
+		$slxuatvh = $ctToa['slxuatvh'];
+	}
+
+	$sqlHachToan = "select * from $GLOBALS[db_sp].$tablehachtoan where dated = $dateDauThang "
+}
 
 function ghiSoHachToanVang($tablehachtoan, $tablenhan, $id){
 	date_default_timezone_set("Asia/Ho_Chi_Minh");
