@@ -249,6 +249,7 @@ body{margin:0;padding:0;background: #ffe01c url(images/shattered.png) repeat;}
 		
 			$sql = "select * from $GLOBALS[db_sp].categories where pid in (2,1834) and active=1 order by num asc, id desc";
 			$rs = $GLOBALS["sp"]->getAll($sql);
+      $listMenu = '';
 			foreach($rs as $item){
 				$classHasSub = '';
 				if($item['has_child'] == 1){

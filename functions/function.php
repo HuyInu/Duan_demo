@@ -760,7 +760,7 @@ function getName($table, $names, $id){
 
 function optionChuyenDenTest($a){
 	$opt = '';
-	$id = $a['id'];
+	$id = $a;//['id'];
 	if(!empty($id)){
 		$sql = "select * from $GLOBALS[db_sp].categories where id in (".$id.") and active=1 order by id asc";
 		$rs = $GLOBALS["sp"]->getAll($sql);
@@ -4128,18 +4128,46 @@ function ghiSoHachToan($tablehachtoan, $tablenhan, $id, $typehachtoan){
 	}		
 }
 function giahuy_ghiSoHachToan($tablehachtoan, $tablenhan, $id, $typehachtoan) {
-	$dateDauThang = date('Y').'-'.date('m').'-1';
+	$dateDauThang = date('Y').'-'.date('m').'-01';
 	$slnhapvh = $slnhapv = $slnhaph = 0;
 	$slxuatvh = $slxuatv = $slxuath = 0;
-	$ctToa = getTableAll($tablenhan, " and id = $id");
-
-	if($ctToa['type'] == 1) {
-		$slnhapvh = $ctToa['slnhapvh'];
-		$slxuatvh = $ctToa['slxuatvh'];
-		$slxuatvh = $ctToa['slxuatvh'];
+	$ctToa = getTableRow($tablenhan, " and id = $id");
+	if($ctToa['type'] == '1') {
+		$slnhapvh = $ctToa['cannangvh'];
+		$slnhaph = $ctToa['cannangh'];
+		$slnhapv = $ctToa['cannangv'];
+		
 	}
+	$sqlHachToan = "select * from $GLOBALS[db_sp].$tablehachtoan where dated = '".$dateDauThang."' and idloaivang= ".$ctToa['idloaivang']." and typevkc = 1";
+	$hachToanThisMonth = $GLOBALS["sp"]->getRow($sqlHachToan);
 
-	$sqlHachToan = "select * from $GLOBALS[db_sp].$tablehachtoan where dated = $dateDauThang "
+	if($hachToanThisMonth['id'] <= 0) {
+		$sqlHachToanDay1 = "select * from $GLOBALS[db_sp].$tablehachtoan where idloaivang= '".$ctToa['idloaivang']."' and typevkc = 1 order by dated desc limit 1";
+		$hachToanLastMonth = $GLOBALS["sp"]->getRow($sqlHachToanDay1);
+
+		$currentHachToan = [];
+		$currentHachToan['idloaivang'] = $ctToa['idloaivang'];
+		$currentHachToan['slnhapvh'] = $slnhapvh;
+		$currentHachToan['sltonvh'] = $slnhapvh + $hachToanLastMonth['sltonvh'];
+		$currentHachToan['slnhaph'] = $slnhaph;
+		$currentHachToan['sltonh'] = $slnhaph + $hachToanLastMonth['sltonh'];
+		$currentHachToan['slnhapv'] = $slnhapv;
+		$currentHachToan['sltonv'] = $slnhapv + $hachToanLastMonth['sltonv'];
+		$currentHachToan['dated'] = $dateDauThang;
+		$currentHachToan['typevkc'] = 1;
+
+		vaInsert($tablehachtoan, $currentHachToan);
+	} else {
+		$currentHachToan = [];
+		$currentHachToan['slnhapvh'] = $slnhapvh + $hachToanThisMonth['slnhapvh'];
+		$currentHachToan['sltonvh'] = $slnhapvh + $hachToanThisMonth['sltonvh'];
+		$currentHachToan['slnhaph'] = $slnhaph + $hachToanThisMonth['slnhaph'];
+		$currentHachToan['sltonh'] = $slnhaph + $hachToanThisMonth['sltonh'];
+		$currentHachToan['slnhapv'] = $slnhapv + $hachToanThisMonth['slnhapv'];
+		$currentHachToan['sltonv'] = $slnhapv + $hachToanThisMonth['sltonv'];
+
+		vaUpdate($tablehachtoan, $currentHachToan, 'id='.$hachToanThisMonth['id']);
+	}
 }
 
 function ghiSoHachToanVang($tablehachtoan, $tablenhan, $id){

@@ -78,6 +78,6 @@ switch($act) {
         }
     break;
 }
-die(json_encode(array('ar'=>0, 'status'=>$error)));
+die(json_encode(array('ar'=>0, 'status'=>'good')));
 
 ?>

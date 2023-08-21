@@ -1,5 +1,5 @@
 <?php
-    include_once("../maininclude.php");
+    //include_once("../maininclude.php");
     function Giahuy_getComponentById ($conponentID)
     {
         $sql = "select * from $GLOBALS[db_sp].component where id=$conponentID";

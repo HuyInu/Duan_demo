@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-18 14:59:22
+/* Smarty version 4.1.1, created on 2023-08-21 08:29:29
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-A9-Huy-Nhap-Kho\edit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64df24da7890b0_18318007',
+  'unifunc' => 'content_64e2bdf95453b0_43226520',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '52bdd8d7736488a100cc2122475667c6f0d4c015' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-A9-Huy-Nhap-Kho\\edit.tpl',
-      1 => 1692345353,
+      1 => 1692578203,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./allsearch/tabVangKimcuong.tpl' => 1,
   ),
 ),false)) {
-function content_64df24da7890b0_18318007 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e2bdf95453b0_43226520 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\libraries\\smarty4\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
 <link type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
@@ -197,6 +197,8 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
                             <td width="3%" align="center">
                                  <?php echo (isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)+1;?>
  
+                                 <input type="hidden" name="idctnxvang[]" value="<?php echo $_smarty_tpl->tpl_vars['ctToaVang']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
+" />
                             </td> 
                             <td width="13%" align="center">
                                 <input type="hidden" name="nhomnguyenlieuvang[]" id="nhomnguyenlieuvang<?php echo (isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)+1;?>
@@ -278,7 +280,7 @@ echo getName('categories','name_vn',$_prefixVariable2);?>
                             <td width="17%" align="center">
                                 <input type="text" autocomplete="off" name="ghichuvang[]" id="ghichuvang<?php echo (isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)+1;?>
 " value="<?php echo $_smarty_tpl->tpl_vars['ctToaVang']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['ghichuvang'];?>
-" class="txtdatagirld text-right autoNumeric"/>
+" class="txtdatagirld text-right"/>
                             </td>
                         </tr>
                         <?php

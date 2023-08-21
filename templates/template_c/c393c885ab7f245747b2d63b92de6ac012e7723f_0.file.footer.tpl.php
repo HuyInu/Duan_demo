@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-17 15:23:36
+/* Smarty version 4.1.1, created on 2023-08-21 15:53:59
   from 'D:\wamp64\www\duan_demo\templates\tpl\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64ddd90851bf15_04642005',
+  'unifunc' => 'content_64e32627bcb941_89303879',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c393c885ab7f245747b2d63b92de6ac012e7723f' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\footer.tpl',
-      1 => 1692260592,
+      1 => 1692607207,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64ddd90851bf15_04642005 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e32627bcb941_89303879 (Smarty_Internal_Template $_smarty_tpl) {
 ?><span id="loadingAjax">
     <div class="ajax-loader"></div>
     <div class="loadajax"></div>
@@ -256,6 +256,32 @@ function chuyenKhoNguonVaogo(act, id, phongban, phongbanchuyen, maphieu){//id l�
 	}
 }
 
+function giahuy_chuyenKhoNguonVaogo(act, id, phongban, phongbanchuyen, maphieu){//id là phòng chuyển đến
+	if(phongban > 0){
+		var answer = confirm("Bạn chất muốn chuyển không ?");
+		if (answer)
+		{
+			$('#loadingAjax').show();
+			$.post('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/ajax/giahuy_chuyenphong_khonguonvao.php',{act:act,id:id,phongban:phongban,phongbanchuyen:phongbanchuyen,maphieu:maphieu},function(data) {																				
+				var obj = jQuery.parseJSON(data);
+				console.log(obj);
+				 if(obj.status == 'success'){
+					$('#loadingAjax').hide();
+					$('#g'+id).hide(); 
+				 }
+				 else{
+					$('#loadingAjax').hide();
+					$('#chuyenKhoNguonVao'+id).val('');	
+					alert(obj.status);	 
+				 }
+			});
+		}
+		else{
+			$('#chuyenKhoNguonVao'+id).val('');	
+		}
+	}
+}
 function chuyenKhoKhacTest(act, cid, id, phongbanchuyen, typeKho){
 	if(id>0){
 		var msg = confirm("Bạn muốn chuyển không?");
@@ -293,6 +319,37 @@ function chuyenKhoKhac(act, cid, id, phongbanchuyen, typeKho){//id là phòng ch
 			*/
 			$.post('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /ajax/chuyenkho.php',{act:act,cid:cid,id:id,phongbanchuyen:phongbanchuyen,typeKho:typeKho},function(data) {																				
+				 var obj = jQuery.parseJSON(data);
+				 if(obj.status == 'success'){
+					$('#loadingAjax').hide();
+					$('#g'+id).hide(); 
+				 }
+				 else{
+					$('#loadingAjax').hide();
+					$('#chuyenkho'+id).val('');	
+					alert(obj.status);	 
+				 }
+			});
+		}
+		else{
+			$('#chuyenkho'+id).val('');	
+		}
+	}
+}
+
+function giahuy_chuyenKhoKhac(act, cid, id, phongbanchuyen, typeKho){//id là phòng chuyển đến
+	if(id > 0){
+		var answer = confirm("Bạn chất muốn chuyển không ?");
+		if (answer)
+		{
+			$('#loadingAjax').show();
+			/*
+			if(cid == 235){
+				act = 'chuyenkhoSauchetacGiamDoc';	
+			}
+			*/
+			$.post('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/ajax/giahuy_chuyenkho.php',{act:act,cid:cid,id:id,phongbanchuyen:phongbanchuyen,typeKho:typeKho},function(data) {																				
 				 var obj = jQuery.parseJSON(data);
 				 if(obj.status == 'success'){
 					$('#loadingAjax').hide();
@@ -396,6 +453,28 @@ function xacnhanchuyenKhoSanXuat(act, cid, id, type){//id là phòng chuyển đ
 			$('#loadingAjax').show();
 			$.post('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /ajax/chuyenkho.php',{act:act,cid:cid,id:id,type:type},function(data) {																				
+				 var obj = jQuery.parseJSON(data);
+				 if(obj.status == 'success'){
+					$('#loadingAjax').hide();
+					$('#g'+id).hide(); 
+				 }
+				 else{
+					$('#loadingAjax').hide();
+					alert(obj.status);	 
+				 }
+			});
+		}
+	}
+}
+
+function giahuy_xacnhanchuyenKhoSanXuat(act, cid, id, type){//id là phòng chuyển đến
+	if(id > 0){
+		var answer = confirm("Bạn chất muốn thực hiện không ?");
+		if (answer)
+		{
+			$('#loadingAjax').show();
+			$.post('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/ajax/giahuy_chuyenkho.php',{act:act,cid:cid,id:id,type:type},function(data) {																				
 				 var obj = jQuery.parseJSON(data);
 				 if(obj.status == 'success'){
 					$('#loadingAjax').hide();

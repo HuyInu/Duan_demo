@@ -145,7 +145,7 @@ function Editsm () {
                     $ctToa['idctnx'] = $idctnx;
                     $ctToa['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
                     $ctToa['maphieu'] = $maphieu;
-                    $ctToa['nhomdm'] = $nhomdanhmuc[id];
+                    $ctToa['nhomdm'] = $nhomdanhmuc['id'];
                     //var_dump(0);
                     vaInsert('khonguonvao_khoachinct', $ctToa);
                 }
@@ -162,7 +162,7 @@ function Editsm () {
 }
 
 function StringToNum($str) {
-    $num;
+    $num = 0;
     foreach (str_split($str) as $index => $char) {
         if($char != '0' && is_numeric($char)) {
             $num = substr($str, $index);

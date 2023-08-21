@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-18 08:08:20
+/* Smarty version 4.1.1, created on 2023-08-21 07:52:45
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-A9-Huy-Nhap-Kho\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64dec484b8f3e9_36356180',
+  'unifunc' => 'content_64e2b55d0f0482_21510055',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd8da4aecd1d6cd5f039713201f51a988c2eff8b2' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-A9-Huy-Nhap-Kho\\list.tpl',
-      1 => 1692320861,
+      1 => 1692578203,
       2 => 'file',
     ),
   ),
@@ -29,7 +29,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./allsearch/lydos.tpl' => 1,
   ),
 ),false)) {
-function content_64dec484b8f3e9_36356180 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e2b55d0f0482_21510055 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\libraries\\smarty4\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
 <div class="goAction">
@@ -137,6 +137,7 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\
                     <td align="center"></td>
                     <td align="center"></td>
                 </tr>
+                <?php $_smarty_tpl->assign("chuyenden",getName('categories','name_vn',4));?>
  				<?php
 $__section_i_0_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['phieuNhap']->value) ? count($_loop) : max(0, (int) $_loop));
 $__section_i_0_total = $__section_i_0_loop;
@@ -145,9 +146,13 @@ if ($__section_i_0_total !== 0) {
 for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] = 0; $__section_i_0_iteration <= $__section_i_0_total; $__section_i_0_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']++){
 ?>
                 <tr class="">
-                    <td class="tdcheck"></td>
+                    <td class="tdcheck">
+                        <input type='checkbox' value ='<?php echo $_smarty_tpl->tpl_vars['phieuNhap']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
+' name='iddel[]' id='check<?php echo (isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)+1;?>
+'
+                    </td>
                     <td class="tdSTT" align="center">
-                        <?php echo (isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null);?>
+                        <?php echo (isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)+1;?>
 
                     </td>
                     
@@ -186,7 +191,14 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 
                     </td>
                     <td>
-                        <strong>Duyệt Chuyển</strong>
+                        <select class="chonchuyenphong" onchange="giahuy_chuyenKhoNguonVaogo('TaoPhieuXuatKho',  <?php echo $_smarty_tpl->tpl_vars['phieuNhap']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
+, this.value, <?php echo $_smarty_tpl->tpl_vars['phongbanchuyen']->value;?>
+, 'PXKACHIN')">
+                            <option><?php echo $_smarty_tpl->tpl_vars['chuyenden']->value;?>
+</option>
+                            <option value="24"><?php echo getName('categories','name_vn',24);?>
+</option>
+                        </select>
                     </td>
                     <td class="tdShowHide">
                         <a href="Kho-A9-Huy-Nhap-Kho.php?act=edit&cid=<?php echo $_REQUEST['cid'];?>

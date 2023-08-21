@@ -295,6 +295,36 @@ function chuyenKhoKhac(act, cid, id, phongbanchuyen, typeKho){//id là phòng ch
 	}
 }
 
+function giahuy_chuyenKhoKhac(act, cid, id, phongbanchuyen, typeKho){//id là phòng chuyển đến
+	if(id > 0){
+		var answer = confirm("Bạn chất muốn chuyển không ?");
+		if (answer)
+		{
+			$('#loadingAjax').show();
+			/*
+			if(cid == 235){
+				act = 'chuyenkhoSauchetacGiamDoc';	
+			}
+			*/
+			$.post('<!--{$path_url}-->/ajax/giahuy_chuyenkho.php',{act:act,cid:cid,id:id,phongbanchuyen:phongbanchuyen,typeKho:typeKho},function(data) {																				
+				 var obj = jQuery.parseJSON(data);
+				 if(obj.status == 'success'){
+					$('#loadingAjax').hide();
+					$('#g'+id).hide(); 
+				 }
+				 else{
+					$('#loadingAjax').hide();
+					$('#chuyenkho'+id).val('');	
+					alert(obj.status);	 
+				 }
+			});
+		}
+		else{
+			$('#chuyenkho'+id).val('');	
+		}
+	}
+}
+
 function chuyenKhoSanXuat(act, cid, id, phongbanchuyen, typeKho){//id là phòng chuyển đến
 	if(id > 0){
 		var answer = confirm("Bạn chất muốn chuyển không ?");
@@ -376,6 +406,27 @@ function xacnhanchuyenKhoSanXuat(act, cid, id, type){//id là phòng chuyển đ
 		{
 			$('#loadingAjax').show();
 			$.post('<!--{$path_url}-->/ajax/chuyenkho.php',{act:act,cid:cid,id:id,type:type},function(data) {																				
+				 var obj = jQuery.parseJSON(data);
+				 if(obj.status == 'success'){
+					$('#loadingAjax').hide();
+					$('#g'+id).hide(); 
+				 }
+				 else{
+					$('#loadingAjax').hide();
+					alert(obj.status);	 
+				 }
+			});
+		}
+	}
+}
+
+function giahuy_xacnhanchuyenKhoSanXuat(act, cid, id, type){//id là phòng chuyển đến
+	if(id > 0){
+		var answer = confirm("Bạn chất muốn thực hiện không ?");
+		if (answer)
+		{
+			$('#loadingAjax').show();
+			$.post('<!--{$path_url}-->/ajax/giahuy_chuyenkho.php',{act:act,cid:cid,id:id,type:type},function(data) {																				
 				 var obj = jQuery.parseJSON(data);
 				 if(obj.status == 'success'){
 					$('#loadingAjax').hide();
