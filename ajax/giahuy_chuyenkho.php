@@ -156,6 +156,79 @@ switch($act) {
             $error = $errorTransetion;
         }
     break;
+    case 'chuyenkhosanxuat':
+        $GLOBALS["sp"]->BeginTrans();
+        try{
+            $sqlCategChuyen = "select * from $GLOBALS[db_sp].categories where id=".$idCategChuyen;
+            $categChuyen = $GLOBALS['sp']->getRow($sqlCategChuyen);
+            $tableChuyen = $categChuyen['tablect'];
+            $tableHachToanChuyen = $categChuyen['tablehachtoan'];
+
+            $sqlTableNhan = "select * from $GLOBALS[db_sp].categories where id=".$idCategNhan;
+            $categNhan = $GLOBALS['sp']->getRow($sqlTableNhan);
+            $tableNhan = $categNhan['tablect'];
+            $tableHachToanNhan = $categNhan['tablehachtoan'];
+
+            $sqlPhieuXuat = "select * from $GLOBALS[db_sp].$tableChuyen where id=$idPhieu";
+            $phieuXuat = $GLOBALS['sp']->getRow($sqlPhieuXuat);
+
+            $phieuNhapMoi = [];
+            $sqlcount = "select * from $GLOBALS[db_sp].$tableNhan where maphieu='".$phieuXuat['maphieu']."' and cidchuyen=".$idCategChuyen;
+            $count = ceil(count($GLOBALS['sp']->getAll($sqlcount)));
+        
+            if($count == 0) {
+                if(!empty($typeKhoDau)){   
+                    $phieuNhapMoi['typekho'] = explode('_',$typeKhoDau)[0];
+                }
+                $phieuNhapMoi['typekhodau'] = $typeKhoDau;
+                $phieuNhapMoi['slcannangvcon'] = 0;
+                $phieuNhapMoi['midchuyen'] = $_SESSION['admin_qlsxntjcorg_id'];
+                $phieuNhapMoi['cidchuyen'] = $idCategChuyen;
+                $phieuNhapMoi['idmaphieukho'] = $phieuXuat['idmaphieukho'];
+                $phieuNhapMoi['ghichuvang'] = $phieuXuat['ghichuvang'];
+                $phieuNhapMoi['ghichu'] = $phieuXuat['ghichu'];
+                $phieuNhapMoi['typechuyen'] = 1;
+                $phieuNhapMoi['tuoivang'] = $phieuXuat['tuoivang'];
+                $phieuNhapMoi['phongban'] = $idCategNhan;
+                $phieuNhapMoi['idpnk'] = $phieuXuat['idpnk'];
+                $phieuNhapMoi['madhin'] = $phieuXuat['madhin'];
+                $phieuNhapMoi['chonphongbanin'] = $phieuXuat['chonphongbanin'];
+            //$phieuNhapMoi['idphukien'] = $phieuXuat['idphukien'];
+                //$phieuNhapMoi['soluongphukien'] = $phieuXuat['soluongphukien'];
+                $phieuNhapMoi['cid'] = $idCategNhan;
+                $phieuNhapMoi['maphieu'] = $phieuXuat['maphieu'];
+                $phieuNhapMoi['idloaivang'] = $phieuXuat['idloaivang'];
+                $phieuNhapMoi['type'] = 1;
+                $phieuNhapMoi['dated'] = $dateNow;
+                $phieuNhapMoi['time'] = $timeNow;
+                $phieuNhapMoi['phongbanchuyen'] = $idCategChuyen;
+                $phieuNhapMoi['datedchuyen'] = $dateNow;
+                $phieuNhapMoi['timechuyen'] = $timeNow;
+                $phieuNhapMoi['trangthai'] = 0;
+                $phieuNhapMoi['mid'] = $phieuXuat['mid'];;
+                $phieuNhapMoi['cannangvh'] = $phieuXuat['cannangvh'];
+                $phieuNhapMoi['cannangh'] = $phieuXuat['cannangh'];
+                $phieuNhapMoi['cannangv'] = $phieuXuat['cannangv'];
+                $phieuNhapMoi['typevkc'] = $phieuXuat['typevkc'];
+                $phieuNhapMoi['typevkc'] = $phieuXuat['typevkc'];
+
+                vaInsert($tableNhan,$phieuNhapMoi);
+
+                $phieuXuatUpdate = [];
+                $phieuXuatUpdate['trangthai'] = 1;
+                $phieuXuatUpdate['datechuyen'] = $dateNow;
+                $phieuXuatUpdate['timechuyen'] = $timeNow;
+                $phieuXuatUpdate['type'] = $timeNow;
+                $phieuXuatUpdate['phongban'] = $idCategNhan;
+
+                vaUpdate($tableChuyen, $phieuNhapUpdate, 'id='.$phieuXuat['id']);
+            }
+            $GLOBALS["sp"]->CommitTrans();
+        }catch(Exception $e) {
+            $GLOBALS["sp"]->RollbackTrans();
+			$error = $errorTransetion;
+        }
+    break;
 }
 
 die(json_encode(array('status'=>$error,'name'=>$name,'soducon'=>$soducon)));

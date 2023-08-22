@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-19 13:57:43
+/* Smarty version 4.1.1, created on 2023-08-22 18:35:09
   from 'C:\wamp64\www\duan_demo\templates\tpl\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64e067e79f6308_38113238',
+  'unifunc' => 'content_64e49d6de8e165_62434481',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1903be22bf8d6a8c573bdf710ad482f734095d6e' => 
     array (
       0 => 'C:\\wamp64\\www\\duan_demo\\templates\\tpl\\footer.tpl',
-      1 => 1692428261,
+      1 => 1692703826,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64e067e79f6308_38113238 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e49d6de8e165_62434481 (Smarty_Internal_Template $_smarty_tpl) {
 ?><span id="loadingAjax">
     <div class="ajax-loader"></div>
     <div class="loadajax"></div>
@@ -337,6 +337,37 @@ function chuyenKhoKhac(act, cid, id, phongbanchuyen, typeKho){//id là phòng ch
 	}
 }
 
+function giahuy_chuyenKhoKhac(act, cid, id, phongbanchuyen, typeKho){//id là phòng chuyển đến
+	if(id > 0){
+		var answer = confirm("Bạn chất muốn chuyển không ?");
+		if (answer)
+		{
+			$('#loadingAjax').show();
+			/*
+			if(cid == 235){
+				act = 'chuyenkhoSauchetacGiamDoc';	
+			}
+			*/
+			$.post('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/ajax/giahuy_chuyenkho.php',{act:act,cid:cid,id:id,phongbanchuyen:phongbanchuyen,typeKho:typeKho},function(data) {																				
+				 var obj = jQuery.parseJSON(data);
+				 if(obj.status == 'success'){
+					$('#loadingAjax').hide();
+					$('#g'+id).hide(); 
+				 }
+				 else{
+					$('#loadingAjax').hide();
+					$('#chuyenkho'+id).val('');	
+					alert(obj.status);	 
+				 }
+			});
+		}
+		else{
+			$('#chuyenkho'+id).val('');	
+		}
+	}
+}
+
 function chuyenKhoSanXuat(act, cid, id, phongbanchuyen, typeKho){//id là phòng chuyển đến
 	if(id > 0){
 		var answer = confirm("Bạn chất muốn chuyển không ?");
@@ -422,6 +453,28 @@ function xacnhanchuyenKhoSanXuat(act, cid, id, type){//id là phòng chuyển đ
 			$('#loadingAjax').show();
 			$.post('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /ajax/chuyenkho.php',{act:act,cid:cid,id:id,type:type},function(data) {																				
+				 var obj = jQuery.parseJSON(data);
+				 if(obj.status == 'success'){
+					$('#loadingAjax').hide();
+					$('#g'+id).hide(); 
+				 }
+				 else{
+					$('#loadingAjax').hide();
+					alert(obj.status);	 
+				 }
+			});
+		}
+	}
+}
+
+function giahuy_xacnhanchuyenKhoSanXuat(act, cid, id, type){//id là phòng chuyển đến
+	if(id > 0){
+		var answer = confirm("Bạn chất muốn thực hiện không ?");
+		if (answer)
+		{
+			$('#loadingAjax').show();
+			$.post('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/ajax/giahuy_chuyenkho.php',{act:act,cid:cid,id:id,type:type},function(data) {																				
 				 var obj = jQuery.parseJSON(data);
 				 if(obj.status == 'success'){
 					$('#loadingAjax').hide();
