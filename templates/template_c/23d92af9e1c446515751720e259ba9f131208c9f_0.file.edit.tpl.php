@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-22 16:22:50
-  from 'D:\wamp64\www\duan_demo\templates\tpl\KhoSanXuat-Kho-Vmnt-Xuat-Kho\edit.tpl' */
+/* Smarty version 4.1.1, created on 2023-08-22 16:27:41
+  from 'D:\wamp64\www\duan_demo\templates\tpl\KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho\edit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64e47e6a95b5b4_49363687',
+  'unifunc' => 'content_64e47f8dda6247_39568365',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
-    'aab7c1d15886d90d6dd3ab7e8c4d9d09d11c4fa7' => 
+    '23d92af9e1c446515751720e259ba9f131208c9f' => 
     array (
-      0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\KhoSanXuat-Kho-Vmnt-Xuat-Kho\\edit.tpl',
-      1 => 1692696020,
+      0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho\\edit.tpl',
+      1 => 1692694938,
       2 => 'file',
     ),
   ),
@@ -20,10 +20,9 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64e47e6a95b5b4_49363687 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e47f8dda6247_39568365 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\libraries\\smarty4\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
-
 <div class="breadcrumb">
     <ul>
         <li>
@@ -192,12 +191,9 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 >
 <?php echo '<script'; ?>
  type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
-/calendar/jquery-ui.js"><?php echo '</script'; ?>
-> 
-<?php echo '<script'; ?>
- type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /js/functions/function.js"><?php echo '</script'; ?>
 >
+
 <?php echo '<script'; ?>
  type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /js/select-checkbox/sol.js"><?php echo '</script'; ?>

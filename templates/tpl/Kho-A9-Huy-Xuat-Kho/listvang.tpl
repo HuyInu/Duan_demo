@@ -137,7 +137,7 @@
                     <td align="center"></td>
                     <td align="center"></td>
                 </tr>
-                <!--{optionChuyenDenTest('623') assign="khoSanXuat_KhoVMNT"}-->
+                <!--{optionChuyenDenTest('1834') assign="khoSanXuat_KhoVMNT"}-->
                 <!--{section i $phieuXuatList}-->
                 <tr class="">
                 	<td class="tdcheck">
@@ -164,7 +164,7 @@
                     </td>
                     
                     <td>
-                        <!--{getName('categories', 'name_vn', <!--{$phieuXuatList[i].idloaivang}-->)}-->
+                        <!--{getName('loaivang', 'name_vn', <!--{$phieuXuatList[i].idloaivang}-->)}-->
                     </td>
                     
                     <td>
@@ -206,10 +206,14 @@
                         </div>
                     </td>
                      <td>
-                        <strong>Sửa/print</strong>
+                        <a href="<!--{$path_url}-->/sources/Kho-A9-Huy-Xuat-Kho.php?act=edit&cid=<!--{$smarty.request.cid}-->&id=<!--{$phieuXuatList[i].id}-->" title="Sửa"> 
+                            <img src="<!--{$path_url}-->/images/edit.png"/> 
+                        </a>
                     </td>
                      <td>
-                        <strong>Trạng thái</strong>
+                        <!--{if $phieuXuatList[i].tralai eq 1}-->	
+                            <a>Trả Lại</a>
+                        <!--{/if}-->  
                     </td>
                 </tr>
                 <!--{/section}-->   

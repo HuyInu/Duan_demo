@@ -17,7 +17,7 @@ $phongban= isset($_POST['phongban']) ? $_POST['phongban'] : '';
 $phongbanchuyen = $cid = isset($_POST['phongbanchuyen']) ? $_POST['phongbanchuyen'] : '';
 $macode = isset($_POST['maphieu'])?$_POST['maphieu']:"";
 
-$ar;
+$error = 'success';
 switch($act) {
     case 'TaoPhieuXuatKho':
         $GLOBALS["sp"]->BeginTrans();
@@ -37,7 +37,7 @@ switch($act) {
                 $toa['datechuyen'] = $dateNow;
                 $toa['timechuyen'] = $timeNow;
                 $toa['type'] = 3;
-                vaUpdate('khonguonvao_khoachin', $toa, "id = $idToa");
+                vaUpdate($table, $toa, "id = $idToa");
 
                 $ctToa = [];
                 foreach($ctToaList as $item) {
@@ -70,14 +70,16 @@ switch($act) {
                     vaInsert($tablect, $ctToa);
                     giahuy_ghiSoHachToan($tablehachtoan, $tablect, $item['id'], '');
                 }
+            } else {
+                $error = 'Toa hàng này chưa có nhập dữ liệu Vàng hoặc Kim Cương.';	
             }
             $GLOBALS["sp"]->CommitTrans();
         } catch(Exception $e) {
             $GLOBALS["sp"]->RollbackTrans();
-            die(json_encode(array('ar'=>0, 'status'=>$e)));
+            $error = $errorTransetion;
         }
     break;
 }
-die(json_encode(array('ar'=>0, 'status'=>'good')));
+die(json_encode(array('ar'=>0, 'status'=>$error)));
 
 ?>

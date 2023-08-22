@@ -1,4 +1,3 @@
-
 <div class="breadcrumb">
     <ul>
         <li>
@@ -88,7 +87,6 @@
 											alert('tuổi vàng phải nhỏ hơn 1.');
 											$('#tuoivang').val(0);
 										}
-											
 									}
 								 </script>
                              </td>
@@ -135,7 +133,7 @@
    </form>
 </div>
 <script type="text/javascript" src="<!--{$path_url}-->/js/autoNumeric.js"></script>
-<script type="text/javascript" src="<!--{$path_url}-->/calendar/jquery-ui.js"></script> 
 <script type="text/javascript" src="<!--{$path_url}-->/js/functions/function.js"></script>
+
 <script type="text/javascript" src="<!--{$path_url}-->/js/select-checkbox/sol.js"></script>
 <link rel="stylesheet" href="<!--{$path_url}-->/js/select-checkbox/sol.css" />

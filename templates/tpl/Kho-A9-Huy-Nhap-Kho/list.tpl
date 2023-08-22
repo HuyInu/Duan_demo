@@ -128,7 +128,7 @@
                     <td>
                         <select class="chonchuyenphong" onchange="giahuy_chuyenKhoNguonVaogo('TaoPhieuXuatKho',  <!--{$phieuNhap[i].id}-->, this.value, <!--{$phongbanchuyen}-->, 'PXKACHIN')">
                             <option><!--{$chuyenden}--></option>
-                            <option value="24"><!--{getName('categories', 'name_vn', 24)}--></option>
+                            <option value="1829"><!--{getName('categories', 'name_vn', 1829)}--></option>
                         </select>
                     </td>
                     <td class="tdShowHide">

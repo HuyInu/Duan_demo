@@ -276,6 +276,7 @@ function Editsm()
 				$arrcth['ghichuvang'] = $ghichuvang;
 				$arrcth['type'] = 1; ////type 1.nhập; 2.xuat; 3.tồn kho 
 				$arrcth['typevkc'] = 1; ////typevkc 1.Vàng; 2.Kim Cương;
+				var_dump($arr['datedchungtu']);die();
 				if($idctnxvang > 0) // update datagirld có rồi
 					vaUpdate('khonguonvao_khoachinct',$arrcth,' id='.$idctnxvang);
 				else{ // insert datagirld chưa có

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-21 07:52:45
+/* Smarty version 4.1.1, created on 2023-08-22 09:09:03
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-A9-Huy-Nhap-Kho\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64e2b55d0f0482_21510055',
+  'unifunc' => 'content_64e418bf2e8a68_98025161',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd8da4aecd1d6cd5f039713201f51a988c2eff8b2' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-A9-Huy-Nhap-Kho\\list.tpl',
-      1 => 1692578203,
+      1 => 1692670140,
       2 => 'file',
     ),
   ),
@@ -29,7 +29,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./allsearch/lydos.tpl' => 1,
   ),
 ),false)) {
-function content_64e2b55d0f0482_21510055 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e418bf2e8a68_98025161 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\libraries\\smarty4\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
 <div class="goAction">
@@ -196,7 +196,7 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 , 'PXKACHIN')">
                             <option><?php echo $_smarty_tpl->tpl_vars['chuyenden']->value;?>
 </option>
-                            <option value="24"><?php echo getName('categories','name_vn',24);?>
+                            <option value="1829"><?php echo getName('categories','name_vn',1829);?>
 </option>
                         </select>
                     </td>

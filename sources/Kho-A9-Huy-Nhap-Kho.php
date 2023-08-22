@@ -88,6 +88,7 @@ function Editsm () {
     $toa = [];
     $ctToa = [];
     
+    $GLOBALS["sp"]->BeginTrans();
     try {  
         $toa['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
         $toa['nguoilapphieu'] = $_POST['nguoilapphieu'];
@@ -95,9 +96,9 @@ function Editsm () {
         $toa['nguoiduyetphieu'] = $_POST['nguoiduyetphieu'];
         $toa['donviduyetphieu'] = $_POST['donviduyetphieu'];
         $toa['lydo'] = $_POST['lydo'];
-        $ctToa['dated'] = $toa['datedchungtu'] = $datedchungtu[2].'-'.$datedchungtu[1].'-'.$datedchungtu[0];
+        $toa['datedchungtu'] = $datedchungtu[2].'-'.$datedchungtu[1].'-'.$datedchungtu[0];
         $toa['datedhachtoan'] = $datedhachtoan[2].'-'.$datedhachtoan[1].'-'.$datedhachtoan[0];
-        
+
         if ($act === 'addsm') {
             $toa['numphieu'] = $numphieu;
             $toa['maphieu'] = $maphieu;
@@ -126,6 +127,9 @@ function Editsm () {
             $cannangh = str_replace(',','',trim($cannanghct[$index]));
             $tuoivang = str_replace(',','',trim($tuoivangct[$index]));
             if((int)$nhomnguyenlieuvangct[$index] > 0 && (int)$tennguyenlieuvangct[$index] > 0 && (int)$idloaivangct[$index] > 0) {
+                $ctToa['idctnx'] = $idctnx;
+                $ctToa['maphieu'] = $maphieu;
+                $ctToa['nhomdm'] = $nhomdanhmuc['id'];
                 $ctToa['nhomnguyenlieuvang'] = $nhomnguyenlieuvangct[$index];
                 $ctToa['tennguyenlieuvang'] = $tennguyenlieuvangct[$index];
                 $ctToa['idloaivang'] = $idloaivangct[$index];
@@ -137,16 +141,12 @@ function Editsm () {
                 $ctToa['ghichuvang'] = trim($ghichuvangct[$index]);
                 $ctToa['type'] = 1;
                 $ctToa['typevkc'] = 1;
-                $ctToa['time'] = $timeNow;
                 if($idctvang > 0) {
-                    //var_dump(1);
                     vaUpdate('khonguonvao_khoachinct',$ctToa, "id = $idctvang");
                 } else {
-                    $ctToa['idctnx'] = $idctnx;
                     $ctToa['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
-                    $ctToa['maphieu'] = $maphieu;
-                    $ctToa['nhomdm'] = $nhomdanhmuc['id'];
-                    //var_dump(0);
+                    $ctToa['time'] = $timeNow;
+                    $ctToa['dated'] = $dateNow;
                     vaInsert('khonguonvao_khoachinct', $ctToa);
                 }
             } else {
@@ -155,9 +155,10 @@ function Editsm () {
                 }
             }
         }
+        $GLOBALS["sp"]->CommitTrans();
     } catch (Exception $e) {
-        var_dump($e);
-        die();
+        $GLOBALS["sp"]->RollbackTrans();
+		die($errorTransetion);
     }
 }
 

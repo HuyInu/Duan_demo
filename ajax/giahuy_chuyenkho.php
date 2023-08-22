@@ -64,7 +64,7 @@ switch($act) {
             $phieuNhapMoi['datechuyen'] = $dateNow;
             $phieuNhapMoi['trangthai'] = 0;
 
-            //vaInsert($tableNhan, $phieuNhapMoi);
+            vaInsert($tableNhan, $phieuNhapMoi);
 
             $phieuXuatUpdate = [];
             $phieuXuatUpdate['phongban'] = $idCategNhan;
@@ -72,14 +72,13 @@ switch($act) {
             $phieuXuatUpdate['datechuyen'] = $dateNow;
             $phieuXuatUpdate['trangthai'] = 1;
 
-            //vaUpdate($tableChuyen, $phieuXuatUpdate, "id=".$phieuXuat['id']);
+            vaUpdate($tableChuyen, $phieuXuatUpdate, "id=".$phieuXuat['id']);
 
             $GLOBALS["sp"]->CommitTrans();
         }catch(Exception $e) {
             $GLOBALS["sp"]->RollbackTrans();
-            $error = $e->getMessage();
+            $error = $errorTransetion;
         }
-        //var_dump($phieuNhapMoi); die();
     break;
     case 'tralaichuyenKhoSanXuat':
         $GLOBALS["sp"]->BeginTrans();
@@ -105,17 +104,56 @@ switch($act) {
             $GLOBALS["sp"]->CommitTrans();
         }catch(Exception $e) {
             $GLOBALS["sp"]->RollbackTrans();
-            $error = $e->getMessage();
+            $error = $errorTransetion;
         }
     break;
     case 'xacnhanchuyenKhoSanXuat':
         $GLOBALS["sp"]->BeginTrans();
 		try{
-            
+            $sqlCategNhan = "select * from $GLOBALS[db_sp].categories where id=$idCategNhan";
+            $CategNhan = $GLOBALS['sp']->getRow($sqlCategNhan);
+            $tableNhan = $CategNhan['tablect'];
+            $tableHachToanNhan = $CategNhan['tablehachtoan'];
+
+            $sqlPhieuNhan = "select * from $GLOBALS[db_sp].$tableNhan where id=$idPhieu";
+            $phieuNhap = $GLOBALS['sp']->getRow($sqlPhieuNhan);
+
+            $sqlCategChuyen = "select * from $GLOBALS[db_sp].categories where id=".$phieuNhap['phongbanchuyen'];
+            $CategChuyen = $GLOBALS['sp']->getRow($sqlCategChuyen);
+            $tableChuyen = $CategChuyen['tablect'];
+            $tableHachToanChuyen = $CategChuyen['tablehachtoan'];
+
+            if(!empty($tableHachToanNhan) && !empty($tableChuyen) && !empty($tableNhan)){
+                $idPhieuNhap = $phieuNhap['id'];
+                $idMaPhieuKho = $phieuNhap['idmaphieukho'];
+
+                $phieuXuatUpdate = [];
+                $phieuNhapUpdate = [];
+                
+                $phieuXuatUpdate['timexuat'] = $timeNow;
+                $phieuXuatUpdate['datedxuat'] = $dateNow;
+                $phieuXuatUpdate['phongban'] = $idCategNhan;
+                $phieuXuatUpdate['trangthai'] = 2;
+                vaUpdate($tableChuyen, $phieuXuatUpdate, 'id='.$idMaPhieuKho);
+
+                $phieuNhapUpdate['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
+                $phieuNhapUpdate['time'] = $timeNow;
+                $phieuNhapUpdate['dated'] = $dateNow;
+                $phieuNhapUpdate['timechuyen'] = $timeNow;
+                $phieuNhapUpdate['datechuyen'] = $dateNow;
+                $phieuNhapUpdate['typechuyen'] = 2;
+                vaUpdate($tableNhan, $phieuNhapUpdate, 'id='.$idPhieuNhap);
+
+                ghiSoHachToan($tableHachToanChuyen, $tableChuyen, $idMaPhieuKho, 'xuatkho');
+                giahuy_ghiSoHachToanKhoSanXuat($tableHachToanNhan, $tableNhan, $idPhieuNhap);
+            } else {
+				$error = 'Table này chưa được thêm, vui lòng liên hệ với admin để được xử lý.';	
+			}
+
             $GLOBALS["sp"]->CommitTrans();
         } catch(Exception $e) {
             $GLOBALS["sp"]->RollbackTrans();
-            $error = $e->getMessage();
+            $error = $errorTransetion;
         }
     break;
 }

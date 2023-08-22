@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-21 13:38:39
+/* Smarty version 4.1.1, created on 2023-08-22 13:59:20
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-A9-Huy-Xuat-Kho\listvang.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64e3066f9d5533_69849066',
+  'unifunc' => 'content_64e45cc8715833_35075497',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     'de68736847fd4f0018d57c98a526d38fa8997f04' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-A9-Huy-Xuat-Kho\\listvang.tpl',
-      1 => 1692599918,
+      1 => 1692687320,
       2 => 'file',
     ),
   ),
@@ -32,7 +32,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./allsearch/ghichus.tpl' => 1,
   ),
 ),false)) {
-function content_64e3066f9d5533_69849066 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e45cc8715833_35075497 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\libraries\\smarty4\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
 <div class="breadcrumb">
@@ -196,7 +196,7 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\
                     <td align="center"></td>
                     <td align="center"></td>
                 </tr>
-                <?php $_smarty_tpl->assign("khoSanXuat_KhoVMNT",optionChuyenDenTest('623'));?>
+                <?php $_smarty_tpl->assign("khoSanXuat_KhoVMNT",optionChuyenDenTest('1834'));?>
                 <?php
 $__section_i_0_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['phieuXuatList']->value) ? count($_loop) : max(0, (int) $_loop));
 $__section_i_0_total = $__section_i_0_loop;
@@ -244,7 +244,7 @@ echo getName('categories','name_vn',$_prefixVariable2);?>
                         <?php ob_start();
 echo $_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['idloaivang'];
 $_prefixVariable3 = ob_get_clean();
-echo getName('categories','name_vn',$_prefixVariable3);?>
+echo getName('loaivang','name_vn',$_prefixVariable3);?>
 
                     </td>
                     
@@ -305,10 +305,18 @@ echo getName('categories','name_vn',$_prefixVariable3);?>
                         </div>
                     </td>
                      <td>
-                        <strong>Sửa/print</strong>
+                        <a href="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/sources/Kho-A9-Huy-Xuat-Kho.php?act=edit&cid=<?php echo $_REQUEST['cid'];?>
+&id=<?php echo $_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
+" title="Sửa"> 
+                            <img src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/images/edit.png"/> 
+                        </a>
                     </td>
                      <td>
-                        <strong>Trạng thái</strong>
+                        <?php if ($_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['tralai'] == 1) {?>	
+                            <a>Trả Lại</a>
+                        <?php }?>  
                     </td>
                 </tr>
                 <?php

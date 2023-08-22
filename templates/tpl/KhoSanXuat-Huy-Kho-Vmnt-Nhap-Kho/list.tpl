@@ -122,7 +122,7 @@
                         <!--{$phieuNhap[i].cannangv|number_format:3:".":","}-->
                     </td>
                     <td>
-                        <!--{$phieuNhap[i].phongbanchuyen}-->
+                        <!--{$phieuNhap[i].tuoivang}-->
                     </td>
                     <td>
                         <!--{$phieuNhap[i].madonhangsx}-->
