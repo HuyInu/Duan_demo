@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-18 10:12:58
+/* Smarty version 4.1.1, created on 2023-08-23 13:50:28
   from 'D:\wamp64\www\duan_demo\templates\tpl\popup\DanhMucNguyenLieu\vang.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64dee1ba04bb17_58719208',
+  'unifunc' => 'content_64e5ac34a7d115_46313089',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64dee1ba04bb17_58719208 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e5ac34a7d115_46313089 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="main-popup">
 	<div class="box-thongin box-thongin-popup">
     <div class="title-thongtin ">Nhóm Nguyên Liệu</div>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-05-08 13:57:24
+/* Smarty version 4.1.1, created on 2023-08-23 15:04:04
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-A9-Thong-Ke\tonvang.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64589d5474d257_07577256',
+  'unifunc' => 'content_64e5bd74a2dbd5_86694944',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     'bef99877e8966956ded6239e9c4cda4a134c1c27' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-A9-Thong-Ke\\tonvang.tpl',
-      1 => 1578385538,
+      1 => 1692777733,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./allsearch/print-nguon-vao-nodated.tpl' => 1,
   ),
 ),false)) {
-function content_64589d5474d257_07577256 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e5bd74a2dbd5_86694944 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="breadcrumb">
     <ul>
         <li>
@@ -55,7 +55,7 @@ function content_64589d5474d257_07577256 (Smarty_Internal_Template $_smarty_tpl)
 /sources/Kho-A9-Thong-Ke.php?act=<?php echo $_REQUEST['act'];?>
 &cid=<?php echo $_REQUEST['cid'];?>
 ')"> 
-    <div class="MainSearch">            
+        <div class="MainSearch">            
              <?php $_smarty_tpl->_subTemplateRender("file:./allsearch/tungay-denngay-thong-ke-kho-san-xuat.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
              <?php $_smarty_tpl->_subTemplateRender("file:./allsearch/print-nguon-vao-nodated.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);

@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-22 09:09:03
+/* Smarty version 4.1.1, created on 2023-08-23 13:06:48
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-A9-Huy-Nhap-Kho\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64e418bf2e8a68_98025161',
+  'unifunc' => 'content_64e5a1f872fe49_09516300',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -29,7 +29,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./allsearch/lydos.tpl' => 1,
   ),
 ),false)) {
-function content_64e418bf2e8a68_98025161 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e5a1f872fe49_09516300 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\libraries\\smarty4\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
 <div class="goAction">

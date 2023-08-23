@@ -17,6 +17,17 @@ $smarty->assign("typegold",$rsvang);
 if(checkPermision($idpem,7))
 	$smarty->assign("checkPer7","true");
 switch($act){	
+	case "SuaSoLieuHachToan":
+		// Sửa số liệu hạch toán kim cương
+		//dieuChinhSoLieuHachToanKimCuongKhoNguonVao('khonguonvao_khoachinct', 'khoachin_sodudauky');
+		// Sửa số liệu hạch toán
+		$rsGetLoaiVang = loaiVangSuaSoLieuHachToan();
+		
+		foreach ($rsGetLoaiVang as $itemLoaiVang) {
+			dieuChinhSoLieuHachToanKhoNguonVao('khonguonvao_khoachinct','khoachin_sodudauky',$itemLoaiVang['id']);
+		}
+		die("Điều chỉnh số liệu hạch toán thành công.");
+	break;
 	case "NhapXuatKho":
 		if(!checkPermision($idpem,5)){
 			page_permision();
@@ -32,7 +43,7 @@ switch($act){
 					$wh.=' and typevkc = 2 ';
 					
 					$sql = "select * from $GLOBALS[db_sp].khonguonvao_khoachinct where 
-								`type`=2 
+								`type`=2 and
 								and dated >= '".$fromDate."' and dated <= '".$toDate."'
 								$wh
 							order by numphieu asc, dated asc, dated asc

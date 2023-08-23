@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-22 13:59:20
+/* Smarty version 4.1.1, created on 2023-08-23 13:06:49
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-A9-Huy-Xuat-Kho\listvang.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64e45cc8715833_35075497',
+  'unifunc' => 'content_64e5a1f95bf635_94431012',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
@@ -32,7 +32,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./allsearch/ghichus.tpl' => 1,
   ),
 ),false)) {
-function content_64e45cc8715833_35075497 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e5a1f95bf635_94431012 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\libraries\\smarty4\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
 <div class="breadcrumb">

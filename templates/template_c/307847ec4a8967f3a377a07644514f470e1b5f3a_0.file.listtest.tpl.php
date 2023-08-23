@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-05-08 09:02:17
+/* Smarty version 4.1.1, created on 2023-08-23 13:06:55
   from 'D:\wamp64\www\duan_demo\templates\tpl\KhoSanXuat-Kho-Vmnt-Nhap-Kho\listtest.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64585829927940_90691157',
+  'unifunc' => 'content_64e5a1ff2698a8_47594712',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     '307847ec4a8967f3a377a07644514f470e1b5f3a' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\KhoSanXuat-Kho-Vmnt-Nhap-Kho\\listtest.tpl',
-      1 => 1683260860,
+      1 => 1691973449,
       2 => 'file',
     ),
   ),
@@ -29,7 +29,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./allsearch/ghichus.tpl' => 1,
   ),
 ),false)) {
-function content_64585829927940_90691157 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e5a1ff2698a8_47594712 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\libraries\\smarty4\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
 <div class="breadcrumb">

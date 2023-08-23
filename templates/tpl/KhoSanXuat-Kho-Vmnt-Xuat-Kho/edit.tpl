@@ -14,7 +14,6 @@
      	<div class="box-thongin" >
             <div class="MainTable">
                	<div class="table2scroll">
-                
                     <table width="100%" border="1">
                         <tr class="trheader">
                            <td width="13%" align="center">
@@ -51,75 +50,73 @@
                             </td>
                         </tr>
                         <tr>
-                             <td align="left"> 
-                             	<input type="text" autocomplete="off" name="maphieu" id="maphieu" class="txtdatagirld" readonly="readonly" value="<!--{$edit.maphieu}-->"/>
+                            <td align="left"> 
+                            <input type="text" autocomplete="off" name="maphieu" id="maphieu" class="txtdatagirld" readonly="readonly" value="<!--{$edit.maphieu}-->"/>
 
-                             </td>
-                             <td align="left">
-                                 <input type="text" name="dated" id="dated" class="txtdatagirld" readonly="readonly" value="<!--{$edit.dated|date_format:'%d/%m/%Y'}-->"/>
-                             </td>
-                           
-                             <td align="left">
-                                 <select class="selectOption" id="idloaivang" name="idloaivang" >
-                                     <option value="">--Chọn loại vàng--</option>
-                                     <!--{section name=i loop=$typegold}-->
-                                     	<option value="<!--{$typegold[i].id}-->" <!--{if $edit.idloaivang eq $typegold[i].id}-->selected="selected"<!--{/if}-->>
-                                        	<!--{$typegold[i].name_vn}-->
-                                        </option>
-                                     <!--{/section}-->
+                            </td>
+                            <td align="left">
+                                <input type="text" name="dated" id="dated" class="txtdatagirld" readonly="readonly" value="<!--{$edit.dated|date_format:'%d/%m/%Y'}-->"/>
+                            </td>
+                        
+                            <td align="left">
+                                <select class="selectOption" id="idloaivang" name="idloaivang" >
+                                    <option value="">--Chọn loại vàng--</option>
+                                    <!--{section name=i loop=$typegold}-->
+                                    <option value="<!--{$typegold[i].id}-->" <!--{if $edit.idloaivang eq $typegold[i].id}-->selected="selected"<!--{/if}-->>
+                                        <!--{$typegold[i].name_vn}-->
+                                    </option>
+                                    <!--{/section}-->
                                 </select>
-                             </td>
-                             
-                             <td align="left">
-                                 <input type="text" autocomplete="off" name="cannangvh" id="cannangvh1" class="txtdatagirld text-right autoNumeric" value="<!--{$edit.cannangvh}-->" onchange="getslcannangv(1)"/>
-                             </td>
-                             <td align="left">
-                                 <input type="text" autocomplete="off" name="cannangh" id="cannangh1" class="txtdatagirld text-right autoNumeric" value="<!--{$edit.cannangh}-->" onchange="getslcannangv(1)"/>
-                             </td>
-                             <td align="left">
-                                 <input type="text" autocomplete="off" name="cannangv" id="cannangv1" class="txtdatagirld text-right autoNumeric" value="<!--{$edit.cannangv}-->" readonly="readonly"/>
-                             </td>
-                             <td align="left">
-                                 <input onchange="checktuoivang(this.value)" type="text" autocomplete="off" name="tuoivang" id="tuoivang" class="txtdatagirld text-right autoNumeric4" value="<!--{$edit.tuoivang}-->" />
-                                 <script>
-								 	function checktuoivang(num){
-										num = num.split(',').join('');
-										if(num >= 1){
-											alert('tuổi vàng phải nhỏ hơn 1.');
-											$('#tuoivang').val(0);
-										}
-											
-									}
-								 </script>
-                             </td>
-                             <td align="left">
-                                 
+                            </td>
+                            
+                            <td align="left">
+                                <input type="text" autocomplete="off" name="cannangvh" id="cannangvh1" class="txtdatagirld text-right autoNumeric" value="<!--{$edit.cannangvh}-->" onchange="getslcannangv(1)"/>
+                            </td>
+                            <td align="left">
+                                <input type="text" autocomplete="off" name="cannangh" id="cannangh1" class="txtdatagirld text-right autoNumeric" value="<!--{$edit.cannangh}-->" onchange="getslcannangv(1)"/>
+                            </td>
+                            <td align="left">
+                                <input type="text" autocomplete="off" name="cannangv" id="cannangv1" class="txtdatagirld text-right autoNumeric" value="<!--{$edit.cannangv}-->" readonly="readonly"/>
+                            </td>
+                            <td align="left">
+                                <input onchange="checktuoivang(this.value)" type="text" autocomplete="off" name="tuoivang" id="tuoivang" class="txtdatagirld text-right autoNumeric4" value="<!--{$edit.tuoivang}-->" />
+                                <script>
+                                function checktuoivang(num){
+                                    num = num.split(',').join('');
+                                    if(num >= 1){
+                                        alert('tuổi vàng phải nhỏ hơn 1.');
+                                        $('#tuoivang').val(0);
+                                    }
+                                        
+                                }
+                                </script>
+                            </td>
+                            <td align="left">                               
                                 <div id="siteIDload">
                                     <select name="chonphongbanin" id="chonphongbanin" class="abcd chonphonbanSanXuat">
-                                         <option value="0">Chọn Phòng Sản Xuất</option>
-                                         <!--{insert name='optionChuyenDenSelected' chonphongbanin=$edit.chonphongbanin id='283,376,708,169'}-->
+                                            <option value="0">Chọn Phòng Sản Xuất</option>
+                                            <!--{insert name='optionChuyenDenSelected' chonphongbanin=$edit.chonphongbanin id='283,376,708,169'}-->
                                     </select> 
                                 </div>
-                             </td>
-                             
-                             <td align="left">
-                                 <script>
+                            </td>
+                            
+                            <td align="left">
+                                    <script>
                                     $(function () {
                                         $("#siteIDload select").select2();
                                     });
-                                </script>
+                                    </script>
                                 <div id="siteIDload">
                                     <select name="madhin" id="madhin" class="abcd chonphonbanSanXuat" onchange="getSLVaoCotGhiChu(this.value)">
-                                         <option value="">Chọn Mã Đơn Hàng Catalog</option>
-                                         <!--{insert name='optionChoDonHangCatalog' madhin=$edit.madhin cid=$phongbanchuyen}-->
+                                            <option value="">Chọn Mã Đơn Hàng Catalog</option>
+                                           
                                     </select> 
                                 </div>
-                             </td>
-                             
-                             <td align="left">
-                                 <input type="text" autocomplete="off" name="ghichuvang" id="ghichuvang" class="txtdatagirld" value="<!--{$edit.ghichuvang}-->"/>
-                             </td> 
-                                   
+                            </td>
+                            
+                            <td align="left">
+                                <input type="text" autocomplete="off" name="ghichuvang" id="ghichuvang" class="txtdatagirld" value="<!--{$edit.ghichuvang}-->"/>
+                            </td>     
                         </tr>
                     </table>
                 </div> 

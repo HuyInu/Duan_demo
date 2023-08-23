@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-05-08 13:55:31
+/* Smarty version 4.1.1, created on 2023-08-23 13:39:42
   from 'D:\wamp64\www\duan_demo\templates\tpl\allsearch\tungay-denngay-thong-ke-kho-san-xuat.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64589ce3db3ba8_41644953',
+  'unifunc' => 'content_64e5a9ae4b8304_79459160',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '01fe0de97af72ba5dbe8303c627ba538c11d825b' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\allsearch\\tungay-denngay-thong-ke-kho-san-xuat.tpl',
-      1 => 1578385540,
+      1 => 1691973449,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64589ce3db3ba8_41644953 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e5a9ae4b8304_79459160 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="formsearch">
      <label class="Fl labelsearch"> Từ ngày: </label>
      <input type="text" class="InputText textsearchdated" placeholder='dd/mm/yy' name="fromdays" id="fromdays" value="<?php echo $_smarty_tpl->tpl_vars['fromdays']->value;?>

@@ -969,6 +969,7 @@ function getNamMaDonHangCatalog($madhin){
 
 
 function insert_optionChoDonHangCatalog($a){
+	$html = null;
 	$cid = ceil($a['cid']);
 	$madhin = ceil($a['madhin']);
 	/*
@@ -1783,7 +1784,7 @@ function insert_thongKeKhoNguonVaoTonKho($a){
 
 function thongKeKhoNguonVaoTonKho($cid, $idloaivang, $fromDate, $toDate){
 	$arrlist = array();
-	$whnhap = $whxuat = $sqlktvang = $rsktvang = $sqlton = $rston = $sqltonsddk = $rstonsddk = $sqlhaodusddk = $rshaodusddk = $sqlhaodutndt = $rshaodutndt = $sqlnhaptndt = $rsnhaptndt = $sqlxuattndt = $rsxuattndt =  '';
+	$whdatechuyen = $whnhap = $whxuat = $sqlktvang = $rsktvang = $sqlton = $rston = $sqltonsddk = $rstonsddk = $sqlhaodusddk = $rshaodusddk = $sqlhaodutndt = $rshaodutndt = $sqlnhaptndt = $rsnhaptndt = $sqlxuattndt = $rsxuattndt =  '';
 	$slton = $sltonsddk = $slnhap = $slxuat = $sltontndt =0;
 	//$cid = ceil(trim($a['cid']));
 	//$idloaivang = ceil(trim($a['idloaivang']));
@@ -1940,6 +1941,139 @@ function thongKeKhoNguonVaoTonKho($cid, $idloaivang, $fromDate, $toDate){
 	}
 	return $arrlist;	
 }
+
+function giahuy_thongKeKhoNguonVaoTonKho($cid, $idloaivang, $fromDate, $toDate) {
+	$dateDauThang = null;
+	$slTon = null;
+	$slTonSDDK = null;
+	$sqlCateg = "select * from $GLOBALS[db_sp].categories where id=$cid";
+	$categ = $GLOBALS['sp']->getRow($sqlCateg);
+	$tableCT = $categ['tablect'];
+	$tableHachToan =  $categ['tablehachtoan'];
+
+	if(!empty($tableCT) && !empty($tableHoachToan)) {
+		if(!empty($fromDate)) {
+			$fromDate = explode('/',$fromDate);
+			$dateDauThang = $fromDate[2].'-'.$fromDate[1].'-01';
+
+			$fromDate = $fromDate[2].'-'.$fromDate[1].'-'.$fromDate[0];
+
+			$whereNhap = "and dated >= '$fromDate' ";
+			$whereChuyen = "and dated >= '$fromDate' ";
+		}
+
+		if(!empty($toDate)) {
+			$toDate = explode('/', $toDate);
+			$toDate = $toDate[2].'-'.$toDate[1].'-'.$toDate[0];
+
+			$whereNhap .= "and dated <= '$toDate'";
+			$whereChuyen .= "and datedxuat <= '$toDate'";
+		}
+
+		if($idloaivang > 0) {
+			$arrlist = [];
+			$sqlPhieuXuat = "select * from $GLOBALS[db_sp].$tableCT where type = 2 and typevkc = 1 and idloaivang = $idloaivang limit 1";
+			$phieuXuat = $GLOBALS['sp']->getRow($sqlPhieuXuat);
+
+			if($phieuXuat['id'] > 0) {
+				if(empty($whereNhap)) {
+					$dateDauThang = date('Y').'-'.date('m').'-01';
+					$dauThangtruoc = strtotime(date("Y-m-d", strtotime($dateDauThang))." -1 month");
+					$dauThangtruoc = date("%Y-%m-%d", $dauThangtruoc);
+
+					$sqlHaoDuSDDK = "select round(sum(hoa),3) as hoa, ROUND(SUM(du), 3) as du from $GLOBALS[db_sp].$tableHachToan where idloaivang = $idloaivang and dated <= '$dauThangtruoc'";
+					$haoDuSDDK = $GLOBALS['sp']->getRow($sqlHaoDuSDDK);
+
+					$sqlSlTonSDDK = "select * from $GLOBALS[db_sp].$tableHachToan where idloaivang = $idloaivang and dated <= '$dauThangtruoc' order by id desc limit 1";
+					$slTonSDDK = $GLOBALS['sp']->getRow($sqlSlTonSDDK);
+
+					$arrlist['sltonsddk'] = round(($slTonSDDK['sltonv'] - $haoDuSDDK['hao']),3) + $haoDuSDDK['du'];
+					
+					$sqlHaoDu = "select round(sum(hoa),3) as hoa, ROUND(SUM(du), 3) as du from $GLOBALS[db_sp].$tableHachToan where idloaivang = $idloaivang and dated <=$dateDauThang";
+					$haoDuDauThang = $GLOBALS['sp']->getRow($sqlHaoDu);
+
+					$sqlCurrentTon = "select * from $GLOBALS[db_sp].$tableHachToan where idloaivang = $idloaivang and order by id desc limit 1";
+					$currentTon = $GLOBALS['sp']->getRow($sqlCurrentTon);
+
+					$slTon = round(round(($currentTon['sltonv'] - $haoDuDauThang['hao']),3) + $haoDuDauThang['du'] ,3);
+
+					$arrlist['slhoa'] = $haoDuDauThang['hao'];
+					$arrlist['sldu'] = $haoDuDauThang['du'];
+					$arrlist['slnhap'] = $currentTon['slnhapv'];
+					$arrlist['slxuat'] = $currentTon['slxuatv'];
+					$arrlist['slton'] = $slTon;
+		
+				} else {
+					$dauThangtruoc = strtotime(date("Y-m-d", strtotime($dateDauThang)) . " -1 month");
+					$dauThangtruoc = date("%Y-%m-%d",$dauThangtruoc);
+
+					$sqlHaoDuSDDK = "select ROUND(SUM(hao), 3) as hao, ROUND(SUM(du), 3) as du from $GLOBALS[db_sp].".$tableHachToan." where idloaivang=".$idloaivang." and dated <= '".$dauThangtruoc."'
+					";
+					$haoDuSDDK = $GLOBALS['sp']->getRow($sqlHaoDuSDDK);
+
+					$sqlSlTonSDDK = "select * from $GLOBALS[db_sp].".$tableHachToan." where idloaivang=".$idloaivang." and dated <= '".$dauThangtruoc."' order by id desc limit 1";
+					$slTonSDDK = $GLOBALS['sp']->getRow($sqlSlTonSDDK);
+
+					$slTonSDDK = round(round(($slTonSDDK['sltonv'] - $haoDuSDDK['hao']),3) + $haoDuSDDK['du'],3);
+
+					$sqlNhapTndt = "select ROUND(SUM(cannangv), 3)  as slnhapvang from $GLOBALS[db_sp].".$tableCT." 
+					where idloaivang=".$idloaivang." 
+					and type=2 
+					and typevkc=1
+					and dated < '".$fromDate."'  
+					and dated >= '".$dateDauThang."'";
+					$nhapTndt = $GLOBALS["sp"]->getRow($sqlNhapTndt);	
+
+					$sqlXuatTndt = "select ROUND(SUM(cannangv), 3) as slxuatvang from $GLOBALS[db_sp].".$tableCT." 
+					where idloaivang=".$idloaivang." 
+					and trangthai = 2 
+					and typevkc=1
+					and datedxuat < '".$fromDate."'  
+					and datedxuat >= '".$dateDauThang."'";
+					$xuatTndt = $GLOBALS["sp"]->getRow($sqlXuatTndt);
+
+					$slTonTndt = round(($nhapTndt['slnhapvang'] - $xuatTndt['slxuatvang']),3);
+					$slTonSDDK = round(($slTonSDDK + $slTonTndt),3);
+
+					$sqlNhapTndn = "select ROUND(SUM(cannangv), 3) as slnhapvang from $GLOBALS[db_sp].".$tableCT." 
+					where idloaivang=".$idloaivang." 
+					and type=2
+					and typevkc=1
+					and dated >= '".$fromDate."'  
+					and dated <= '".$toDate."' "; 
+					$nhapTndn = $GLOBALS["sp"]->getRow($sqlNhapTndn);
+
+					$sqlXuatTndn = "select ROUND(SUM(cannangv), 3) as slnhapvang from $GLOBALS[db_sp].".$tableCT." 
+					where idloaivang=".$idloaivang." 
+					and trangthai = 2
+					and typevkc=1
+					and dated >= '".$fromDate."'  
+					and dated <= '".$toDate."' "; 
+					$xuatTndn = $GLOBALS["sp"]->getRow($sqlXuatTndn);
+
+					$slTonTndn = round(($nhapTndn['slnhapvang'] -  $xuatTndn['slxuatvang']),3);
+					$slTon = $slTonTndn + $slTonSDDK;
+
+					$arrlist['slhao'] = $haoDuSDDK['hao'];
+					$arrlist['sldu'] = $haoDuSDDK['du'];
+					$arrlist['slnhap'] = $nhapTndn['slnhapvang'];
+					$arrlist['slxuat'] = $xuatTndn['slxuatvang'];
+					$arrlist['slton'] = $slTon;
+					$arrlist['sltonsddk'] = $slTonSDDK;
+				}
+				$arrlist['idloaivang'] = $idloaivang;	
+				$arrlist['tongQ10'] = getTongQ10($arrlist['slton'], $arrlist['idloaivang']);
+			}
+		} else {
+			$arrlist['idloaivang'] = 0;	
+		}
+
+	} else {
+
+	}
+	return $arrlist;
+}
+
 /*==============Thống kê phòng sản xuất Tồn Hiện Tại==================*/
 function insert_thongKeTonHienTaiKhoSanXuat($a){
 	$arrlist = array();
@@ -7885,9 +8019,149 @@ function abs_diff($v1, $v2) {
 }
 
 
+// M.Tân thêm ngày 18/01/2020 - Điều chính số liệu hạch toán các Kho của Kho Nguồn Vào
+function dieuChinhSoLieuHachToanKhoNguonVao($table,$tablehachtoan,$idloaivang) {
 
+	$sql = "select * from $GLOBALS[db_sp].".$tablehachtoan." where idloaivang=".$idloaivang." and typevkc=1 ORDER BY dated DESC LIMIT 2";
+	$rs = $GLOBALS['sp']->getAll($sql);
 
+	for($i=ceil(count($rs))-1; $i >= 0; $i--) {
+		$arrUpdateNX = $arrUpdateNXThangTiep = array();
 
+		// Tính date đầu tháng, date cuối tháng ứng với lần chạy $i
+		$dateDauThang = $rs[$i]['dated'];
+		// $lastDay = date('t',strtotime($dateDauThang)); // Tính date cuối tháng ứng với date đầu tháng
+		$arrThang = explode('-',$dateDauThang);
+		$dateCuoiThang = $arrThang[0].'-'.$arrThang[1].'-31';
+
+		// TÍNH TỔNG SỐ LƯỢNG NHẬP DỰA TRÊN CÁC PHIẾU NHẬP ỨNG VỚI IDLOAIVANG ĐANG XỬ LÝ
+		$sqlTongNhapTrongThang = "select ROUND(SUM(cannangvh), 3) as cannangvh, 
+										ROUND(SUM(cannangh), 3) as cannangh, 
+										ROUND(SUM(cannangv), 3) as cannangv
+										from $GLOBALS[db_sp].".$table." 
+										where type=2 and typevkc = 1 and idloaivang=".$idloaivang." 
+										and dated >= '".$dateDauThang."' and dated <= '".$dateCuoiThang."'
+								";
+
+								
+		$rsTongNhapTrongThang = $GLOBALS['sp']->getRow($sqlTongNhapTrongThang);
+		
+		// TÍNH TỔNG SỐ LƯỢNG XUẤT DỰA TRÊN CÁC PHIẾU XUẤT ỨNG VỚI IDLOAIVANG ĐANG XỬ LÝ
+		$sqlTongXuatTrongThang = "select ROUND(SUM(cannangvh), 3) as cannangvh, 
+										ROUND(SUM(cannangh), 3) as cannangh, 
+										ROUND(SUM(cannangv), 3) as cannangv
+										from $GLOBALS[db_sp].".$table." 
+										where type=2 and trangthai=2 and typevkc = 1 and idloaivang=".$idloaivang." 
+										and datedxuat >= '".$dateDauThang."' and datedxuat <= '".$dateCuoiThang."'
+								";
+		$rsTongXuatTrongThang = $GLOBALS['sp']->getRow($sqlTongXuatTrongThang);
+
+		// Nếu trong tháng có nhập hoặc xuất idloaivang này thì mới tiến hành so sánh và xử lý
+		if($rsTongNhapTrongThang['cannangv'] != 0 || $rsTongXuatTrongThang['cannangv'] != 0) {
+			
+			// Nếu có sai số trong phần nhập kho của idloaivang đó thì bật cờ = 1
+			$checkSaiSoNX = 0;
+
+			// Lấy ra tổng số lượng nhập trong bảng sodudauky ứng với idloaivang (tháng đó) để so sánh
+			$sqlNhapSDDKTrongThang = "select slnhapv from $GLOBALS[db_sp].".$tablehachtoan." where idloaivang=".$idloaivang." and typevkc=1 and dated = '".$dateDauThang."'";
+			$slnhapvSDDK = $GLOBALS['sp']->getOne($sqlNhapSDDKTrongThang);
+			// So sánh số lượng nhập vàng trong sodudauky với tổng số lượng nhập của các phiếu cộng lại
+			if($rsTongNhapTrongThang['cannangv'] != $slnhapvSDDK){
+				$arrUpdateNX['slnhapv'] = $rsTongNhapTrongThang['cannangv'];
+				$arrUpdateNX['slnhaph'] = $rsTongNhapTrongThang['cannangh'];
+				$arrUpdateNX['slnhapvh'] = $rsTongNhapTrongThang['cannangvh'];
+				$checkSaiSoNX = 1;
+			}
+
+			// Lấy ra tổng số lượng xuất trong bảng sodudauky ứng với idloaivang (tháng đó) để so sánh
+			$sqlXuatSDDKTrongThang = "select slxuatv from $GLOBALS[db_sp].".$tablehachtoan." where idloaivang=".$idloaivang." and typevkc=1 and dated = '".$dateDauThang."'";
+			$slxuatvSDDK = $GLOBALS['sp']->getOne($sqlXuatSDDKTrongThang);
+			// So sánh số lượng nhập vàng trong sodudauky với tổng số lượng nhập của các phiếu cộng lại
+			if($rsTongXuatTrongThang['cannangv'] != $slxuatvSDDK){
+				$arrUpdateNX['slxuatv'] = $rsTongXuatTrongThang['cannangv'];
+				$arrUpdateNX['slxuath'] = $rsTongXuatTrongThang['cannangh'];
+				$arrUpdateNX['slxuatvh'] = $rsTongXuatTrongThang['cannangvh'];
+				$checkSaiSoNX = 1;
+			}	
+
+			// NẾU XẢY RA SAI SỐ NHẬP HOẶC XUẤT THÌ CẬP NHẬT LẠI SỐ LƯỢNG TỒN VÀ CẬP NHẬT LẠI TẤT CẢ Ở THÁNG TIẾP THEO
+			if($checkSaiSoNX == 1) {
+				
+				// Lấy ngày của tháng trước có hạch toán
+				$sqlGetDateDauThangTruoc = "select dated from $GLOBALS[db_sp].".$tablehachtoan." where idloaivang=".$idloaivang." and typevkc=1 and dated <= '".$dateDauThang."' order by dated desc limit 1";
+				$dateDauThangTruoc = $GLOBALS['sp']->getOne($sqlGetDateDauThangTruoc);
+				
+				// Lấy ra số lượng tồn của tháng trước có hạch toán
+				$sqlGetSLTonThangTruoc = "select sltonv, sltonh, sltonvh from $GLOBALS[db_sp].".$tablehachtoan." where idloaivang=".$idloaivang." and typevkc=1 and dated = '".$dateDauThangTruoc."'";
+				$rsGetSLTonThangTruoc = $GLOBALS['sp']->getRow($sqlGetSLTonThangTruoc);
+				
+				// soluongton(trong tháng) = soluongton(tháng trước) + soluongnhap(trong tháng) - soluongxuat(trong tháng)
+				$sltonvTrongThang = round(round(($rsGetSLTonThangTruoc['sltonv'] + $rsTongNhapTrongThang['cannangv']),3) - $rsTongXuatTrongThang['cannangv'],3);
+				$sltonhTrongThang = round(round(($rsGetSLTonThangTruoc['sltonh'] + $rsTongNhapTrongThang['cannangh']),3) - $rsTongXuatTrongThang['cannangh'],3);
+				$sltonvhTrongThang = round(round(($rsGetSLTonThangTruoc['sltonvh'] + $rsTongNhapTrongThang['cannangvh']),3) - $rsTongXuatTrongThang['cannangvh'],3);
+
+				$arrUpdateNX['sltonv'] = $sltonvTrongThang;
+				$arrUpdateNX['sltonh'] = $sltonhTrongThang;
+				$arrUpdateNX['sltonvh'] = $sltonvhTrongThang;
+
+				vaUpdate($tablehachtoan, $arrUpdateNX, ' idloaivang='.$idloaivang.' and typevkc=1 and dated="'.$dateDauThang.'"');
+
+				// Kiểm tra Tháng vòng lặp lần 2 (Tháng tiếp theo có hạch toán) có tồn tại không
+				$dateDauThangTiep = $rs[$i-1]['dated'];
+
+				if(!empty($dateDauThangTiep)){
+					// Tính ngày cuối tháng của tháng tiếp theo
+					$arrThangTiep = explode('-',$dateDauThangTiep);
+					$dateCuoiThangTiep = $arrThangTiep[0].'-'.$arrThangTiep[1].'-31';
+
+					$sqlTongNhapThangTiep = "select ROUND(SUM(cannangvh), 3) as cannangvh, 
+													ROUND(SUM(cannangh), 3) as cannangh, 
+													ROUND(SUM(cannangv), 3) as cannangv
+													from $GLOBALS[db_sp].".$table." 
+													where type=2 and typevkc = 1 and idloaivang=".$idloaivang." 
+													and dated >= '".$dateDauThangTiep."' and dated <= '".$dateCuoiThangTiep."'
+											";
+					$rsTongNhapThangTiep = $GLOBALS['sp']->getRow($sqlTongNhapThangTiep);
+					
+					if($rsTongNhapThangTiep['cannangv'] != 0) { // != 0 là tháng tiếp theo có nhập
+						$arrUpdateNXThangTiep['slnhapv'] = $rsTongNhapThangTiep['cannangv'];
+						$arrUpdateNXThangTiep['slnhaph'] = $rsTongNhapThangTiep['cannangh'];
+						$arrUpdateNXThangTiep['slnhapvh'] = $rsTongNhapThangTiep['cannangvh'];
+					}
+
+					$sqlTongXuatThangTiep = "select ROUND(SUM(cannangvh), 3) as cannangvh, 
+													ROUND(SUM(cannangh), 3) as cannangh, 
+													ROUND(SUM(cannangv), 3) as cannangv
+													from $GLOBALS[db_sp].".$table." 
+													where type=2 and trangthai=2 and typevkc = 1 and idloaivang=".$idloaivang." 
+													and datedxuat >= '".$dateDauThangTiep."' and datedxuat <= '".$dateCuoiThangTiep."'
+											";
+					$rsTongXuatThangTiep = $GLOBALS['sp']->getRow($sqlTongXuatThangTiep);
+
+					if($rsTongXuatThangTiep['cannangv'] != 0) { // != 0 là tháng tiếp theo có xuất
+						$arrUpdateNXThangTiep['slxuatv'] = $rsTongXuatThangTiep['cannangv'];
+						$arrUpdateNXThangTiep['slxuath'] = $rsTongXuatThangTiep['cannangh'];
+						$arrUpdateNXThangTiep['slxuatvh'] = $rsTongXuatThangTiep['cannangvh'];
+					}
+
+					// Update soluongton của tháng tiếp theo
+					$arrUpdateNXThangTiep['sltonv'] = round(round(($sltonvTrongThang + $rsTongNhapThangTiep['cannangv']),3) - $rsTongXuatThangTiep['cannangv'],3);
+					$arrUpdateNXThangTiep['sltonh'] = round(round(($sltonhTrongThang + $rsTongNhapThangTiep['cannangh']),3) - $rsTongXuatThangTiep['cannangh'],3);
+					$arrUpdateNXThangTiep['sltonvh'] = round(round(($sltonvhTrongThang + $rsTongNhapThangTiep['cannangvh']),3) - $rsTongXuatThangTiep['cannangvh'],3);
+
+					vaUpdate($tablehachtoan, $arrUpdateNXThangTiep, ' idloaivang='.$idloaivang.' and typevkc=1 and dated="'.$dateDauThangTiep.'"');
+
+				}
+			}
+		}
+	}
+}
+
+function loaiVangSuaSoLieuHachToan(){
+	$sql = "select * from $GLOBALS[db_sp].loaivang where active=1 and pid=0";
+	$rs = $GLOBALS["sp"]->getAll($sql);
+	return $rs;
+}
 
 
 

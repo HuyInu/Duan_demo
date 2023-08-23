@@ -56,7 +56,7 @@
                 </tr>
                 <!--{assign var="tongQ10" value=0}-->
 				<!--{section name=i loop=$typegoldview}-->
-                	<!--{insert name="thongKeKhoNguonVaoTonKho" cid="$phongbanchuyen" fromdays=$fromdays todays=$todays idloaivang=$typegoldview[i].id assign="viewdl"}-->
+                	<!--{$viewdl = giahuy_thongKeKhoNguonVaoTonKho($phongbanchuyen, $fromdays, $todays, $typegoldview[i].id)}-->
                     <!--{if $viewdl.idloaivang gt 0}-->
                         <tr class="fontSizeTon">
                             <td align="right">
@@ -90,8 +90,7 @@
                      <!--{/if}--> 
                 <!--{/section}-->
                 <tr class="Paging fontSizeTon">
-                    <td align="right" colspan="7"> <span class="colorXanh">Tổng Trọng Lượng Q10:</span> </td>
-                    <td align="right"><strong class="colorXanh"><!--{$tongQ10|number_format:3:".":","}--> </strong></td>
+
                 </tr>                                                                        
             </table>
     	</div>   

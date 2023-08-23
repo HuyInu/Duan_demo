@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-22 11:46:21
+/* Smarty version 4.1.1, created on 2023-08-23 13:05:51
   from 'D:\wamp64\www\duan_demo\templates\tpl\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64e43d9d6fdeb3_37070090',
+  'unifunc' => 'content_64e5a1bf77ae49_27665385',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64e43d9d6fdeb3_37070090 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e5a1bf77ae49_27665385 (Smarty_Internal_Template $_smarty_tpl) {
 ?><span id="loadingAjax">
     <div class="ajax-loader"></div>
     <div class="loadajax"></div>

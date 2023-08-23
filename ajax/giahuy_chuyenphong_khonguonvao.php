@@ -30,45 +30,51 @@ switch($act) {
             
             $ctToaList = getTableAll($tablect,' and idctnx='.$idToa.' order by id asc');
             if(count($ctToaList) > 0 ) {
-                $toa = [];
-                $toa['midchuyen'] = $_SESSION['admin_qlsxntjcorg_id'];
-                $toa['phongban'] = $phongban;
-                $toa['phongbanchuyen'] =  $phongbanchuyen;
-                $toa['datechuyen'] = $dateNow;
-                $toa['timechuyen'] = $timeNow;
-                $toa['type'] = 3;
-                vaUpdate($table, $toa, "id = $idToa");
+                $sqlCheckExisted = "select count(*) from $GLOBALS[db_sp].$table where id=$idToa and type = 3";
+                $checkExisted = $GLOBALS['sp']->getOne($sqlCheckExisted);
+                if($checkExisted <=0 ) {
+                    $toa = [];
+                    $toa['midchuyen'] = $_SESSION['admin_qlsxntjcorg_id'];
+                    $toa['phongban'] = $phongban;
+                    $toa['phongbanchuyen'] =  $phongbanchuyen;
+                    $toa['datechuyen'] = $dateNow;
+                    $toa['timechuyen'] = $timeNow;
+                    $toa['type'] = 3;
+                    vaUpdate($table, $toa, "id = $idToa");
 
-                $ctToa = [];
-                foreach($ctToaList as $item) {
-                    $sqlmpt = "select max(numphieu)+1 from $GLOBALS[db_sp].".$tablect."";                 
-                    $rsmpt = $GLOBALS['sp']->getone($sqlmpt);
-                    if($rsmpt <= 0)
-                        $rsmpt = 1;	
-                    $maso = convertMaso($rsmpt);
+                    $ctToa = [];
+                    foreach($ctToaList as $item) {
+                        $sqlmpt = "select max(numphieu)+1 from $GLOBALS[db_sp].".$tablect."";                 
+                        $rsmpt = $GLOBALS['sp']->getone($sqlmpt);
+                        if($rsmpt <= 0)
+                            $rsmpt = 1;	
+                        $maso = convertMaso($rsmpt);
 
-                    $ctToa['idctnx'] = $item['idctnx'];
-                    $ctToa['idct'] = $item['id'];
-                    $ctToa['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
-                    $ctToa['numphieu'] = $maso;
-                    $ctToa['maphieu'] = $macode.$maso;
-                    $ctToa['nhomdm'] = $item['nhomdm'];
-                    $ctToa['nhomnguyenlieuvang'] = $item['nhomnguyenlieuvang'];
-                    $ctToa['tennguyenlieuvang'] = $item['tennguyenlieuvang'];
-                    $ctToa['idloaivang'] = $item['idloaivang'];
-                    $ctToa['cannangvh'] = $item['cannangvh'];
-                    $ctToa['cannangh'] = $item['cannangh'];
-                    $ctToa['cannangv'] = $item['cannangv'];
-                    $ctToa['tuoivang'] = $item['tuoivang'];
-                    $ctToa['tienmatvang'] = $item['tienmatvang'];
-                    $ctToa['ghichuvang'] = $item['ghichuvang'];
-                    $ctToa['type'] = 2;
-                    $ctToa['typevkc'] = 1;
-                    $ctToa['time'] = $item['time'];
-                    $ctToa['dated'] = $item['dated'];
+                        $ctToa['idctnx'] = $item['idctnx'];
+                        $ctToa['idct'] = $item['id'];
+                        $ctToa['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
+                        $ctToa['numphieu'] = $maso;
+                        $ctToa['maphieu'] = $macode.$maso;
+                        $ctToa['nhomdm'] = $item['nhomdm'];
+                        $ctToa['nhomnguyenlieuvang'] = $item['nhomnguyenlieuvang'];
+                        $ctToa['tennguyenlieuvang'] = $item['tennguyenlieuvang'];
+                        $ctToa['idloaivang'] = $item['idloaivang'];
+                        $ctToa['cannangvh'] = $item['cannangvh'];
+                        $ctToa['cannangh'] = $item['cannangh'];
+                        $ctToa['cannangv'] = $item['cannangv'];
+                        $ctToa['tuoivang'] = $item['tuoivang'];
+                        $ctToa['tienmatvang'] = $item['tienmatvang'];
+                        $ctToa['ghichuvang'] = $item['ghichuvang'];
+                        $ctToa['type'] = 2;
+                        $ctToa['typevkc'] = 1;
+                        $ctToa['time'] = $timeNow;
+                        $ctToa['dated'] = $dateNow;
 
-                    vaInsert($tablect, $ctToa);
-                    giahuy_ghiSoHachToan($tablehachtoan, $tablect, $item['id'], '');
+                        vaInsert($tablect, $ctToa);
+                        giahuy_ghiSoHachToan($tablehachtoan, $tablect, $item['id'], '');
+                    }
+                } else {
+                    $error = 'Toa hàng này đã được nhâp.';	
                 }
             } else {
                 $error = 'Toa hàng này chưa có nhập dữ liệu Vàng hoặc Kim Cương.';	

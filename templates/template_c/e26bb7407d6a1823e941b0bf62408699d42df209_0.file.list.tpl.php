@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-16 08:18:33
+/* Smarty version 4.1.1, created on 2023-08-23 13:54:30
   from 'D:\wamp64\www\duan_demo\templates\tpl\categories\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64dc23e952c9f7_39219489',
+  'unifunc' => 'content_64e5ad26e2e300_23798655',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64dc23e952c9f7_39219489 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e5ad26e2e300_23798655 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="breadcrumb">
     <ul>
         <li>
