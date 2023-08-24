@@ -31,10 +31,16 @@ switch($act) {
         $sqlCtToaVang = "select * from $GLOBALS[db_sp].khonguonvao_khoachinct where idctnx = $idToa and type = 1 and typevkc = 1 order by id asc";
         $ctToaVang = $GLOBALS['sp']->getAll($sqlCtToaVang);
         $countCtToaVang = count($ctToaVang);
+
+        $sqlCtToaKimCuong = "select * from $GLOBALS[db_sp].khonguonvao_khoachinct where idctnx = $idToa and type = 1 and typevkc = 2 order by id asc";
+        $ctToaKimCuong = $GLOBALS['sp']->getAll($sqlCtToaKimCuong);
+        $countCtToaKimCuong = count($ctToaKimCuong);
         
         $smarty->assign('toa',$toa);
         $smarty->assign('coutndongvang',$countCtToaVang + 1);
+        $smarty->assign('coutndongkimcuong',$countCtToaKimCuong + 1);
         $smarty->assign('ctToaVang',$ctToaVang);
+        $smarty->assign('viewtcctkimcuong',$ctToaKimCuong);
         $template = 'Kho-A9-Huy-Nhap-Kho/edit.tpl';
     break;
     case 'addsm': case 'editsm':
@@ -155,10 +161,59 @@ function Editsm () {
                 }
             }
         }
+        $idctnxkimcuong = $_POST['idctnxkimcuong'];
+        $nhomnguyenlieukimcuong = $_POST['nhomnguyenlieukimcuong'];
+        $tennguyenlieukimcuong = $_POST['tennguyenlieukimcuong'];
+        $idkimcuong = $_POST['idkimcuong'];
+        $codegdpnj = $_POST['codegdpnj'];
+        $codecgta = $_POST['codecgta'];
+        $kichthuoc = $_POST['kichthuoc'];
+        $trongluonghot = $_POST['trongluonghot'];
+        $dotinhkhiet = $_POST['dotinhkhiet'];
+        $capdomau = $_POST['capdomau'];
+        $domaibong = $_POST['domaibong'];
+        $kichthuocban = $_POST['kichthuocban'];
+        $tienmatkimcuong = $_POST['tienmatkimcuong'];
+        $dongiaban = $_POST['dongiaban'];
+        foreach($idctnxkimcuong as $index => $idctKimCuong) {
+            $ctToaKC = [];
+            if(trim($nhomnguyenlieukimcuong[$index]) > 0 && trim($tennguyenlieukimcuong[$index]) > 0 && trim($idkimcuong[$index]) > 0){
+                $ctToaKC['nhomnguyenlieukimcuong'] = trim($tennguyenlieukimcuong[$index]);
+                $ctToaKC['tennguyenlieukimcuong'] = trim($tennguyenlieukimcuong[$index]);
+                $ctToaKC['idkimcuong'] = trim($idkimcuong[$index]);
+                $ctToaKC['codegdpnj'] = trim($codegdpnj[$index]);
+                $ctToaKC['codecgta'] = trim($codecgta[$index]);
+                $ctToaKC['kichthuoc'] = trim($kichthuoc[$index]);
+                $ctToaKC['trongluonghot'] = trim($trongluonghot[$index]);
+                $ctToaKC['dotinhkhiet'] = trim($dotinhkhiet[$index]);
+                $ctToaKC['capdomau'] = trim($capdomau[$index]);
+                $ctToaKC['domaibong'] = trim($domaibong[$index]);
+                $ctToaKC['kichthuocban'] = trim($kichthuocban[$index]);
+                $ctToaKC['tienmatkimcuong'] = trim($tienmatkimcuong[$index]);
+                $ctToaKC['dongiaban'] = trim($dongiaban[$index]);
+                if($idctKimCuong > 0) {
+                    vaUpdate('khonguonvao_khoachinct', $ctToaKC, $idctKimCuong);
+                } else {
+                    $ctToaKC['maphieu'] = $maphieu;
+                    $ctToaKC['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
+                    $ctToaKC['idctnx'] =  $idctnx;
+                    $ctToaKC['nhomdm'] =  $nhomdanhmuc['id'];
+                    $ctToaKC['time'] = $timeNow;
+                    $ctToaKC['dated'] = $dateNow;
+                    $ctToaKC['type'] = 1;
+                    $ctToaKC['typevkc'] = 2;
+
+                    vaInsert('khonguonvao_khoachinct', $ctToaKC);
+                }
+            } else {
+                vaDelete('khonguonvao_khoachinct', 'id='.$idctKimCuong);
+            }
+        }
+
         $GLOBALS["sp"]->CommitTrans();
     } catch (Exception $e) {
         $GLOBALS["sp"]->RollbackTrans();
-		die($errorTransetion);
+		die($e);
     }
 }
 

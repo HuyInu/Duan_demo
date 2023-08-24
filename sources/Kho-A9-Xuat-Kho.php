@@ -97,6 +97,7 @@ switch($act){
 	break;
 	
 	default:
+		$wh = null;
 		if(!checkPermision($idpem,5)){
 			page_permision();
 			$page = $path_url ;
@@ -104,12 +105,12 @@ switch($act){
 		}
 		else{
 			if($_COOKIE["typeVangKimCuong"] == 'kimcuong'){
-				include_once("search/KhoNguonVaoXuatKhoKimCuongSearch.php");
+				//include_once("search/KhoNguonVaoXuatKhoKimCuongSearch.php");
 				$wh.=' and typevkc = 2 ';
 				$template = "Kho-A9-Xuat-Kho/listkimcuong.tpl";
 			}
 			else{
-				include_once("search/KhoNguonVaoXuatKhoVangSearch.php");
+				//include_once("search/KhoNguonVaoXuatKhoVangSearch.php");
 				$wh.=' and typevkc = 1 ';
 				$template = "Kho-A9-Xuat-Kho/listvang.tpl";
 			}

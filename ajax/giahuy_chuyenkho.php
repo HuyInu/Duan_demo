@@ -237,7 +237,7 @@ switch($act) {
                 $phieuNhapMoi['typevkc'] = $phieuXuat['typevkc'];
                 $phieuNhapMoi['typevkc'] = $phieuXuat['typevkc'];
 
-                vaInsert($tableNhan,$phieuNhapMoi);
+                //vaInsert($tableNhan,$phieuNhapMoi);
 
                 $phieuXuatUpdate = [];
                 $phieuXuatUpdate['trangthai'] = 1;

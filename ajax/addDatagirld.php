@@ -246,7 +246,7 @@ switch($act){
 					<span id="showtennguyenlieukimcuong'.$idnumkimcuong.'"></span>
 				</td>
 				<td align="left">
-				<input type="hidden" name="idkimcuong[]" id="idkimcuong'.$idnumkimcuong.'"  value="0"/>
+				<input type="hidden" name="idkimcuong[]" id="idkimcuong'.$idnumkimcuong.'"  value="22"/>
 				<a id="popupKimCuongHotChu'.$idnumkimcuong.'" href="'.$path_url.'/popup/KimCuongHotChu.php?idshow='.$idnumkimcuong.'">
 					<span id="showtennkimcuong'.$idnumkimcuong.'">Click chọn Tên</span>
 				</a>
@@ -284,7 +284,7 @@ switch($act){
 					<input type="text" autocomplete="off" name="tienmatkimcuong[]" id="tienmatkimcuong'.$idnumkimcuong.'" class="txtdatagirld"/>
 				</td>
 				<td align="left">
-					<input readonly="readonly" type="text" autocomplete="off" name="dongiaban[]" id="dongiaban'.$idnumkimcuong.'" class="txtdatagirld text-right autoNumeric"/>
+					<input type="text" autocomplete="off" name="dongiaban[]" id="dongiaban'.$idnumkimcuong.'" class="txtdatagirld text-right autoNumeric"/>
 				</td>	
 				<script type="text/javascript" src="'.$path_url.'/js/autoNumeric.js"></script>
 				<script>

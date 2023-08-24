@@ -54,6 +54,7 @@ switch($act){
 						$arrnx['maphieu'] = $macode.$maso;
 						$arrnx['type'] = 2;
 						$arrnx['nhomdm'] = $item['nhomdm'];
+
 						$arrnx['nhomnguyenlieuvang'] = $item['nhomnguyenlieuvang'];
 						$arrnx['tennguyenlieuvang'] = $item['tennguyenlieuvang'];
 						$arrnx['idloaivang'] = $item['idloaivang'];
@@ -63,6 +64,7 @@ switch($act){
 						$arrnx['tuoivang'] = $item['tuoivang'];
 						$arrnx['tienmatvang'] = $item['tienmatvang'];
 						$arrnx['ghichuvang'] = $item['ghichuvang'];
+						
 						$arrnx['nhomnguyenlieukimcuong'] = $item['nhomnguyenlieukimcuong'];
 						$arrnx['tennguyenlieukimcuong'] = $item['tennguyenlieukimcuong'];
 						$arrnx['idkimcuong'] = $item['idkimcuong'];
@@ -76,6 +78,7 @@ switch($act){
 						$arrnx['kichthuocban'] = $item['kichthuocban'];
 						$arrnx['tienmatkimcuong'] = $item['tienmatkimcuong'];
 						$arrnx['dongiaban'] = $item['dongiaban'];
+
 						$arrnx['typevkc'] = $item['typevkc'];
 						$arrnx['time'] = $timnow;
 						$arrnx['dated'] = $datenow;
@@ -97,7 +100,7 @@ switch($act){
 		}
 		catch (Exception $e){
 			$GLOBALS["sp"]->RollbackTrans();
-			$error = $errorTransetion;
+			$error = $e;
 		}
 	break;
 }

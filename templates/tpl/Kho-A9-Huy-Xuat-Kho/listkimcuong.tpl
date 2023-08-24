@@ -25,10 +25,10 @@
 </div>
 <div class="ChonLoaiPhieu">
     <ul>
-        <li class="active" id="clickVang" onclick="clickVang('<!--{$path_url}-->/sources/Kho-A9-Xuat-Kho.php?cid=<!--{$smarty.request.cid}-->')">
+        <li class="active" id="clickVang" onclick="clickVang('<!--{$path_url}-->/sources/Kho-A9-Huy-Xuat-Kho.php?cid=<!--{$smarty.request.cid}-->')">
             <a>Vàng</a>
         </li>
-        <li id="clickKimCuong" onclick="clickKimCuong('<!--{$path_url}-->/sources/Kho-A9-Xuat-Kho.php?cid=<!--{$smarty.request.cid}-->')">
+        <li id="clickKimCuong" onclick="clickKimCuong('<!--{$path_url}-->/sources/Kho-A9-Huy-Xuat-Kho.php?cid=<!--{$smarty.request.cid}-->')">
             <a>Kim Cương</a>
         </li>
     </ul>
@@ -219,13 +219,9 @@
 								<div id="siteIDload">                         		
                                     <select class="chuyenPhonbanSanXuat" id="chuyenkho<!--{$view[i].id}-->" onchange="chuyenKhoKhac('chuyenkhokhac', this.value, <!--{$view[i].id}-->,<!--{$phongbanchuyen}-->,'khonguonvao_achinh')">
                                         <option value="">--chuyển đến--</option>
-                                        <!--{if $view[i].nhomnguyenlieukimcuong eq 78}-->   <!--Kim Cương Nhập Kho--> 
-                                            <!--{$khoThanhPham_KhoKimCuongNhatHot}-->
-                                            <!--{$khoSanXuat_KhoThanhPham}-->
-                                        <!--{/if}-->
-                                        <!--{if $view[i].nhomnguyenlieukimcuong eq 77}-->   <!--Kim Cương Ép Tem--> 
-                                            <!--{$khoKhac_KhoKimCuongEpTem}-->
-                                        <!--{/if}-->
+                                        <!--{$khoThanhPham_KhoKimCuongNhatHot}-->
+                                        <!--{$khoSanXuat_KhoThanhPham}-->
+                                        <!--{$khoKhac_KhoKimCuongEpTem}-->
                                         
                                     </select> 
                                 </div> 
@@ -234,14 +230,9 @@
                             <!--{/if}-->  
                        </td> 
                       <td align="center">
-                            <!--{if $checkPer2 eq "true" }-->
-                                <a href="<!--{$path_url}-->/sources/Kho-A9-Xuat-Kho.php?act=edit&cid=<!--{$smarty.request.cid}-->&id=<!--{$view[i].id}-->" title="Sửa"> 
-                                    <img src="<!--{$path_url}-->/images/edit.png"/> 
-                                </a>
-                            <!--{else}-->
-                                 <img src="<!--{$path_url}-->/images/edit-no.png"/> 
-                            <!--{/if}--> 
-                            
+                            <a href="<!--{$path_url}-->/sources/Kho-A9-Huy-Xuat-Kho.php?act=edit&cid=<!--{$smarty.request.cid}-->&id=<!--{$view[i].id}-->" title="Sửa"> 
+                                <img src="<!--{$path_url}-->/images/edit.png"/> 
+                            </a>                     
                        </td>
                        <td>
                       	   <!--{if $view[i].tralai eq 1}-->	

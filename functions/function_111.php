@@ -2860,7 +2860,7 @@ function insert_thongKeKhoNguonVaoTonKho($a){
 									and dated < '".$fromDate."'  
 									and dated >= '".$datedauthang."' 
 					"; 
-					
+					var_dump($rshaodu);
 					$rsnhaptndt = $GLOBALS["sp"]->getRow($sqlnhaptndt);	
 					//die($sqlnhaptndt);
 					$sqlxuattndt = "select ROUND(SUM(cannangv), 3) as slxuatvang from $GLOBALS[db_sp].".$table." 
@@ -2897,7 +2897,7 @@ function insert_thongKeKhoNguonVaoTonKho($a){
 
 					$sltontndn = round(($rsnhap['slnhapvang'] -  $rsxuat['slxuatvang']),3);
 					$slton = $sltonsddk + $sltontndn;
-					
+					var_dump($rshaodu);
 					
 					$arrlist['slhao'] = $rshaodu['hao'];
 					$arrlist['sldu'] = $rshaodu['du'];

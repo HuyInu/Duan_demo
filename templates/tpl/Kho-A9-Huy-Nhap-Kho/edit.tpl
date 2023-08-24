@@ -196,14 +196,147 @@
                         <!--{/section}-->
                     </table>
                 </div>
+                <div class="table2scroll">         
+                   <table width="100%" border="1" id="addRowGirlKimCuong" class="kimcuong">
+                        <tr class="trheader">
+                            <td width="3%" align="center">
+                                <strong>STT</strong>
+                            </td> 
+                            <td width="9%" align="center">
+                                <strong>Nhóm Nguyên Liệu</strong>
+                            </td>
+                            <td width="9%" align="center">
+                                <strong>Tên Nguyên Liệu</strong>
+                            </td>
+                             <td width="7%" align="center">
+                                <strong>Tên Kim Cương</strong>
+                            </td>
+                            <td width="7%" align="center">
+                                <strong>MS GĐPNJ</strong>
+                            </td>
+                            <td width="7%" align="center">
+                                <strong>MS Cạnh GIA</strong>
+                            </td>
+                            <td width="7%" align="center">
+                                <strong>Kích Thước</strong>
+                            </td>
+                            <td width="7%" align="center">
+                                <strong>Trọng Lượng Hột</strong>
+                            </td>
+                            <td width="7%" align="center">
+                                <strong>Độ Tinh Khiết</strong>
+                            </td>
+                            
+                             <td width="7%" align="center">
+                                <strong>Cấp Độ Màu</strong>
+                            </td>
+                            <td width="7%" align="center">
+                                <strong>Độ Mài Bóng</strong>
+                            </td>
+                            <td width="7%" align="center">
+                                <strong>Kích Thước Bán</strong>
+                            </td>
+                            
+                            <td width="9%" align="center">
+                                <strong>Tiền Mặt</strong>
+                            </td>
+                            <td width="7%" align="center">
+                                <strong>Đơn Giá</strong>
+                            </td>  
+                        </tr>
+                         <!--{section name=i loop=$viewtcctkimcuong}-->
+                            <tr>
+                                 <td align="left">
+                                    <!--{$smarty.section.i.index+1+$number}-->
+                                    <input type="hidden" name="idctnxkimcuong[]" value="<!--{$viewtcctkimcuong[i].id}-->" />
+                                 </td>
+                          
+                                 <td align="left" class="kimcuong">
+                                    <input type="hidden" name="nhomnguyenlieukimcuong[]" id="nhomnguyenlieukimcuong<!--{$smarty.section.i.index+1}-->" value="<!--{$viewtcctkimcuong[i].nhomnguyenlieukimcuong}-->" />
+                                    <a id="popupNhomDanhMucKimCuong<!--{$smarty.section.i.index+1}-->" href="<!--{$path_url}-->/popup/DanhMucNguyenLieu.php?type=kimcuong&idnhomdm=<!--{$nhomdanhmuc.id}-->&idnhomnguyenlieukimcuong=<!--{$viewtcctkimcuong[i].nhomnguyenlieukimcuong}-->&idtennguyenlieukimcuong=<!--{$viewtcctkimcuong[i].tennguyenlieukimcuong}-->&idshow=<!--{$smarty.section.i.index+1}-->">
+                                       <span id="showtennhomnguyenlieukimcuong<!--{$smarty.section.i.index+1}-->">
+                                            <!--{if $viewtcctkimcuong[i].nhomnguyenlieukimcuong gt 0}-->
+                                                <!--{insert name='getName' table='categories' names='name_vn' id=$viewtcctkimcuong[i].nhomnguyenlieukimcuong}-->
+                                            <!--{else}-->
+                                                Click chọn
+                                            <!--{/if}-->
+                                       </span>
+                                    </a>
+                                    <script type="text/javascript">
+                                       $(document).ready(function() {
+                                            $("#popupNhomDanhMucKimCuong<!--{$smarty.section.i.index+1}-->").fancybox();
+                                        }); 
+                                    </script>
+    
+                                 </td>
+                                 
+                                 <td align="left" class="kimcuong">
+                                     <input type="hidden" name="tennguyenlieukimcuong[]" id="tennguyenlieukimcuong<!--{$smarty.section.i.index+1}-->" value="<!--{$viewtcctkimcuong[i].tennguyenlieukimcuong}-->" />
+                                      <span id="showtennguyenlieukimcuong<!--{$smarty.section.i.index+1}-->">
+                                            <!--{insert name='getName' table='categories' names='name_vn' id=$viewtcctkimcuong[i].tennguyenlieukimcuong}-->
+                                      </span>
+                                 </td>
+                                 <td align="left" class="kimcuong">
+                                    <input type="hidden" name="idkimcuong[]" id="idkimcuong<!--{$smarty.section.i.index+1}-->" value="222" /><!--$viewtcctkimcuong[i].idkimcuon}-->
+                                    {* <a id="popupKimCuongHotChu<!--{$smarty.section.i.index+1}-->" href="<!--{$path_url}-->/popup/KimCuongHotChu.php?idkimcuong=<!--{$viewtcctkimcuong[i].idkimcuong}-->&idshow=<!--{$smarty.section.i.index+1}-->">
+                                       <span id="showtennkimcuong<!--{$smarty.section.i.index+1}-->">
+                                            <!--{if $viewtcctkimcuong[i].idkimcuong gt 0}-->
+                                                <!--{insert name='getName' table='loaikimcuonghotchu' names='size' id=$viewtcctkimcuong[i].idkimcuong}-->::<!--{insert name='getName' table='loaikimcuonghotchu' names='name_vn' id=$viewtcctkimcuong[i].idkimcuong}-->
+                                            <!--{else}-->
+                                                Click chọn tên
+                                            <!--{/if}-->
+                                       </span>
+                                    </a> 
+                                    <script type="text/javascript">
+                                       $(document).ready(function() {
+                                            $("#popupKimCuongHotChu<!--{$smarty.section.i.index+1}-->").fancybox();
+                                        }); 
+                                    </script>*}
+                                 </td>
+                                  <td align="left" class="kimcuong">
+                                     <input type="text" autocomplete="off" name="codegdpnj[]" id="codegdpnj<!--{$smarty.section.i.index+1}-->" class="txtdatagirld" value="<!--{$viewtcctkimcuong[i].codegdpnj}-->"/>
+                                 </td>
+                                  <td align="left" class="kimcuong">
+                                     <input type="text" autocomplete="off" name="codecgta[]" id="codecgta<!--{$smarty.section.i.index+1}-->" class="txtdatagirld" value="<!--{$viewtcctkimcuong[i].codecgta}-->"/>
+                                 </td>
+                                 <td align="left" class="kimcuong">
+                                     <input type="text" autocomplete="off" name="kichthuoc[]" id="kichthuoc<!--{$smarty.section.i.index+1}-->" class="txtdatagirld" value="<!--{$viewtcctkimcuong[i].kichthuoc}-->"/>
+                                 </td>
+                                 <td align="left" class="kimcuong">
+                                     <input type="text" autocomplete="off" name="trongluonghot[]" id="trongluonghot<!--{$smarty.section.i.index+1}-->" class="txtdatagirld" value="<!--{$viewtcctkimcuong[i].trongluonghot}-->"/>
+                                 </td>
+                                  <td align="left" class="kimcuong">
+                                     <input type="text" autocomplete="off" name="dotinhkhiet[]" id="dotinhkhiet<!--{$smarty.section.i.index+1}-->" class="txtdatagirld" value="<!--{$viewtcctkimcuong[i].dotinhkhiet}-->"/>
+                                 </td>
+                                  <td align="left" class="kimcuong">
+                                     <input type="text" autocomplete="off" name="capdomau[]" id="capdomau<!--{$smarty.section.i.index+1}-->" class="txtdatagirld" value="<!--{$viewtcctkimcuong[i].capdomau}-->"/>
+                                 </td>
+                                  <td align="left" class="kimcuong">
+                                     <input type="text" autocomplete="off" name="domaibong[]" id="domaibong<!--{$smarty.section.i.index+1}-->" class="txtdatagirld" value="<!--{$viewtcctkimcuong[i].domaibong}-->"/>
+                                 </td>
+                                 <td align="left" class="kimcuong">
+                                     <input type="text" autocomplete="off" name="kichthuocban[]" id="kichthuocban<!--{$smarty.section.i.index+1}-->" class="txtdatagirld" value="<!--{$viewtcctkimcuong[i].kichthuocban}-->"/>
+                                 </td>
+                                 <td align="left" class="kimcuong">
+                                     <input type="text" autocomplete="off" name="tienmatkimcuong[]" id="tienmatkimcuong<!--{$smarty.section.i.index+1}-->" class="txtdatagirld" value="<!--{$viewtcctkimcuong[i].tienmatkimcuong}-->"/>
+                                 </td>
+                                 <td align="left" class="kimcuong">
+                                     <input type="text"  autocomplete="off" name="dongiaban[]" id="dongiaban<!--{$smarty.section.i.index+1}-->" class="txtdatagirld text-right autoNumeric" value="<!--{$viewtcctkimcuong[i].dongiaban}-->"/>
+                                 </td>
+                            </tr>
+                        <!--{/section}--> 
+                    </table>
+                </div>
             </div>
             <div class="addRowGirlMain">
                 <a href="javascript:void(0)" onclick="addNewRowGirlVang('<!--{$path_url}-->',<!--{$nhomdanhmuc.id}-->)" class="addRowGirl vang"> <strong>Thêm dòng</strong> </a>
+                <a href="javascript:void(0)" onclick="addNewRowGirlKimCuong('<!--{$path_url}-->',<!--{$nhomdanhmuc.id}-->)" class="addRowGirl kimcuong"> <strong>Thêm dòng</strong> </a>
             </div>
         </div>
         <div class="MainContent TextCenter"> 
         	<input type="hidden" name="id" value="<!--{$toa.id}-->" />
             <input type="hidden" name="idnumvang" id="idnumvang" value="<!--{$coutndongvang}-->" />
+            <input type="hidden" name="idnumkimcuong" id="idnumkimcuong" value="<!--{$coutndongkimcuong}-->" />
             <input type="button" class="btn-save" onclick=" return SubmitFromPTKhoNguonVao();" value="  Lưu " /> 
         </div>
    </form>

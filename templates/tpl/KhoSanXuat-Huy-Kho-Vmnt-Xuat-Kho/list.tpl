@@ -151,20 +151,14 @@
                        </td>
                        
                        <td align="center">
-                       		<!--{if $checkPer6 eq "true" }-->
-                                <select class="selectOption" id="chuyenkho<!--{$phieuXuat[i].id}-->" onchange="chuyenKhoSanXuat('chuyenkhosanxuat', this.value, '<!--{$phieuXuat[i].id}-->','<!--{$phongbanchuyen}-->','khosanxuat_vmnt')">
-                                    <option value="">--chuyển đến--</option>
-                                    <!--{insert name='optionChuyenDen' id=$phieuXuat[i].chonphongbanin}-->
-                                </select>
-                            <!--{else}-->
-                                <select disabled="disabled">
-                                     <option value="">--<!--{$chuyenden}-->--</option>
-                                </select>  
-                            <!--{/if}-->   
+                            <select class="selectOption" id="chuyenkho<!--{$phieuXuat[i].id}-->" onchange="chuyenKhoSanXuat('chuyenkhosanxuat', this.value, '<!--{$phieuXuat[i].id}-->','<!--{$phongbanchuyen}-->','khosanxuat_vmnt')">
+                                <option value="">--chuyển đến--</option>
+                                <!--{insert name='optionChuyenDen' id=$phieuXuat[i].chonphongbanin}-->
+                            </select>  
                        </td>
                         
                       <td align="center">
-                            <a href="<!--{$path_url}-->/sources/KhoSanXuat-Kho-Vmnt-Xuat-Kho.php?act=edit&cid=<!--{$smarty.request.cid}-->&id=<!--{$phieuXuat[i].id}-->" title="Sửa"> 
+                            <a href="<!--{$path_url}-->/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho.php?act=edit&cid=<!--{$smarty.request.cid}-->&id=<!--{$phieuXuat[i].id}-->" title="Sửa"> 
                                 <img src="<!--{$path_url}-->/images/edit.png"/> 
                             </a> 
                        </td>

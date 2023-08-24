@@ -573,10 +573,10 @@ switch($act){
 				$sql = $sql." limit $begin,$num_rows_page";
 				$rs = $GLOBALS["sp"]->getAll($sql);
 				if($page!=1)
-				 {
+				{
 					$number=$num_rows_page * ($page-1);
 					$smarty->assign("number",$number);
-				 }
+				}
 				
 				$smarty->assign("total",$num_page);
 				$smarty->assign("link_url",$link_url);	

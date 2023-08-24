@@ -86,7 +86,7 @@
                                 
                                    <span id="showtennkimcuong1">
                                         <!--{if $edit.idkimcuong gt 0}-->
-                                            <!--insert name='getName' table='loaikimcuonghotchu' names='size' id=$edit.idkimcuong}-->::<!--insert name='getName' table='loaikimcuonghotchu' names='name_vn' id=$edit.idkimcuong}-->
+                                            <!--{insert name='getName' table='loaikimcuonghotchu' names='size' id=$edit.idkimcuong}-->::<!--{insert name='getName' table='loaikimcuonghotchu' names='name_vn' id=$edit.idkimcuong}-->
                                         <!--{else}-->
                                             Click chọn tên
                                         <!--{/if}-->

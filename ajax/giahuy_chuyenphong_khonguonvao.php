@@ -56,6 +56,7 @@ switch($act) {
                         $ctToa['numphieu'] = $maso;
                         $ctToa['maphieu'] = $macode.$maso;
                         $ctToa['nhomdm'] = $item['nhomdm'];
+
                         $ctToa['nhomnguyenlieuvang'] = $item['nhomnguyenlieuvang'];
                         $ctToa['tennguyenlieuvang'] = $item['tennguyenlieuvang'];
                         $ctToa['idloaivang'] = $item['idloaivang'];
@@ -65,8 +66,23 @@ switch($act) {
                         $ctToa['tuoivang'] = $item['tuoivang'];
                         $ctToa['tienmatvang'] = $item['tienmatvang'];
                         $ctToa['ghichuvang'] = $item['ghichuvang'];
+
+                        $ctToa['nhomnguyenlieukimcuong'] = $item['nhomnguyenlieukimcuong'];
+						$ctToa['tennguyenlieukimcuong'] = $item['tennguyenlieukimcuong'];
+						$ctToa['idkimcuong'] = $item['idkimcuong'];
+						$ctToa['codegdpnj'] = $item['codegdpnj'];
+						$ctToa['codecgta'] = $item['codecgta'];
+						$ctToa['kichthuoc'] = $item['kichthuoc'];
+						$ctToa['trongluonghot'] = $item['trongluonghot'];
+						$ctToa['dotinhkhiet'] = $item['dotinhkhiet'];
+						$ctToa['capdomau'] = $item['capdomau'];
+						$ctToa['domaibong'] = $item['domaibong'];
+						$ctToa['kichthuocban'] = $item['kichthuocban'];
+						$ctToa['tienmatkimcuong'] = $item['tienmatkimcuong'];
+						$ctToa['dongiaban'] = $item['dongiaban'];
+
                         $ctToa['type'] = 2;
-                        $ctToa['typevkc'] = 1;
+                        $ctToa['typevkc'] = $item['typevkc'];
                         $ctToa['time'] = $timeNow;
                         $ctToa['dated'] = $dateNow;
 
@@ -82,7 +98,7 @@ switch($act) {
             $GLOBALS["sp"]->CommitTrans();
         } catch(Exception $e) {
             $GLOBALS["sp"]->RollbackTrans();
-            $error = $errorTransetion;
+            $error = $e;
         }
     break;
 }

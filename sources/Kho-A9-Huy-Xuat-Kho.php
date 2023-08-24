@@ -41,11 +41,20 @@ switch($act) {
         }	
     break;
     default:
-        $template = 'Kho-A9-Huy-Xuat-Kho/listvang.tpl';
-            $sql = "select * from $GLOBALS[db_sp].khonguonvao_khoachinct where type = 2 and trangthai = 0 and typevkc = 1 order by numphieu asc, id desc";
-            $phieuXuatList = $GLOBALS['sp']->getAll($sql);
+        if($_COOKIE["typeVangKimCuong"] == 'kimcuong'){
+            //include_once("search/KhoNguonVaoXuatKhoKimCuongSearch.php");
+            $whereTypevkc = 'typevkc = 2';
+            $template = 'Kho-A9-Huy-Xuat-Kho/listkimcuong.tpl';
+        } else {
+            //include_once("search/KhoNguonVaoXuatKhoVangSearch.php");
+            $whereTypevkc = 'typevkc = 1';
+            $template = 'Kho-A9-Huy-Xuat-Kho/listvang.tpl';
+        }
+        
+        $sql = "select * from $GLOBALS[db_sp].khonguonvao_khoachinct where type = 2 and trangthai = 0 and $whereTypevkc order by numphieu asc, id desc";
+        $phieuXuatList = $GLOBALS['sp']->getAll($sql);
 
-            $smarty->assign('phieuXuatList', $phieuXuatList);
+        $smarty->assign('view', $phieuXuatList);
     break;
 }
 
