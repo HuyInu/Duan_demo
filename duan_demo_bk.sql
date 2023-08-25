@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `accessed` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Dumping data for table demo_huy.accessed: ~1 rows (approximately)
+-- Dumping data for table demo_huy.accessed: ~0 rows (approximately)
 INSERT INTO `accessed` (`id`, `accessed`) VALUES
 	(1, 577893);
 
@@ -83,9 +83,9 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `hamfucntion` varchar(255) COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `loadtheoloaivang` text COLLATE utf8mb3_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1837 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1852 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Dumping data for table demo_huy.categories: ~1,824 rows (approximately)
+-- Dumping data for table demo_huy.categories: ~1,813 rows (approximately)
 INSERT INTO `categories` (`id`, `name_vn`, `table`, `tablect`, `tablehachtoan`, `phongbancatalog`, `maphongban`, `num`, `pid`, `has_child`, `comp`, `active`, `typephongban`, `typegiaonhan`, `nopermission`, `content_vn`, `content_en`, `unique_key`, `chonshowmuclon`, `istktoantaisan`, `istkkimcuong`, `hamfucntion`, `loadtheoloaivang`) VALUES
 	(1, 'QLSX', NULL, NULL, NULL, NULL, NULL, 0, 0, 1, 0, 0, 0, 0, 0, NULL, NULL, 'menu', 0, 0, 0, NULL, NULL),
 	(2, 'Menu', NULL, NULL, NULL, NULL, NULL, 0, 1, 1, 0, 1, 0, 0, 0, NULL, NULL, 'menu', 0, 0, 0, NULL, NULL),
@@ -1906,12 +1906,23 @@ INSERT INTO `categories` (`id`, `name_vn`, `table`, `tablect`, `tablehachtoan`, 
 	(1828, 'Nhập kho', 'khonguonvao_khoachin', 'khonguonvao_khoachinct', 'khoachin_sodudauky', NULL, '', 1, 1826, 0, 672, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
 	(1829, 'Xuất Kho', 'khonguonvao_khoachin', 'khonguonvao_khoachinct', 'khoachin_sodudauky', NULL, '', 2, 1826, 0, 673, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
 	(1830, 'KHO SẢN XUẤT HUY', NULL, NULL, NULL, NULL, '', 2, 2, 1, 0, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
-	(1831, 'KHO PHÒNG VMNT', NULL, NULL, NULL, NULL, '', 0, 1830, 1, 0, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(1831, 'KHO PHÒNG VMNT', NULL, NULL, NULL, NULL, '', 1, 1830, 1, 0, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
 	(1832, 'THỐNG KÊ', NULL, NULL, NULL, NULL, '', 2, 1831, 1, 0, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
 	(1833, 'NGHIỆP VỤ', NULL, NULL, NULL, NULL, '', 1, 1831, 1, 0, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
 	(1834, 'Chờ Nhập Kho', 'khosanxuat_khovmnt', 'khosanxuat_khovmnt', 'khosanxuat_khovmnt_sodudauky', NULL, '', 1, 1833, 0, 674, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
 	(1835, 'Xuất kho', 'khosanxuat_khovmnt', 'khosanxuat_khovmnt', 'khosanxuat_khovmnt_sodudauky', NULL, '', 2, 1833, 0, 675, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
-	(1836, 'Tồn kho', 'khonguonvao_khoachin', 'khonguonvao_khoachinct', 'khoachin_sodudauky', NULL, '', 1, 1827, 0, 676, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL);
+	(1836, 'Tồn kho', 'khonguonvao_khoachin', 'khonguonvao_khoachinct', 'khoachin_sodudauky', NULL, '', 1, 1827, 0, 676, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(1837, 'Thống kê chi tiết tồn', 'khonguonvao_khoachin', 'khonguonvao_khoachinct', 'khosanxuat_khovmnt_sodudauky', NULL, '', 2, 1827, 0, 677, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(1838, 'Thống Kê Nhập Kho', 'khonguonvao_khoachin', 'khonguonvao_khoachinct', 'khosanxuat_khovmnt_sodudauky', NULL, '', 3, 1827, 0, 678, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(1839, 'Thống kê xuất kho', 'khonguonvao_khoachin', 'khonguonvao_khoachinct', 'khoachin_sodudauky', NULL, '', 4, 1827, 0, 679, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(1840, 'Thống kê nhập xuất kho', 'khonguonvao_khoachin', 'khonguonvao_khoachinct', 'khoachin_sodudauky', NULL, '', 5, 1827, 0, 680, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(1841, 'Thống kê chờ nhập kho', 'khonguonvao_khoachin', 'khonguonvao_khoachinct', 'khoachin_sodudauky', NULL, '', 6, 1827, 0, 681, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(1842, 'Kho test', NULL, NULL, NULL, NULL, '', 2, 1830, 1, 0, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(1843, 'NGHIỆP VỤ', NULL, NULL, NULL, NULL, '', 1, 1842, 1, 0, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(1844, 'THỐNG KÊ', NULL, NULL, NULL, NULL, '', 2, 1842, 1, 0, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(1845, 'Chờ Nhập Kho', 'khosanxuat_khotest', 'khosanxuat_khotest', 'khosanxuat_khotest_sodudauky', NULL, '', 0, 1843, 0, 682, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(1850, 'Tồn kho', 'khosanxuat_khovmnt', 'khosanxuat_khovmnt', 'khosanxuat_khovmnt_sodudauky', NULL, '', 1, 1832, 0, 683, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(1851, 'Tồn kho chi tiết', 'khosanxuat_khovmnt', 'khosanxuat_khovmnt', 'khosanxuat_khovmnt_sodudauky', NULL, '', 2, 1832, 0, 685, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL);
 
 -- Dumping structure for table demo_huy.check_datenow
 CREATE TABLE IF NOT EXISTS `check_datenow` (
@@ -1923,7 +1934,7 @@ CREATE TABLE IF NOT EXISTS `check_datenow` (
 -- Dumping data for table demo_huy.check_datenow: 1 rows
 /*!40000 ALTER TABLE `check_datenow` DISABLE KEYS */;
 INSERT INTO `check_datenow` (`id`, `dated`) VALUES
-	(1, '2023-08-23');
+	(1, '2023-08-25');
 /*!40000 ALTER TABLE `check_datenow` ENABLE KEYS */;
 
 -- Dumping structure for table demo_huy.check_update_tonkho
@@ -2003,9 +2014,9 @@ CREATE TABLE IF NOT EXISTS `component` (
   `front_link` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
   `active` tinyint DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=677 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=686 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Dumping data for table demo_huy.component: 665 rows
+-- Dumping data for table demo_huy.component: 673 rows
 /*!40000 ALTER TABLE `component` DISABLE KEYS */;
 INSERT INTO `component` (`id`, `name`, `do`, `act`, `back_link`, `front_link`, `active`) VALUES
 	(0, 'None', 'main.php', 'main', '', '?', 1),
@@ -2672,7 +2683,15 @@ INSERT INTO `component` (`id`, `name`, `do`, `act`, `back_link`, `front_link`, `
 	(673, 'Kho A 9 Xuất Kho Huy', 'Kho-A9-Huy-Xuat-Kho.php', 'list', NULL, '?', 1),
 	(674, 'Kho Huy Sản Xuất Kho VMNT Nhập Kho', 'KhoSanXuat-Huy-Kho-Vmnt-Nhap-Kho.php', 'list', NULL, '?', 1),
 	(675, 'Kho Huy Sản Xuất Kho VMNT Xuất Kho', 'KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho.php', 'list', NULL, '?', 1),
-	(676, 'Kho A 9 Huy Thống Kê Tồn Kho', 'Kho-A9-Huy-Thong-Ke.php', 'list', NULL, '?', 1);
+	(676, 'Kho A 9 Huy Thống Kê Tồn Kho', 'Kho-A9-Huy-Thong-Ke.php', 'list', NULL, '?', 1),
+	(677, 'Kho A 9 Huy Thống Kê Chi Tiết Tồn', 'Kho-A9-Huy-Thong-Ke.php', 'list', NULL, '?act=ChiTietTon&', 1),
+	(678, 'Kho A 9 Huy thống kê nhập kho', 'Kho-A9-Huy-Thong-Ke.php', 'list', NULL, '?act=NhapKho&', 1),
+	(679, 'Kho A 9 Huy Thống Kê Xuất Kho', 'Kho-A9-Huy-Thong-Ke.php', 'list', NULL, '?act=XuatKho&', 1),
+	(680, 'Kho A 9 Huy Thống Kê Nhập Xuất Kho', 'Kho-A9-Huy-Thong-Ke.php', 'list', NULL, '?act=NhapXuatKho&', 1),
+	(681, 'Kho A 9 Huy Thống Kê Chờ Nhập Kho', 'Kho-A9-Huy-Thong-Ke.php', 'list', NULL, '?act=ChoNhapKho&', 1),
+	(682, 'Kho Huy Test chờ nhập kho', 'Kho-Huy-Test-Nhap-Kho.php', 'list', NULL, '?', 1),
+	(683, 'Kho Huy Sản Xuất Kho VMNT Thống Kê Tồn Kho Hiện Tại', 'KhoSanXuat-Huy-Kho-Vmnt-Thong-Ke.php', 'list', NULL, '?act=TonKhoHienTai&', 1),
+	(685, 'Kho Huy Sản Xuất  Kho VMNT Thống Kê Tồn Kho Chi Tiết', 'KhoSanXuat-Huy-Kho-Vmnt-Thong-Ke.php', 'list', NULL, '?', 1);
 /*!40000 ALTER TABLE `component` ENABLE KEYS */;
 
 -- Dumping structure for table demo_huy.ghichu
@@ -2720,12 +2739,16 @@ CREATE TABLE IF NOT EXISTS `khoachin_sodudauky` (
   `dated` date DEFAULT NULL,
   `typevkc` tinyint DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Dumping data for table demo_huy.khoachin_sodudauky: ~2 rows (approximately)
+-- Dumping data for table demo_huy.khoachin_sodudauky: ~6 rows (approximately)
 INSERT INTO `khoachin_sodudauky` (`id`, `idloaivang`, `slnhapvh`, `slxuatvh`, `sltonvh`, `sltonthieuvh`, `slnhaph`, `slxuath`, `sltonh`, `sltonthieuh`, `slnhapv`, `slxuatv`, `sltonv`, `sltonthieuv`, `slnhapkimcuong`, `slxuatkimcuong`, `sltonkimcuong`, `sltonthieukimcuong`, `hao`, `du`, `dongianhap`, `dongiaxuat`, `tongdongia`, `tongthieudongia`, `dated`, `typevkc`) VALUES
-	(1, 28, 8, 0, 8, 0, 4, 0, 4, 0, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2023-08-01', 1),
-	(2, 29, 3, 0, 3, 0, 2, 0, 2, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2023-08-01', 1);
+	(2, 29, 4, 4, 0, 0, 1, 1, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2023-08-01', 1),
+	(3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 20, 0, 20, 0, '2023-07-01', 2),
+	(4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 3, 0, 0, 0, 15, 0, 20, 0, '2023-08-01', 2),
+	(5, 28, 5, 0, 5, 0, 2, 0, 2, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2023-07-24', 1),
+	(6, 30, 3, 0, 3, 0, 1, 0, 1, 0, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2023-08-01', 1),
+	(7, 28, 4, 0, 9, 0, 3, 0, 5, 0, 1, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '2023-08-01', 1);
 
 -- Dumping structure for table demo_huy.khonguonvao_khoachin
 CREATE TABLE IF NOT EXISTS `khonguonvao_khoachin` (
@@ -2752,12 +2775,14 @@ CREATE TABLE IF NOT EXISTS `khonguonvao_khoachin` (
   `typePTC` int DEFAULT '0',
   `type` int DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Dumping data for table demo_huy.khonguonvao_khoachin: ~1 rows (approximately)
+-- Dumping data for table demo_huy.khonguonvao_khoachin: ~4 rows (approximately)
 INSERT INTO `khonguonvao_khoachin` (`id`, `mid`, `midchuyen`, `cid`, `numphieu`, `maphieu`, `nguoilapphieu`, `donvilapphieu`, `nguoiduyetphieu`, `donviduyetphieu`, `lydo`, `fileexcel`, `datedchungtu`, `datedhachtoan`, `dateghiso`, `phongban`, `phongbanchuyen`, `datechuyen`, `timechuyen`, `active`, `typePTC`, `type`) VALUES
-	(1, 2, 2, 0, 1, 'PNKACHIN000001', 'test 1', '', '', '', '1', NULL, '2023-08-23', '2023-08-23', NULL, 24, 22, '2023-08-23', '13:52:00', 0, 0, 3),
-	(2, 2, 2, 0, 2, 'PNKACHIN000002', 't1', '', '', '', 'a', NULL, '2023-08-23', '2023-08-23', NULL, 1829, 1828, '2023-08-23', '16:25:16', 0, 0, 3);
+	(3, 2, 2, 0, 1, 'PNKACHIN000001', 't1', 'a', 'b', 'c', 'd', NULL, '2023-08-24', '2023-08-24', NULL, 1829, 1828, '2023-08-24', '13:54:59', 0, 0, 3),
+	(4, 2, 2, 0, 2, 'PNKACHIN000002', 'w', 'w', 'w', 'w', 'w', NULL, '2023-08-24', '2023-08-24', NULL, 1829, 1828, '2023-08-24', '13:59:19', 0, 0, 3),
+	(5, 2, 2, 0, 3, 'PNKACHIN000003', 'e', 'e', 'e', 'e', 'e', NULL, '2023-08-24', '2023-08-24', NULL, 1829, 1828, '2023-08-24', '14:00:51', 0, 0, 3),
+	(6, 2, 2, 0, 4, 'PNKACHIN000004', 'a', 'a', 'a', 'a', 'a', NULL, '2023-08-24', '2023-08-24', NULL, 1829, 1828, '2023-08-24', '16:03:46', 0, 0, 3);
 
 -- Dumping structure for table demo_huy.khonguonvao_khoachinct
 CREATE TABLE IF NOT EXISTS `khonguonvao_khoachinct` (
@@ -2817,16 +2842,136 @@ CREATE TABLE IF NOT EXISTS `khonguonvao_khoachinct` (
   `ghichudieuchinh` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
   PRIMARY KEY (`id`),
   KEY `idctnx` (`idctnx`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Dumping data for table demo_huy.khonguonvao_khoachinct: ~4 rows (approximately)
+-- Dumping data for table demo_huy.khonguonvao_khoachinct: ~11 rows (approximately)
 INSERT INTO `khonguonvao_khoachinct` (`id`, `idctnx`, `idct`, `mid`, `midedit`, `numphieu`, `maphieu`, `chonphongbanin`, `nhomdm`, `nhomnguyenlieuvang`, `tennguyenlieuvang`, `idloaivang`, `cannangvh`, `cannangh`, `cannangv`, `cannangvhnoedit`, `cannanghnoedit`, `cannangvnoedit`, `tuoivang`, `tienmatvang`, `ghichuvang`, `ghichueditvang`, `hao`, `du`, `ghichu`, `nhomnguyenlieukimcuong`, `tennguyenlieukimcuong`, `idkimcuong`, `codegdpnj`, `codecgta`, `kichthuoc`, `trongluonghot`, `dotinhkhiet`, `capdomau`, `domaibong`, `kichthuocban`, `tienmatkimcuong`, `dongiaban`, `ghichukimcuong`, `ghichueditkimcuong`, `type`, `typevkc`, `time`, `dated`, `timexuat`, `datedxuat`, `phongban`, `timechuyen`, `datechuyen`, `trangthai`, `tralai`, `typechinhsuasolieu`, `datedieuchinh`, `ghichudieuchinh`) VALUES
-	(1, 1, 0, 2, 0, 0, 'PNKACHIN000001', 0, 70, 372, 373, 28, 4, 3, 1, 0, 0, 0, 0.1, '1', '', NULL, 0, 0, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 1, 1, '13:51:22', '2023-08-23', NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
-	(2, 1, 0, 2, 0, 0, 'PNKACHIN000001', 0, 70, 78, 92, 29, 3, 2, 1, 0, 0, 0, 0.1, '2', '', NULL, 0, 0, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 1, 1, '13:51:22', '2023-08-23', NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
-	(3, 1, 1, 2, 0, 1, 'PXKACHIN000001', 0, 70, 372, 373, 28, 4, 3, 1, 0, 0, 0, 0.1, '1', '', NULL, 0, 0, NULL, 0, 0, 0, '', '', '', '', '', '', '', '', '', 0, NULL, NULL, 2, 1, '13:52:00', '2023-08-23', NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
-	(4, 1, 2, 2, 0, 2, 'PXKACHIN000002', 0, 70, 78, 92, 29, 3, 2, 1, 0, 0, 0, 0.1, '2', '', NULL, 0, 0, NULL, 0, 0, 0, '', '', '', '', '', '', '', '', '', 0, NULL, NULL, 2, 1, '13:52:00', '2023-08-23', NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
-	(5, 2, 0, 2, 0, 0, 'PNKACHIN000002', 0, 70, 371, 374, 28, 4, 1, 3, 0, 0, 0, 0.1, '12', '', NULL, 0, 0, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 1, 1, '16:25:14', '2023-08-23', NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
-	(6, 2, 5, 2, 0, 3, 'PXKACHIN000003', 0, 70, 371, 374, 28, 4, 1, 3, 0, 0, 0, 0.1, '12', '', NULL, 0, 0, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 2, 1, '16:25:16', '2023-08-23', NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL);
+	(5, 3, 0, 2, 0, 0, 'PNKACHIN000001', 0, 70, 371, 374, 29, 4, 1, 3, 0, 0, 0, 0.1, '12', 'a', NULL, 0, 0, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 1, 1, '13:54:10', '2023-08-24', NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(6, 3, 0, 2, 0, 0, 'PNKACHIN000001', 0, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, 0, NULL, 82, 82, 22, '1', '2', '3', '4', '5', '6', '7', '8', '8', 10, NULL, NULL, 1, 2, '13:54:10', '2023-08-24', NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(9, 3, 5, 2, 0, 1, 'PXKACHIN000001', 0, 70, 371, 374, 29, 4, 1, 3, 0, 0, 0, 0.1, '12', 'a', NULL, 0, 0, NULL, 0, 0, 0, '', '', '', '', '', '', '', '', '', 0, NULL, NULL, 2, 1, '13:54:59', '2023-08-24', '16:12:49', '2023-08-28', 623, '16:11:51', '2023-08-28', 2, 0, 0, NULL, NULL),
+	(10, 3, 6, 2, 0, 2, 'PXKACHIN000002', 0, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', NULL, 0, 0, NULL, 82, 82, 22, '1', '2', '3', '4', '5', '6', '7', '8', '8', 10, NULL, NULL, 2, 2, '13:54:59', '2023-08-24', NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(11, 4, 0, 2, 0, 0, 'PNKACHIN000002', 0, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, 0, NULL, 373, 373, 22, '1', '2', '3', '4', '5', '6', '7', '8', '8', 20, NULL, NULL, 1, 2, '13:59:17', '2023-08-24', NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(12, 4, 11, 2, 0, 3, 'PXKACHIN000003', 0, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', NULL, 0, 0, NULL, 373, 373, 22, '1', '2', '3', '4', '5', '6', '7', '8', '8', 20, NULL, NULL, 2, 2, '13:59:19', '2023-08-24', NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(13, 5, 0, 2, 0, 0, 'PNKACHIN000003', 0, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL, NULL, NULL, 0, 0, NULL, 373, 373, 22, '1', '2', '3', '4', '5', '6', '7', '8', '9', 15, NULL, NULL, 1, 2, '14:00:48', '2023-08-24', NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(14, 5, 13, 2, 0, 4, 'PXKACHIN000004', 0, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', NULL, 0, 0, NULL, 373, 373, 22, '1', '2', '3', '4', '5', '6', '7', '8', '9', 15, NULL, NULL, 2, 2, '14:00:51', '2023-08-24', NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(15, 6, 0, 2, 0, 0, 'PNKACHIN000004', 0, 70, 372, 373, 30, 3, 1, 2, 0, 0, 0, 0.1, '1.000', 'asd', NULL, 0, 0, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 1, 1, '16:03:41', '2023-08-24', NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(16, 6, 0, 2, 0, 0, 'PNKACHIN000004', 0, 70, 76, 85, 28, 4, 3, 1, 0, 0, 0, 0.3, '1.000', 'asd', NULL, 0, 0, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, 1, 1, '16:03:41', '2023-08-24', NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(17, 6, 15, 2, 0, 5, 'PXKACHIN000005', 0, 70, 372, 373, 30, 3, 1, 2, 0, 0, 0, 0.1, '1.000', 'asd', NULL, 0, 0, NULL, 0, 0, 0, '', '', '', '', '', '', '', '', '', 0, NULL, NULL, 2, 1, '16:03:46', '2023-07-24', NULL, NULL, 623, '09:08:37', '2023-08-25', 1, 0, 0, NULL, NULL),
+	(18, 6, 16, 2, 0, 6, 'PXKACHIN000006', 0, 70, 76, 85, 28, 4, 3, 1, 0, 0, 0, 0.3, '1.000', 'asd', NULL, 0, 0, NULL, 0, 0, 0, '', '', '', '', '', '', '', '', '', 0, NULL, NULL, 2, 1, '16:03:46', '2023-08-24', NULL, NULL, NULL, NULL, NULL, 0, 0, 0, NULL, NULL);
+
+-- Dumping structure for table demo_huy.khosanxuat_khotest
+CREATE TABLE IF NOT EXISTS `khosanxuat_khotest` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `mid` bigint NOT NULL DEFAULT '0',
+  `midchuyen` bigint NOT NULL DEFAULT '0',
+  `cid` bigint NOT NULL DEFAULT '0',
+  `idchuyen` bigint NOT NULL DEFAULT '0',
+  `cidchuyen` bigint NOT NULL DEFAULT '0',
+  `chonphongbanin` bigint NOT NULL DEFAULT '0',
+  `madhin` bigint NOT NULL DEFAULT '0',
+  `typekhodau` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `typekho` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `idmaphieukho` bigint NOT NULL DEFAULT '0',
+  `idctnx` bigint NOT NULL DEFAULT '0',
+  `idct` bigint NOT NULL DEFAULT '0',
+  `iddhsx` bigint NOT NULL DEFAULT '0',
+  `madonhangsx` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `midedit` bigint NOT NULL DEFAULT '0',
+  `numphieu` bigint NOT NULL DEFAULT '0',
+  `maphieu` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `nhomdm` bigint DEFAULT '0',
+  `nhomnguyenlieuvang` bigint DEFAULT '0',
+  `tennguyenlieuvang` bigint DEFAULT '0',
+  `idloaivang` bigint DEFAULT '0',
+  `cannangvh` double DEFAULT '0',
+  `cannangh` double DEFAULT '0',
+  `cannangv` double DEFAULT '0',
+  `cannangvhnoedit` double DEFAULT '0',
+  `cannanghnoedit` double DEFAULT '0',
+  `cannangvnoedit` double DEFAULT '0',
+  `tuoivang` double DEFAULT '0',
+  `tienmatvang` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
+  `ghichuvang` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
+  `ghichueditvang` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
+  `hao` double DEFAULT '0',
+  `du` double DEFAULT '0',
+  `haochuyen` double DEFAULT '0',
+  `duchuyen` double DEFAULT '0',
+  `ghichu` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
+  `type` int DEFAULT '0',
+  `typechuyen` int DEFAULT '0',
+  `typevkc` int DEFAULT '1',
+  `time` time DEFAULT NULL,
+  `dated` date DEFAULT NULL,
+  `timexuat` time DEFAULT NULL,
+  `datedxuat` date DEFAULT NULL,
+  `phongban` bigint DEFAULT NULL,
+  `phongbanchuyen` bigint DEFAULT NULL,
+  `timechuyen` time DEFAULT NULL,
+  `datechuyen` date DEFAULT NULL,
+  `trangthai` tinyint(1) DEFAULT '0',
+  `tralai` tinyint(1) DEFAULT '0',
+  `typechinhsuasolieu` tinyint(1) DEFAULT '0',
+  `datedieuchinh` date DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci ROW_FORMAT=DYNAMIC;
+
+-- Dumping data for table demo_huy.khosanxuat_khotest: ~1 rows (approximately)
+INSERT INTO `khosanxuat_khotest` (`id`, `mid`, `midchuyen`, `cid`, `idchuyen`, `cidchuyen`, `chonphongbanin`, `madhin`, `typekhodau`, `typekho`, `idmaphieukho`, `idctnx`, `idct`, `iddhsx`, `madonhangsx`, `midedit`, `numphieu`, `maphieu`, `nhomdm`, `nhomnguyenlieuvang`, `tennguyenlieuvang`, `idloaivang`, `cannangvh`, `cannangh`, `cannangv`, `cannangvhnoedit`, `cannanghnoedit`, `cannangvnoedit`, `tuoivang`, `tienmatvang`, `ghichuvang`, `ghichueditvang`, `hao`, `du`, `haochuyen`, `duchuyen`, `ghichu`, `type`, `typechuyen`, `typevkc`, `time`, `dated`, `timexuat`, `datedxuat`, `phongban`, `phongbanchuyen`, `timechuyen`, `datechuyen`, `trangthai`, `tralai`, `typechinhsuasolieu`, `datedieuchinh`) VALUES
+	(4, 2, 2, 1845, 0, 1835, 1845, 0, 'khosanxuat_vmnt', 'khosanxuat', 4, 0, 0, 0, '', 0, 0, 'PXSNKVMNT000002', 0, 0, 0, 29, 3, 1, 2, 0, 0, 0, 0, NULL, '12', NULL, 0, 0, 0, 0, '', 1, 2, 1, '13:45:32', '2023-08-25', NULL, NULL, 1845, 1835, '13:45:32', '2023-08-25', 0, 0, 0, NULL);
+
+-- Dumping structure for table demo_huy.khosanxuat_khotesthaodu
+CREATE TABLE IF NOT EXISTS `khosanxuat_khotesthaodu` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `mid` bigint NOT NULL DEFAULT '0',
+  `cid` bigint NOT NULL DEFAULT '0',
+  `numphieu` bigint NOT NULL DEFAULT '0',
+  `maphieu` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci NOT NULL,
+  `idloaivang` bigint NOT NULL DEFAULT '0',
+  `hao` double DEFAULT '0',
+  `du` double DEFAULT '0',
+  `haochenhlech` double DEFAULT '0',
+  `duchenhlech` double DEFAULT '0',
+  `ghichu` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
+  `time` time DEFAULT NULL,
+  `dated` date DEFAULT NULL,
+  `img_thumb` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
+  `img` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
+  `img1` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci ROW_FORMAT=DYNAMIC;
+
+-- Dumping data for table demo_huy.khosanxuat_khotesthaodu: ~0 rows (approximately)
+
+-- Dumping structure for table demo_huy.khosanxuat_khotest_sodudauky
+CREATE TABLE IF NOT EXISTS `khosanxuat_khotest_sodudauky` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `idloaivang` bigint NOT NULL DEFAULT '0',
+  `slnhapvh` double DEFAULT '0',
+  `slxuatvh` double DEFAULT '0',
+  `sltonvh` double DEFAULT '0',
+  `sltonthieuvh` double DEFAULT '0',
+  `slnhaph` double DEFAULT '0',
+  `slxuath` double DEFAULT '0',
+  `sltonh` double DEFAULT '0',
+  `sltonthieuh` double DEFAULT '0',
+  `slnhapv` double DEFAULT '0',
+  `slxuatv` double DEFAULT '0',
+  `sltonv` double DEFAULT '0',
+  `sltonthieuv` double DEFAULT '0',
+  `hao` double DEFAULT '0',
+  `du` double DEFAULT '0',
+  `haochenhlech` double DEFAULT '0',
+  `duchenhlech` double DEFAULT '0',
+  `dated` date DEFAULT NULL,
+  `typevkc` tinyint DEFAULT '1',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci ROW_FORMAT=DYNAMIC;
+
+-- Dumping data for table demo_huy.khosanxuat_khotest_sodudauky: ~2 rows (approximately)
+INSERT INTO `khosanxuat_khotest_sodudauky` (`id`, `idloaivang`, `slnhapvh`, `slxuatvh`, `sltonvh`, `sltonthieuvh`, `slnhaph`, `slxuath`, `sltonh`, `sltonthieuh`, `slnhapv`, `slxuatv`, `sltonv`, `sltonthieuv`, `hao`, `du`, `haochenhlech`, `duchenhlech`, `dated`, `typevkc`) VALUES
+	(1, 29, 6, 0, 6, 0, 2, 0, 2, 0, 4, 0, 4, 0, 0, 0, 0, 0, '2023-07-01', 1),
+	(2, 29, 6, 0, 12, 0, 2, 0, 4, 0, 4, 0, 8, 0, 0, 0, 0, 0, '2023-08-01', 1);
 
 -- Dumping structure for table demo_huy.khosanxuat_khovmnt
 CREATE TABLE IF NOT EXISTS `khosanxuat_khovmnt` (
@@ -2883,9 +3028,14 @@ CREATE TABLE IF NOT EXISTS `khosanxuat_khovmnt` (
   `typechinhsuasolieu` tinyint(1) DEFAULT '0',
   `datedieuchinh` date DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Dumping data for table demo_huy.khosanxuat_khovmnt: ~0 rows (approximately)
+-- Dumping data for table demo_huy.khosanxuat_khovmnt: ~4 rows (approximately)
+INSERT INTO `khosanxuat_khovmnt` (`id`, `mid`, `midchuyen`, `cid`, `idchuyen`, `cidchuyen`, `chonphongbanin`, `madhin`, `typekhodau`, `typekho`, `idmaphieukho`, `idctnx`, `idct`, `iddhsx`, `madonhangsx`, `midedit`, `numphieu`, `maphieu`, `nhomdm`, `nhomnguyenlieuvang`, `tennguyenlieuvang`, `idloaivang`, `cannangvh`, `cannangh`, `cannangv`, `cannangvhnoedit`, `cannanghnoedit`, `cannangvnoedit`, `tuoivang`, `tienmatvang`, `ghichuvang`, `ghichueditvang`, `hao`, `du`, `haochuyen`, `duchuyen`, `ghichu`, `type`, `typechuyen`, `typevkc`, `time`, `dated`, `timexuat`, `datedxuat`, `phongban`, `phongbanchuyen`, `timechuyen`, `datechuyen`, `trangthai`, `tralai`, `typechinhsuasolieu`, `datedieuchinh`) VALUES
+	(1, 2, 2, 623, 0, 23, 0, 0, 'khonguonvao_achinh', 'khonguonvao', 9, 3, 0, 0, '', 0, 0, 'PXKACHIN000001', 70, 371, 374, 29, 4, 1, 3, 0, 0, 0, 0.1, '12', 'a', NULL, 0, 0, 0, 0, '', 1, 2, 1, '16:12:49', '2023-08-24', NULL, NULL, NULL, 23, '16:12:49', '2023-08-24', 0, 0, 0, NULL),
+	(2, 2, 2, 623, 0, 23, 0, 0, 'khonguonvao_achinh', 'khonguonvao', 17, 6, 0, 0, '', 0, 0, 'PXKACHIN000005', 70, 372, 373, 30, 3, 1, 2, 0, 0, 0, 0.1, '1.000', 'asd', NULL, 0, 0, 0, 0, '', 1, 1, 1, '09:08:37', '2023-08-25', NULL, NULL, NULL, 23, '09:08:37', '2023-08-25', 0, 0, 0, NULL),
+	(3, 2, 0, 1835, 0, 0, 283, 0, NULL, NULL, 0, 0, 0, 0, '', 0, 1, 'PXSNKVMNT1', 0, 0, 0, 29, 3, 1, 2, 0, 0, 0, 0, NULL, 'aa', NULL, 0, 0, 0, 0, NULL, 2, 0, 1, '09:49:19', '2023-08-25', NULL, NULL, 1835, NULL, NULL, NULL, 0, 0, 0, NULL),
+	(4, 2, 0, 1835, 0, 0, 1845, 0, NULL, NULL, 0, 0, 0, 0, '', 0, 2, 'PXSNKVMNT000002', 0, 0, 0, 29, 3, 1, 2, 0, 0, 0, 0, NULL, '12', NULL, 0, 0, 0, 0, NULL, 3, 0, 1, '09:51:15', '2023-08-20', '13:45:32', '2023-08-25', 1845, NULL, '11:47:22', '2023-08-25', 2, 1, 0, NULL);
 
 -- Dumping structure for table demo_huy.khosanxuat_khovmnthaodu
 CREATE TABLE IF NOT EXISTS `khosanxuat_khovmnthaodu` (
@@ -2933,9 +3083,12 @@ CREATE TABLE IF NOT EXISTS `khosanxuat_khovmnt_sodudauky` (
   `dated` date DEFAULT NULL,
   `typevkc` tinyint DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Dumping data for table demo_huy.khosanxuat_khovmnt_sodudauky: ~0 rows (approximately)
+-- Dumping data for table demo_huy.khosanxuat_khovmnt_sodudauky: ~2 rows (approximately)
+INSERT INTO `khosanxuat_khovmnt_sodudauky` (`id`, `idloaivang`, `slnhapvh`, `slxuatvh`, `sltonvh`, `sltonthieuvh`, `slnhaph`, `slxuath`, `sltonh`, `sltonthieuh`, `slnhapv`, `slxuatv`, `sltonv`, `sltonthieuv`, `hao`, `du`, `haochenhlech`, `duchenhlech`, `dated`, `typevkc`) VALUES
+	(1, 29, 4, 5, 1, 0, 1, 1, 1, 0, 3, 2, 4, 0, 0, 0, 0, 0, '2023-07-01', 1),
+	(2, 29, 0, 9, -8, 0, 0, 3, -2, 0, 0, 6, -2, 0, 0, 0, 0, 0, '2023-08-01', 1);
 
 -- Dumping structure for table demo_huy.loaivang
 CREATE TABLE IF NOT EXISTS `loaivang` (

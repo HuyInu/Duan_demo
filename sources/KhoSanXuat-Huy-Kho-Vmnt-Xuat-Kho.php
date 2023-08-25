@@ -3,6 +3,7 @@ include_once("../maininclude.php");
 $act = isset($_REQUEST['act']) ? $_REQUEST['act'] : '';
 $idpem = isset($_REQUEST['cid']) ? $_REQUEST['cid'] : '';
 
+$smarty->assign('phongbanchuyen', $idpem);
 switch($act) {
     case 'add':
         $rs = [];
@@ -52,9 +53,9 @@ switch($act) {
             $phieuXuat['ghichuvang'] = $_POST['ghichuvang'];
 
             if($act == 'addsm') {
-                $maso = StringToNum($_POST['maphieu']);
-                $phieuXuat['numphieu'] = $maso;
-                $phieuXuat['maphieu'] = 'PXSNKVMNT'.$maso;
+                $numphieu = StringToNum($_POST['maphieu']);
+                $phieuXuat['numphieu'] = $numphieu;
+                $phieuXuat['maphieu'] = $_POST['maphieu'];
                 $phieuXuat['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
                 $phieuXuat['cid'] = $idpem;
                 $phieuXuat['phongban'] = $idpem;
@@ -73,7 +74,8 @@ switch($act) {
 		page_transfer2($url);
     break;
     default:
-        $sql = "select *from $GLOBALS[db_sp].khosanxuat_khovmnt where cid=$idpem and trangthai = 0 and type = 2 and typevkc = 1 order by dated asc, id asc";
+        include_once("search/KhoNguonVaoXuatKhoVangSearch.php");
+        $sql = "select *from $GLOBALS[db_sp].khosanxuat_khovmnt where cid=$idpem and trangthai = 0 and type = 2 and typevkc = 1 $wh order by dated asc, id asc";
         $phieuXuat = $GLOBALS["sp"]->getAll($sql);
 
         $smarty->assign('phieuXuat', $phieuXuat);

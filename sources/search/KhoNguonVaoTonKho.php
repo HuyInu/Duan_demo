@@ -1,14 +1,14 @@
 <?php
 $wh = $strSearch = '';
-$fromDate = trim(striptags($_POST['fromdays']));
-$toDate = trim(striptags($_POST['todays']));
+$fromDate = isset($_POST['fromdays']) ? trim(striptags($_POST['fromdays'])) : '';
+$toDate = isset($_POST['todays']) ? trim(striptags($_POST['todays'])) : '';
 if(empty($fromDate)){ /// nếu chưa chọn ngày lấy ngày hiện tại
 	$fromDate = date("d/m/Y");
 }
 if(empty($toDate)){ /// nếu chưa chọn ngày lấy ngày hiện tại
 	$toDate = date("d/m/Y");
 }
-$idloaivang = ceil(trim($_POST['idloaivang']));
+$idloaivang = isset($_POST['idloaivang']) ? ceil(trim($_POST['idloaivang'])) : '';
 $smarty->assign("fromdays",$fromDate);
 $smarty->assign("todays",$toDate);
 $smarty->assign("idloaivang",$idloaivang);

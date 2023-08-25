@@ -107,6 +107,46 @@ switch($act) {
                 $phieuXuatUpdate['phongban'] = $phieuNhap['phongbanchuyen'];
                 $phieuXuatUpdate['trangthai'] = 0;
                 $phieuXuatUpdate['tralai'] = 1;
+                
+
+                vaDelete($tableNhan, 'id='.$phieuNhap['id']);
+                vaUpdate($tableChuyen, $phieuXuatUpdate, 'id='.$phieuNhap['idmaphieukho']);
+            } else if (!empty($checkExisted['typechuyen']) && $checkExisted['typechuyen'] != 1) {
+                $error = "Phiếu đã được xác nhận nhập.";
+            }
+            else {
+                $error = "Phiếu đã được trả lại.";
+            } 
+
+            $GLOBALS["sp"]->CommitTrans();
+        }catch(Exception $e) {
+            $GLOBALS["sp"]->RollbackTrans();
+            $error = $errorTransetion;
+        }
+    break;
+    case 'tralaiKhoSanXuat':
+        $GLOBALS["sp"]->BeginTrans();
+		try{
+                $sqlCategNhan = "select * from $GLOBALS[db_sp].categories where id=$idCategNhan";
+                $CategNhan = $GLOBALS['sp']->getRow($sqlCategNhan);
+                $tableNhan = $CategNhan['tablect'];
+
+                $sqlPhieuNhap = "select * from $GLOBALS[db_sp].$tableNhan where id=$idPhieu";
+                $phieuNhap = $GLOBALS['sp']->getRow($sqlPhieuNhap);
+
+            $sqlCheckExisted = "select * from $GLOBALS[db_sp].$tableNhan where id=$idPhieu";
+            $checkExisted = $GLOBALS['sp']->getRow($sqlCheckExisted);
+            if(!empty($checkExisted['typechuyen']) && $checkExisted['typechuyen'] == 1) {
+                $sqlCategChuyen = "select * from $GLOBALS[db_sp].categories where id=".$phieuNhap['phongbanchuyen'];
+                $CategChuyen = $GLOBALS['sp']->getRow($sqlCategChuyen);
+                $tableChuyen =$CategChuyen['tablect'];
+            
+                $phieuXuatUpdate = [];
+                $phieuXuatUpdate['phongban'] = $phieuNhap['phongbanchuyen'];
+                $phieuXuatUpdate['trangthai'] = 0;
+                $phieuXuatUpdate['tralai'] = 1;
+                $phieuXuatUpdate['type'] = 2;
+                
 
                 vaDelete($tableNhan, 'id='.$phieuNhap['id']);
                 vaUpdate($tableChuyen, $phieuXuatUpdate, 'id='.$phieuNhap['idmaphieukho']);
@@ -163,8 +203,18 @@ switch($act) {
                     $phieuNhapUpdate['datechuyen'] = $dateNow;
                     $phieuNhapUpdate['typechuyen'] = 2;
                     vaUpdate($tableNhan, $phieuNhapUpdate, 'id='.$idPhieuNhap);
-    
-                    ghiSoHachToan($tableHachToanChuyen, $tableChuyen, $idMaPhieuKho, 'xuatkho');
+
+                    $khoType = getKhoType($tableChuyen);
+                    
+                    switch($khoType) {
+                        case 'khonguonvao':
+                            giahuy_ghiSoHachToan($tableHachToanChuyen, $tableChuyen, $idMaPhieuKho, 'xuatkho');
+                        break;
+                        case 'khosanxuat':
+                            giahuy_ghiSoHachToanKhoSanXuat($tableHachToanChuyen, $tableChuyen, $idMaPhieuKho);
+                        break;
+                    }
+                    
                     giahuy_ghiSoHachToanKhoSanXuat($tableHachToanNhan, $tableNhan, $idPhieuNhap);
                 } else {
                     $error = 'Table này chưa được thêm, vui lòng liên hệ với admin để được xử lý.';	
@@ -191,6 +241,7 @@ switch($act) {
 
             $sqlTableNhan = "select * from $GLOBALS[db_sp].categories where id=".$idCategNhan;
             $categNhan = $GLOBALS['sp']->getRow($sqlTableNhan);
+
             $tableNhan = $categNhan['tablect'];
             $tableHachToanNhan = $categNhan['tablehachtoan'];
 
@@ -202,22 +253,54 @@ switch($act) {
             $count = ceil(count($GLOBALS['sp']->getAll($sqlcount)));
         
             if($count == 0) {
+                $sqlcheckTableNhan = "SHOW COLUMNS FROM $GLOBALS[db_sp].".$tableNhan." ";
+                $rscheckTableNhan = $GLOBALS["sp"]->getAll($sqlcheckTableNhan);
+                $arrayTableNhan = array();
+                $i=0;
+                foreach($rscheckTableNhan as $value){
+                    $arrayTableNhan[$value['Field']] = $value['Field'];
+                }
                 if(!empty($typeKhoDau)){   
                     $phieuNhapMoi['typekho'] = explode('_',$typeKhoDau)[0];
                 }
                 $phieuNhapMoi['typekhodau'] = $typeKhoDau;
-                $phieuNhapMoi['slcannangvcon'] = 0;
-                $phieuNhapMoi['midchuyen'] = $_SESSION['admin_qlsxntjcorg_id'];
-                $phieuNhapMoi['cidchuyen'] = $idCategChuyen;
-                $phieuNhapMoi['idmaphieukho'] = $phieuXuat['idmaphieukho'];
-                $phieuNhapMoi['ghichuvang'] = $phieuXuat['ghichuvang'];
-                $phieuNhapMoi['ghichu'] = $phieuXuat['ghichu'];
-                $phieuNhapMoi['typechuyen'] = 1;
-                $phieuNhapMoi['tuoivang'] = $phieuXuat['tuoivang'];
-                $phieuNhapMoi['phongban'] = $idCategNhan;
-                $phieuNhapMoi['idpnk'] = $phieuXuat['idpnk'];
-                $phieuNhapMoi['madhin'] = $phieuXuat['madhin'];
-                $phieuNhapMoi['chonphongbanin'] = $phieuXuat['chonphongbanin'];
+                if(!empty($arrayTableNhan['slcannangvcon'])) {
+                    $phieuNhapMoi['slcannangvcon'] = 0;
+                }
+                if(!empty($arrayTableNhan['midchuyen'])) {
+                    $phieuNhapMoi['midchuyen'] = $_SESSION['admin_qlsxntjcorg_id'];
+                }
+                if(!empty($arrayTableNhan['cidchuyen'])) {
+                    $phieuNhapMoi['cidchuyen'] = $idCategChuyen;
+                }
+                if(!empty($arrayTableNhan['idmaphieukho'])) {
+                    $phieuNhapMoi['idmaphieukho'] = $phieuXuat['id'];
+                }
+                if(!empty($arrayTableNhan['ghichuvang'])) {
+                    $phieuNhapMoi['ghichuvang'] = $phieuXuat['ghichuvang'];
+                }
+                if(!empty($arrayTableNhan['ghichu'])) {
+                    $phieuNhapMoi['ghichu'] = $phieuXuat['ghichu'];
+                }
+                if(!empty($arrayTableNhan['typechuyen'])) {
+                    $phieuNhapMoi['typechuyen'] = 1;
+                }
+                if(!empty($arrayTableNhan['tuoivang'])) {
+                    $phieuNhapMoi['tuoivang'] = $phieuXuat['tuoivang'];
+                }
+                if(!empty($arrayTableNhan['phongban'])) {
+                    $phieuNhapMoi['phongban'] = $idCategNhan;
+                }
+                if(!empty($arrayTableNhan['idpnk'])) {
+                    $phieuNhapMoi['idpnk'] = $phieuXuat['idpnk'];
+                }
+                if(!empty($arrayTableNhan['madhin'])) {
+                    $phieuNhapMoi['madhin'] = $phieuXuat['madhin'];
+                }
+                if(!empty($arrayTableNhan['chonphongbanin'])) {
+                    $phieuNhapMoi['chonphongbanin'] = $phieuXuat['chonphongbanin'];
+                }
+               
             //$phieuNhapMoi['idphukien'] = $phieuXuat['idphukien'];
                 //$phieuNhapMoi['soluongphukien'] = $phieuXuat['soluongphukien'];
                 $phieuNhapMoi['cid'] = $idCategNhan;
@@ -227,7 +310,7 @@ switch($act) {
                 $phieuNhapMoi['dated'] = $dateNow;
                 $phieuNhapMoi['time'] = $timeNow;
                 $phieuNhapMoi['phongbanchuyen'] = $idCategChuyen;
-                $phieuNhapMoi['datedchuyen'] = $dateNow;
+                $phieuNhapMoi['datechuyen'] = $dateNow;
                 $phieuNhapMoi['timechuyen'] = $timeNow;
                 $phieuNhapMoi['trangthai'] = 0;
                 $phieuNhapMoi['mid'] = $phieuXuat['mid'];;
@@ -237,24 +320,31 @@ switch($act) {
                 $phieuNhapMoi['typevkc'] = $phieuXuat['typevkc'];
                 $phieuNhapMoi['typevkc'] = $phieuXuat['typevkc'];
 
-                //vaInsert($tableNhan,$phieuNhapMoi);
+                vaInsert($tableNhan,$phieuNhapMoi);
 
                 $phieuXuatUpdate = [];
                 $phieuXuatUpdate['trangthai'] = 1;
                 $phieuXuatUpdate['datechuyen'] = $dateNow;
                 $phieuXuatUpdate['timechuyen'] = $timeNow;
-                $phieuXuatUpdate['type'] = $timeNow;
+                $phieuXuatUpdate['type'] = 3;
                 $phieuXuatUpdate['phongban'] = $idCategNhan;
-
-                vaUpdate($tableChuyen, $phieuNhapUpdate, 'id='.$phieuXuat['id']);
+                
+                vaUpdate($tableChuyen, $phieuXuatUpdate, 'id='.$phieuXuat['id']);
+            } else {
+                $error = 'Phiếu đã được nhập.';
             }
             $GLOBALS["sp"]->CommitTrans();
         }catch(Exception $e) {
             $GLOBALS["sp"]->RollbackTrans();
-			$error = $errorTransetion;
+			$error = $e;
         }
     break;
 }
 
 die(json_encode(array('status'=>$error,'name'=>$name,'soducon'=>$soducon)));
+
+function getKhoType ($tableName) {
+    $khoType = explode('_', $tableName);
+    return  $khoType[0];
+}
 ?>

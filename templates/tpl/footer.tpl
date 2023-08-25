@@ -350,6 +350,31 @@ function chuyenKhoSanXuat(act, cid, id, phongbanchuyen, typeKho){//id là phòng
 	}
 }
 
+function giahuy_chuyenKhoSanXuat(act, cid, id, phongbanchuyen, typeKho){//id là phòng chuyển đến
+	if(id > 0){
+		var answer = confirm("Bạn chất muốn chuyển không ?");
+		if (answer)
+		{
+			$('#loadingAjax').show();
+			$.post('<!--{$path_url}-->/ajax/giahuy_chuyenkho.php',{act:act,cid:cid,id:id,phongbanchuyen:phongbanchuyen,typeKho:typeKho},function(data) {																				
+				 var obj = jQuery.parseJSON(data);
+				 if(obj.status == 'success'){
+					$('#loadingAjax').hide();
+					$('#g'+id).hide(); 
+				 }
+				 else{
+					$('#loadingAjax').hide();
+					$('#chuyenkho'+id).val('');	
+					alert(obj.status);	 
+				 }
+			});
+		}
+		else{
+			$('#chuyenkho'+id).val('');	
+		}
+	}
+}
+
 function chuyenKhoDa(act, cid, id, phongbanchuyen){//id là phòng chuyển đến
 	if(id > 0){
 		var answer = confirm("Bạn chất muốn chuyển không ?");

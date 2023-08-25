@@ -95,7 +95,7 @@
                                 <div id="siteIDload">
                                     <select name="chonphongbanin" id="chonphongbanin" class="abcd chonphonbanSanXuat">
                                          <option value="0">Chọn Phòng Sản Xuất</option>
-                                         <!--{insert name='optionChuyenDenSelected' chonphongbanin=$edit.chonphongbanin id='283,376,708,169'}-->
+                                         <!--{insert name='optionChuyenDenSelected' chonphongbanin=$edit.chonphongbanin id='283,376,708,169,1845'}-->
                                     </select> 
                                 </div>
                              </td>

@@ -8,25 +8,16 @@
        <!--{insert name="HearderCat" cid=$smarty.request.cid root=$smarty.request.root act=$smarty.request.act}-->
     </ul>
 </div>
-<div class="ChonLoaiPhieu">
-    <ul>
-        <li class="active" id="clickVang" onclick="clickVang('<!--{$path_url}-->/sources/Kho-A9-Thong-Ke.php?act=<!--{$smarty.request.act}-->&cid=<!--{$smarty.request.cid}-->')">
-            <a>Vàng</a>
-        </li>
-        <li id="clickKimCuong" onclick="clickKimCuong('<!--{$path_url}-->/sources/Kho-A9-Thong-Ke.php?act=<!--{$smarty.request.act}-->&cid=<!--{$smarty.request.cid}-->')">
-            <a>Kim Cương</a>
-        </li>
-    </ul>
-</div>
+
 <div class="MainContent">
-	<form name="f" id="f" method="post" onsubmit="return searchKhoKhacKhoTongDeCucThongKe('<!--{$path_url}-->/sources/Kho-A9-Huy-Thong-Ke.php?act=<!--{$smarty.request.act}-->&cid=<!--{$smarty.request.cid}-->')"> 
-        <div class="MainSearch">            
+    <form name="f" id="f" method="post" onsubmit="return searchKhoKhacKhoTongDeCucThongKe('<!--{$path_url}-->/sources/KhoSanXuat-Huy-Kho-Vmnt-Thong-Ke.php?act=<!--{$smarty.request.act}-->&cid=<!--{$smarty.request.cid}-->')"> 
+        <div class="MainSearch">
              <!--{include file="./allsearch/tungay-denngay-thong-ke-kho-san-xuat.tpl"}-->
-             <!--{include file="./allsearch/print-nguon-vao-nodated.tpl"}-->
+             <!--{include file="./allsearch/print-kho-san-xuat.tpl"}-->
              <input type="hidden" id="getUrlPrintKhoNguonVao" value="act=tonkho&cid=<!--{$phongbanchuyen}-->"  />
         </div>
         <div class="MainTable">
-    		<table  class="table-bordered">
+            <table  class="table-bordered">
                 <tr class="trheader">
                     <td align="center">
                         <strong>Loại Vàng</strong>
@@ -41,12 +32,19 @@
                         <strong>Số Lượng Xuất</strong>
                     </td>
                     <td align="center">
-                        <strong>Hao</strong>
+                        <strong>Hao Kết Dẻ</strong>
                     </td>
                     <td align="center">
-                        <strong>Dư</strong>
+                        <strong>Dư Kết Dẻ</strong>
                     </td>
-
+                    
+                     <td align="center">
+                        <strong>Hao Chênh Lệch</strong>
+                    </td>
+                    <td align="center">
+                        <strong>Dư Chênh Lệch</strong>
+                    </td>
+                    
                     <td align="center">
                         <strong>Tồn</strong>
                     </td>
@@ -56,7 +54,7 @@
                 </tr>
                 <!--{assign var="tongQ10" value=0}-->
 				<!--{section name=i loop=$typegoldview}-->
-                	<!--{$viewdl = giahuy_thongKeKhoNguonVaoTonKho($phongbanchuyen, $typegoldview[i].id, $fromdays, $todays)}-->
+                	<!--{$viewdl = giahuy_thongKeTonKhoSanXuat($phongbanchuyen, $typegoldview[i].id, $fromdays, $todays)}-->
                     <!--{if $viewdl.idloaivang gt 0}-->
                         <tr class="fontSizeTon">
                             <td align="right">
@@ -77,12 +75,16 @@
                            <td align="right">
                                 <!--{$viewdl.sldu|number_format:3:".":","}-->
                            </td>
-                            
+                            <td align="right">
+                                <!--{$viewdl.slhaochenhlech|number_format:3:".":","}-->
+                           </td>
+                           <td align="right">
+                                <!--{$viewdl.slduchenhlech|number_format:3:".":","}-->
+                           </td>
                            <td align="right">
                                 <strong><!--{$viewdl.slton|number_format:3:".":","}--></strong>
                            </td>
                            <td align="right">
-
                                 <!--{$viewdl.tongQ10|number_format:3:".":","}-->
                                 <!--{assign var="tongQ10" value=$tongQ10+$viewdl.tongQ10}-->
                            </td> 
@@ -90,17 +92,12 @@
                      <!--{/if}--> 
                 <!--{/section}-->
                 <tr class="Paging fontSizeTon">
-
+                    <td align="right" colspan="9"> <span class="colorXanh">Tổng Trọng Lượng Q10:</span> </td>
+                    <td align="right"><strong class="colorXanh"><!--{$tongQ10|number_format:3:".":","}--> </strong></td>
                 </tr>                                                                        
             </table>
-    	</div>   
-    </form> 
-    <div class="Paging">
-        <div class="pgLeft">Tổng số <!--{$total}--> trang</div>
-        <div class="pgRight">
-            <!--{$link_url}-->  
-        </div>
-    </div>   
+        </div>   
+    </form>    
 </div>
 <link type="text/css" href="<!--{$path_url}-->/calendar/jquery-ui.css" rel="stylesheet" />
 <script type="text/javascript" src="<!--{$path_url}-->/calendar/jquery-ui.js"></script> 

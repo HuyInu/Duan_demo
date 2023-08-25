@@ -1,28 +1,28 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-25 14:33:27
-  from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-A9-Huy-Thong-Ke\tonvang.tpl' */
+/* Smarty version 4.1.1, created on 2023-08-25 16:26:25
+  from 'D:\wamp64\www\duan_demo\templates\tpl\KhoSanXuat-Huy-Kho-Vmnt-Thong-Ke\ton-kho.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64e85947a45004_71931393',
+  'unifunc' => 'content_64e873c176d174_32391559',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
-    'bd92ebc7dac9d064398736097318722862210cf0' => 
+    'b5944e40b3d8b224a2b1d6f94f899ab6b4c5661f' => 
     array (
-      0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-A9-Huy-Thong-Ke\\tonvang.tpl',
-      1 => 1692948805,
+      0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\KhoSanXuat-Huy-Kho-Vmnt-Thong-Ke\\ton-kho.tpl',
+      1 => 1692955584,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
     'file:./allsearch/tungay-denngay-thong-ke-kho-san-xuat.tpl' => 1,
-    'file:./allsearch/print-nguon-vao-nodated.tpl' => 1,
+    'file:./allsearch/print-kho-san-xuat.tpl' => 1,
   ),
 ),false)) {
-function content_64e85947a45004_71931393 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e873c176d174_32391559 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="breadcrumb">
     <ul>
         <li>
@@ -34,37 +34,22 @@ function content_64e85947a45004_71931393 (Smarty_Internal_Template $_smarty_tpl)
        <?php echo insert_HearderCat(array('cid' => $_REQUEST['cid'], 'root' => $_REQUEST['root'], 'act' => $_REQUEST['act']),$_smarty_tpl);?>
     </ul>
 </div>
-<div class="ChonLoaiPhieu">
-    <ul>
-        <li class="active" id="clickVang" onclick="clickVang('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
-/sources/Kho-A9-Thong-Ke.php?act=<?php echo $_REQUEST['act'];?>
-&cid=<?php echo $_REQUEST['cid'];?>
-')">
-            <a>Vàng</a>
-        </li>
-        <li id="clickKimCuong" onclick="clickKimCuong('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
-/sources/Kho-A9-Thong-Ke.php?act=<?php echo $_REQUEST['act'];?>
-&cid=<?php echo $_REQUEST['cid'];?>
-')">
-            <a>Kim Cương</a>
-        </li>
-    </ul>
-</div>
+
 <div class="MainContent">
-	<form name="f" id="f" method="post" onsubmit="return searchKhoKhacKhoTongDeCucThongKe('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
-/sources/Kho-A9-Huy-Thong-Ke.php?act=<?php echo $_REQUEST['act'];?>
+    <form name="f" id="f" method="post" onsubmit="return searchKhoKhacKhoTongDeCucThongKe('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/sources/KhoSanXuat-Huy-Kho-Vmnt-Thong-Ke.php?act=<?php echo $_REQUEST['act'];?>
 &cid=<?php echo $_REQUEST['cid'];?>
 ')"> 
-        <div class="MainSearch">            
+        <div class="MainSearch">
              <?php $_smarty_tpl->_subTemplateRender("file:./allsearch/tungay-denngay-thong-ke-kho-san-xuat.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
-             <?php $_smarty_tpl->_subTemplateRender("file:./allsearch/print-nguon-vao-nodated.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+             <?php $_smarty_tpl->_subTemplateRender("file:./allsearch/print-kho-san-xuat.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
              <input type="hidden" id="getUrlPrintKhoNguonVao" value="act=tonkho&cid=<?php echo $_smarty_tpl->tpl_vars['phongbanchuyen']->value;?>
 "  />
         </div>
         <div class="MainTable">
-    		<table  class="table-bordered">
+            <table  class="table-bordered">
                 <tr class="trheader">
                     <td align="center">
                         <strong>Loại Vàng</strong>
@@ -79,12 +64,19 @@ function content_64e85947a45004_71931393 (Smarty_Internal_Template $_smarty_tpl)
                         <strong>Số Lượng Xuất</strong>
                     </td>
                     <td align="center">
-                        <strong>Hao</strong>
+                        <strong>Hao Kết Dẻ</strong>
                     </td>
                     <td align="center">
-                        <strong>Dư</strong>
+                        <strong>Dư Kết Dẻ</strong>
                     </td>
-
+                    
+                     <td align="center">
+                        <strong>Hao Chênh Lệch</strong>
+                    </td>
+                    <td align="center">
+                        <strong>Dư Chênh Lệch</strong>
+                    </td>
+                    
                     <td align="center">
                         <strong>Tồn</strong>
                     </td>
@@ -100,7 +92,7 @@ $_smarty_tpl->tpl_vars['__smarty_section_i'] = new Smarty_Variable(array());
 if ($__section_i_0_total !== 0) {
 for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] = 0; $__section_i_0_iteration <= $__section_i_0_total; $__section_i_0_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']++){
 ?>
-                	<?php $_smarty_tpl->_assignInScope('viewdl', giahuy_thongKeKhoNguonVaoTonKho($_smarty_tpl->tpl_vars['phongbanchuyen']->value,$_smarty_tpl->tpl_vars['typegoldview']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'],$_smarty_tpl->tpl_vars['fromdays']->value,$_smarty_tpl->tpl_vars['todays']->value));?>
+                	<?php $_smarty_tpl->_assignInScope('viewdl', giahuy_thongKeTonKhoSanXuat($_smarty_tpl->tpl_vars['phongbanchuyen']->value,$_smarty_tpl->tpl_vars['typegoldview']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'],$_smarty_tpl->tpl_vars['fromdays']->value,$_smarty_tpl->tpl_vars['todays']->value));?>
                     <?php if ($_smarty_tpl->tpl_vars['viewdl']->value['idloaivang'] > 0) {?>
                         <tr class="fontSizeTon">
                             <td align="right">
@@ -127,13 +119,19 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
                                 <?php echo number_format($_smarty_tpl->tpl_vars['viewdl']->value['sldu'],3,".",",");?>
 
                            </td>
-                            
+                            <td align="right">
+                                <?php echo number_format($_smarty_tpl->tpl_vars['viewdl']->value['slhaochenhlech'],3,".",",");?>
+
+                           </td>
+                           <td align="right">
+                                <?php echo number_format($_smarty_tpl->tpl_vars['viewdl']->value['slduchenhlech'],3,".",",");?>
+
+                           </td>
                            <td align="right">
                                 <strong><?php echo number_format($_smarty_tpl->tpl_vars['viewdl']->value['slton'],3,".",",");?>
 </strong>
                            </td>
                            <td align="right">
-
                                 <?php echo number_format($_smarty_tpl->tpl_vars['viewdl']->value['tongQ10'],3,".",",");?>
 
                                 <?php $_smarty_tpl->_assignInScope('tongQ10', $_smarty_tpl->tpl_vars['tongQ10']->value+$_smarty_tpl->tpl_vars['viewdl']->value['tongQ10']);?>
@@ -145,19 +143,13 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 }
 ?>
                 <tr class="Paging fontSizeTon">
-
+                    <td align="right" colspan="9"> <span class="colorXanh">Tổng Trọng Lượng Q10:</span> </td>
+                    <td align="right"><strong class="colorXanh"><?php echo number_format($_smarty_tpl->tpl_vars['tongQ10']->value,3,".",",");?>
+ </strong></td>
                 </tr>                                                                        
             </table>
-    	</div>   
-    </form> 
-    <div class="Paging">
-        <div class="pgLeft">Tổng số <?php echo $_smarty_tpl->tpl_vars['total']->value;?>
- trang</div>
-        <div class="pgRight">
-            <?php echo $_smarty_tpl->tpl_vars['link_url']->value;?>
-  
-        </div>
-    </div>   
+        </div>   
+    </form>    
 </div>
 <link type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /calendar/jquery-ui.css" rel="stylesheet" />

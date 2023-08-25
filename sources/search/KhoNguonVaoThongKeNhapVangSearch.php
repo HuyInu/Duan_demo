@@ -1,7 +1,7 @@
 <?php
 $wh = $strSearch = '';
-$fromDate = trim(striptags($_GET['fromdays']));
-$toDate = trim(striptags($_GET['todays']));
+$fromDate = isset($_GET['fromdays']) ? trim(striptags($_GET['fromdays'])) : '';
+$toDate = isset($_GET['todays']) ? trim(striptags($_GET['todays'])) : '';
 
 if($act != 'ChiTietTon' && $act != 'ChoNhapKho' && $act != ''){
 	if(empty($fromDate)){ /// nếu chưa chọn ngày lấy ngày hiện tại
@@ -12,14 +12,14 @@ if($act != 'ChiTietTon' && $act != 'ChoNhapKho' && $act != ''){
 	}
 }
 
-$codes = trim(striptags($_GET['codes']));
-$nhomnguyenlieus = trim(striptags($_GET['nhomnguyenlieus']));
-$tennguyenlieus = trim(striptags($_GET['tennguyenlieus']));
-$loaivangs = trim(striptags($_GET['loaivangs']));
-$cannangvhs = trim(striptags($_GET['cannangvhs']));
-$cannanghs = trim(striptags($_GET['cannanghs']));
-$cannangvs = trim(striptags($_GET['cannangvs']));
-$tuoivangs = trim(striptags($_GET['tuoivangs']));
+$codes = isset($_GET['codes']) ? trim(striptags($_GET['codes'])) : '';
+$nhomnguyenlieus = isset($_GET['nhomnguyenlieus']) ? trim(striptags($_GET['nhomnguyenlieus'])) : '';
+$tennguyenlieus = isset($_GET['tennguyenlieus']) ? trim(striptags($_GET['tennguyenlieus'])) : '';
+$loaivangs = isset($_GET['loaivangs']) ? trim(striptags($_GET['loaivangs'])) : '';
+$cannangvhs = isset($_GET['cannangvhs']) ? trim(striptags($_GET['cannangvhs'])) : '';
+$cannanghs = isset($_GET['cannanghs']) ? trim(striptags($_GET['cannanghs'])) : '';
+$cannangvs = isset($_GET['cannangvs']) ? trim(striptags($_GET['cannangvs'])) : '';
+$tuoivangs = isset($_GET['tuoivangs']) ? trim(striptags($_GET['tuoivangs'])) : '';
 
 $smarty->assign("fromdays",$fromDate);
 $smarty->assign("todays",$toDate);

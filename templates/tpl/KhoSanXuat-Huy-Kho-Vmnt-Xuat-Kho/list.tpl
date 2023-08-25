@@ -22,7 +22,7 @@
     </ul>
 </div>
 <div class="MainContent">
-	<form name="f" id="f" method="post" onsubmit="return searchKhoDauVaoXuatVang('<!--{$path_url}-->/sources/KhoSanXuat-Kho-Vmnt-Xuat-Kho.php?cid=<!--{$smarty.request.cid}-->')"> 
+	<form name="f" id="f" method="post" onsubmit="return searchKhoDauVaoXuatVang('<!--{$path_url}-->/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho.php?cid=<!--{$smarty.request.cid}-->')"> 
      	<div class="MainSearch">
         	<!--{include file="./allsearch/tungay-denngay-vang-kim-cuong.tpl"}-->
         </div>
@@ -151,7 +151,7 @@
                        </td>
                        
                        <td align="center">
-                            <select class="selectOption" id="chuyenkho<!--{$phieuXuat[i].id}-->" onchange="chuyenKhoSanXuat('chuyenkhosanxuat', this.value, '<!--{$phieuXuat[i].id}-->','<!--{$phongbanchuyen}-->','khosanxuat_vmnt')">
+                            <select class="selectOption" id="chuyenkho<!--{$phieuXuat[i].id}-->" onchange="giahuy_chuyenKhoSanXuat('chuyenkhosanxuat', this.value, '<!--{$phieuXuat[i].id}-->','<!--{$phongbanchuyen}-->','khosanxuat_vmnt')">
                                 <option value="">--chuyển đến--</option>
                                 <!--{insert name='optionChuyenDen' id=$phieuXuat[i].chonphongbanin}-->
                             </select>  

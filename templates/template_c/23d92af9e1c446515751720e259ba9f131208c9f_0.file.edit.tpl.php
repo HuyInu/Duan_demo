@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-24 10:27:09
+/* Smarty version 4.1.1, created on 2023-08-25 11:04:28
   from 'D:\wamp64\www\duan_demo\templates\tpl\KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho\edit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64e6ce0d09c762_36936298',
+  'unifunc' => 'content_64e8284ce958f6_51602003',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     '23d92af9e1c446515751720e259ba9f131208c9f' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho\\edit.tpl',
-      1 => 1692847623,
+      1 => 1692936258,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64e6ce0d09c762_36936298 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64e8284ce958f6_51602003 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\libraries\\smarty4\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
 <div class="breadcrumb">
@@ -142,7 +142,7 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
                                 <div id="siteIDload">
                                     <select name="chonphongbanin" id="chonphongbanin" class="abcd chonphonbanSanXuat">
                                          <option value="0">Chọn Phòng Sản Xuất</option>
-                                         <?php echo insert_optionChuyenDenSelected(array('chonphongbanin' => $_smarty_tpl->tpl_vars['edit']->value['chonphongbanin'], 'id' => '283,376,708,169'),$_smarty_tpl);?>
+                                         <?php echo insert_optionChuyenDenSelected(array('chonphongbanin' => $_smarty_tpl->tpl_vars['edit']->value['chonphongbanin'], 'id' => '283,376,708,169,1845'),$_smarty_tpl);?>
                                     </select> 
                                 </div>
                              </td>
