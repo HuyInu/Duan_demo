@@ -30,7 +30,7 @@
                 </tr>
                 <!--{assign var="tongQ10" value=0}-->
 				<!--{section name=i loop=$typegoldview}-->
-                	<!--{insert name="thongKeTonHienTaiKhoSanXuat" cid="$phongbanchuyen" idloaivang=$typegoldview[i].id assign="viewdl"}-->
+                	<!--{$viewdl = thongKeTonHienTaiKhoSanXuat($phongbanchuyen, $typegoldview[i].id)}-->
                     <!--{if $viewdl.idloaivang gt 0}-->
                         <tr class="fontSizeTon">
                             <td align="right">
