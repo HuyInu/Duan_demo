@@ -2853,7 +2853,6 @@ function giahuy_thongKeTonKhoSanXuat($cid, $idloaivang, $fromDate, $toDate) {
 						$currentTon = $GLOBALS['sp']->getRow($sqlCurrentTon);
 
 						$slton = round((float)$sltonsddk + (float)$currentTon['slnhapv'] - (float)$currentTon['slxuatv'],3);
-						var_dump($slton);
 						$slton += round((float)$haoDuDateDauThang['du'] - (float)$haoDuDateDauThang['hao'],3);
 						$slton += round((float)$haoDuDateDauThang['haochenhlech'] - (float)$haoDuDateDauThang['duchenhlech'],3);
 
