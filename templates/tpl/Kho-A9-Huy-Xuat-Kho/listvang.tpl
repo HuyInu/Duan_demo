@@ -28,7 +28,7 @@
     </ul>
 </div>
 <div class="MainContent">
-	<form name="f" id="f" method="post" onsubmit="return searchKhoDauVaoXuatVang('<!--{$path_url}-->/sources/Kho-A9-Xuat-Kho.php?cid=<!--{$smarty.request.cid}-->')"> 
+	<form name="f" id="f" method="post" onsubmit="return searchKhoDauVaoXuatVang('<!--{$path_url}-->/sources/Kho-A9-Huy-Xuat-Kho.php?cid=<!--{$smarty.request.cid}-->')"> 
      	<div class="MainSearch">
         	<!--{include file="./allsearch/tungay-denngay-vang-kim-cuong.tpl"}-->
         </div>
@@ -138,59 +138,59 @@
                     <td align="center"></td>
                 </tr>
                 <!--{optionChuyenDenTest('1834') assign="khoSanXuat_KhoVMNT"}-->
-                <!--{section i $phieuXuatList}-->
+                <!--{section i $view}-->
                 <tr class="">
                 	<td class="tdcheck">
-                        <input type="checkbox" name="iddle[]" value="<!--{$phieuXuatList[i].id}-->"
+                        <input type="checkbox" name="iddle[]" value="<!--{$view[i].id}-->"
                     </td>
                     <td class="tdSTT">
                         <!--{$smarty.section.i.index + 1}-->
                     </td>
                     
                     <td width="7%">
-                        <!--{$phieuXuatList[i].dated|date_format:"%d/%m/%Y"}-->
+                        <!--{$view[i].dated|date_format:"%d/%m/%Y"}-->
                     </td>
                     
                     <td width="7%">
-                        <!--{$phieuXuatList[i].maphieu}-->
+                        <!--{$view[i].maphieu}-->
                     </td>
                     
                     <td>
-                        <!--{getName('categories', 'name_vn', <!--{$phieuXuatList[i].nhomnguyenlieuvang}-->)}-->
+                        <!--{getName('categories', 'name_vn', <!--{$view[i].nhomnguyenlieuvang}-->)}-->
                     </td>
                     
                     <td>
-                        <!--{getName('categories', 'name_vn', <!--{$phieuXuatList[i].tennguyenlieuvang}-->)}-->
+                        <!--{getName('categories', 'name_vn', <!--{$view[i].tennguyenlieuvang}-->)}-->
                     </td>
                     
                     <td>
-                        <!--{getName('loaivang', 'name_vn', <!--{$phieuXuatList[i].idloaivang}-->)}-->
+                        <!--{getName('loaivang', 'name_vn', <!--{$view[i].idloaivang}-->)}-->
                     </td>
                     
                     <td>
-                        <!--{$phieuXuatList[i].cannangvh|number_format:3:".":","}-->
+                        <!--{$view[i].cannangvh|number_format:3:".":","}-->
                     </td>
                    
                     <td>
-                        <!--{$phieuXuatList[i].cannangh|number_format:3:".":","}-->
+                        <!--{$view[i].cannangh|number_format:3:".":","}-->
                     </td>
                     <td>
-                        <!--{$phieuXuatList[i].cannangv|number_format:3:".":","}-->
+                        <!--{$view[i].cannangv|number_format:3:".":","}-->
                     </td>
                     <td>
-                        <!--{$phieuXuatList[i].tuoivang|number_format:4:".":","}-->
+                        <!--{$view[i].tuoivang|number_format:4:".":","}-->
                     </td>
                     <td>
-                        <!--{$phieuXuatList[i].tienmatvang}-->
+                        <!--{$view[i].tienmatvang}-->
                     </td>
                     <td width="4%">
-                        <input id='showhao<!--{$phieuXuatList[i].id}-->' type="text" autocomplete="off" class="txtdatagirld text-right autoNumeric" value="<!--{$phieuXuatList[i].hao}-->" onchange="updatedong('updatedong',this.value,<!--{$phieuXuatList[i].id}-->,'hao','khonguonvao_khoachinct')"/>
+                        <input id='showhao<!--{$view[i].id}-->' type="text" autocomplete="off" class="txtdatagirld text-right autoNumeric" value="<!--{$view[i].hao}-->" onchange="updatedong('updatedong',this.value,<!--{$view[i].id}-->,'hao','khonguonvao_khoachinct')"/>
                     </td>
                     <td width="4%">
-                        <input id='showhao<!--{$phieuXuatList[i].id}-->' type="text" autocomplete="off" class="txtdatagirld text-right autoNumeric" value="<!--{$phieuXuatList[i].du}-->" onchange="updatedong('updatedong',this.value,<!--{$phieuXuatList[i].id}-->,'du','khonguonvao_khoachinct')"/>
+                        <input id='showhao<!--{$view[i].id}-->' type="text" autocomplete="off" class="txtdatagirld text-right autoNumeric" value="<!--{$view[i].du}-->" onchange="updatedong('updatedong',this.value,<!--{$view[i].id}-->,'du','khonguonvao_khoachinct')"/>
                     </td>
                      <td width="10%">
-                        <!--{$phieuXuatList[i].ghichuvang}-->
+                        <!--{$view[i].ghichuvang}-->
                     </td>
                     <td>
                         <script>
@@ -199,19 +199,19 @@
                             });
                         </script>
                         <div id="siteIDload">                       		
-                            <select class="chuyenPhonbanSanXuat" id="chuyenkho<!--{$phieuXuatList[i].id}-->" onchange="giahuy_chuyenKhoKhac('chuyenkhokhac', this.value, <!--{$phieuXuatList[i].id}-->,<!--{$phongbanchuyen}-->,'khonguonvao_achinh')">
+                            <select class="chuyenPhonbanSanXuat" id="chuyenkho<!--{$view[i].id}-->" onchange="giahuy_chuyenKhoKhac('chuyenkhokhac', this.value, <!--{$view[i].id}-->,<!--{$phongbanchuyen}-->,'khonguonvao_achinh')">
                                 <option value="">--chuyển đến--</option> 
                                 <!--{$khoSanXuat_KhoVMNT}--> 
                             </select> 
                         </div>
                     </td>
                      <td>
-                        <a href="<!--{$path_url}-->/sources/Kho-A9-Huy-Xuat-Kho.php?act=edit&cid=<!--{$smarty.request.cid}-->&id=<!--{$phieuXuatList[i].id}-->" title="Sửa"> 
+                        <a href="<!--{$path_url}-->/sources/Kho-A9-Huy-Xuat-Kho.php?act=edit&cid=<!--{$smarty.request.cid}-->&id=<!--{$view[i].id}-->" title="Sửa"> 
                             <img src="<!--{$path_url}-->/images/edit.png"/> 
                         </a>
                     </td>
                      <td>
-                        <!--{if $phieuXuatList[i].tralai eq 1}-->	
+                        <!--{if $view[i].tralai eq 1}-->	
                             <a>Trả Lại</a>
                         <!--{/if}-->  
                     </td>

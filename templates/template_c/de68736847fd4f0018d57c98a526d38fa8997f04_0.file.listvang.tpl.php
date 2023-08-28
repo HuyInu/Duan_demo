@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-23 13:06:49
+/* Smarty version 4.1.1, created on 2023-08-28 07:55:47
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-A9-Huy-Xuat-Kho\listvang.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64e5a1f95bf635_94431012',
+  'unifunc' => 'content_64ebf0936326c6_48932940',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     'de68736847fd4f0018d57c98a526d38fa8997f04' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-A9-Huy-Xuat-Kho\\listvang.tpl',
-      1 => 1692687320,
+      1 => 1693184144,
       2 => 'file',
     ),
   ),
@@ -32,7 +32,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./allsearch/ghichus.tpl' => 1,
   ),
 ),false)) {
-function content_64e5a1f95bf635_94431012 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64ebf0936326c6_48932940 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\libraries\\smarty4\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
 <div class="breadcrumb">
@@ -74,7 +74,7 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\
 </div>
 <div class="MainContent">
 	<form name="f" id="f" method="post" onsubmit="return searchKhoDauVaoXuatVang('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
-/sources/Kho-A9-Xuat-Kho.php?cid=<?php echo $_REQUEST['cid'];?>
+/sources/Kho-A9-Huy-Xuat-Kho.php?cid=<?php echo $_REQUEST['cid'];?>
 ')"> 
      	<div class="MainSearch">
         	<?php $_smarty_tpl->_subTemplateRender("file:./allsearch/tungay-denngay-vang-kim-cuong.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -198,7 +198,7 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\
                 </tr>
                 <?php $_smarty_tpl->assign("khoSanXuat_KhoVMNT",optionChuyenDenTest('1834'));?>
                 <?php
-$__section_i_0_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['phieuXuatList']->value) ? count($_loop) : max(0, (int) $_loop));
+$__section_i_0_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['view']->value) ? count($_loop) : max(0, (int) $_loop));
 $__section_i_0_total = $__section_i_0_loop;
 $_smarty_tpl->tpl_vars['__smarty_section_i'] = new Smarty_Variable(array());
 if ($__section_i_0_total !== 0) {
@@ -206,7 +206,7 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 ?>
                 <tr class="">
                 	<td class="tdcheck">
-                        <input type="checkbox" name="iddle[]" value="<?php echo $_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
+                        <input type="checkbox" name="iddle[]" value="<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
 "
                     </td>
                     <td class="tdSTT">
@@ -215,18 +215,18 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
                     </td>
                     
                     <td width="7%">
-                        <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['dated'],"%d/%m/%Y");?>
+                        <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['dated'],"%d/%m/%Y");?>
 
                     </td>
                     
                     <td width="7%">
-                        <?php echo $_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['maphieu'];?>
+                        <?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['maphieu'];?>
 
                     </td>
                     
                     <td>
                         <?php ob_start();
-echo $_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['nhomnguyenlieuvang'];
+echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['nhomnguyenlieuvang'];
 $_prefixVariable1 = ob_get_clean();
 echo getName('categories','name_vn',$_prefixVariable1);?>
 
@@ -234,7 +234,7 @@ echo getName('categories','name_vn',$_prefixVariable1);?>
                     
                     <td>
                         <?php ob_start();
-echo $_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['tennguyenlieuvang'];
+echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['tennguyenlieuvang'];
 $_prefixVariable2 = ob_get_clean();
 echo getName('categories','name_vn',$_prefixVariable2);?>
 
@@ -242,47 +242,47 @@ echo getName('categories','name_vn',$_prefixVariable2);?>
                     
                     <td>
                         <?php ob_start();
-echo $_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['idloaivang'];
+echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['idloaivang'];
 $_prefixVariable3 = ob_get_clean();
 echo getName('loaivang','name_vn',$_prefixVariable3);?>
 
                     </td>
                     
                     <td>
-                        <?php echo number_format($_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['cannangvh'],3,".",",");?>
+                        <?php echo number_format($_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['cannangvh'],3,".",",");?>
 
                     </td>
                    
                     <td>
-                        <?php echo number_format($_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['cannangh'],3,".",",");?>
+                        <?php echo number_format($_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['cannangh'],3,".",",");?>
 
                     </td>
                     <td>
-                        <?php echo number_format($_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['cannangv'],3,".",",");?>
+                        <?php echo number_format($_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['cannangv'],3,".",",");?>
 
                     </td>
                     <td>
-                        <?php echo number_format($_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['tuoivang'],4,".",",");?>
+                        <?php echo number_format($_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['tuoivang'],4,".",",");?>
 
                     </td>
                     <td>
-                        <?php echo $_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['tienmatvang'];?>
+                        <?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['tienmatvang'];?>
 
                     </td>
                     <td width="4%">
-                        <input id='showhao<?php echo $_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
-' type="text" autocomplete="off" class="txtdatagirld text-right autoNumeric" value="<?php echo $_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['hao'];?>
-" onchange="updatedong('updatedong',this.value,<?php echo $_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
+                        <input id='showhao<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
+' type="text" autocomplete="off" class="txtdatagirld text-right autoNumeric" value="<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['hao'];?>
+" onchange="updatedong('updatedong',this.value,<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
 ,'hao','khonguonvao_khoachinct')"/>
                     </td>
                     <td width="4%">
-                        <input id='showhao<?php echo $_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
-' type="text" autocomplete="off" class="txtdatagirld text-right autoNumeric" value="<?php echo $_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['du'];?>
-" onchange="updatedong('updatedong',this.value,<?php echo $_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
+                        <input id='showhao<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
+' type="text" autocomplete="off" class="txtdatagirld text-right autoNumeric" value="<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['du'];?>
+" onchange="updatedong('updatedong',this.value,<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
 ,'du','khonguonvao_khoachinct')"/>
                     </td>
                      <td width="10%">
-                        <?php echo $_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['ghichuvang'];?>
+                        <?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['ghichuvang'];?>
 
                     </td>
                     <td>
@@ -294,8 +294,8 @@ echo getName('loaivang','name_vn',$_prefixVariable3);?>
                         <?php echo '</script'; ?>
 >
                         <div id="siteIDload">                       		
-                            <select class="chuyenPhonbanSanXuat" id="chuyenkho<?php echo $_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
-" onchange="giahuy_chuyenKhoKhac('chuyenkhokhac', this.value, <?php echo $_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
+                            <select class="chuyenPhonbanSanXuat" id="chuyenkho<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
+" onchange="giahuy_chuyenKhoKhac('chuyenkhokhac', this.value, <?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
 ,<?php echo $_smarty_tpl->tpl_vars['phongbanchuyen']->value;?>
 ,'khonguonvao_achinh')">
                                 <option value="">--chuyển đến--</option> 
@@ -307,14 +307,14 @@ echo getName('loaivang','name_vn',$_prefixVariable3);?>
                      <td>
                         <a href="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /sources/Kho-A9-Huy-Xuat-Kho.php?act=edit&cid=<?php echo $_REQUEST['cid'];?>
-&id=<?php echo $_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
+&id=<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
 " title="Sửa"> 
                             <img src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /images/edit.png"/> 
                         </a>
                     </td>
                      <td>
-                        <?php if ($_smarty_tpl->tpl_vars['phieuXuatList']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['tralai'] == 1) {?>	
+                        <?php if ($_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['tralai'] == 1) {?>	
                             <a>Trả Lại</a>
                         <?php }?>  
                     </td>

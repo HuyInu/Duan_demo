@@ -12,6 +12,16 @@ if(checkPermision($idpem,7))
 	$smarty->assign("checkPer7","true");
 
 switch($act){
+    case "SuaSoLieuHachToan":
+		// Sửa số liệu hạch toán
+		$rsGetLoaiVang = loaiVangSuaSoLieuHachToan();
+		foreach ($rsGetLoaiVang as $itemLoaiVang) {
+			dieuChinhSoLieuHachToan('khosanxuat_khovmnt',$itemLoaiVang['id']);
+
+			// dieuChinhSoLieuHachToanHaoDuGiaoNhanThoNew('khosanxuat_khovmnthaodu','khosanxuat_khovmnt_sodudauky','giaonhanthohangngay_khosanxuat_khovmnt',$itemLoaiVang['id']);
+		}
+		echo "Điều chỉnh số liệu hạch toán thành công.";
+	break;
     case "NhapKho":
         if(!checkPermision($idpem,5)){
             page_permision();

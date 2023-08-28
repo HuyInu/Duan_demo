@@ -8,6 +8,15 @@ $sqlvang = "select * from $GLOBALS[db_sp].loaivang where active=1 order by num a
 $rsvang = $GLOBALS["sp"]->getAll($sqlvang);
 $smarty->assign("typegold",$rsvang);
 switch($act) {
+    case "SuaSoLieuHachToan":
+		$rsGetLoaiVang = loaiVangSuaSoLieuHachToan();
+		foreach ($rsGetLoaiVang as $itemLoaiVang) {
+			giahuy_dieuChinhSoLieuHachToanKhoSanXuat('khosanxuat_khovmnt','khosanxuat_khovmnt_sodudauky' ,$itemLoaiVang['id']);
+
+			// dieuChinhSoLieuHachToanHaoDuGiaoNhanThoNew('khosanxuat_khovmnthaodu','khosanxuat_khovmnt_sodudauky','giaonhanthohangngay_khosanxuat_khovmnt',$itemLoaiVang['id']);
+		}
+		echo "Điều chỉnh số liệu hạch toán thành công.";
+	break;
     case 'TonKhoHienTai':
         include_once("search/KhoSanXuatThongKeTonKho.php");
         $wh = '';

@@ -41,7 +41,8 @@ switch($act) {
         }	
     break;
     default:
-        if($_COOKIE["typeVangKimCuong"] == 'kimcuong'){
+        //include_once("search/KhoNguonVaoSearch.php");
+        if( isset($_COOKIE["typeVangKimCuong"]) ? $_COOKIE["typeVangKimCuong"] : '' == 'kimcuong'){
             //include_once("search/KhoNguonVaoXuatKhoKimCuongSearch.php");
             $whereTypevkc = 'typevkc = 2';
             $template = 'Kho-A9-Huy-Xuat-Kho/listkimcuong.tpl';
@@ -51,7 +52,7 @@ switch($act) {
             $template = 'Kho-A9-Huy-Xuat-Kho/listvang.tpl';
         }
         
-        $sql = "select * from $GLOBALS[db_sp].khonguonvao_khoachinct where type = 2 and trangthai = 0 and $whereTypevkc order by numphieu asc, id desc";
+        $sql = "select * from $GLOBALS[db_sp].khonguonvao_khoachinct where type = 2 and trangthai = 0 and $whereTypevkc $wh order by numphieu asc, id desc";
         $phieuXuatList = $GLOBALS['sp']->getAll($sql);
 
         $smarty->assign('view', $phieuXuatList);

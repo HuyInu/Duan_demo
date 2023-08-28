@@ -9,6 +9,14 @@ $rsvang = $GLOBALS["sp"]->getAll($sqlvang);
 $smarty->assign("typegold",$rsvang);
 
 switch($act) {
+    case 'SuaSoLieuHachToan':
+        $rsGetLoaiVang = loaiVangSuaSoLieuHachToan();
+		
+		foreach ($rsGetLoaiVang as $itemLoaiVang) {
+			giahuy_dieuChinhSoLieuHachToanKhoNguonVao('khonguonvao_khoachinct','khoachin_sodudauky',$itemLoaiVang['id']);
+		}
+		die("Điều chỉnh số liệu hạch toán thành công.");
+        break;
     case 'ChiTietTon':
         $wh = null;
         include_once("search/KhoNguonVaoThongKeNhapVangSearch.php");

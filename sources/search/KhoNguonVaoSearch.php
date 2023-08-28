@@ -1,15 +1,15 @@
 <?php
 $wh = $strSearch = '';
-$fromDate = trim(striptags($_GET['fromdays']));
-$toDate = trim(striptags($_GET['todays']));
-$codes = trim(striptags($_GET['codes']));
-$daychungtus = trim(striptags($_GET['daychungtus']));
-$names = trim(striptags($_GET['names']));
-$namelaps = trim(striptags($_GET['namelaps']));
-$donvilaps = trim(striptags($_GET['donvilaps']));
-$nameduyets = trim(striptags($_GET['nameduyets']));
-$donviduyets = trim(striptags($_GET['donviduyets']));
-$lydos = trim(striptags($_GET['lydos']));
+$fromDate = isset($_GET['fromdays']) ? trim(striptags($_GET['fromdays'])) : '';
+$toDate = isset($_GET['todays']) ? trim(striptags($_GET['todays'])) : '';
+$codes = isset($_GET['codes']) ? trim(striptags($_GET['codes'])) : '';
+$daychungtus = isset($_GET['daychungtus']) ? trim(striptags($_GET['daychungtus'])) : '';
+$names = isset($_GET['names']) ? trim(striptags($_GET['names'])) : '';
+$namelaps = isset($_GET['namelaps']) ? trim(striptags($_GET['namelaps'])) : '';
+$donvilaps = isset($_GET['donvilaps']) ? trim(striptags($_GET['donvilaps'])) : '';
+$nameduyets = isset($_GET['nameduyets']) ? trim(striptags($_GET['nameduyets'])) : '';
+$donviduyets = isset($_GET['donviduyets']) ? trim(striptags($_GET['donviduyets'])) : '';
+$lydos = isset($_GET['lydos']) ? trim(striptags($_GET['lydos'])) : '';
 
 $smarty->assign("fromdays",$fromDate);
 $smarty->assign("todays",$toDate);
