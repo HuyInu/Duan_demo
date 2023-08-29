@@ -92,7 +92,7 @@
                     <td align="center"></td>
                 </tr>
                 <!--{section i $phieuNhap}-->
-                <tr class="">
+                <tr class="" id="g<!--{$phieuNhap[i].id}-->">
                     <td class="tdSTT">
                         <!--{$smarty.section.i.index + 1}-->
                     </td>

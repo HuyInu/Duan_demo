@@ -5,11 +5,11 @@
             	<i class="fa-home"></i>
             </a>    
         </li>
-        <!--{insert name="HearderCat" cid=$smarty.request.cid root=$smarty.request.root act=$smarty.request.act}-->
+        <!--{getHearderCat(array(cid=>$smarty.request.cid, root=>$smarty.request.root, act=>$smarty.request.act))}-->
     </ul>
 </div>
 <div class="MainContent">
-    <form name="allsubmit" id="frmEdit" action="<!--{$path_url}-->/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho.php?act=<!--{if $smarty.request.act eq 'add' }-->addsm<!--{else}-->editsm<!--{/if}-->&cid=<!--{$smarty.request.cid}-->" method="post" enctype="multipart/form-data">
+    <form name="allsubmit" id="frmEdit" action="<!--{$path_url}-->/sources/Kho-Huy-Test-Xuat-Kho.php?act=<!--{if $smarty.request.act eq 'add' }-->addsm<!--{else}-->editsm<!--{/if}-->&cid=<!--{$smarty.request.cid}-->" method="post" enctype="multipart/form-data">
      	<div class="box-thongin" >
             <div class="MainTable">
                	<div class="table2scroll">
@@ -41,10 +41,6 @@
                             <td width="7%" align="center">
                                 <strong>Phòng Sản Xuất</strong>
                             </td>
-                            <td width="7%" align="center">
-                                <strong>Đơn Hàng</strong>
-                            </td>
-                            
                             <td  align="center">
                                 <strong>Ghi Chú</strong>
                             </td>
@@ -86,34 +82,18 @@
 										if(num >= 1){
 											alert('tuổi vàng phải nhỏ hơn 1.');
 											$('#tuoivang').val(0);
-										}
+										}	
 									}
 								 </script>
                              </td>
                              <td align="left">
-                                 
                                 <div id="siteIDload">
                                     <select name="chonphongbanin" id="chonphongbanin" class="abcd chonphonbanSanXuat">
-                                         <option value="0">Chọn Phòng Sản Xuất</option>
-                                         <!--{insert name='optionChuyenDenSelected' chonphongbanin=$edit.chonphongbanin id='283,376,708,169,1845'}-->
+                                        <option value="0">Chọn Phòng Sản Xuất</option>
+                                        <!--{insert name='optionChuyenDenSelected' chonphongbanin=$edit.chonphongbanin id='283,376,708,169,1834'}-->
                                     </select> 
                                 </div>
                              </td>
-                             
-                             <td align="left">
-                                 <script>
-                                    $(function () {
-                                        $("#siteIDload select").select2();
-                                    });
-                                </script>
-                              <!--  <div id="siteIDload">
-                                    <select name="madhin" id="madhin" class="abcd chonphonbanSanXuat" onchange="getSLVaoCotGhiChu(this.value)">
-                                         <option value="0">Chọn Mã Đơn Hàng Catalog</option>
-                                      
-                                    </select> 
-                                </div> -->
-                             </td>
-                             
                              <td align="left">
                                  <input type="text" autocomplete="off" name="ghichuvang" id="ghichuvang" class="txtdatagirld" value="<!--{$edit.ghichuvang}-->"/>
                              </td> 
@@ -137,5 +117,3 @@
 
 <script type="text/javascript" src="<!--{$path_url}-->/js/select-checkbox/sol.js"></script>
 <link rel="stylesheet" href="<!--{$path_url}-->/js/select-checkbox/sol.css" />
-
-   <!--insert name='optionChoDonHangCatalog' madhin=$edit.madhin cid=$phongbanchuyen--> 

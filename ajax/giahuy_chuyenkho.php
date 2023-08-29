@@ -63,6 +63,7 @@ switch($act) {
                 $phieuNhapMoi['time'] = $timeNow;
                 $phieuNhapMoi['dated'] = $dateNow;
                 $phieuNhapMoi['phongbanchuyen'] = $idCategChuyen;
+                $phieuNhapMoi['phongban'] = $idCategNhan;
                 $phieuNhapMoi['timechuyen'] = $timeNow;
                 $phieuNhapMoi['datechuyen'] = $dateNow;
                 $phieuNhapMoi['trangthai'] = 0;

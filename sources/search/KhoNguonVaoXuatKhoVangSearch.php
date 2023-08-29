@@ -1,6 +1,6 @@
 <?php
 $wh = $whdatechuyen = $strSearch = '';
-$fromDate = trim(striptags($_GET['fromdays']));
+$fromDate =  trim(striptags($_GET['fromdays']));
 $toDate = trim(striptags($_GET['todays']));
 $codes = trim(striptags($_GET['codes']));
 $daychungtus = trim(striptags($_GET['daychungtus']));

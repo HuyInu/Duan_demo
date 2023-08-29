@@ -139,7 +139,7 @@
                 </tr>
                 <!--{optionChuyenDenTest('1834') assign="khoSanXuat_KhoVMNT"}-->
                 <!--{section i $view}-->
-                <tr class="">
+                <tr class="" id="g<!--{$view[i].id}-->">
                 	<td class="tdcheck">
                         <input type="checkbox" name="iddle[]" value="<!--{$view[i].id}-->"
                     </td>

@@ -90,7 +90,7 @@
                 </tr>
                 <!--{getName('categories','name_vn',4) assign="chuyenden"}-->
  				<!--{section name=i loop=$phieuNhap}-->
-                <tr class="">
+                <tr class="" id="g<!--{$phieuNhap[i].id}-->">
                     <td class="tdcheck">
                         <input type='checkbox' value ='<!--{$phieuNhap[i].id}-->' name='iddel[]' id='check<!--{$smarty.section.i.index + 1}-->'
                     </td>

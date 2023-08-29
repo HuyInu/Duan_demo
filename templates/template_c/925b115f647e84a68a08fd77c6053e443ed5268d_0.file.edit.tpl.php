@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-29 08:33:02
-  from 'D:\wamp64\www\duan_demo\templates\tpl\KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho\edit.tpl' */
+/* Smarty version 4.1.1, created on 2023-08-29 09:11:51
+  from 'D:\wamp64\www\duan_demo\templates\tpl\KhoSanXuat-Huy-Kho-Test-Xuat-Kho\edit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64ed4ace13ad19_78378267',
+  'unifunc' => 'content_64ed53e7c7ea54_02000664',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
-    '23d92af9e1c446515751720e259ba9f131208c9f' => 
+    '925b115f647e84a68a08fd77c6053e443ed5268d' => 
     array (
-      0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho\\edit.tpl',
-      1 => 1693272767,
+      0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\KhoSanXuat-Huy-Kho-Test-Xuat-Kho\\edit.tpl',
+      1 => 1693275088,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64ed4ace13ad19_78378267 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64ed53e7c7ea54_02000664 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\libraries\\smarty4\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
 <div class="breadcrumb">
@@ -31,12 +31,13 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\
             	<i class="fa-home"></i>
             </a>    
         </li>
-        <?php echo insert_HearderCat(array('cid' => $_REQUEST['cid'], 'root' => $_REQUEST['root'], 'act' => $_REQUEST['act']),$_smarty_tpl);?>
+        <?php echo getHearderCat(array('cid'=>$_REQUEST['cid'],'root'=>$_REQUEST['root'],'act'=>$_REQUEST['act']));?>
+
     </ul>
 </div>
 <div class="MainContent">
     <form name="allsubmit" id="frmEdit" action="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
-/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho.php?act=<?php if ($_REQUEST['act'] == 'add') {?>addsm<?php } else { ?>editsm<?php }?>&cid=<?php echo $_REQUEST['cid'];?>
+/sources/Kho-Huy-Test-Xuat-Kho.php?act=<?php if ($_REQUEST['act'] == 'add') {?>addsm<?php } else { ?>editsm<?php }?>&cid=<?php echo $_REQUEST['cid'];?>
 " method="post" enctype="multipart/form-data">
      	<div class="box-thongin" >
             <div class="MainTable">
@@ -69,10 +70,6 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\
                             <td width="7%" align="center">
                                 <strong>Phòng Sản Xuất</strong>
                             </td>
-                            <td width="7%" align="center">
-                                <strong>Đơn Hàng</strong>
-                            </td>
-                            
                             <td  align="center">
                                 <strong>Ghi Chú</strong>
                             </td>
@@ -132,37 +129,19 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 										if(num >= 1){
 											alert('tuổi vàng phải nhỏ hơn 1.');
 											$('#tuoivang').val(0);
-										}
+										}	
 									}
 								 <?php echo '</script'; ?>
 >
                              </td>
                              <td align="left">
-                                 
                                 <div id="siteIDload">
                                     <select name="chonphongbanin" id="chonphongbanin" class="abcd chonphonbanSanXuat">
-                                         <option value="0">Chọn Phòng Sản Xuất</option>
-                                         <?php echo insert_optionChuyenDenSelected(array('chonphongbanin' => $_smarty_tpl->tpl_vars['edit']->value['chonphongbanin'], 'id' => '283,376,708,169,1845'),$_smarty_tpl);?>
+                                        <option value="0">Chọn Phòng Sản Xuất</option>
+                                        <?php echo insert_optionChuyenDenSelected(array('chonphongbanin' => $_smarty_tpl->tpl_vars['edit']->value['chonphongbanin'], 'id' => '283,376,708,169,1834'),$_smarty_tpl);?>
                                     </select> 
                                 </div>
                              </td>
-                             
-                             <td align="left">
-                                 <?php echo '<script'; ?>
->
-                                    $(function () {
-                                        $("#siteIDload select").select2();
-                                    });
-                                <?php echo '</script'; ?>
->
-                              <!--  <div id="siteIDload">
-                                    <select name="madhin" id="madhin" class="abcd chonphonbanSanXuat" onchange="getSLVaoCotGhiChu(this.value)">
-                                         <option value="0">Chọn Mã Đơn Hàng Catalog</option>
-                                      
-                                    </select> 
-                                </div> -->
-                             </td>
-                             
                              <td align="left">
                                  <input type="text" autocomplete="off" name="ghichuvang" id="ghichuvang" class="txtdatagirld" value="<?php echo $_smarty_tpl->tpl_vars['edit']->value['ghichuvang'];?>
 "/>
@@ -198,7 +177,5 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 /js/select-checkbox/sol.js"><?php echo '</script'; ?>
 >
 <link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
-/js/select-checkbox/sol.css" />
-
-   <!--insert name='optionChoDonHangCatalog' madhin=$edit.madhin cid=$phongbanchuyen--> <?php }
+/js/select-checkbox/sol.css" /><?php }
 }

@@ -103,15 +103,15 @@ switch($act) {
 
             if(!empty($fromDate) && !empty($toDate)){
                 $smarty->assign("showlist",1);	
-                $sql_sum = "select ROUND(SUM(cannangvh),3) as cannangvh, ROUND(SUM(cannangh),3) as cannangh, ROUND(SUM(cannangv),3) as cannangv, ROUND(SUM(hao),3) as hao, ROUND(SUM(du),3) as du from $GLOBALS[db_sp].khonguonvao_khoachinct where trangthai = 2 and typevkc = 1 and dated >= '$fromDate' and dated <= '$toDate'";
+                $sql_sum = "select ROUND(SUM(cannangvh),3) as cannangvh, ROUND(SUM(cannangh),3) as cannangh, ROUND(SUM(cannangv),3) as cannangv, ROUND(SUM(hao),3) as hao, ROUND(SUM(du),3) as du from $GLOBALS[db_sp].khonguonvao_khoachinct where trangthai = 2 and typevkc = 1 and datedxuat >= '$fromDate' and datedxuat <= '$toDate'";
                 $sum = $GLOBALS['sp']->getRow($sql_sum);
 
-                $sql_sumLoaiVang = "select idloaivang,ROUND(SUM(cannangvh),3) as cannangvh, ROUND(SUM(cannangh),3) as cannangh, ROUND(SUM(cannangv),3) as cannangv, ROUND(SUM(hao),3) as hao, ROUND(SUM(du),3) as du from $GLOBALS[db_sp].khonguonvao_khoachinct where trangthai = 2 and typevkc = 1 and dated >= '$fromDate' and dated <= '$toDate' group by idloaivang order by idloaivang asc";
+                $sql_sumLoaiVang = "select idloaivang,ROUND(SUM(cannangvh),3) as cannangvh, ROUND(SUM(cannangh),3) as cannangh, ROUND(SUM(cannangv),3) as cannangv, ROUND(SUM(hao),3) as hao, ROUND(SUM(du),3) as du from $GLOBALS[db_sp].khonguonvao_khoachinct where trangthai = 2 and typevkc = 1 and datedxuat >= '$fromDate' and datedxuat <= '$toDate' group by idloaivang order by idloaivang asc";
                 $sumLoaiVang = $GLOBALS['sp']->getAll($sql_sumLoaiVang);
 
-                $sql = "select * from $GLOBALS[db_sp].khonguonvao_khoachinct where trangthai=2 and typevkc=1 and dated >= '".$fromDate."' and dated <= '".$toDate."' $wh order by numphieu asc, dated asc";
+                $sql = "select * from $GLOBALS[db_sp].khonguonvao_khoachinct where trangthai=2 and typevkc=1 and datedxuat >= '".$fromDate."' and datedxuat <= '".$toDate."' $wh order by numphieu asc, datedxuat asc";
 
-                $sql_count = "select count(id) from $GLOBALS[db_sp].khonguonvao_khoachinct where trangthai=2 and typevkc = 1 and dated >= '".$fromDate."' and dated <= '".$toDate."'";
+                $sql_count = "select count(id) from $GLOBALS[db_sp].khonguonvao_khoachinct where trangthai=2 and typevkc = 1 and datedxuat >= '".$fromDate."' and datedxuat <= '".$toDate."'";
 
                 $total = $count = ceil($GLOBALS['sp']->getOne($sql_count));
                 $num_rows_page = 100;//$numPageAll;
@@ -154,8 +154,8 @@ switch($act) {
                 and dated <= '".$toDate."' and typevkc = 1";
 
                 $sql_tongXuat = "select ROUND(SUM(cannangvh), 3) as cannangvh, ROUND(SUM(cannangh), 3) as cannangh, ROUND(SUM(cannangv), 3) as cannangv, ROUND(SUM(hao), 3) as hao, ROUND(SUM(du), 3) as du from $GLOBALS[db_sp].khonguonvao_khoachinct where `type`=2 and trangthai = 2
-                and dated >= '".$fromDate."' 
-                and dated <= '".$toDate."' and typevkc = 1";
+                and datedxuat >= '".$fromDate."' 
+                and datedxuat <= '".$toDate."' and typevkc = 1";
 
                 $tongNhap = $GLOBALS['sp']->getRow($sql_tongNhap);
                 $tongXuat = $GLOBALS['sp']->getRow($sql_tongXuat);
@@ -217,7 +217,61 @@ switch($act) {
     break;
     default:
     if( isset($_COOKIE["typeVangKimCuong"])  == 'kimcuong'){
+        $slTonFromDate = 0;
+        $tongDonGiaFromDate = 0;
+
         include_once("search/KhoNguonVaoTonKho.php");
+        $smarty->assign("showlist",1);
+        $dateThangTruoc = strtotime(date("Y-m-d", strtotime($fromDateDauthang).' -1 month'));
+        $dateThangTruoc = date('Y-m-d', $dateThangTruoc);
+        
+        $sqlSlThangTruoc = "select * from $GLOBALS[db_sp].khoachin_sodudauky where typevkc = 2 and dated <= '$dateThangTruoc'";
+        $slThangTruoc = $GLOBALS["sp"]->getAll($sqlSlThangTruoc);
+
+        $slTonThangTruoc = $slThangTruoc['sltonkimcuong'];
+        $tongDonGiaThangTruoc = $slThangTruoc['tongdongia'];
+
+        if($fromDateDauthang != $fromDate) {
+            $sqlNhapFromDate = "select count(id) as soluongnhap, ROUND(SUM(dongiaban),3) as dongiaban from $GLOBALS[db_sp].khonguonvao_khoachinct where typevkc=2 and type=2 and dated >= '$fromDateDauthang' and dated < '$fromDate'";
+            $nhapFromDate = $GLOBALS["sp"]->getAll($sqlNhapFromDate);
+            
+            $sqlXuatFromDate = "select count(id) as soluongxuat, ROUND(SUM(dongiaban),3) as dongiaban from $GLOBALS[db_sp].khonguonvao_khoachinct where typevkc=2 and type=2 and trangthai = 2 and datedxuat >= '$fromDateDauthang' and datedxuat < '$fromDate'";
+            $xuatFromDate = $GLOBALS["sp"]->getAll($sqlXuatFromDate);
+
+            $slTonFromDate = round((float)$nhapFromDate['soluongnhap'] - (float)$xuatFromDate['soluongxuat'], 3);
+            $tongDonGiaFromDate = round((float)$nhapFromDate['dongiaban'] - (float)$xuatFromDate['dongiaban'], 3);
+        }
+
+        $sltondaungay = $slTonThangTruoc + $slTonFromDate;
+        $dongiadaungay = $tongDonGiaThangTruoc + $tongDonGiaFromDate;
+
+        $sqlSlNhapToDate = "select count(id) as soluongnhap, ROUND(SUM(dongiaban),3) as dongiaban from $GLOBALS[db_sp].khonguonvao_khoachinct where typevkc=2 and type=2 and dated >= '$fromDate' and dated <= '$toDate'";
+        $nhapToDate = $GLOBALS["sp"]->getAll($sqlSlNhapToDate);
+        
+        $sqlSlXuatToDate = "select count(id) as soluongxuat, ROUND(SUM(dongiaban),3) as dongiaban from $GLOBALS[db_sp].khonguonvao_khoachinct where typevkc=2 and type=2 and trangthai = 2 and datedxuat >= '$fromDate' and datedxuat <= '$toDate'";
+        $xuatToDate = $GLOBALS["sp"]->getAll($sqlSlXuatToDate);
+
+        $slnhapcuoingay = $nhapToDate['soluongnhap'];
+        $slxuatcuoingay = $xuatToDate['soluongnhap'];
+        $dongianhapcuoingay = $nhapToDate['dongiaban'];
+        $dongiaxuatcuoingay = $xuatToDate['dongiaban'];
+        $slTonToDate = round((float)$nhapToDate['soluongnhap'] - (float)$xuatToDate['soluongxuat'], 3);
+        $tongDonGiaToDate = round((float)$nhapToDate['dongiaban'] - (float)$xuatToDate['dongiaban'], 3);
+        var_dump($slnhapcuoingay);
+        $sltontong = $slTonToDate + $sltondaungay;
+        $tongdongia = $tongDonGiaToDate + $dongiadaungay;
+
+        $smarty->assign("sltondaungay",$sltondaungay);
+        $smarty->assign("dongiadaungay",$dongiadaungay);
+        $smarty->assign("slnhapcuoingay",$slnhapcuoingay);
+        $smarty->assign("slxuatcuoingay",$slxuatcuoingay);
+        $smarty->assign("dongianhapcuoingay",$dongianhapcuoingay);
+        $smarty->assign("dongiaxuatcuoingay",$dongiaxuatcuoingay);
+        $smarty->assign("sltontong",$sltontong);
+        $smarty->assign("tongdongia",$tongdongia);
+
+
+        $template = 'Kho-A9-Huy-Thong-Ke/tonkimcuong.tpl';
     } else {
         include_once("search/KhoSanXuatThongKeTonKho.php");
 
