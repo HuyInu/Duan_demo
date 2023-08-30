@@ -26,6 +26,10 @@ switch($act) {
         $template = 'KhoSanXuat-Huy-Kho-Test-Xuat-Kho/edit.tpl';
         break;
     case 'edit':
+        $isExistRecord = isExistRecord('khosanxuat_khotest', "id=".$_GET['id']." and typevkc=1 and trangthai in (1,2)");
+        if($isExistRecord) {
+            dd('Phiếu đã được nhập');
+        }
         $idPhieu = $_GET['id'];
         $sql = "select * from $GLOBALS[db_sp].khosanxuat_khotest where id=$idPhieu";
         $rs = $GLOBALS['sp']->getRow($sql);
@@ -68,7 +72,8 @@ switch($act) {
             vaUpdate('khosanxuat_khotest', $phieuXuat, 'id='.$_POST['id']);
         }
 
-        $url = "KhoSanXuat-Huy-Kho-Test-Xuat-Kho.php?cid=".$_GET['cid'];
+        $url = "Kho-Huy-Test-Xuat-Kho.php?cid=".$_GET['cid'];
+        
 		page_transfer2($url);
         break;
     default:

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-25 10:53:18
+/* Smarty version 4.1.1, created on 2023-08-30 10:18:17
   from 'D:\wamp64\www\duan_demo\templates\tpl\KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64e825aea75936_34209913',
+  'unifunc' => 'content_64eeb4f9d41536_73355161',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     '3dd9e28f30fbe093fafbf118426d22dea6834988' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho\\list.tpl',
-      1 => 1692935596,
+      1 => 1693365496,
       2 => 'file',
     ),
   ),
@@ -27,7 +27,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./allsearch/cannangvs.tpl' => 1,
   ),
 ),false)) {
-function content_64e825aea75936_34209913 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64eeb4f9d41536_73355161 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\libraries\\smarty4\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
 <div class="breadcrumb">
@@ -45,14 +45,14 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\
 	<ul>
     	<li>
                 <a href="javascript:void(0)" title="Thêm" onclick="return ChangeAdd('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
-/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho.php?act=add&cid=<?php echo $_REQUEST['cid'];?>
+/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho1.php?act=add&cid=<?php echo $_REQUEST['cid'];?>
 ');">
                     <img src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /images/add.png">
                 </a> 
             
                	<a href="javascript:void(0)" title="Delete" onclick="ChangeAction('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
-/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho.php?act=dellist&cid=<?php echo $_REQUEST['cid'];?>
+/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho1.php?act=dellist&cid=<?php echo $_REQUEST['cid'];?>
 ');">
                     <img src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /images/delete.png">
@@ -62,7 +62,7 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\
 </div>
 <div class="MainContent">
 	<form name="f" id="f" method="post" onsubmit="return searchKhoDauVaoXuatVang('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
-/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho.php?cid=<?php echo $_REQUEST['cid'];?>
+/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho1.php?cid=<?php echo $_REQUEST['cid'];?>
 ')"> 
      	<div class="MainSearch">
         	<?php $_smarty_tpl->_subTemplateRender("file:./allsearch/tungay-denngay-vang-kim-cuong.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -227,7 +227,7 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
                         
                       <td align="center">
                             <a href="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
-/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho.php?act=edit&cid=<?php echo $_REQUEST['cid'];?>
+/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho1.php?act=edit&cid=<?php echo $_REQUEST['cid'];?>
 &id=<?php echo $_smarty_tpl->tpl_vars['phieuXuat']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
 " title="Sửa"> 
                                 <img src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>

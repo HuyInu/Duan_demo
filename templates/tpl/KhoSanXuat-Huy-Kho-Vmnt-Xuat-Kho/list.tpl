@@ -11,18 +11,18 @@
 <div class="goAction">
 	<ul>
     	<li>
-                <a href="javascript:void(0)" title="Thêm" onclick="return ChangeAdd('<!--{$path_url}-->/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho.php?act=add&cid=<!--{$smarty.request.cid}-->');">
+                <a href="javascript:void(0)" title="Thêm" onclick="return ChangeAdd('<!--{$path_url}-->/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho1.php?act=add&cid=<!--{$smarty.request.cid}-->');">
                     <img src="<!--{$path_url}-->/images/add.png">
                 </a> 
             
-               	<a href="javascript:void(0)" title="Delete" onclick="ChangeAction('<!--{$path_url}-->/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho.php?act=dellist&cid=<!--{$smarty.request.cid}-->');">
+               	<a href="javascript:void(0)" title="Delete" onclick="ChangeAction('<!--{$path_url}-->/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho1.php?act=dellist&cid=<!--{$smarty.request.cid}-->');">
                     <img src="<!--{$path_url}-->/images/delete.png">
                	</a> 
         </li>
     </ul>
 </div>
 <div class="MainContent">
-	<form name="f" id="f" method="post" onsubmit="return searchKhoDauVaoXuatVang('<!--{$path_url}-->/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho.php?cid=<!--{$smarty.request.cid}-->')"> 
+	<form name="f" id="f" method="post" onsubmit="return searchKhoDauVaoXuatVang('<!--{$path_url}-->/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho1.php?cid=<!--{$smarty.request.cid}-->')"> 
      	<div class="MainSearch">
         	<!--{include file="./allsearch/tungay-denngay-vang-kim-cuong.tpl"}-->
         </div>
@@ -158,7 +158,7 @@
                        </td>
                         
                       <td align="center">
-                            <a href="<!--{$path_url}-->/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho.php?act=edit&cid=<!--{$smarty.request.cid}-->&id=<!--{$phieuXuat[i].id}-->" title="Sửa"> 
+                            <a href="<!--{$path_url}-->/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho1.php?act=edit&cid=<!--{$smarty.request.cid}-->&id=<!--{$phieuXuat[i].id}-->" title="Sửa"> 
                                 <img src="<!--{$path_url}-->/images/edit.png"/> 
                             </a> 
                        </td>

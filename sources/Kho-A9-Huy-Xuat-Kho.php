@@ -7,10 +7,15 @@ $idPhieu = isset($_REQUEST['id']) ? $_REQUEST['id'] : '';
 
 switch($act) {
     case 'edit':
-        $sqlPhieu = "select * from $GLOBALS[db_sp].khonguonvao_khoachinct where id=$idPhieu";
-        $phieu = $GLOBALS['sp']->getRow($sqlPhieu);
-        $smarty->assign('phieuXuat', $phieu);
-        $template = 'Kho-A9-Huy-Xuat-Kho/editvang.tpl';
+        $isExistRecord = isExistRecord('khonguonvao_khoachinct', "id=$idPhieu and typevkc=1 and trangthai in (1,2)");
+        if(!$isExistRecord) {
+            $sqlPhieu = "select * from $GLOBALS[db_sp].khonguonvao_khoachinct where id=$idPhieu";
+            $phieu = $GLOBALS['sp']->getRow($sqlPhieu);
+            $smarty->assign('phieuXuat', $phieu);
+            $template = 'Kho-A9-Huy-Xuat-Kho/editvang.tpl';
+        } else {
+            dd('Phiếu đã được nhập.');
+        }
     break;
     case 'editsmVang':
         $id = $_POST['id'];
@@ -41,13 +46,12 @@ switch($act) {
         }	
     break;
     default:
-        //include_once("search/KhoNguonVaoSearch.php");
         if( isset($_COOKIE["typeVangKimCuong"]) ? $_COOKIE["typeVangKimCuong"] : '' == 'kimcuong'){
             //include_once("search/KhoNguonVaoXuatKhoKimCuongSearch.php");
             $whereTypevkc = 'typevkc = 2';
             $template = 'Kho-A9-Huy-Xuat-Kho/listkimcuong.tpl';
         } else {
-            //include_once("search/KhoNguonVaoXuatKhoVangSearch.php");
+            include_once("search/KhoNguonVaoXuatKhoVangSearch.php");
             $whereTypevkc = 'typevkc = 1';
             $template = 'Kho-A9-Huy-Xuat-Kho/listvang.tpl';
         }

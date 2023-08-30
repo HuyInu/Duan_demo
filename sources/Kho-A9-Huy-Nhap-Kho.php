@@ -23,6 +23,10 @@ switch($act) {
         $template = 'Kho-A9-Huy-Nhap-Kho/edit.tpl';
     break;
     case 'edit':
+        $isExistRecord = isExistRecord('khonguonvao_khoachin', "id=".$_GET['id']." and type = 3");
+        if($isExistRecord) {
+            dd('Phiếu đã được nhập');
+        }
         $idToa = $_REQUEST['id'];
 
         $sqlToa = "select * from $GLOBALS[db_sp].khonguonvao_khoachin where id = $idToa and type = 1";

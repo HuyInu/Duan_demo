@@ -5,6 +5,8 @@ include_once("functions/function.php");
 include_once("functions/functionVu.php");
 include_once("functions/functionNhom.php");
 include_once("functions/functionHuy.php");
+include_once("Helper/SQLHelper.php");
+include_once("Helper/DebugHelper.php");
 global $path_url, $act, $do, $numRowsPage;
 date_default_timezone_set("Asia/Ho_Chi_Minh");
 CheckLogin();

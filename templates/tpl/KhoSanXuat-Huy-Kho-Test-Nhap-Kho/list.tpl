@@ -142,7 +142,7 @@
                     <td class="tdShowHide">
                         <!--{if $phieuNhap[i].typechuyen eq 1}-->
                             <!--{if $phieuNhap[i].type eq 1}-->
-                                <a href="javascript:void(0);" onclick="giahuy_xacnhanchuyenKhoSanXuat('tralaiKhoSanXuat', <!--{$phieuNhap[i].cid}-->, <!--{$phieuNhap[i].id}-->, '<!--{$phieuNhap[i].typekho}-->')" title="Trả lại">
+                                <a href="javascript:void(0);" onclick="giahuy_xacnhanchuyenKhoSanXuat('tralaichuyenKhoSanXuat', <!--{$phieuNhap[i].cid}-->, <!--{$phieuNhap[i].id}-->, '<!--{$phieuNhap[i].typekho}-->')" title="Trả lại">
                                     <img src="<!--{$path_url}-->/images/tra-lai.png"/>    
                                 </a>
                             <!--{/if}-->

@@ -64,8 +64,8 @@ switch($act) {
                 $phieuNhapMoi['dated'] = $dateNow;
                 $phieuNhapMoi['phongbanchuyen'] = $idCategChuyen;
                 $phieuNhapMoi['phongban'] = $idCategNhan;
-                $phieuNhapMoi['timechuyen'] = $timeNow;
-                $phieuNhapMoi['datechuyen'] = $dateNow;
+                // $phieuNhapMoi['timechuyen'] = $timeNow;
+                // $phieuNhapMoi['datechuyen'] = $dateNow;
                 $phieuNhapMoi['trangthai'] = 0;
 
                 vaInsert($tableNhan, $phieuNhapMoi);
@@ -108,7 +108,11 @@ switch($act) {
                 $phieuXuatUpdate['phongban'] = $phieuNhap['phongbanchuyen'];
                 $phieuXuatUpdate['trangthai'] = 0;
                 $phieuXuatUpdate['tralai'] = 1;
-                
+
+                $khoType = getKhoType($tableChuyen);
+                If($khoType == 'khosanxuat') {
+                    $phieuXuatUpdate['type'] = 2;
+                }         
 
                 vaDelete($tableNhan, 'id='.$phieuNhap['id']);
                 vaUpdate($tableChuyen, $phieuXuatUpdate, 'id='.$phieuNhap['idmaphieukho']);
@@ -125,45 +129,45 @@ switch($act) {
             $error = $errorTransetion;
         }
     break;
-    case 'tralaiKhoSanXuat':
-        $GLOBALS["sp"]->BeginTrans();
-		try{
-                $sqlCategNhan = "select * from $GLOBALS[db_sp].categories where id=$idCategNhan";
-                $CategNhan = $GLOBALS['sp']->getRow($sqlCategNhan);
-                $tableNhan = $CategNhan['tablect'];
+    // case 'tralaiKhoSanXuat':
+    //     $GLOBALS["sp"]->BeginTrans();
+	// 	try{
+    //             $sqlCategNhan = "select * from $GLOBALS[db_sp].categories where id=$idCategNhan";
+    //             $CategNhan = $GLOBALS['sp']->getRow($sqlCategNhan);
+    //             $tableNhan = $CategNhan['tablect'];
 
-                $sqlPhieuNhap = "select * from $GLOBALS[db_sp].$tableNhan where id=$idPhieu";
-                $phieuNhap = $GLOBALS['sp']->getRow($sqlPhieuNhap);
+    //             $sqlPhieuNhap = "select * from $GLOBALS[db_sp].$tableNhan where id=$idPhieu";
+    //             $phieuNhap = $GLOBALS['sp']->getRow($sqlPhieuNhap);
 
-            $sqlCheckExisted = "select * from $GLOBALS[db_sp].$tableNhan where id=$idPhieu";
-            $checkExisted = $GLOBALS['sp']->getRow($sqlCheckExisted);
-            if(!empty($checkExisted['typechuyen']) && $checkExisted['typechuyen'] == 1) {
-                $sqlCategChuyen = "select * from $GLOBALS[db_sp].categories where id=".$phieuNhap['phongbanchuyen'];
-                $CategChuyen = $GLOBALS['sp']->getRow($sqlCategChuyen);
-                $tableChuyen =$CategChuyen['tablect'];
+    //         $sqlCheckExisted = "select * from $GLOBALS[db_sp].$tableNhan where id=$idPhieu";
+    //         $checkExisted = $GLOBALS['sp']->getRow($sqlCheckExisted);
+    //         if(!empty($checkExisted['typechuyen']) && $checkExisted['typechuyen'] == 1) {
+    //             $sqlCategChuyen = "select * from $GLOBALS[db_sp].categories where id=".$phieuNhap['phongbanchuyen'];
+    //             $CategChuyen = $GLOBALS['sp']->getRow($sqlCategChuyen);
+    //             $tableChuyen =$CategChuyen['tablect'];
             
-                $phieuXuatUpdate = [];
-                $phieuXuatUpdate['phongban'] = $phieuNhap['phongbanchuyen'];
-                $phieuXuatUpdate['trangthai'] = 0;
-                $phieuXuatUpdate['tralai'] = 1;
-                $phieuXuatUpdate['type'] = 2;
+    //             $phieuXuatUpdate = [];
+    //             $phieuXuatUpdate['phongban'] = $phieuNhap['phongbanchuyen'];
+    //             $phieuXuatUpdate['trangthai'] = 0;
+    //             $phieuXuatUpdate['tralai'] = 1;
+    //             $phieuXuatUpdate['type'] = 2;
                 
 
-                vaDelete($tableNhan, 'id='.$phieuNhap['id']);
-                vaUpdate($tableChuyen, $phieuXuatUpdate, 'id='.$phieuNhap['idmaphieukho']);
-            } else if (!empty($checkExisted['typechuyen']) && $checkExisted['typechuyen'] != 1) {
-                $error = "Phiếu đã được xác nhận nhập.";
-            }
-            else {
-                $error = "Phiếu đã được trả lại.";
-            } 
+    //             vaDelete($tableNhan, 'id='.$phieuNhap['id']);
+    //             vaUpdate($tableChuyen, $phieuXuatUpdate, 'id='.$phieuNhap['idmaphieukho']);
+    //         } else if (!empty($checkExisted['typechuyen']) && $checkExisted['typechuyen'] != 1) {
+    //             $error = "Phiếu đã được xác nhận nhập.";
+    //         }
+    //         else {
+    //             $error = "Phiếu đã được trả lại.";
+    //         } 
 
-            $GLOBALS["sp"]->CommitTrans();
-        }catch(Exception $e) {
-            $GLOBALS["sp"]->RollbackTrans();
-            $error = $errorTransetion;
-        }
-    break;
+    //         $GLOBALS["sp"]->CommitTrans();
+    //     }catch(Exception $e) {
+    //         $GLOBALS["sp"]->RollbackTrans();
+    //         $error = $errorTransetion;
+    //     }
+    // break;
     case 'xacnhanchuyenKhoSanXuat':
         $GLOBALS["sp"]->BeginTrans();
 		try{
@@ -198,8 +202,8 @@ switch($act) {
                     vaUpdate($tableChuyen, $phieuXuatUpdate, 'id='.$idMaPhieuKho);
     
                     $phieuNhapUpdate['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
-                    $phieuNhapUpdate['time'] = $timeNow;
-                    $phieuNhapUpdate['dated'] = $dateNow;
+                    // $phieuNhapUpdate['time'] = $timeNow;
+                    // $phieuNhapUpdate['dated'] = $dateNow;
                     $phieuNhapUpdate['timechuyen'] = $timeNow;
                     $phieuNhapUpdate['datechuyen'] = $dateNow;
                     $phieuNhapUpdate['typechuyen'] = 2;
@@ -311,8 +315,8 @@ switch($act) {
                 $phieuNhapMoi['dated'] = $dateNow;
                 $phieuNhapMoi['time'] = $timeNow;
                 $phieuNhapMoi['phongbanchuyen'] = $idCategChuyen;
-                $phieuNhapMoi['datechuyen'] = $dateNow;
-                $phieuNhapMoi['timechuyen'] = $timeNow;
+                // $phieuNhapMoi['datechuyen'] = $dateNow;
+                // $phieuNhapMoi['timechuyen'] = $timeNow;
                 $phieuNhapMoi['trangthai'] = 0;
                 $phieuNhapMoi['mid'] = $phieuXuat['mid'];;
                 $phieuNhapMoi['cannangvh'] = $phieuXuat['cannangvh'];

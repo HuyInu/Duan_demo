@@ -4441,8 +4441,8 @@ function giahuy_ghiSoHachToan($tablehachtoan, $tablenhan, $id, $typehachtoan) {
 		$dongiaxuat = $phieu['dongiaban'];
 		$slxuatkimcuongrc = 1;
 	}
-	$haorc = $phieu['haochuyen'];
-	$durc = $phieu['duchuyen'];	
+	$haorc = $phieu['hao'];
+	$durc = $phieu['du'];	
 	
 	if($phieu['typevkc'] == 1) {
 		$whereTypevkc = "typevkc=1";
@@ -4460,13 +4460,13 @@ function giahuy_ghiSoHachToan($tablehachtoan, $tablenhan, $id, $typehachtoan) {
 
 			$currentHachToan['slnhapvh'] = $slnhapvh;
 			$currentHachToan['slxuatvh'] = $slxuatvh;
-			$currentHachToan['sltonvh'] = ($slnhapvh + $hachToanLastMonth['sltonvh']) - $slxuatvh;
+			$currentHachToan['sltonvh'] = round((float)$slnhapvh + (float)$hachToanLastMonth['sltonvh'] - (float)$slxuatvh, 3);
 			$currentHachToan['slnhaph'] = $slnhaph;
 			$currentHachToan['slxuath'] = $slxuath;
-			$currentHachToan['sltonh'] = ($slnhaph + $hachToanLastMonth['sltonh']) - $slxuath;
+			$currentHachToan['sltonh'] = round((float)$slnhaph + (float)$hachToanLastMonth['sltonh'] - (float)$slxuath, 3);
 			$currentHachToan['slnhapv'] = $slnhapv;
 			$currentHachToan['slxuatv'] = $slxuatv;
-			$currentHachToan['sltonv'] = ($slnhapv + $hachToanLastMonth['sltonv']) - $slxuatv;
+			$currentHachToan['sltonv'] = round((float)$slnhapv + (float)$hachToanLastMonth['sltonv'] - (float)$slxuatv, 3);
 			$currentHachToan['hao'] = $haorc;
 			$currentHachToan['du'] = $durc;
 			$currentHachToan['idloaivang'] = $phieu['idloaivang'];
@@ -4476,12 +4476,12 @@ function giahuy_ghiSoHachToan($tablehachtoan, $tablenhan, $id, $typehachtoan) {
 			$sqlhachToanLastMonth = "select * from $GLOBALS[db_sp].$tablehachtoan where typevkc = 2 order by dated desc limit 1";
 			$hachToanLastMonth = $GLOBALS["sp"]->getRow($sqlhachToanLastMonth);
 
-			$currentHachToan['sltonkimcuong'] = $hachToanLastMonth['sltonkimcuong'] + $slnhapkimcuongrc;
-			$currentHachToan['slnhapkimcuong'] = $slnhapkimcuongrc;
-			$currentHachToan['slxuatkimcuong'] = $slxuatkimcuongrc;
-			$currentHachToan['dongianhap'] = $dongianhap;
-			$currentHachToan['dongiaxuat'] = $dongiaxuat;
-			$currentHachToan['tongdongia'] = $hachToanLastMonth['tongdongia'];
+			$currentHachToan['sltonkimcuong'] = round((float)$hachToanLastMonth['sltonkimcuong'] + (float)$slnhapkimcuongrc - (float)$slxuatkimcuongrc, 3);
+			$currentHachToan['slnhapkimcuong'] = round($slnhapkimcuongrc,3);
+			$currentHachToan['slxuatkimcuong'] = round($slxuatkimcuongrc,3);
+			$currentHachToan['dongianhap'] = round($dongianhap,3);
+			$currentHachToan['dongiaxuat'] = round($dongiaxuat, 3);
+			$currentHachToan['tongdongia'] = round((float)$hachToanLastMonth['tongdongia'] + (float)$dongianhap - (float)$dongiaxuat, 3);
 			$currentHachToan['dated'] = $dateDauThang;
 			$currentHachToan['typevkc'] = 2;
 		}
@@ -4489,24 +4489,26 @@ function giahuy_ghiSoHachToan($tablehachtoan, $tablenhan, $id, $typehachtoan) {
 		vaInsert($tablehachtoan, $currentHachToan);
 	} else {
 		if($phieu['typevkc'] == 1) {
-			$currentHachToan['slnhapvh'] = $slnhapvh + $hachToanThisMonth['slnhapvh'];
-			$currentHachToan['slxuatvh'] = $slxuatvh + $hachToanThisMonth['slxuatvh'];
-			$currentHachToan['sltonvh'] = ($slnhapvh + $hachToanThisMonth['sltonvh']) - $slxuatvh;
-			$currentHachToan['slnhaph'] = $slnhaph + $hachToanThisMonth['slnhaph'];
-			$currentHachToan['slxuath'] = $slxuath + $hachToanThisMonth['slxuath'];
-			$currentHachToan['sltonh'] = ($slnhaph + $hachToanThisMonth['sltonh']) - $slxuath;
-			$currentHachToan['slnhapv'] = $slnhapv + $hachToanThisMonth['slnhapv'];
-			$currentHachToan['slxuatv'] = $slxuatv + $hachToanThisMonth['slxuatv'];
-			$currentHachToan['sltonv'] = ($slnhapv + $hachToanThisMonth['sltonv']) - $slxuatv;
-			$currentHachToan['hao'] = $hachToanThisMonth['hao'] + $haorc;
-			$currentHachToan['du'] = $hachToanThisMonth['du'] + $durc;
+			$currentHachToan['slnhapvh'] = round((float)$slnhapvh + (float)$hachToanThisMonth['slnhapvh'], 3);
+			$currentHachToan['slxuatvh'] = round((float)$slxuatvh + (float)$hachToanThisMonth['slxuatvh'], 3);
+			$currentHachToan['sltonvh'] = round((float)$slnhapvh + (float)$hachToanThisMonth['sltonvh'] - (float)$slxuatvh, 3);
+			$currentHachToan['slnhaph'] = round((float)$slnhaph + (float)$hachToanThisMonth['slnhaph'], 3);
+			$currentHachToan['slxuath'] = round((float)$slxuath + (float)$hachToanThisMonth['slxuath'], 3);
+			$currentHachToan['sltonh'] = round((float)$slnhaph + (float)$hachToanThisMonth['sltonh'] - (float)$slxuath, 3);
+			$currentHachToan['slnhapv'] = round((float)$slnhapv + (float)$hachToanThisMonth['slnhapv'], 3);
+			$currentHachToan['slxuatv'] = round((float)$slxuatv + (float)$hachToanThisMonth['slxuatv'], 3);
+			$currentHachToan['sltonv'] = round((float)$slnhapv + (float)$hachToanThisMonth['sltonv'] - (float)$slxuatv, 3);
+			$currentHachToan['hao'] = round((float)$hachToanThisMonth['hao'] + (float)$haorc, 3);
+			$currentHachToan['du'] = round((float)$hachToanThisMonth['du'] + (float)$durc, 3);
 		} else {
-			$currentHachToan['sltonkimcuong'] = ($hachToanThisMonth['sltonkimcuong'] + $slnhapkimcuongrc) - $slxuatkimcuongrc;
-			$currentHachToan['slnhapkimcuong'] = $hachToanThisMonth['slnhapkimcuong'] + $slnhapkimcuongrc;
-			$currentHachToan['slxuatkimcuong'] = $hachToanThisMonth['slxuatkimcuong'] + $slxuatkimcuongrc;
-			$currentHachToan['dongianhap'] = $hachToanThisMonth['dongianhap'] + $dongianhap;
-			$currentHachToan['dongiaxuat'] = $hachToanThisMonth['dongiaxuat'] + $dongiaxuat;
-			$currentHachToan['tongdongia'] = ($hachToanThisMonth['tongdongia'] + $dongianhap) - $dongiaxuat;
+			$currentHachToan['sltonkimcuong'] = round((float)$hachToanThisMonth['sltonkimcuong'] + (float)$slnhapkimcuongrc - (float)$slxuatkimcuongrc,3);
+			$currentHachToan['slnhapkimcuong'] = round((float)$hachToanThisMonth['slnhapkimcuong'] + (float)$slnhapkimcuongrc, 3);
+			$currentHachToan['slxuatkimcuong'] = round((float)$hachToanThisMonth['slxuatkimcuong'] + (float)$slxuatkimcuongrc, 3);
+			$currentHachToan['dongianhap'] = round((float)$hachToanThisMonth['dongianhap'] + (float)$dongianhap, 3);
+			$currentHachToan['dongiaxuat'] = round((float)$hachToanThisMonth['dongiaxuat'] + (float)$dongiaxuat, 3);
+			$currentHachToan['tongdongia'] = round((float)$hachToanThisMonth['tongdongia'] + (float)$dongianhap - (float)$dongiaxuat, 3);
+			$currentHachToan['hao'] = round((float)$hachToanThisMonth['hao'] + (float)$haorc);
+			$currentHachToan['du'] = round((float)$hachToanThisMonth['du'] + (float)$durc);
 		}
 
 		vaUpdate($tablehachtoan, $currentHachToan, 'id='.$hachToanThisMonth['id']);
@@ -8356,8 +8358,8 @@ function giahuy_dieuChinhSoLieuHachToanKhoNguonVao($table,$tablehachtoan,$idloai
 	
 	for($i=$hachToanLenght-1; $i>=0; $i--) {
 		$dateDauThang = $hachToan[$i]['dated'];
-		$dateDauThangExplode = explode('-', $hachToan[$i]['dated']);
-		$dateCuoiThang = $dateDauThangExplode[0].'-'.$dateDauThangExplode[1].'-31';
+		$dateCuoiThang = date('Y-m-t', strtotime($dateDauThang));
+
 		$hachToanUpdate = [];
 
 		$sqlTongNhap = "select ROUND(SUM(cannangvh), 3) as cannangvh, 
@@ -8396,14 +8398,13 @@ function giahuy_dieuChinhSoLieuHachToanKhoNguonVao($table,$tablehachtoan,$idloai
 }
 
 function giahuy_dieuChinhSoLieuHachToanKhoSanXuat($table,$tablehachtoan,$idloaivang) {
-	$sqlHachToan = "select * from $GLOBALS[db_sp].$tablehachtoan where idloaivang=$idloaivang order by dated desc limit 2";
+	$sqlHachToan = "select * from $GLOBALS[db_sp].$tablehachtoan where idloaivang=$idloaivang order by dated desc limit 3";
 	$hachToan = $GLOBALS['sp']->getAll($sqlHachToan);
 	$hachToanLenght = count($hachToan);
 	
 	for($i=$hachToanLenght-1; $i>=0; $i--) {
 		$dateDauThang = $hachToan[$i]['dated'];
-		$dateDauThangExplode = explode('-', $hachToan[$i]['dated']);
-		$dateCuoiThang = $dateDauThangExplode[0].'-'.$dateDauThangExplode[1].'-31';
+		$dateCuoiThang = date('Y-m-t', strtotime($dateDauThang));
 		$hachToanUpdate = [];
 
 		$sqlTongNhap = "select ROUND(SUM(cannangvh), 3) as cannangvh, 
@@ -8417,7 +8418,7 @@ function giahuy_dieuChinhSoLieuHachToanKhoSanXuat($table,$tablehachtoan,$idloaiv
 					ROUND(SUM(cannangv), 3) as cannangv
 					from $GLOBALS[db_sp].$table where idloaivang=$idloaivang and type in (2,3) and trangthai = 2 and datedxuat >= '$dateDauThang' and datedxuat <= '$dateCuoiThang'";
 		$tongXuat = $GLOBALS['sp']->getRow($sqlTongXuat);
-		var_dump($tongNhap);
+		
 		if((float)$tongNhap['cannangv'] != (float)$hachToan[$i]['slnhapv']) {
 			$hachToanUpdate['slnhapvh'] = $tongNhap['cannangvh'];
 			$hachToanUpdate['slnhaph'] = $tongNhap['cannangh'];
@@ -8436,7 +8437,7 @@ function giahuy_dieuChinhSoLieuHachToanKhoSanXuat($table,$tablehachtoan,$idloaiv
 		$hachToanUpdate['sltonvh'] = Round((float)$slTonThangTruoc['sltonvh'] + (float)$tongNhap['cannangvh'] - (float)$tongXuat['cannangvh'],3);
 		$hachToanUpdate['sltonh'] = Round((float)$slTonThangTruoc['sltonh'] + (float)$tongNhap['cannangh'] - (float)$tongXuat['cannangh'],3);
 		$hachToanUpdate['sltonv'] = Round((float)$slTonThangTruoc['sltonv'] + (float)$tongNhap['cannangv'] - (float)$tongXuat['cannangv'],3);
-		var_dump($hachToanUpdate);
+		
 		vaUpdate($tablehachtoan, $hachToanUpdate, "id = ".$hachToan[$i]['id']);
 	}
 }

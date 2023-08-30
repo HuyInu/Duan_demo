@@ -2,8 +2,8 @@
 include_once("../maininclude.php");
 $act = isset($_REQUEST['act']) ? $_REQUEST['act'] : '';
 $idpem = isset($_REQUEST['cid']) ? $_REQUEST['cid'] : '';
-
 $smarty->assign('phongbanchuyen', $idpem);
+
 switch($act) {
     case 'add':
         $rs = [];
@@ -25,13 +25,18 @@ switch($act) {
     break;
     case 'edit':
         try{
-        $sqlPhieu = "select * from $GLOBALS[db_sp].khosanxuat_khovmnt where id=".$_REQUEST['id'];
-        $phieu = $GLOBALS['sp']->getRow($sqlPhieu);
+            $isExistRecord = isExistRecord('khosanxuat_khovmnt', "id=".$_GET['id']." and typevkc=1 and trangthai in (1,2)");
+            if($isExistRecord) {
+                dd('Phiếu đã được nhập');
+            }
 
-        $slqLoaiVang = "select * from $GLOBALS[db_sp].loaivang where active = 1";
-        $loaiVang = $GLOBALS['sp']->getAll($slqLoaiVang);
+            $sqlPhieu = "select * from $GLOBALS[db_sp].khosanxuat_khovmnt where id=".$_REQUEST['id'];
+            $phieu = $GLOBALS['sp']->getRow($sqlPhieu);
+
+            $slqLoaiVang = "select * from $GLOBALS[db_sp].loaivang where active = 1";
+            $loaiVang = $GLOBALS['sp']->getAll($slqLoaiVang);
         }catch(Exception $e) {
-            var_dump($e);die();
+            dd($e);
         }
         $smarty->assign('typegold', $loaiVang);
         $smarty->assign('edit', $phieu);
@@ -41,7 +46,6 @@ switch($act) {
         $dateNow = date("Y-m-d");
         $timeNow = date("H:i:s");
         $phieuXuat = [];
-
         try{
             $phieuXuat['idloaivang'] = $_POST['idloaivang'];
             $phieuXuat['cannangvh'] = $_POST['cannangvh'];
@@ -70,9 +74,25 @@ switch($act) {
         }catch(Exception $e) {
             var_dump($e);die();
         }
-        $url = "KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho.php?cid=".$_GET['cid'];
+        $url = "KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho1.php?cid=".$_GET['cid'];
 		page_transfer2($url);
-    break;
+        break;
+    case 'dellist':
+        $GLOBALS["sp"]->BeginTrans();
+		try{
+            $iddel = $_POST['iddel'];
+            $whereDelete = implode(',', $iddel);
+            $sql = "Delete from $GLOBALS[db_sp].khosanxuat_khovmnt where id in ($whereDelete)";
+            $GLOBALS["sp"]->execute($sql);
+
+            $GLOBALS["sp"]->CommitTrans();
+        } catch(Exception $e) {
+            $GLOBALS["sp"]->RollbackTrans();
+			die($errorTransetion);
+        }
+        $url = "KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho1.php?cid=".$_GET['cid'];
+		page_transfer2($url);
+        break;
     default:
         include_once("search/KhoNguonVaoXuatKhoVangSearch.php");
         $sql = "select *from $GLOBALS[db_sp].khosanxuat_khovmnt where cid=$idpem and trangthai = 0 and type = 2 and typevkc = 1 $wh order by dated asc, id asc";

@@ -4,6 +4,7 @@ $act = isset($_REQUEST['act'])?$_REQUEST['act']:"";
 $idpem = $_GET["cid"];
 $smarty->assign("phongbanchuyen",$idpem);
 
+
 $sqlvang = "select * from $GLOBALS[db_sp].loaivang where active=1 order by num asc, id asc"; 
 $rsvang = $GLOBALS["sp"]->getAll($sqlvang);
 $smarty->assign("typegold",$rsvang);

@@ -233,10 +233,10 @@ switch($act) {
 
         if($fromDateDauthang != $fromDate) {
             $sqlNhapFromDate = "select count(id) as soluongnhap, ROUND(SUM(dongiaban),3) as dongiaban from $GLOBALS[db_sp].khonguonvao_khoachinct where typevkc=2 and type=2 and dated >= '$fromDateDauthang' and dated < '$fromDate'";
-            $nhapFromDate = $GLOBALS["sp"]->getAll($sqlNhapFromDate);
+            $nhapFromDate = $GLOBALS["sp"]->getRow($sqlNhapFromDate);
             
             $sqlXuatFromDate = "select count(id) as soluongxuat, ROUND(SUM(dongiaban),3) as dongiaban from $GLOBALS[db_sp].khonguonvao_khoachinct where typevkc=2 and type=2 and trangthai = 2 and datedxuat >= '$fromDateDauthang' and datedxuat < '$fromDate'";
-            $xuatFromDate = $GLOBALS["sp"]->getAll($sqlXuatFromDate);
+            $xuatFromDate = $GLOBALS["sp"]->getRow($sqlXuatFromDate);
 
             $slTonFromDate = round((float)$nhapFromDate['soluongnhap'] - (float)$xuatFromDate['soluongxuat'], 3);
             $tongDonGiaFromDate = round((float)$nhapFromDate['dongiaban'] - (float)$xuatFromDate['dongiaban'], 3);
@@ -246,10 +246,10 @@ switch($act) {
         $dongiadaungay = $tongDonGiaThangTruoc + $tongDonGiaFromDate;
 
         $sqlSlNhapToDate = "select count(id) as soluongnhap, ROUND(SUM(dongiaban),3) as dongiaban from $GLOBALS[db_sp].khonguonvao_khoachinct where typevkc=2 and type=2 and dated >= '$fromDate' and dated <= '$toDate'";
-        $nhapToDate = $GLOBALS["sp"]->getAll($sqlSlNhapToDate);
+        $nhapToDate = $GLOBALS["sp"]->getRow($sqlSlNhapToDate);
         
         $sqlSlXuatToDate = "select count(id) as soluongxuat, ROUND(SUM(dongiaban),3) as dongiaban from $GLOBALS[db_sp].khonguonvao_khoachinct where typevkc=2 and type=2 and trangthai = 2 and datedxuat >= '$fromDate' and datedxuat <= '$toDate'";
-        $xuatToDate = $GLOBALS["sp"]->getAll($sqlSlXuatToDate);
+        $xuatToDate = $GLOBALS["sp"]->getRow($sqlSlXuatToDate);
 
         $slnhapcuoingay = $nhapToDate['soluongnhap'];
         $slxuatcuoingay = $xuatToDate['soluongnhap'];
@@ -257,7 +257,7 @@ switch($act) {
         $dongiaxuatcuoingay = $xuatToDate['dongiaban'];
         $slTonToDate = round((float)$nhapToDate['soluongnhap'] - (float)$xuatToDate['soluongxuat'], 3);
         $tongDonGiaToDate = round((float)$nhapToDate['dongiaban'] - (float)$xuatToDate['dongiaban'], 3);
-        var_dump($slnhapcuoingay);
+
         $sltontong = $slTonToDate + $sltondaungay;
         $tongdongia = $tongDonGiaToDate + $dongiadaungay;
 
