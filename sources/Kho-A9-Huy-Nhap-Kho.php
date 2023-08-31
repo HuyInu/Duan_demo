@@ -74,6 +74,12 @@ switch($act) {
         $sql = "select * from $GLOBALS[db_sp].khonguonvao_khoachin where type = 1 and phongban = $idpem order by datedchungtu desc, maphieu asc";
         $phieuNhap = $GLOBALS["sp"]->getAll($sql);
 
+        //dd($_COOKIE['actionResult']);
+        if(isset($_COOKIE['actionResult'])) {
+            $smarty->assign('actResult', $_COOKIE['actionResult']);
+            setcookie('actionResult', '', -1);
+        }
+
         $smarty->assign('phieuNhap',$phieuNhap);
         $template = 'Kho-A9-Huy-Nhap-Kho/list.tpl';
     break;
@@ -215,9 +221,12 @@ function Editsm () {
         }
 
         $GLOBALS["sp"]->CommitTrans();
+        setcookie('actionResult', 'success', time() + 50);
+        $_COOKIE['actionResult'] = 'success';
     } catch (Exception $e) {
         $GLOBALS["sp"]->RollbackTrans();
-		die($e);
+        setcookie('actionResult', 'error',  time() +50);
+        $_COOKIE['actionResult'] = 'error';
     }
 }
 

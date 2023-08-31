@@ -1985,24 +1985,23 @@ function giahuy_thongKeKhoNguonVaoTonKho($cid, $idloaivang, $fromDate, $toDate) 
 					$haoDuSDDK = $GLOBALS['sp']->getRow($sqlHaoDuSDDK);
 
 					$sqlSlTonSDDK = "select * from $GLOBALS[db_sp].$tableHachToan where typevkc=1 and idloaivang = $idloaivang and dated <= '$dauThangtruoc' order by id desc limit 1";
-					$slTonSDDK = $GLOBALS['sp']->getRow($sqlSlTonSDDK);
-
-					$arrlist['sltonsddk'] = round(($slTonSDDK['sltonv'] - $haoDuSDDK['hao']),3) + $haoDuSDDK['du'];
+					$TonSDDK = $GLOBALS['sp']->getRow($sqlSlTonSDDK);
+					$slTonSDDK = round(($TonSDDK['sltonv'] - $haoDuSDDK['hao']),3) + $haoDuSDDK['du'];
+					$arrlist['sltonsddk'] = $slTonSDDK;
 					
-					$sqlHaoDu = "select round(sum(hao),3) as hao, ROUND(SUM(du), 3) as du from $GLOBALS[db_sp].$tableHachToan where typevkc=1 and idloaivang = $idloaivang and dated <=$dateDauThang";
+					$sqlHaoDu = "select round(sum(hao),3) as hao, ROUND(SUM(du), 3) as du from $GLOBALS[db_sp].$tableHachToan where typevkc=1 and idloaivang = $idloaivang and dated <='$dateDauThang'";
 					$haoDuDauThang = $GLOBALS['sp']->getRow($sqlHaoDu);
-
-					$sqlCurrentTon = "select * from $GLOBALS[db_sp].$tableHachToan where typevkc=1 and idloaivang = $idloaivang order by id desc limit 1";
+					
+					$sqlCurrentTon = "select * from $GLOBALS[db_sp].$tableHachToan where typevkc=1 and idloaivang = $idloaivang and dated='$dateDauThang'";
 					$currentTon = $GLOBALS['sp']->getRow($sqlCurrentTon);
 
-					$slTon = round(round(($currentTon['sltonv'] - $haoDuDauThang['hao']),3) + $haoDuDauThang['du'] ,3);
+					$slTon = round(round(($slTonSDDK + $currentTon['slnhapv'] - $currentTon['slxuatv'] - $haoDuDauThang['hao']),3) + $haoDuDauThang['du'] ,3);
 
-					$arrlist['slhoa'] = $sqlHaoDu['hao'];
-					$arrlist['sldu'] = $sqlHaoDu['du'];
+					$arrlist['slhao'] = $haoDuDauThang['hao'];
+					$arrlist['sldu'] = $haoDuDauThang['du'];
 					$arrlist['slnhap'] = $currentTon['slnhapv'];
 					$arrlist['slxuat'] = $currentTon['slxuatv'];
 					$arrlist['slton'] = $slTon;
-		
 				} else {
 					$dauThangtruoc = strtotime(date("Y-m-d", strtotime($dateDauThang)) . " -1 month");
 					$dauThangtruoc = date("Y-m-d",$dauThangtruoc);
@@ -2016,6 +2015,9 @@ function giahuy_thongKeKhoNguonVaoTonKho($cid, $idloaivang, $fromDate, $toDate) 
 
 					$slTonSDDK = round(round(($slTonSDDK['sltonv'] - $haoDuSDDK['hao']),3) + $haoDuSDDK['du'],3);
 					
+					$sqlHaoDuFromDate = "select ROUND(SUM(hao),3) as hao, ROUND(SUM(du),3) as du from $GLOBALS[db_sp].$tableHachToan where idloaivang=$idloaivang and typevkc =1 and dated >= '$dateDauThang' and dated < '$fromDate'";
+					$haoDuFromDate = $GLOBALS['sp']->getRow($sqlHaoDuFromDate);
+
 					$sqlNhapTndt = "select ROUND(SUM(cannangv), 3)  from $GLOBALS[db_sp].".$tableCT." 
 					where idloaivang=".$idloaivang." 
 					and type=2 
@@ -2032,9 +2034,12 @@ function giahuy_thongKeKhoNguonVaoTonKho($cid, $idloaivang, $fromDate, $toDate) 
 					and datedxuat >= '".$dateDauThang."'";
 					$xuatTndt = $GLOBALS["sp"]->getOne($sqlXuatTndt);
 					
-					$slTonTndt = round(($nhapTndt - $xuatTndt),3);
+					$slTonTndt = round(($nhapTndt - $xuatTndt + $haoDuFromDate['du'] - $haoDuFromDate['hao']),3);
 					$slTonSDDK = round(($slTonSDDK + $slTonTndt),3);
 					
+					$sqlHaoDuToDate = "select ROUND(SUM(hao),3) as hao, ROUND(SUM(du),3) as du from $GLOBALS[db_sp].$tableHachToan where idloaivang=$idloaivang and typevkc =1 and dated >= '$fromDate' and dated <= '$toDate'";
+					$haoDuToDate = $GLOBALS['sp']->getRow($sqlHaoDuToDate);
+
 					$sqlNhapTndn = "select ROUND(SUM(cannangv), 3) from $GLOBALS[db_sp].".$tableCT." 
 					where idloaivang=".$idloaivang." 
 					and type=2
@@ -2051,12 +2056,11 @@ function giahuy_thongKeKhoNguonVaoTonKho($cid, $idloaivang, $fromDate, $toDate) 
 					and datedxuat <= '".$toDate."' "; 
 					$xuatTndn = $GLOBALS["sp"]->getOne($sqlXuatTndn);
 					
-					$slTonTndn = round(($nhapTndn -  $xuatTndn),3);
+					$slTonTndn = round(($nhapTndn + $haoDuToDate['du'] -  $xuatTndn - $haoDuToDate['hao']),3);
 					$slTon = $slTonTndn + $slTonSDDK;
-					var_dump($xuatTndn);
 
-					$arrlist['slhao'] = $haoDuSDDK['hao'];
-					$arrlist['sldu'] = $haoDuSDDK['du'];
+					$arrlist['slhao'] = $haoDuToDate['hao'];
+					$arrlist['sldu'] = $haoDuToDate['du'];
 					$arrlist['slnhap'] = $nhapTndn;
 					$arrlist['slxuat'] = $xuatTndn;
 					$arrlist['slton'] = $slTon;
@@ -2496,7 +2500,6 @@ function insert_thongKeTonKhoSanXuat($a){
 					
 					$arrlist['slhaochenhlech'] = $rshaodu['haochenhlech'];
 					$arrlist['slduchenhlech'] = $rshaodu['duchenhlech'];
-					
 					$arrlist['slnhap'] = $rston['slnhapv'];
 					$arrlist['slxuat'] = $rston['slxuatv'];
 					$arrlist['slton'] = $slton;
@@ -2846,11 +2849,10 @@ function giahuy_thongKeTonKhoSanXuat($cid, $idloaivang, $fromDate, $toDate) {
 						from $GLOBALS[db_sp].$tableHachToan where idloaivang=$idloaivang and dated <= '$dateDauThang'";
 						$haoDuDateDauThang = $GLOBALS['sp']->getRow($sqlHaoDuDateDauThang);
 
-						$sqlCurrentTon = "select * from $GLOBALS[db_sp].$tableHachToan where idloaivang = $idloaivang and dated <= '$dateDauThang' order by dated desc limit 1";
+						$sqlCurrentTon = "select * from $GLOBALS[db_sp].$tableHachToan where idloaivang = $idloaivang and dated = '$dateDauThang'";
 						$currentTon = $GLOBALS['sp']->getRow($sqlCurrentTon);
 
-						$slton = round((float)$sltonsddk + (float)$currentTon['slnhapv'] - (float)$currentTon['slxuatv'],3);
-						$slton += round((float)$haoDuDateDauThang['du'] - (float)$haoDuDateDauThang['hao'],3);
+						$slton = round((float)$sltonsddk + (float)$currentTon['slnhapv'] - $currentTon['slxuatv'] + (float)$haoDuDateDauThang['du'] - (float)$haoDuDateDauThang['hao'],3);
 						$slton += round((float)$haoDuDateDauThang['haochenhlech'] - (float)$haoDuDateDauThang['duchenhlech'],3);
 
 						$thongKe['sltonsddk'] = $sltonsddk;
@@ -2914,6 +2916,7 @@ function giahuy_thongKeTonKhoSanXuat($cid, $idloaivang, $fromDate, $toDate) {
 						$thongKe['slxuat'] = $xuatToDate;
 					}
 					$thongKe['idloaivang'] = $idloaivang;
+					$thongKe['tongQ10'] = getTongQ10($slton, $idloaivang);
 				} else {
 					$thongKe['idloaivang'] = 0;
 				}

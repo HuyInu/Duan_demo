@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-25 10:52:57
+/* Smarty version 4.1.1, created on 2023-08-31 15:03:34
   from 'D:\wamp64\www\duan_demo\templates\tpl\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64e82599cbaeb8_74441858',
+  'unifunc' => 'content_64f0495619b3c6_53321483',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c393c885ab7f245747b2d63b92de6ac012e7723f' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\footer.tpl',
-      1 => 1692935545,
+      1 => 1693468932,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64e82599cbaeb8_74441858 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64f0495619b3c6_53321483 (Smarty_Internal_Template $_smarty_tpl) {
 ?><span id="loadingAjax">
     <div class="ajax-loader"></div>
     <div class="loadajax"></div>
@@ -132,7 +132,7 @@ function exportExcelKhoKhac(url){
 		$(".vang").show();	
 		$(".kimcuong").hide();
 		if(a !='noajax' ){
-			createCookie('0','vang',1);
+			createCookie('typeVangKimCuong','vang',1);
 			if(a !='' )
 				$(location).attr('href',a);
 			reload_js('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
