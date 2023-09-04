@@ -46,7 +46,7 @@ switch($act) {
         }	
     break;
     default:
-        if( isset($_COOKIE["typeVangKimCuong"]) ? $_COOKIE["typeVangKimCuong"] : '' == 'kimcuong'){
+        if($_COOKIE["typeVangKimCuong"] == 'kimcuong'){
             //include_once("search/KhoNguonVaoXuatKhoKimCuongSearch.php");
             $whereTypevkc = 'typevkc = 2';
             $template = 'Kho-A9-Huy-Xuat-Kho/listkimcuong.tpl';

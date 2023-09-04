@@ -1989,13 +1989,13 @@ function giahuy_thongKeKhoNguonVaoTonKho($cid, $idloaivang, $fromDate, $toDate) 
 					$slTonSDDK = round(($TonSDDK['sltonv'] - $haoDuSDDK['hao']),3) + $haoDuSDDK['du'];
 					$arrlist['sltonsddk'] = $slTonSDDK;
 					
-					$sqlHaoDu = "select round(sum(hao),3) as hao, ROUND(SUM(du), 3) as du from $GLOBALS[db_sp].$tableHachToan where typevkc=1 and idloaivang = $idloaivang and dated <='$dateDauThang'";
+					$sqlHaoDu = "select round(sum(hao),3) as hao, ROUND(SUM(du), 3) as du from $GLOBALS[db_sp].$tableHachToan where typevkc=1 and idloaivang = $idloaivang and dated ='$dateDauThang'";
 					$haoDuDauThang = $GLOBALS['sp']->getRow($sqlHaoDu);
 					
 					$sqlCurrentTon = "select * from $GLOBALS[db_sp].$tableHachToan where typevkc=1 and idloaivang = $idloaivang and dated='$dateDauThang'";
 					$currentTon = $GLOBALS['sp']->getRow($sqlCurrentTon);
 
-					$slTon = round(round(($slTonSDDK + $currentTon['slnhapv'] - $currentTon['slxuatv'] - $haoDuDauThang['hao']),3) + $haoDuDauThang['du'] ,3);
+					$slTon = round((float)$slTonSDDK + (float)$currentTon['slnhapv'] - (float)$currentTon['slxuatv'] - (float)$haoDuDauThang['hao'] + (float)$haoDuDauThang['du'] ,3);
 
 					$arrlist['slhao'] = $haoDuDauThang['hao'];
 					$arrlist['sldu'] = $haoDuDauThang['du'];
@@ -2006,16 +2006,15 @@ function giahuy_thongKeKhoNguonVaoTonKho($cid, $idloaivang, $fromDate, $toDate) 
 					$dauThangtruoc = strtotime(date("Y-m-d", strtotime($dateDauThang)) . " -1 month");
 					$dauThangtruoc = date("Y-m-d",$dauThangtruoc);
 
-					$sqlHaoDuSDDK = "select ROUND(SUM(hao), 3) as hao, ROUND(SUM(du), 3) as du from $GLOBALS[db_sp].".$tableHachToan." where typevkc=1 and idloaivang=".$idloaivang." and dated <= '".$dauThangtruoc."'
-					";
+					$sqlHaoDuSDDK = "select ROUND(SUM(hao), 3) as hao, ROUND(SUM(du), 3) as du from $GLOBALS[db_sp].".$tableHachToan." where typevkc=1 and idloaivang=".$idloaivang." and dated <= '".$dauThangtruoc."'";
 					$haoDuSDDK = $GLOBALS['sp']->getRow($sqlHaoDuSDDK);
 
-					$sqlSlTonSDDK = "select * from $GLOBALS[db_sp].".$tableHachToan." where typevkc=1 and idloaivang=".$idloaivang." and dated <= '".$dauThangtruoc."' order by id desc limit 1";
-					$slTonSDDK = $GLOBALS['sp']->getRow($sqlSlTonSDDK);
-
-					$slTonSDDK = round(round(($slTonSDDK['sltonv'] - $haoDuSDDK['hao']),3) + $haoDuSDDK['du'],3);
+					$sqlSlTonSDDK = "select sltonv from $GLOBALS[db_sp].".$tableHachToan." where typevkc=1 and idloaivang=".$idloaivang." and dated <= '".$dauThangtruoc."' order by id desc limit 1";
+					$slTonSDDK = $GLOBALS['sp']->getOne($sqlSlTonSDDK);
 					
-					$sqlHaoDuFromDate = "select ROUND(SUM(hao),3) as hao, ROUND(SUM(du),3) as du from $GLOBALS[db_sp].$tableHachToan where idloaivang=$idloaivang and typevkc =1 and dated >= '$dateDauThang' and dated < '$fromDate'";
+					$slTonSDDK = round(round(($slTonSDDK - $haoDuSDDK['hao']),3) + $haoDuSDDK['du'],3);
+
+					$sqlHaoDuFromDate = "select ROUND(SUM(hao),3) as hao, ROUND(SUM(du),3) as du from $GLOBALS[db_sp].$tableCT where idloaivang=$idloaivang and typevkc =1 and datedxuat >= '$dateDauThang' and datedxuat < '$fromDate'";
 					$haoDuFromDate = $GLOBALS['sp']->getRow($sqlHaoDuFromDate);
 
 					$sqlNhapTndt = "select ROUND(SUM(cannangv), 3)  from $GLOBALS[db_sp].".$tableCT." 
@@ -2033,11 +2032,11 @@ function giahuy_thongKeKhoNguonVaoTonKho($cid, $idloaivang, $fromDate, $toDate) 
 					and datedxuat < '".$fromDate."'  
 					and datedxuat >= '".$dateDauThang."'";
 					$xuatTndt = $GLOBALS["sp"]->getOne($sqlXuatTndt);
-					
+
 					$slTonTndt = round(($nhapTndt - $xuatTndt + $haoDuFromDate['du'] - $haoDuFromDate['hao']),3);
 					$slTonSDDK = round(($slTonSDDK + $slTonTndt),3);
-					
-					$sqlHaoDuToDate = "select ROUND(SUM(hao),3) as hao, ROUND(SUM(du),3) as du from $GLOBALS[db_sp].$tableHachToan where idloaivang=$idloaivang and typevkc =1 and dated >= '$fromDate' and dated <= '$toDate'";
+
+					$sqlHaoDuToDate = "select ROUND(SUM(hao),3) as hao, ROUND(SUM(du),3) as du from $GLOBALS[db_sp].$tableCT where idloaivang=$idloaivang and typevkc =1 and datedxuat >= '$fromDate' and datedxuat <= '$toDate'";
 					$haoDuToDate = $GLOBALS['sp']->getRow($sqlHaoDuToDate);
 
 					$sqlNhapTndn = "select ROUND(SUM(cannangv), 3) from $GLOBALS[db_sp].".$tableCT." 
@@ -2047,7 +2046,7 @@ function giahuy_thongKeKhoNguonVaoTonKho($cid, $idloaivang, $fromDate, $toDate) 
 					and dated >= '".$fromDate."'  
 					and dated <= '".$toDate."' "; 
 					$nhapTndn = $GLOBALS["sp"]->getOne($sqlNhapTndn);
-
+	
 					$sqlXuatTndn = "select ROUND(SUM(cannangv), 3) from $GLOBALS[db_sp].".$tableCT." 
 					where idloaivang=".$idloaivang." 
 					and trangthai = 2
@@ -2055,7 +2054,7 @@ function giahuy_thongKeKhoNguonVaoTonKho($cid, $idloaivang, $fromDate, $toDate) 
 					and datedxuat >= '".$fromDate."'  
 					and datedxuat <= '".$toDate."' "; 
 					$xuatTndn = $GLOBALS["sp"]->getOne($sqlXuatTndn);
-					
+
 					$slTonTndn = round(($nhapTndn + $haoDuToDate['du'] -  $xuatTndn - $haoDuToDate['hao']),3);
 					$slTon = $slTonTndn + $slTonSDDK;
 
@@ -2846,7 +2845,7 @@ function giahuy_thongKeTonKhoSanXuat($cid, $idloaivang, $fromDate, $toDate) {
 						$sltonsddk = round((float)$sltonsddk + (float)$haoDuDk['haochenhlech'] - (float)$haoDuDk['duchenhlech'],3);
 
 						$sqlHaoDuDateDauThang = "select ROUND(SUM(hao),3) as hao, ROUND(SUM(du),3) as du, ROUND(SUM(haochenhlech),3) as haochenhlech, ROUND(SUM(duchenhlech),3) as duchenhlech 
-						from $GLOBALS[db_sp].$tableHachToan where idloaivang=$idloaivang and dated <= '$dateDauThang'";
+						from $GLOBALS[db_sp].$tableHachToan where idloaivang=$idloaivang and dated = '$dateDauThang'";
 						$haoDuDateDauThang = $GLOBALS['sp']->getRow($sqlHaoDuDateDauThang);
 
 						$sqlCurrentTon = "select * from $GLOBALS[db_sp].$tableHachToan where idloaivang = $idloaivang and dated = '$dateDauThang'";
@@ -4522,6 +4521,8 @@ function giahuy_ghiSoHachToanKhoSanXuat($tablehachtoan, $tablenhan, $id) {
 	$dateDauThang = date('Y').'-'.date('m').'-01';
 	$slnhapvh = $slnhapv = $slnhaph = 0;
 	$slxuatvh = $slxuatv = $slxuath = 0;
+	$slnhapkimcuong = $slxuatkimcuong = 0;
+	$dongianhap = $dongiaxuat = 0;
 
 	$sqlPhieu = "select * from $GLOBALS[db_sp].$tablenhan where id=$id";
 	$phieu = $GLOBALS['sp']->getRow($sqlPhieu);
@@ -4530,42 +4531,72 @@ function giahuy_ghiSoHachToanKhoSanXuat($tablehachtoan, $tablenhan, $id) {
 		$slnhapvh = $phieu['cannangvh'];
 		$slnhapv = $phieu['cannangv'];
 		$slnhaph = $phieu['cannangh'];
+
+		$slnhapkimcuong = 1;
+		$dongianhap = $phieu['dongiaban'];
 	} else {
 		$slxuatvh = $phieu['cannangvh'];
 		$slxuatv = $phieu['cannangv'];
 		$slxuath = $phieu['cannangh'];
+
+		$slxuatkimcuong = 1;
+		$dongiaxuat = $phieu['dongiaban'];
+		$whereTypevkc = 'typevkc = 2';
+	}
+
+	if ((int)$phieu['typevkc'] == 1) {
+		$whereSql = "idloaivang=".$phieu['idloaivang']." and typevkc = 1";
+	} else {
+		$whereSql = "typevkc = 2";
 	}
 
 	$currentHachToan = [];
-	$sqlHachToanThisMonth = "select * from $GLOBALS[db_sp].$tablehachtoan where idloaivang=".$phieu['idloaivang']." and dated='$dateDauThang' and typevkc = 1";
+	$sqlHachToanThisMonth = "select * from $GLOBALS[db_sp].$tablehachtoan where $whereSql and dated='$dateDauThang'";
 	$hachToanThisMonth = $GLOBALS['sp']->getRow($sqlHachToanThisMonth);
 	if(empty($hachToanThisMonth['id'])) {
-		$sqlHachToanLastMonth = "select * from $GLOBALS[db_sp].$tablehachtoan where idloaivang=".$phieu['idloaivang']." and typevkc = 1 order by dated desc limit 1";
+		$sqlHachToanLastMonth = "select * from $GLOBALS[db_sp].$tablehachtoan where $whereSql order by dated desc limit 1";
 		$hachToanLastMonth = $GLOBALS['sp']->getRow($sqlHachToanLastMonth);
-
-		$currentHachToan['slnhapvh'] = $slnhapvh;
-		$currentHachToan['slxuatvh'] = $slxuatvh;
-		$currentHachToan['sltonvh'] = ($hachToanLastMonth['sltonvh'] + $slnhapvh) - $slxuatvh;
-		$currentHachToan['slnhaph'] = $slnhaph;
-		$currentHachToan['slxuath'] = $slxuath;
-		$currentHachToan['sltonh'] = ($hachToanLastMonth['sltonh'] + $slnhaph) - $slxuath;
-		$currentHachToan['slnhapv'] = $slnhapv;
-		$currentHachToan['slxuatv'] = $slxuatv;
-		$currentHachToan['sltonv'] = ($hachToanLastMonth['sltonv'] + $slnhapv) - $slxuatv;
-		$currentHachToan['idloaivang'] = $phieu['idloaivang'];
+		if ((int)$phieu['typevkc'] == 1) {
+			$currentHachToan['slnhapvh'] = $slnhapvh;
+			$currentHachToan['slxuatvh'] = $slxuatvh;
+			$currentHachToan['sltonvh'] = ($hachToanLastMonth['sltonvh'] + $slnhapvh) - $slxuatvh;
+			$currentHachToan['slnhaph'] = $slnhaph;
+			$currentHachToan['slxuath'] = $slxuath;
+			$currentHachToan['sltonh'] = ($hachToanLastMonth['sltonh'] + $slnhaph) - $slxuath;
+			$currentHachToan['slnhapv'] = $slnhapv;
+			$currentHachToan['slxuatv'] = $slxuatv;
+			$currentHachToan['sltonv'] = ($hachToanLastMonth['sltonv'] + $slnhapv) - $slxuatv;
+			$currentHachToan['idloaivang'] = $phieu['idloaivang'];
+		} else {
+			$currentHachToan['slnhapkimcuong'] = $slnhapkimcuong;
+			$currentHachToan['slxuatkimcuong'] = $slxuatkimcuong;
+			$currentHachToan['sltonkimcuong'] = round((float)$hachToanLastMonth['sltonkimcuong'] + (float)$slnhapkimcuong - (float)$slxuatkimcuong, 3);
+			$currentHachToan['dongianhap'] = $dongianhap;
+			$currentHachToan['dongiaxuat'] = $dongiaxuat;
+			$currentHachToan['tongdongia'] = round((float)$hachToanLastMonth['tongdongia'] + (float)$dongianhap - (float)$dongiaxuat, 3);
+			$currentHachToan['typevkc'] = 2;
+		}
 		$currentHachToan['dated'] =$dateDauThang;
-
 		vaInsert($tablehachtoan, $currentHachToan);
 	} else {
-		$currentHachToan['slnhapvh'] = $hachToanThisMonth['slnhapvh'] + $slnhapvh;
-		$currentHachToan['slxuatvh'] = $hachToanThisMonth['slxuatvh'] + $slxuatvh;
-		$currentHachToan['sltonvh'] = ($hachToanThisMonth['sltonvh'] + $slnhapvh) - $slxuatvh;
-		$currentHachToan['slnhaph'] = $hachToanThisMonth['slnhaph'] + $slnhaph;
-		$currentHachToan['slxuath'] = $hachToanThisMonth['slxuath'] + $slxuath;
-		$currentHachToan['sltonh'] = ($hachToanThisMonth['sltonh'] + $slnhaph) - $slxuath;
-		$currentHachToan['slnhapv'] = $hachToanThisMonth['slnhapv'] + $slnhapv;
-		$currentHachToan['slxuatv'] = $hachToanThisMonth['slxuatv'] + $slxuatv;
-		$currentHachToan['sltonv'] = ($hachToanThisMonth['sltonv'] + $slnhapv) - $slxuatv;
+		if ((int)$phieu['typevkc'] == 1) {
+			$currentHachToan['slnhapvh'] = $hachToanThisMonth['slnhapvh'] + $slnhapvh;
+			$currentHachToan['slxuatvh'] = $hachToanThisMonth['slxuatvh'] + $slxuatvh;
+			$currentHachToan['sltonvh'] = ($hachToanThisMonth['sltonvh'] + $slnhapvh) - $slxuatvh;
+			$currentHachToan['slnhaph'] = $hachToanThisMonth['slnhaph'] + $slnhaph;
+			$currentHachToan['slxuath'] = $hachToanThisMonth['slxuath'] + $slxuath;
+			$currentHachToan['sltonh'] = ($hachToanThisMonth['sltonh'] + $slnhaph) - $slxuath;
+			$currentHachToan['slnhapv'] = $hachToanThisMonth['slnhapv'] + $slnhapv;
+			$currentHachToan['slxuatv'] = $hachToanThisMonth['slxuatv'] + $slxuatv;
+			$currentHachToan['sltonv'] = ($hachToanThisMonth['sltonv'] + $slnhapv) - $slxuatv;
+		} else {
+			$currentHachToan['slnhapkimcuong'] = round((float)$hachToanThisMonth['slnhapkimcuong'] + (float)$slnhapkimcuong, 3);
+			$currentHachToan['slxuatkimcuong'] = round((float)$hachToanThisMonth['slxuatkimcuong'] + (float)$slxuatkimcuong, 3);
+			$currentHachToan['sltonkimcuong'] = round((float)$hachToanThisMonth['sltonkimcuong'] + (float)$slnhapkimcuong - (float)$slxuatkimcuong, 3);
+			$currentHachToan['dongianhap'] = round((float)$hachToanThisMonth['dongianhap'] + (float)$dongianhap, 3);
+			$currentHachToan['dongiaxuat'] = round((float)$hachToanThisMonth['dongiaxuat'] + (float)$dongiaxuat, 3);
+			$currentHachToan['tongdongia'] = round((float)$hachToanThisMonth['tongdongia'] + (float)$dongianhap - (float)$dongiaxuat, 3);
+		}
 
 		vaUpdate($tablehachtoan, $currentHachToan, 'id='.$hachToanThisMonth['id']);
 	}
@@ -8355,7 +8386,7 @@ function dieuChinhSoLieuHachToanKhoNguonVao($table,$tablehachtoan,$idloaivang) {
 	}
 }
 function giahuy_dieuChinhSoLieuHachToanKhoNguonVao($table,$tablehachtoan,$idloaivang) {
-	$sqlHachToan = "select * from $GLOBALS[db_sp].$tablehachtoan where idloaivang=$idloaivang and typevkc = 1 order by dated desc limit 2";
+	$sqlHachToan = "select * from $GLOBALS[db_sp].$tablehachtoan where idloaivang=$idloaivang and typevkc = 1 order by dated desc limit 3";
 	$hachToan = $GLOBALS['sp']->getAll($sqlHachToan);
 	$hachToanLenght = count($hachToan);
 	

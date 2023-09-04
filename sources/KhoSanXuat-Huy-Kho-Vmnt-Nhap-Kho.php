@@ -8,7 +8,6 @@ switch($act) {
     default:
         $sqlPhieu = "select * from $GLOBALS[db_sp].khosanxuat_khovmnt where cid=$idpem and type = 1 and typechuyen = 1 and trangthai = 0 order by typechuyen asc, datechuyen asc, id desc";
         $phieu = $GLOBALS['sp']->getAll($sqlPhieu);
-
         $smarty->assign('phieuNhap', $phieu);
         $template = 'KhoSanXuat-Huy-Kho-Vmnt-Nhap-Kho/list.tpl';
     break;

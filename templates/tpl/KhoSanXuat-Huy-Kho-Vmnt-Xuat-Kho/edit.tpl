@@ -8,6 +8,16 @@
         <!--{insert name="HearderCat" cid=$smarty.request.cid root=$smarty.request.root act=$smarty.request.act}-->
     </ul>
 </div>
+<div class="ChonLoaiPhieu">
+    <ul>
+        <li class="active" id="clickVang" onclick="clickVang('<!--{$path_url}-->/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho1.php?act=<!--{$smarty.request.act}-->&cid=<!--{$smarty.request.cid}-->')">
+            <a>Vàng</a>
+        </li>
+        <li id="clickKimCuong" onclick="clickKimCuong('<!--{$path_url}-->/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho1.php?act=<!--{$smarty.request.act}-->&cid=<!--{$smarty.request.cid}-->')">
+            <a>Kim Cương</a>
+        </li>
+    </ul>
+</div>
 <div class="MainContent">
     <form name="allsubmit" id="frmEdit" action="<!--{$path_url}-->/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho1.php?act=<!--{if $smarty.request.act eq 'add' }-->addsm<!--{else}-->editsm<!--{/if}-->&cid=<!--{$smarty.request.cid}-->" method="post" enctype="multipart/form-data">
      	<div class="box-thongin" >

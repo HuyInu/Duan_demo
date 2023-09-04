@@ -210,18 +210,19 @@
                             <!--{/if}-->
                        </td> 
                        <td align="center">
-                            <!--{if $checkPer6 eq "true" }-->  
+                            <!--{if 1 == 1 }-->  
                             	<script>
 									$(function () {
 										$("#siteIDload select").select2();
 									});
 								</script>
 								<div id="siteIDload">                         		
-                                    <select class="chuyenPhonbanSanXuat" id="chuyenkho<!--{$view[i].id}-->" onchange="chuyenKhoKhac('chuyenkhokhac', this.value, <!--{$view[i].id}-->,<!--{$phongbanchuyen}-->,'khonguonvao_achinh')">
+                                    <select class="chuyenPhonbanSanXuat" id="chuyenkho<!--{$view[i].id}-->" onchange="giahuy_chuyenKhoKhac('chuyenkhokhac', this.value, <!--{$view[i].id}-->,<!--{$phongbanchuyen}-->,'khonguonvao_achinh')">
                                         <option value="">--chuyển đến--</option>
                                         <!--{$khoThanhPham_KhoKimCuongNhatHot}-->
                                         <!--{$khoSanXuat_KhoThanhPham}-->
                                         <!--{$khoKhac_KhoKimCuongEpTem}-->
+                                        <!--{optionChuyenDenTest('1834')}-->
                                         
                                     </select> 
                                 </div> 

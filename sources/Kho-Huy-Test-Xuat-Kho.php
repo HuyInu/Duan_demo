@@ -98,6 +98,5 @@ function StringToNum($str) {
             return $num;
         }
     }
-    die("Đã xảy ra lỗi!.");
 }
 ?>

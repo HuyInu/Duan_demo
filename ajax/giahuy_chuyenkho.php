@@ -44,28 +44,46 @@ switch($act) {
                 $phieuNhapMoi['idmaphieukho'] = $idPhieu;
                 $phieuNhapMoi['idctnx'] = $phieuXuat['idctnx'];
                 $phieuNhapMoi['maphieu'] = $phieuXuat['maphieu'];
-                $phieuNhapMoi['nhomdm'] = $phieuXuat['nhomdm'];
-                $phieuNhapMoi['nhomnguyenlieuvang'] = $phieuXuat['nhomnguyenlieuvang'];
-                $phieuNhapMoi['tennguyenlieuvang'] = $phieuXuat['tennguyenlieuvang'];
-                $phieuNhapMoi['idloaivang'] = $phieuXuat['idloaivang'];
-                $phieuNhapMoi['cannangvh'] = ($phieuXuat['cannangvh'] + $phieuXuat['du']) - $phieuXuat['hao'];
-                $phieuNhapMoi['cannangv'] = ($phieuXuat['cannangv'] + $phieuXuat['du']) - $phieuXuat['hao'];
-                $phieuNhapMoi['cannangh'] = $phieuXuat['cannangh'];
-                $phieuNhapMoi['tuoivang'] = $phieuXuat['tuoivang'];
-                $phieuNhapMoi['tienmatvang'] = $phieuXuat['tienmatvang'];
-                $phieuNhapMoi['ghichuvang'] = $phieuXuat['ghichuvang'];
-                $phieuNhapMoi['haochuyen'] = $phieuXuat['hao'];
-                $phieuNhapMoi['duchuyen'] = $phieuXuat['du'];
-                $phieuNhapMoi['ghichu'] = $phieuXuat['ghichu'];
+                if ((int)$phieuXuat['typevkc'] == 1) {
+                    $phieuNhapMoi['nhomdm'] = $phieuXuat['nhomdm'];
+                    $phieuNhapMoi['nhomnguyenlieuvang'] = $phieuXuat['nhomnguyenlieuvang'];
+                    $phieuNhapMoi['tennguyenlieuvang'] = $phieuXuat['tennguyenlieuvang'];
+                    $phieuNhapMoi['idloaivang'] = $phieuXuat['idloaivang'];
+                    $phieuNhapMoi['cannangvh'] = ($phieuXuat['cannangvh'] + $phieuXuat['du']) - $phieuXuat['hao'];
+                    $phieuNhapMoi['cannangv'] = ($phieuXuat['cannangv'] + $phieuXuat['du']) - $phieuXuat['hao'];
+                    $phieuNhapMoi['cannangh'] = $phieuXuat['cannangh'];
+                    $phieuNhapMoi['tuoivang'] = $phieuXuat['tuoivang'];
+                    $phieuNhapMoi['tienmatvang'] = $phieuXuat['tienmatvang'];
+                    $phieuNhapMoi['ghichuvang'] = $phieuXuat['ghichuvang'];
+                    $phieuNhapMoi['haochuyen'] = $phieuXuat['hao'];
+                    $phieuNhapMoi['duchuyen'] = $phieuXuat['du'];
+                    $phieuNhapMoi['ghichu'] = $phieuXuat['ghichu'];
+                    $phieuNhapMoi['typevkc'] = 1;
+                } else {
+                    $phieuNhapMoi['nhomnguyenlieukimcuong'] = $phieuXuat['nhomnguyenlieukimcuong'];
+                    $phieuNhapMoi['tennguyenlieukimcuong'] = $phieuXuat['tennguyenlieukimcuong'];
+                    $phieuNhapMoi['idkimcuong'] = $phieuXuat['idkimcuong'];
+                    $phieuNhapMoi['codegdpnj'] = $phieuXuat['codegdpnj'];
+                    $phieuNhapMoi['codecgta'] = $phieuXuat['codecgta'];
+                    $phieuNhapMoi['kichthuoc'] = $phieuXuat['kichthuoc'];
+                    $phieuNhapMoi['trongluonghot'] = $phieuXuat['trongluonghot'];
+                    $phieuNhapMoi['dotinhkhiet'] = $phieuXuat['dotinhkhiet'];
+                    $phieuNhapMoi['capdomau'] = $phieuXuat['capdomau'];
+                    $phieuNhapMoi['domaibong'] = $phieuXuat['domaibong'];
+                    $phieuNhapMoi['kichthuocban'] = $phieuXuat['kichthuocban'];
+                    $phieuNhapMoi['tienmatkimcuong'] = $phieuXuat['tienmatkimcuong'];
+                    $phieuNhapMoi['dongiaban'] = $phieuXuat['dongiaban'];
+                    $phieuNhapMoi['ghichukimcuong'] = $phieuXuat['ghichukimcuong'];
+                    $phieuNhapMoi['ghichueditkimcuong'] = $phieuXuat['ghichueditkimcuong'];
+                    $phieuNhapMoi['typevkc'] = 2;
+                }
+                
                 $phieuNhapMoi['type'] = 1;
                 $phieuNhapMoi['typechuyen'] = 1;
-                $phieuNhapMoi['typevkc'] = 1;
                 $phieuNhapMoi['time'] = $timeNow;
                 $phieuNhapMoi['dated'] = $dateNow;
                 $phieuNhapMoi['phongbanchuyen'] = $idCategChuyen;
                 $phieuNhapMoi['phongban'] = $idCategNhan;
-                // $phieuNhapMoi['timechuyen'] = $timeNow;
-                // $phieuNhapMoi['datechuyen'] = $dateNow;
                 $phieuNhapMoi['trangthai'] = 0;
 
                 vaInsert($tableNhan, $phieuNhapMoi);

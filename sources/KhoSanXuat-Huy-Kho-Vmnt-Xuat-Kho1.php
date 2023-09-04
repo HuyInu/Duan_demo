@@ -15,61 +15,72 @@ switch($act) {
         }
         $maso = convertMaso($numphieuMax);
         $rs['maphieu'] = 'PXSNKVMNT'.$maso;
+        if ( $_COOKIE["typeVangKimCuong"] == 'kimcuong') {
+            $template = 'KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho/editkimcuong.tpl';  
+        } else {
+            $slqLoaiVang = "select * from $GLOBALS[db_sp].loaivang where active = 1";
+            $loaiVang = $GLOBALS['sp']->getAll($slqLoaiVang);
+            $smarty->assign('typegold', $loaiVang);
 
-        $slqLoaiVang = "select * from $GLOBALS[db_sp].loaivang where active = 1";
-        $loaiVang = $GLOBALS['sp']->getAll($slqLoaiVang);
-
-        $smarty->assign('typegold', $loaiVang);
+            $template = 'KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho/edit.tpl';
+        }
         $smarty->assign('edit', $rs);
-        $template = 'KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho/edit.tpl';
     break;
     case 'edit':
         try{
-            $isExistRecord = isExistRecord('khosanxuat_khovmnt', "id=".$_GET['id']." and typevkc=1 and trangthai in (1,2)");
-            if($isExistRecord) {
-                dd('Phiếu đã được nhập');
-            }
+                $isExistRecord = isExistRecord('khosanxuat_khovmnt', "id=".$_GET['id']." and typevkc in (1, 2) and trangthai in (1,2)");
+                if($isExistRecord) {
+                    dd('Phiếu đã được nhập');
+                }
+                $sqlPhieu = "select * from $GLOBALS[db_sp].khosanxuat_khovmnt where id=".$_REQUEST['id'];
+                $phieu = $GLOBALS['sp']->getRow($sqlPhieu);
+                if ($phieu['typevkc'] == 1) {
+                    $slqLoaiVang = "select * from $GLOBALS[db_sp].loaivang where active = 1";
+                    $loaiVang = $GLOBALS['sp']->getAll($slqLoaiVang);
+                    $smarty->assign('typegold', $loaiVang);
 
-            $sqlPhieu = "select * from $GLOBALS[db_sp].khosanxuat_khovmnt where id=".$_REQUEST['id'];
-            $phieu = $GLOBALS['sp']->getRow($sqlPhieu);
+                    $template = 'KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho/edit.tpl';   
+                } else {
 
-            $slqLoaiVang = "select * from $GLOBALS[db_sp].loaivang where active = 1";
-            $loaiVang = $GLOBALS['sp']->getAll($slqLoaiVang);
+                    $template = 'KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho/editkimcuong.tpl';  
+                }   
+                $smarty->assign('edit', $phieu); 
         }catch(Exception $e) {
             dd($e);
-        }
-        $smarty->assign('typegold', $loaiVang);
-        $smarty->assign('edit', $phieu);
-        $template = 'KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho/edit.tpl';        
+        }  
     break;
     case "addsm": case "editsm":
         $dateNow = date("Y-m-d");
         $timeNow = date("H:i:s");
         $phieuXuat = [];
         try{
-            $phieuXuat['idloaivang'] = $_POST['idloaivang'];
-            $phieuXuat['cannangvh'] = $_POST['cannangvh'];
-            $phieuXuat['cannangh'] = $_POST['cannangh'];
-            $phieuXuat['cannangv'] = $_POST['cannangv'];
-            $phieuXuat['tuoivang'] = $_POST['tuoivang'];
-            $phieuXuat['chonphongbanin'] = $_POST['chonphongbanin'];
-            $phieuXuat['madhin'] = $_POST['madhin'];
-            $phieuXuat['ghichuvang'] = $_POST['ghichuvang'];
-
-            if($act == 'addsm') {
-                $numphieu = StringToNum($_POST['maphieu']);
-                $phieuXuat['numphieu'] = $numphieu;
-                $phieuXuat['maphieu'] = $_POST['maphieu'];
-                $phieuXuat['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
-                $phieuXuat['cid'] = $idpem;
-                $phieuXuat['phongban'] = $idpem;
-                $phieuXuat['time'] = $timeNow;
-                $phieuXuat['dated'] = $dateNow;
-                $phieuXuat['type'] = 2;
-
-                vaInsert('khosanxuat_khovmnt', $phieuXuat);  
+            if ( $_COOKIE["typeVangKimCuong"] == 'kimcuong') {
+                EditKimCuong();
             } else {
-                vaUpdate('khosanxuat_khovmnt', $phieuXuat, 'id='.$_POST['id']);  
+                $phieuXuat['idloaivang'] = $_POST['idloaivang'];
+                $phieuXuat['cannangvh'] = $_POST['cannangvh'];
+                $phieuXuat['cannangh'] = $_POST['cannangh'];
+                $phieuXuat['cannangv'] = $_POST['cannangv'];
+                $phieuXuat['tuoivang'] = $_POST['tuoivang'];
+                $phieuXuat['chonphongbanin'] = $_POST['chonphongbanin'];
+                $phieuXuat['madhin'] = $_POST['madhin'];
+                $phieuXuat['ghichuvang'] = $_POST['ghichuvang'];
+
+                if($act == 'addsm') {
+                    $numphieu = StringToNum($_POST['maphieu']);
+                    $phieuXuat['numphieu'] = $numphieu;
+                    $phieuXuat['maphieu'] = $_POST['maphieu'];
+                    $phieuXuat['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
+                    $phieuXuat['cid'] = $idpem;
+                    $phieuXuat['phongban'] = $idpem;
+                    $phieuXuat['time'] = $timeNow;
+                    $phieuXuat['dated'] = $dateNow;
+                    $phieuXuat['type'] = 2;
+
+                    vaInsert('khosanxuat_khovmnt', $phieuXuat);  
+                } else {
+                    vaUpdate('khosanxuat_khovmnt', $phieuXuat, 'id='.$_POST['id']);  
+                }
             }
         }catch(Exception $e) {
             var_dump($e);die();
@@ -95,7 +106,7 @@ switch($act) {
         break;
     default:
         include_once("search/KhoNguonVaoXuatKhoVangSearch.php");
-        $sql = "select *from $GLOBALS[db_sp].khosanxuat_khovmnt where cid=$idpem and trangthai = 0 and type = 2 and typevkc = 1 $wh order by dated asc, id asc";
+        $sql = "select *from $GLOBALS[db_sp].khosanxuat_khovmnt where cid=$idpem and trangthai = 0 and type = 2 and typevkc in (1,2) $wh order by dated asc, id asc";
         $phieuXuat = $GLOBALS["sp"]->getAll($sql);
 
         $smarty->assign('phieuXuat', $phieuXuat);
@@ -114,6 +125,32 @@ function StringToNum($str) {
             return $num;
         }
     }
-    die("Đã xảy ra lỗi!.");
+}
+function EditKimCuong () {
+    global $idpem;
+    $dateNow = date("Y-m-d");
+    $timeNow = date("H:i:s");
+    $phieuXuat = [];
+
+    $phieuXuat['tienmatkimcuong'] = $_POST['tienmatkimcuong'];
+    $phieuXuat['dongiaban'] = $_POST['dongiaban'];
+    $phieuXuat['chonphongbanin'] = $_POST['chonphongbanin'];
+
+    if ($_GET['act'] == 'addsm') {
+        $numphieu = StringToNum($_POST['maphieu']);
+        $phieuXuat['numphieu'] = $numphieu;
+        $phieuXuat['maphieu'] = $_POST['maphieu'];
+        $phieuXuat['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
+        $phieuXuat['cid'] = $idpem;
+        $phieuXuat['phongban'] = $idpem;
+        $phieuXuat['time'] = $timeNow;
+        $phieuXuat['dated'] = $dateNow;
+        $phieuXuat['type'] = 2;
+        $phieuXuat['typevkc'] = 2;
+
+        vaInsert('khosanxuat_khovmnt', $phieuXuat); 
+    } else {
+        vaUpdate('khosanxuat_khovmnt', $phieuXuat, 'id='.$_POST['id']);
+    }
 }
 ?>

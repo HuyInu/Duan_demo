@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-30 10:32:32
+/* Smarty version 4.1.1, created on 2023-09-04 16:13:53
   from 'D:\wamp64\www\duan_demo\templates\tpl\KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho\edit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64eeb850e96da1_81395973',
+  'unifunc' => 'content_64f59fd15cb694_03992625',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     '23d92af9e1c446515751720e259ba9f131208c9f' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho\\edit.tpl',
-      1 => 1693366333,
+      1 => 1693818513,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64eeb850e96da1_81395973 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64f59fd15cb694_03992625 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\libraries\\smarty4\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
 <div class="breadcrumb">
@@ -32,6 +32,22 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\
             </a>    
         </li>
         <?php echo insert_HearderCat(array('cid' => $_REQUEST['cid'], 'root' => $_REQUEST['root'], 'act' => $_REQUEST['act']),$_smarty_tpl);?>
+    </ul>
+</div>
+<div class="ChonLoaiPhieu">
+    <ul>
+        <li class="active" id="clickVang" onclick="clickVang('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho1.php?act=<?php echo $_REQUEST['act'];?>
+&cid=<?php echo $_REQUEST['cid'];?>
+')">
+            <a>Vàng</a>
+        </li>
+        <li id="clickKimCuong" onclick="clickKimCuong('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/sources/KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho1.php?act=<?php echo $_REQUEST['act'];?>
+&cid=<?php echo $_REQUEST['cid'];?>
+')">
+            <a>Kim Cương</a>
+        </li>
     </ul>
 </div>
 <div class="MainContent">

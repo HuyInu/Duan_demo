@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-25 14:33:27
+/* Smarty version 4.1.1, created on 2023-09-04 08:25:58
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-A9-Huy-Thong-Ke\tonvang.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64e85947a45004_71931393',
+  'unifunc' => 'content_64f53226869776_98787379',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     'bd92ebc7dac9d064398736097318722862210cf0' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-A9-Huy-Thong-Ke\\tonvang.tpl',
-      1 => 1692948805,
+      1 => 1693790731,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./allsearch/print-nguon-vao-nodated.tpl' => 1,
   ),
 ),false)) {
-function content_64e85947a45004_71931393 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64f53226869776_98787379 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="breadcrumb">
     <ul>
         <li>

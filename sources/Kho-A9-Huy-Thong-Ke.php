@@ -54,7 +54,7 @@ switch($act) {
     break;
     case 'NhapKho':
         $smarty->assign("checkNhapXuat",1);
-        if(isset($_COOKIE["typeVangKimCuong"]) == 'kimcuong'){
+        if($_COOKIE["typeVangKimCuong"] == 'kimcuong'){
         } else {
             include_once("search/KhoNguonVaoThongKeNhapVangSearch.php");
             $template = 'Kho-A9-Huy-Thong-Ke/nhap-kho-vang.tpl';
@@ -96,7 +96,7 @@ switch($act) {
         
     break;
     case 'XuatKho':
-        if(isset($_COOKIE["typeVangKimCuong"]) == 'kimcuong'){
+        if($_COOKIE["typeVangKimCuong"] == 'kimcuong'){
         } else {
             include_once("search/KhoNguonVaoThongKeNhapVangSearch.php");
             $template = 'Kho-A9-Huy-Thong-Ke/nhap-kho-vang.tpl';
@@ -138,7 +138,7 @@ switch($act) {
     break;
     case 'NhapXuatKho':
         
-        if(isset($_COOKIE["typeVangKimCuong"]) == 'kimcuong'){
+        if($_COOKIE["typeVangKimCuong"] == 'kimcuong'){
 
         } else {
             include_once("search/KhoNguonVaoThongKeNhapVangSearch.php");
@@ -186,7 +186,7 @@ switch($act) {
         }
     break;
     case 'ChoNhapKho':
-        if(isset($_COOKIE["typeVangKimCuong"]) == 'kimcuong'){
+        if($_COOKIE["typeVangKimCuong"] == 'kimcuong'){
         } else {
             include_once("search/KhoNguonVaoThongKeNhapVangSearch.php");
 			$template = "Kho-A9-Huy-Thong-Ke/cho-nhap-kho-vang.tpl";
@@ -216,16 +216,16 @@ switch($act) {
         }
     break;
     default:
-    if( isset($_COOKIE["typeVangKimCuong"])  == 'kimcuong'){
+    if( $_COOKIE["typeVangKimCuong"] == 'kimcuong'){
         $slTonFromDate = 0;
         $tongDonGiaFromDate = 0;
 
         include_once("search/KhoNguonVaoTonKho.php");
         $smarty->assign("showlist",1);
-        $dateThangTruoc = strtotime(date("Y-m-d", strtotime($fromDateDauthang).' -1 month'));
+        $dateThangTruoc = strtotime(date("Y-m-d", strtotime($fromDateDauthang)).' -1 month');
         $dateThangTruoc = date('Y-m-d', $dateThangTruoc);
         
-        $sqlSlThangTruoc = "select * from $GLOBALS[db_sp].khoachin_sodudauky where typevkc = 2 and dated <= '$dateThangTruoc'";
+        $sqlSlThangTruoc = "select * from $GLOBALS[db_sp].khoachin_sodudauky where typevkc = 2 and dated <= '$dateThangTruoc' order by dated desc limit 1";
         $slThangTruoc = $GLOBALS["sp"]->getAll($sqlSlThangTruoc);
 
         $slTonThangTruoc = $slThangTruoc['sltonkimcuong'];
@@ -252,7 +252,7 @@ switch($act) {
         $xuatToDate = $GLOBALS["sp"]->getRow($sqlSlXuatToDate);
 
         $slnhapcuoingay = $nhapToDate['soluongnhap'];
-        $slxuatcuoingay = $xuatToDate['soluongnhap'];
+        $slxuatcuoingay = $xuatToDate['soluongxuat'];
         $dongianhapcuoingay = $nhapToDate['dongiaban'];
         $dongiaxuatcuoingay = $xuatToDate['dongiaban'];
         $slTonToDate = round((float)$nhapToDate['soluongnhap'] - (float)$xuatToDate['soluongxuat'], 3);
@@ -270,7 +270,6 @@ switch($act) {
         $smarty->assign("sltontong",$sltontong);
         $smarty->assign("tongdongia",$tongdongia);
 
-
         $template = 'Kho-A9-Huy-Thong-Ke/tonkimcuong.tpl';
     } else {
         include_once("search/KhoSanXuatThongKeTonKho.php");
@@ -278,7 +277,6 @@ switch($act) {
         $sqlLoaiVang = "select * from $GLOBALS[db_sp].loaivang where active = 1 order by num asc, id desc";
         $loaiVang = $GLOBALS["sp"]->getAll($sqlLoaiVang);
         $smarty->assign("typegoldview",$loaiVang);	
-
         $template = 'Kho-A9-Huy-Thong-Ke/tonvang.tpl';
     }
     break;
