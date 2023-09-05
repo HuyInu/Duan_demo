@@ -43,10 +43,10 @@
                     </tr>
                     <tr>
                         <td align="left">
-                            <!--{$edit.maphieu}-->
+                            <input type="text" readonly autocomplete="off" name="maphieu" id="maphieu" class="txtdatagirld" value="<!--{$edit.maphieu}-->"/>
                         </td>
                         <td align="left">
-                            <!--{$edit.dated}-->
+                            <input type="text" readonly autocomplete="off" name="dated" id="dated" class="txtdatagirld" value="<!--{$edit.dated}-->"/>
                         </td>
                         <td align="left" class="kimcuong">
                             <input type="text" autocomplete="off" name="tienmatkimcuong" id="tienmatkimcuong" class="txtdatagirld autoNumeric" value="<!--{$edit.tienmatkimcuong}-->"/>

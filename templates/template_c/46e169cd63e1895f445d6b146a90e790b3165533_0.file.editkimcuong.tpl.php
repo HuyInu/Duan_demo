@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-09-04 16:25:01
+/* Smarty version 4.1.1, created on 2023-09-05 08:17:52
   from 'D:\wamp64\www\duan_demo\templates\tpl\KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho\editkimcuong.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64f5a26d5dce08_24267402',
+  'unifunc' => 'content_64f681c0f08da8_82419390',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     '46e169cd63e1895f445d6b146a90e790b3165533' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\KhoSanXuat-Huy-Kho-Vmnt-Xuat-Kho\\editkimcuong.tpl',
-      1 => 1693819496,
+      1 => 1693876670,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64f5a26d5dce08_24267402 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64f681c0f08da8_82419390 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="breadcrumb">
     <ul>
         <li>
@@ -75,12 +75,12 @@ function content_64f5a26d5dce08_24267402 (Smarty_Internal_Template $_smarty_tpl)
                     </tr>
                     <tr>
                         <td align="left">
-                            <?php echo $_smarty_tpl->tpl_vars['edit']->value['maphieu'];?>
-
+                            <input type="text" readonly autocomplete="off" name="maphieu" id="maphieu" class="txtdatagirld" value="<?php echo $_smarty_tpl->tpl_vars['edit']->value['maphieu'];?>
+"/>
                         </td>
                         <td align="left">
-                            <?php echo $_smarty_tpl->tpl_vars['edit']->value['dated'];?>
-
+                            <input type="text" readonly autocomplete="off" name="dated" id="dated" class="txtdatagirld" value="<?php echo $_smarty_tpl->tpl_vars['edit']->value['dated'];?>
+"/>
                         </td>
                         <td align="left" class="kimcuong">
                             <input type="text" autocomplete="off" name="tienmatkimcuong" id="tienmatkimcuong" class="txtdatagirld autoNumeric" value="<?php echo $_smarty_tpl->tpl_vars['edit']->value['tienmatkimcuong'];?>

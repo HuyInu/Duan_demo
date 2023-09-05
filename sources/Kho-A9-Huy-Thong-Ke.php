@@ -9,6 +9,10 @@ $rsvang = $GLOBALS["sp"]->getAll($sqlvang);
 $smarty->assign("typegold",$rsvang);
 
 switch($act) {
+    case 'SuaSoLieuHachToanKc':
+            giahuy_dieuChinhSoLieuHachToanKimCuongKhoNguonVao('khonguonvao_khoachinct','khoachin_sodudauky');
+            die("Điều chỉnh số liệu hạch toán thành công.");
+        break;
     case 'SuaSoLieuHachToan':
         $rsGetLoaiVang = loaiVangSuaSoLieuHachToan();
 		
@@ -55,6 +59,17 @@ switch($act) {
     case 'NhapKho':
         $smarty->assign("checkNhapXuat",1);
         if($_COOKIE["typeVangKimCuong"] == 'kimcuong'){
+            include_once("search/KhoNguonVaoThongKeNhapKimCuongSearch.php");
+            if (!empty($fromDate) && !empty($toDate)) {
+                $sqlSum = "select count(id) as tongsoluong, round(sum(dongiaban), 3) as tongdongia from $GLOBALS[db_sp].khonguonvao_khoachinct where typevkc = 2 and type = 2 and dated >= '$fromDate' and dated <= '$toDate'";
+                $sum = $GLOBALS['sp']->getRow($sqlSum);
+                $sqlList = "select * from $GLOBALS[db_sp].khonguonvao_khoachinct where typevkc = 2 and type = 2 and dated >= '$fromDate' and dated <= '$toDate'";
+                $list = $GLOBALS['sp']->getAll($sqlList);
+
+                $smarty->assign("gettotal",$sum);
+                $smarty->assign("view",$list);
+            }
+            $template = 'Kho-A9-Huy-Thong-Ke/nhap-kho-kimcuong.tpl';
         } else {
             include_once("search/KhoNguonVaoThongKeNhapVangSearch.php");
             $template = 'Kho-A9-Huy-Thong-Ke/nhap-kho-vang.tpl';

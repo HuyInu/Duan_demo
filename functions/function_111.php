@@ -10721,7 +10721,36 @@ function dieuChinhSoLieuHachToanKimCuongLuuMau($table, $tablehachtoan) {
 		}
 	}
 }
+function giahuy_dieuChinhSoLieuHachToanKimCuongKhoNguonVao ($tableCt, $tablehachtoan) {
+	$sql = "select * from $GLOBALS[db_sp].$tablehachtoan where typevkc = 2 order by dated desc limit 2";
+	$rs = $GLOBALS['sp']->getAll($sql);
+	for ($i = count($rs) - 1; $i >= 0; $i--) {
+		$dateDauThang = $rs[$i]['dated'];
+		$dateCuoiThang = date("Y-m-t", strtotime($a_date));
+		$arrUpdate = [];
+		$sqlTongNhap = "select count(id) as slnhapkimcuong, sum(round(dongiaban,3)) as dongianhap  from $GLOBALS[db_sp].$tableCt where typevkc = 2 and type = 2 and dated >= $dateDauThang and dated <= $dateCuoiThang";
+		$tongNhap = $GLOBALS['sp']->getRow($sqlTongNhap);
+		$sqlTongXuat = "select count(id) as slxuatkimcuong, sum(round(dongiaban,3)) as dongiaxuat  from $GLOBALS[db_sp].$tableCt where typevkc = 2 and type = 2 and trangthai = 2 and dated >= $dateDauThang and dated <= $dateCuoiThang";
+		$tongXuat = $GLOBALS['sp']->getRow($sqlTongXuat);
 
+		if ($tongNhap['slnhapkimcuong'] != $rs[$i]['slnhapkimcuong']) {
+			$arrUpdate['slnhapkimcuong'] = $tongNhap['slnhapkimcuong'];
+			$arrUpdate['dongianhap'] = $tongNhap['dongianhap'];
+		}
+		if ($tongXuat['slxuatkimcuong'] != $rs[$i]['slxuatkimcuong']) {
+			$arrUpdate['slxuatkimcuong'] = $tongXuat['slxuatkimcuong'];
+			$arrUpdate['dongiaxuat'] = $tongXuat['dongiaxuat'];
+		}
+
+		$sqlHachToanLastMonth = "select sltonkimcuong, tongdongia from $GLOBALS[db_sp].$tablehachtoan where typevkc = 2 and dated < $dateDauThang order by dated desc limit 1";
+		$hachToanLastMonth = $GLOBALS['sp']->getRow($sqlHachToanLastMonth);
+
+		$arrUpdate['sltonkimcuong'] = $hachToanLastMonth['sltonkimcuong'] + $tongNhap['slnhapkimcuong'] - $tongXuat['slxuatkimcuong'];
+		$arrUpdate['tongdongia'] = $hachToanLastMonth['tongdongia'] + $tongNhap['dongianhap'] - $tongXuat['dongiaxuat'];
+		dd($arrUpdate);
+		//vaUpdate($tablehachtoan, $arrUpdate, 'id='.$rs[$i]['id']);
+	}
+}
 // M.Tân thêm ngày 13/02/2020 - Điều chỉnh số liệu hạch toán kim cương của Kho Nguồn Vào
 function dieuChinhSoLieuHachToanKimCuongKhoNguonVao($table, $tablehachtoan) {
 
