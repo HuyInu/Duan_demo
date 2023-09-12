@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-31 15:03:34
+/* Smarty version 4.1.1, created on 2023-09-12 16:09:45
   from 'D:\wamp64\www\duan_demo\templates\tpl\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64f0495619b3c6_53321483',
+  'unifunc' => 'content_65002ad9925ad4_94292738',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c393c885ab7f245747b2d63b92de6ac012e7723f' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\footer.tpl',
-      1 => 1693468932,
+      1 => 1694509783,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64f0495619b3c6_53321483 (Smarty_Internal_Template $_smarty_tpl) {
+function content_65002ad9925ad4_94292738 (Smarty_Internal_Template $_smarty_tpl) {
 ?><span id="loadingAjax">
     <div class="ajax-loader"></div>
     <div class="loadajax"></div>
@@ -801,6 +801,33 @@ function updatedongLM(act,str,id,cot,table){//id là phòng chuyển đến
 				location.reload();
 			}
 		}	
+	}
+
+	function importExcel () {
+		const file = $('#excel')[0].files[0];
+		var formD = new FormData();
+		formD.append('file', file);
+  		formD.append("act", 'import');
+		var data = {
+				'act':'import',
+				'file': file
+			};
+		$.ajax({
+ 			type: "POST",
+			url: '<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/ajax/Giahuy_ajax.php',
+			processData: false,
+			contentType: false,
+			dataType: 'json',
+			data: formD,
+			success: function (respone) {
+				//let result = JSON.parse(respone);
+				console.log(respone);
+			},
+			error: function (e) {
+				console.log(e);
+			}
+		})
 	}
 
 <?php echo '</script'; ?>

@@ -2,6 +2,10 @@
 <script type="text/javascript" src="<!--{$path_url}-->/calendar/jquery-ui.js"></script>
 
 <div class="MainContent">
+    <form method='post' enctype="multipart/form-data">
+        <input type='file' id='excel'>
+        <button type="button" id='import' onclick="importExcel()">Import</button>
+    </form>
 	<form name="allsubmit" id="frmEdit" action="<!--{$path_url}-->/sources/Kho-A9-Huy-Nhap-Kho.php?act=<!--{if $smarty.request.act eq 'add' }-->addsm<!--{else}-->editsm<!--{/if}-->&cid=<!--{$smarty.request.cid}-->" method="post" enctype="multipart/form-data">
         <div class="main-content padding-topfooter">
             <div class="panel-left">

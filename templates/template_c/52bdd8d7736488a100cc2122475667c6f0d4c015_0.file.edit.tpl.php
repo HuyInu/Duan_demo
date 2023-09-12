@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-24 13:52:46
+/* Smarty version 4.1.1, created on 2023-09-12 14:41:16
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-A9-Huy-Nhap-Kho\edit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64e6fe3e3076b1_86738128',
+  'unifunc' => 'content_6500161c15ed43_90298867',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     '52bdd8d7736488a100cc2122475667c6f0d4c015' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-A9-Huy-Nhap-Kho\\edit.tpl',
-      1 => 1692859904,
+      1 => 1694504452,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./allsearch/tabVangKimcuong.tpl' => 1,
   ),
 ),false)) {
-function content_64e6fe3e3076b1_86738128 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6500161c15ed43_90298867 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\libraries\\smarty4\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
 <link type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
@@ -32,6 +32,10 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\
 >
 
 <div class="MainContent">
+    <form method='post' enctype="multipart/form-data">
+        <input type='file' id='excel'>
+        <button type="button" id='import' onclick="importExcel()">Import</button>
+    </form>
 	<form name="allsubmit" id="frmEdit" action="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /sources/Kho-A9-Huy-Nhap-Kho.php?act=<?php if ($_REQUEST['act'] == 'add') {?>addsm<?php } else { ?>editsm<?php }?>&cid=<?php echo $_REQUEST['cid'];?>
 " method="post" enctype="multipart/form-data">

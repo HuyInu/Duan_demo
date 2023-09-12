@@ -110,22 +110,15 @@ switch($act){
 		}
 	break;
 	case "order":
-		if(!checkPermision($_GET["cid"],2)){
-			page_permision();
-			$page = $path_url."/sources/main.php";
-			page_transfer2($page);
+		$id = $_POST["id"];	
+		$ordering=$_POST["ordering"];		
+		dd($id);
+		for($i=0;$i<count($id);$i++){
+			$sql="update $GLOBALS[db_sp].categories SET num=".$ordering[$i]." where id=".$id[$i];
+			$GLOBALS["sp"]->execute($sql);		
 		}
-		else{
-			$id = $_POST["id"];	
-			$ordering=$_POST["ordering"];
-			//die(print_r($_POST["ordering"]));		
-			for($i=0;$i<count($id);$i++){
-				$sql="update $GLOBALS[db_sp].categories SET num=".$ordering[$i]." where id=".$id[$i];
-				$GLOBALS["sp"]->execute($sql);		
-			}
-			$url = $path_url."/sources/categories.php?cid=".$_GET['cid'];
-			page_transfer2($url);
-		}	
+		$url = $path_url."/sources/thuchanh.php?cid=".$_GET['cid'];
+		page_transfer2($url);
 	break;
     default:
 		if(!checkPermision($_GET["cid"],5)){
@@ -134,9 +127,9 @@ switch($act){
 			page_transfer2($page);
 		}
 		else{
-			if($_GET["cid"] == 2 || $_GET["cid"] == 1848 || $_GET["cid"] == 1853)
+			if($_GET["cid"] == 2 || $_GET["cid"] == 1859)
 			{
-				$pidWhereSQL = 'pid in (2,1848,1853)';
+				$pidWhereSQL = 'pid in (2, 1859)';
 			}
 			else{
 				$pidWhereSQL = 'pid = '.$_GET["cid"];

@@ -72,7 +72,7 @@
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Hiện/Ẩn</label>
                         <div class="col-sm-6">
-                            <input type='checkbox' name='active' value='active'<!--{if $edit.active eq '1'}--> checked <!--{/if}-->>
+                            <input type='checkbox' name='active' value='active' <!--{if $edit.active eq '1' || $smarty.request.act eq 'add'}--> checked <!--{/if}-->>
                         </div>
                     </div>
                     <div class="form-group">

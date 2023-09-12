@@ -741,6 +741,32 @@ function updatedongLM(act,str,id,cot,table){//id là phòng chuyển đến
 		}	
 	}
 
+	function importExcel () {
+		const file = $('#excel')[0].files[0];
+		var formD = new FormData();
+		formD.append('file', file);
+  		formD.append("act", 'import');
+		var data = {
+				'act':'import',
+				'file': file
+			};
+		$.ajax({
+ 			type: "POST",
+			url: '<!--{$path_url}-->/ajax/Giahuy_ajax.php',
+			processData: false,
+			contentType: false,
+			dataType: 'json',
+			data: formD,
+			success: function (respone) {
+				//let result = JSON.parse(respone);
+				console.log(respone);
+			},
+			error: function (e) {
+				console.log(e);
+			}
+		})
+	}
+
 </script>
 
 <script type="text/javascript">
