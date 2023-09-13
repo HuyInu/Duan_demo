@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-31 14:33:32
+/* Smarty version 4.1.1, created on 2023-09-13 13:22:16
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-A9-Huy-Nhap-Kho\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64f0424cd6c077_76318886',
+  'unifunc' => 'content_65015518b9e529_17276968',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd8da4aecd1d6cd5f039713201f51a988c2eff8b2' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-A9-Huy-Nhap-Kho\\list.tpl',
-      1 => 1693466839,
+      1 => 1694586135,
       2 => 'file',
     ),
   ),
@@ -30,7 +30,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./allsearch/lydos.tpl' => 1,
   ),
 ),false)) {
-function content_64f0424cd6c077_76318886 (Smarty_Internal_Template $_smarty_tpl) {
+function content_65015518b9e529_17276968 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\libraries\\smarty4\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 if ((isset($_smarty_tpl->tpl_vars['actResult']->value))) {?>
     <?php $_smarty_tpl->_subTemplateRender('file:huytulam/sweetAlert.tpl', $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
@@ -53,6 +53,11 @@ if ((isset($_smarty_tpl->tpl_vars['actResult']->value))) {?>
         </li>
     </ul>
 </div>
+<form method='post' enctype="multipart/form-data" action="Kho-A9-Huy-Nhap-Kho.php?act=addsm&cid=<?php echo $_REQUEST['cid'];?>
+">
+    <input type='file' name='fileExcel' id='excel'>
+    <input type="submit" value="import">
+</form>
 <?php $_smarty_tpl->_subTemplateRender("file:./allsearch/tabVangKimcuong.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
 ?>
 <div class="MainContent">

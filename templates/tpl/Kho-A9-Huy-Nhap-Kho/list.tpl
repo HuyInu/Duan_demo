@@ -13,6 +13,10 @@
         </li>
     </ul>
 </div>
+<form method='post' enctype="multipart/form-data" action="Kho-A9-Huy-Nhap-Kho.php?act=addsm&cid=<!--{$smarty.request.cid}-->">
+    <input type='file' name='fileExcel' id='excel'>
+    <input type="submit" value="import">
+</form>
 <!--{include file="./allsearch/tabVangKimcuong.tpl"}-->
 <div class="MainContent">
 	<form name="f" id="f" method="post" onsubmit=""> 

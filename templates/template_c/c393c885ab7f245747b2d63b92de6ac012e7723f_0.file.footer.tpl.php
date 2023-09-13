@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-09-12 16:09:45
+/* Smarty version 4.1.1, created on 2023-09-13 13:22:09
   from 'D:\wamp64\www\duan_demo\templates\tpl\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_65002ad9925ad4_94292738',
+  'unifunc' => 'content_650155111d0227_92451241',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c393c885ab7f245747b2d63b92de6ac012e7723f' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\footer.tpl',
-      1 => 1694509783,
+      1 => 1694586092,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_65002ad9925ad4_94292738 (Smarty_Internal_Template $_smarty_tpl) {
+function content_650155111d0227_92451241 (Smarty_Internal_Template $_smarty_tpl) {
 ?><span id="loadingAjax">
     <div class="ajax-loader"></div>
     <div class="loadajax"></div>
@@ -803,11 +803,12 @@ function updatedongLM(act,str,id,cot,table){//id là phòng chuyển đến
 		}	
 	}
 
-	function importExcel () {
+	function importExcel (cid) {
 		const file = $('#excel')[0].files[0];
 		var formD = new FormData();
 		formD.append('file', file);
   		formD.append("act", 'import');
+		formD.append("cid", cid);
 		var data = {
 				'act':'import',
 				'file': file
@@ -815,7 +816,7 @@ function updatedongLM(act,str,id,cot,table){//id là phòng chuyển đến
 		$.ajax({
  			type: "POST",
 			url: '<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
-/ajax/Giahuy_ajax.php',
+/sources/Kho-A9-Huy-Nhap-Kho.php',
 			processData: false,
 			contentType: false,
 			dataType: 'json',
@@ -829,7 +830,6 @@ function updatedongLM(act,str,id,cot,table){//id là phòng chuyển đến
 			}
 		})
 	}
-
 <?php echo '</script'; ?>
 >
 

@@ -741,18 +741,19 @@ function updatedongLM(act,str,id,cot,table){//id là phòng chuyển đến
 		}	
 	}
 
-	function importExcel () {
+	function importExcel (cid) {
 		const file = $('#excel')[0].files[0];
 		var formD = new FormData();
 		formD.append('file', file);
   		formD.append("act", 'import');
+		formD.append("cid", cid);
 		var data = {
 				'act':'import',
 				'file': file
 			};
 		$.ajax({
  			type: "POST",
-			url: '<!--{$path_url}-->/ajax/Giahuy_ajax.php',
+			url: '<!--{$path_url}-->/sources/Kho-A9-Huy-Nhap-Kho.php',
 			processData: false,
 			contentType: false,
 			dataType: 'json',
@@ -766,7 +767,6 @@ function updatedongLM(act,str,id,cot,table){//id là phòng chuyển đến
 			}
 		})
 	}
-
 </script>
 
 <script type="text/javascript">

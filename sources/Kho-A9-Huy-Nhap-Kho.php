@@ -1,9 +1,9 @@
 <?php
 include_once("../maininclude.php");
+require_once '../Classes-PHPExcel/PHPExcel.php';
 $act = isset($_REQUEST['act']) ? $_REQUEST['act'] : '';
-$idpem = $_GET['cid'];
+$idpem = $_REQUEST['cid'];
 $nhomdanhmuc = getTableRow('categories', 'and id = 70 and active = 1');
-
 $smarty->assign('phongbanchuyen',$idpem);
 $smarty->assign('nhomdanhmuc',$nhomdanhmuc);
 
@@ -47,11 +47,81 @@ switch($act) {
         $smarty->assign('viewtcctkimcuong',$ctToaKimCuong);
         $template = 'Kho-A9-Huy-Nhap-Kho/edit.tpl';
     break;
-    case 'addsm': case 'editsm':
+    case 'editsm':
         Editsm();
         $url = "Kho-A9-Huy-Nhap-Kho.php?cid=".$_GET['cid'];
 		page_transfer2($url);
     break;
+    case 'addsm':
+        try {
+            if (isset($_FILES['fileExcel'])) {
+                $phieuNhap = [];
+                $chiTietNhapVang = [];
+                $chiTietNhapKc = [];
+                $phieuNhapKey = [
+                    'nguoilapphieu', 
+                    'donvilapphieu', 
+                    'nguoiduyetphieu',
+                    'donviduyetphieu',
+                    'lydo'
+                ];
+                $chiTietNhapVangKey = [
+                    'nhomnguyenlieuvang', 
+                    'tennguyenlieuvang',
+                    'idloaivang',
+                    'cannangvh',
+                    'cannangh',
+                    'cannangv',
+                    'tuoivang',
+                    'tienmatvang',
+                    'ghichuvang'
+                ];
+                $chiTietNhapKcKey = [
+                    'nhomnguyenlieukimcuong',
+                    'tennguyenlieukimcuong',
+                    'idkimcuong',
+                    'codegdpnj',
+                    'codecgta',
+                    'kichthuoc',
+                    'trongluonghot',
+                    'dotinhkhiet',
+                    'capdomau',
+                    'domaibong',
+                    'kichthuocban',
+                    'tienmatkimcuong',
+                    'dongiaban'
+                ];
+                $file = $_FILES['fileExcel'];
+                $objFile  = PHPExcel_IOFactory::createReader('Excel2007');
+                $objPHPExcel = $objFile->load($file['tmp_name']);
+                $sheet = $objPHPExcel->setActiveSheetIndex(0);
+                for ($i = 0; $i < 5; $i++) {
+                    $colName = $phieuNhapKey[$i];
+                    $phieuNhap[$colName] = $sheet->getCellByColumnAndRow($i,2)->getValue();
+                }
+                $lastRow = $sheet->getHighestRow();
+                for ($i = 4; $i <= $lastRow; $i++) {
+                    for ($j = 0; $j < 22; $j++) {
+                        $colValue = $sheet->getCellByColumnAndRow($j,$i)->getCalculatedValue();
+                        if ($colValue != null) {
+                            if ($j < 9) {
+                                $colName = $chiTietNhapVangKey[$j];
+                                $chiTietNhapVang[$i-4][$colName] = $colValue;
+                            } else {
+                                $colName = $chiTietNhapKcKey[$j-9];
+                                $chiTietNhapKc[$i-4][$colName] = $colValue;
+                            }
+                        }
+                    }
+                }
+                AddsmImportExcel($phieuNhap, $chiTietNhapVang, $chiTietNhapKc);
+                $url = "Kho-A9-Huy-Nhap-Kho.php?cid=".$_GET['cid'];
+		        page_transfer2($url);
+            } 
+        } catch (Exception $e) {
+            dd($e);
+        }
+        break;
     case 'dellist':
         $GLOBALS["sp"]->BeginTrans();
         try {
@@ -92,14 +162,19 @@ $smarty->display('footer.tpl');
 function Editsm () {
     global $idpem, $nhomdanhmuc;
     $act = $_GET['act'];
-    $idToa = isset($_POST['id']) ? $_POST['id'] : '';
 
     $dateNow = date('Y-m-d');
     $timeNow = date('H:i:s');
+    $sql = "select max(numphieu)+1 from $GLOBALS[db_sp].khonguonvao_khoachin";
+    $maxNum = $GLOBALS['sp']->getOne($sql);
+    if($maxNum <= 0) {
+        $maxNum = 1;
+    }
+    $numphieu = $maxNum;
+    $maso = convertMaso($maxNum);
+    $maphieu = 'PNKACHIN'.$maso;
     $datedchungtu = explode('/',trim($_POST["datedchungtu"]));
     $datedhachtoan = explode('/',trim($_POST["datedhachtoan"]));
-    $maphieu = $_POST['maphieu'];
-    $numphieu = StringToNum($maphieu);
 
     $toa = [];
     $ctToa = [];
@@ -229,7 +304,90 @@ function Editsm () {
         $_COOKIE['actionResult'] = 'error';
     }
 }
+function AddsmImportExcel ($phieuNhap, $chiTietNhapVang, $chiTietNhapKc) {
+    global $idpem, $nhomdanhmuc;
+    $dateNow = date('Y-m-d');
+    $timeNow = date('H:i:s');
+    $sql = "select max(numphieu)+1 from $GLOBALS[db_sp].khonguonvao_khoachin";
+    $maxNum = $GLOBALS['sp']->getOne($sql);
+    if($maxNum <= 0) {
+        $maxNum = 1;
+    }
+    $numphieu = $maxNum;
+    $maso = convertMaso($maxNum);
+    $maphieu = 'PNKACHIN'.$maso;
+    $toa = [];
+    $GLOBALS["sp"]->BeginTrans();
+    try {  
+        $toa['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
+        $toa['nguoilapphieu'] = $phieuNhap['nguoilapphieu'];
+        $toa['donvilapphieu'] = $phieuNhap['donvilapphieu'];
+        $toa['nguoiduyetphieu'] = $phieuNhap['nguoiduyetphieu'];
+        $toa['donviduyetphieu'] = $phieuNhap['donviduyetphieu'];
+        $toa['lydo'] = $phieuNhap['lydo'];
+        $toa['datedchungtu'] = $dateNow;
+        $toa['datedhachtoan'] = $dateNow;
+        $toa['numphieu'] = $numphieu;
+        $toa['maphieu'] = $maphieu;
+        $toa['phongban'] = $idpem;
+        $toa['type'] = 1;
+        $idctnx = vaInsert('khonguonvao_khoachin', $toa); 
 
+        foreach($chiTietNhapVang as $index => $chiTietVang) { 
+            $ctToa = [];       
+            $cannangvh = str_replace(',','',trim($chiTietVang['cannangvh']));
+            $cannangh = str_replace(',','',trim($chiTietVang['cannangh']));
+            $tuoivang = str_replace(',','',trim($chiTietVang['tuoivang']));
+            $ctToa['idctnx'] = $idctnx;
+            $ctToa['maphieu'] = $maphieu;
+            $ctToa['nhomdm'] = $nhomdanhmuc['id'];
+            $ctToa['nhomnguyenlieuvang'] = $chiTietVang['nhomnguyenlieuvang'];
+            $ctToa['tennguyenlieuvang'] = $chiTietVang['tennguyenlieuvang'];
+            $ctToa['idloaivang'] = $chiTietVang['idloaivang'];
+            $ctToa['cannangvh'] = $cannangvh;
+            $ctToa['cannangh'] = $cannangh;
+            $ctToa['cannangv'] = $cannangvh - $cannangh;
+            $ctToa['tuoivang'] = $tuoivang;
+            $ctToa['tienmatvang'] = trim($chiTietVang['tienmatvang']);
+            $ctToa['ghichuvang'] = trim($chiTietVang['ghichuvang']);
+            $ctToa['type'] = 1;
+            $ctToa['typevkc'] = 1;
+            $ctToa['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
+            $ctToa['time'] = $timeNow;
+            $ctToa['dated'] = $dateNow;
+            vaInsert('khonguonvao_khoachinct', $ctToa);
+        }
+        foreach($chiTietNhapKc as $index => $chiTietKc) {
+            $ctToaKC = [];
+            $ctToaKC['nhomnguyenlieukimcuong'] = trim($chiTietKc['nhomnguyenlieukimcuong']);
+            $ctToaKC['tennguyenlieukimcuong'] = trim($chiTietKc['tennguyenlieukimcuong']);
+            $ctToaKC['idkimcuong'] = trim($chiTietKc['idkimcuong']);
+            $ctToaKC['codegdpnj'] = trim($chiTietKc['codegdpnj']);
+            $ctToaKC['codecgta'] = trim($chiTietKc['codecgta']);
+            $ctToaKC['kichthuoc'] = trim($chiTietKc['kichthuoc']);
+            $ctToaKC['trongluonghot'] = trim($chiTietKc['trongluonghot']);
+            $ctToaKC['dotinhkhiet'] = trim($chiTietKc['dotinhkhiet']);
+            $ctToaKC['capdomau'] = trim($chiTietKc['capdomau']);
+            $ctToaKC['domaibong'] = trim($chiTietKc['domaibong']);
+            $ctToaKC['kichthuocban'] = trim($chiTietKc['kichthuocban']);
+            $ctToaKC['tienmatkimcuong'] = trim($chiTietKc['tienmatkimcuong']);
+            $ctToaKC['dongiaban'] = trim($chiTietKc['dongiaban']);
+            $ctToaKC['maphieu'] = $maphieu;
+            $ctToaKC['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
+            $ctToaKC['idctnx'] =  $idctnx;
+            $ctToaKC['nhomdm'] =  $nhomdanhmuc['id'];
+            $ctToaKC['time'] = $timeNow;
+            $ctToaKC['dated'] = $dateNow;
+            $ctToaKC['type'] = 1;
+            $ctToaKC['typevkc'] = 2;
+            vaInsert('khonguonvao_khoachinct', $ctToaKC);
+        }
+        $GLOBALS["sp"]->CommitTrans();
+    } catch (Exception $e) {
+        $GLOBALS["sp"]->RollbackTrans();
+        dd($e);
+    }
+}
 function StringToNum($str) {
     $num = 0;
     foreach (str_split($str) as $index => $char) {
