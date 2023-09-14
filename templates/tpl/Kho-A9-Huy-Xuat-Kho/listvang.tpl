@@ -209,6 +209,9 @@
                         <a href="<!--{$path_url}-->/sources/Kho-A9-Huy-Xuat-Kho.php?act=edit&cid=<!--{$smarty.request.cid}-->&id=<!--{$view[i].id}-->" title="Sửa"> 
                             <img src="<!--{$path_url}-->/images/edit.png"/> 
                         </a>
+                        <a href="Kho-A9-Huy-Xuat-Kho.php?act=print&cid=<!--{$smarty.request.cid}-->&id=<!--{$view[i].id}-->"  title="Print">
+                            <img class="margin-left10" width="25px" src="<!--{$path_url}-->/images/printer.png" align="top"> 
+                        </a>
                     </td>
                      <td>
                         <!--{if $view[i].tralai eq 1}-->	

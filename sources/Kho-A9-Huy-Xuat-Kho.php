@@ -1,5 +1,6 @@
 <?php
 include_once("../maininclude.php");
+require_once '../Classes-PHPExcel/PHPExcel.php';
 $act = isset($_REQUEST['act']) ? $_REQUEST['act'] : '';
 $idpem = isset($_REQUEST['cid']) ? $_REQUEST['cid'] : '';
 $smarty->assign('phongbanchuyen', $idpem);
@@ -45,6 +46,28 @@ switch($act) {
             die($errorTransetion);
         }	
     break;
+    case 'print':
+        if (!isset($_GET['id'])) {
+            die();
+        } 
+        $idPhieu = $_GET['id'];
+        $sqlPhieu = "select * from $GLOBALS[db_sp].khonguonvao_khoachinct where id in (12, 13)";
+        $phieu = $GLOBALS['sp']->getAll($sqlPhieu);
+        $excel = new PHPExcel();
+        $excel->createSheet();
+        $excel->setActiveSheetIndex(0);
+        $excel->getActiveSheet()->setTitle('Demo excel.');
+        foreach ($phieu as $rowIndex => $row) {
+            $excel->getActiveSheet()->setCellValue('A'.($rowIndex+1), $row['maphieu']);
+            $excel->getActiveSheet()->setCellValue('B'.($rowIndex+1), getName('categories','namevn', $row['nhomnguyenlieuvang']));
+        }
+        ob_end_clean();
+        ob_start();
+        header('Content-type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment; filename=demoExcel.xls');
+		PHPExcel_IOFactory::createWriter($excel, 'Excel5')->save('php://output');
+        exit();
+        break;
     default:
         if($_COOKIE["typeVangKimCuong"] == 'kimcuong'){
             //include_once("search/KhoNguonVaoXuatKhoKimCuongSearch.php");

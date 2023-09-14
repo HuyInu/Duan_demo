@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-29 11:30:04
+/* Smarty version 4.1.1, created on 2023-09-14 15:05:48
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-A9-Huy-Xuat-Kho\listvang.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64ed744c4cb7b1_14084032',
+  'unifunc' => 'content_6502bedc0121e7_63283157',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     'de68736847fd4f0018d57c98a526d38fa8997f04' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-A9-Huy-Xuat-Kho\\listvang.tpl',
-      1 => 1693283282,
+      1 => 1694678399,
       2 => 'file',
     ),
   ),
@@ -32,7 +32,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./allsearch/ghichus.tpl' => 1,
   ),
 ),false)) {
-function content_64ed744c4cb7b1_14084032 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6502bedc0121e7_63283157 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\libraries\\smarty4\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
 <div class="breadcrumb">
@@ -312,6 +312,12 @@ echo getName('loaivang','name_vn',$_prefixVariable3);?>
 " title="Sửa"> 
                             <img src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /images/edit.png"/> 
+                        </a>
+                        <a href="Kho-A9-Huy-Xuat-Kho.php?act=print&cid=<?php echo $_REQUEST['cid'];?>
+&id=<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
+"  title="Print">
+                            <img class="margin-left10" width="25px" src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/images/printer.png" align="top"> 
                         </a>
                     </td>
                      <td>
