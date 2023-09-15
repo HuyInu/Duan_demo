@@ -191,8 +191,9 @@ else if($act == 'xuatkho')
 	$tieude = ' XUẤT KHO';
 else if($act == 'haodu')
 	$tieude = ' HAO DƯ';
-else if($act == 'tonkho')
+else if($act == 'tonkho') {
 	$tieude = ' TỒN KHO';
+}
 else if($act == 'tonkhochitiet' || $act == 'tonkhochitietKhothanhpham')
 	$tieude = ' TỒN KHO CHI TIẾT';
 
@@ -404,8 +405,7 @@ switch($act){
 			';
 			echo $str; die();
 		}
-	break;
-	
+	break;	
 	case"tongKhoNguonVao":
 		$checkDatechuyen = 'Ok';
 		$wh = '';

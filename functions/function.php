@@ -1792,7 +1792,6 @@ function thongKeKhoNguonVaoTonKho($cid, $idloaivang, $fromDate, $toDate){
 	//$toDate = $a['todays'];
 	$datenow = date("Y-m-d");
 	
-	die(123);
 	$sqlgettable = "select * from $GLOBALS[db_sp].categories where id=".$cid;
 	$rsgettable = $GLOBALS['sp']->getRow($sqlgettable);
 	

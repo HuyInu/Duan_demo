@@ -50,6 +50,8 @@ switch($act) {
         if (!isset($_GET['id'])) {
             die();
         } 
+        $alphabet = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+        
         $idPhieu = $_GET['id'];
         $sqlPhieu = "select * from $GLOBALS[db_sp].khonguonvao_khoachinct where id in (12, 13)";
         $phieu = $GLOBALS['sp']->getAll($sqlPhieu);
@@ -57,9 +59,20 @@ switch($act) {
         $excel->createSheet();
         $excel->setActiveSheetIndex(0);
         $excel->getActiveSheet()->setTitle('Demo excel.');
+        $excel->getActiveSheet()->getColumnDimension('A')->setWidth(20);
+        $excel->getActiveSheet()->getColumnDimension('B')->setWidth(50);
+        $excel->getActiveSheet()->getColumnDimension('C')->setWidth(50);
+        $excel->getActiveSheet()->getColumnDimension('D')->setWidth(50);
+        $excel->getActiveSheet()->mergeCells('A5:D5');
+        $excel->getActiveSheet()->setCellValue('A1', 'Mã phiếu');
+        $excel->getActiveSheet()->setCellValue('B1', 'Nhóm nguyên liệu vàng');
+        $excel->getActiveSheet()->setCellValue('C1', 'Tuổi vàng');
+        $excel->getActiveSheet()->setCellValue('D1', 'Date');
         foreach ($phieu as $rowIndex => $row) {
-            $excel->getActiveSheet()->setCellValue('A'.($rowIndex+1), $row['maphieu']);
-            $excel->getActiveSheet()->setCellValue('B'.($rowIndex+1), getName('categories','namevn', $row['nhomnguyenlieuvang']));
+            $excel->getActiveSheet()->setCellValue('A'.($rowIndex+2), $row['maphieu']);
+            $excel->getActiveSheet()->setCellValue('B'.($rowIndex+2), getName('categories','name_vn', $row['nhomnguyenlieuvang']));
+            $excel->getActiveSheet()->setCellValue('C'.($rowIndex+2), $row['tuoivang']);
+            $excel->getActiveSheet()->setCellValue('D'.($rowIndex+2), date('d/m/Y', strtotime( $row['dated'])));
         }
         ob_end_clean();
         ob_start();
