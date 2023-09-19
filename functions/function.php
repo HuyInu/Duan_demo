@@ -2022,7 +2022,7 @@ function giahuy_thongKeKhoNguonVaoTonKho($cid, $idloaivang, $fromDate, $toDate) 
 					and typevkc=1
 					and dated < '".$fromDate."'  
 					and dated >= '".$dateDauThang."'";
-					$nhapTndt = $GLOBALS["sp"]->getOne($sqlNhapTndt);	
+					$nhapTndt = $GLOBALS["sp"]->getOne($sqlNhapTndt);
 
 					$sqlXuatTndt = "select ROUND(SUM(cannangv), 3) from $GLOBALS[db_sp].".$tableCT." 
 					where idloaivang=".$idloaivang." 
