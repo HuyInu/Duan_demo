@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-09-19 16:27:30
+/* Smarty version 4.1.1, created on 2023-09-20 10:36:49
   from 'D:\wamp64\www\duan_demo\templates\tpl\KhoSanXuat-Huy-Kho-Test-Nhap-Kho\nhap.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_650969827dc628_02538896',
+  'unifunc' => 'content_650a68d1dd60b7_70810751',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     'f7b24b91e90943a76f1310300180cdc207aa87c0' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\KhoSanXuat-Huy-Kho-Test-Nhap-Kho\\nhap.tpl',
-      1 => 1695115637,
+      1 => 1695179825,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:KhoSanXuat-Huy-Kho-Test-Nhap-Kho/tabMenu.tpl' => 1,
   ),
 ),false)) {
-function content_650969827dc628_02538896 (Smarty_Internal_Template $_smarty_tpl) {
+function content_650a68d1dd60b7_70810751 (Smarty_Internal_Template $_smarty_tpl) {
 ?><style>
     .MainSearch {
         display: flex;
@@ -82,13 +82,6 @@ function content_650969827dc628_02538896 (Smarty_Internal_Template $_smarty_tpl)
             <div class="formsearch"> 
                 <input class="btn-save btn-search" onclick=" return SubmitFrom();" value="Tìm kiếm" type="submit"> 
                 <input type="reset" name="reset" value=" Làm mới " onclick=" return resetsfrsearchKeToanThuTien();" class="btn-save btn-search"/>
-                <?php if ($_smarty_tpl->tpl_vars['checkPer10']->value == "true") {?>
-                    <a href="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
-/sources/==.php?act=importexcel&cid=<?php echo $_REQUEST['cid'];?>
-" title="Import Excel">
-                        <input type="button" name="importexcel" value=" Import Excel " class="btn-save btn-search"/>
-                    </a>
-                <?php }?>
             </div>
             <div class="formsearch">
                 <div class="box-thongin">

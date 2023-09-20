@@ -12,7 +12,7 @@
 	<ul>
     	<li>
             <!--{if $checkPer3 eq "true" }-->
-               	<a href="javascript:void(0)" title="Delete" onclick="ChangeAction('<!--{$path_url}-->/sources/-.php?act=dellist&cid=<!--{$smarty.request.cid}-->');">
+               	<a href="javascript:void(0)" title="Delete" onclick="ChangeAction('<!--{$path_url}-->/sources/Kho-Nu-Trang-Tra-Ve-Import.php?act=dellist&cid=<!--{$smarty.request.cid}-->');">
                     <img src="<!--{$path_url}-->/images/delete.png">
                	</a> 
             <!--{else}-->   
@@ -24,7 +24,7 @@
    </ul>
 </div>
 <div class="MainContent">
-   <form name="f" id="f" method="post" onsubmit="return searchKhoTemDa('<!--{$path_url}-->/sources/==.php?cid=<!--{$smarty.request.cid}-->')"> 
+   <form name="f" id="f" method="post" onsubmit="return searchKhoNuTrangTraVe('<!--{$path_url}-->/sources/Kho-Nu-Trang-Tra-Ve-Import.php?cid=<!--{$smarty.request.cid}-->')"> 
       <div class="MainSearch">
          <div class="formsearch">
             <label class="Fl labelsearch"> Từ ngày: </label>
@@ -36,9 +36,9 @@
          </div>
          <div class="formsearch"> 
             <input class="btn-save btn-search" onclick=" return SubmitFrom();" value="Tìm kiếm" type="submit"> 
-            <input type="reset" name="reset" value=" Làm mới " onclick=" return resetsfrsearchKeToanThuTien();" class="btn-save btn-search"/>
+            <input type="reset" name="reset" value=" Làm mới " onclick=" return resetsfrsearch();" class="btn-save btn-search"/>
             <!--{if $checkPer10 eq "true" }-->
-               <a href="<!--{$path_url}-->/sources/==.php?act=importexcel&cid=<!--{$smarty.request.cid}-->" title="Import Excel">
+               <a href="<!--{$path_url}-->/sources/Kho-Nu-Trang-Tra-Ve-Import.php?act=importexcel&cid=<!--{$smarty.request.cid}-->" title="Import Excel">
                   <input type="button" name="importexcel" value=" Import Excel " class="btn-save btn-search"/>
                </a>
             <!--{/if}-->
@@ -132,6 +132,12 @@
          </table>
       </div>
    </form>
+   <div class="Paging">
+      <div class="pgLeft">Tổng số <!--{$total}--> trang</div>
+      <div class="pgRight">
+         <!--{$link_url}-->  
+      </div>
+   </div>
 </div>
 <link type="text/css" href="<!--{$path_url}-->/calendar/jquery-ui.css" rel="stylesheet" />
 <script type="text/javascript" src="<!--{$path_url}-->/calendar/jquery-ui.js"></script> 
@@ -144,4 +150,13 @@
    $(function() {
       $(".textsearchdated").datepicker({changeMonth: true,changeYear: true,dateFormat:"dd/mm/yy"});	
    });
+
+   function resetsfrsearch () {
+
+   }
+   function searchKhoNuTrangTraVe (url) {
+      var str = null;
+      $(location).attr('href', url+str);
+		return false;
+   }
 </script>

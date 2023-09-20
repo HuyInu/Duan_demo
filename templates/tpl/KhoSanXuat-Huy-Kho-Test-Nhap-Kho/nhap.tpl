@@ -49,11 +49,6 @@
             <div class="formsearch"> 
                 <input class="btn-save btn-search" onclick=" return SubmitFrom();" value="Tìm kiếm" type="submit"> 
                 <input type="reset" name="reset" value=" Làm mới " onclick=" return resetsfrsearchKeToanThuTien();" class="btn-save btn-search"/>
-                <!--{if $checkPer10 eq "true" }-->
-                    <a href="<!--{$path_url}-->/sources/==.php?act=importexcel&cid=<!--{$smarty.request.cid}-->" title="Import Excel">
-                        <input type="button" name="importexcel" value=" Import Excel " class="btn-save btn-search"/>
-                    </a>
-                <!--{/if}-->
             </div>
             <div class="formsearch">
                 <div class="box-thongin">
