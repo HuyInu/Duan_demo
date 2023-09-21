@@ -1,7 +1,7 @@
 <?php
 session_start();
 error_reporting(E_ALL);
-ini_set("display_errors",0);
+ini_set("display_errors",0); 
 $config = array();
 //echo ini_get('session.gc_maxlifetime');
 date_default_timezone_set("Asia/Ho_Chi_Minh");

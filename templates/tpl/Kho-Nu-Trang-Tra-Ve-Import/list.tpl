@@ -129,6 +129,54 @@
                <td>
                </td>
             </tr>
+            <!--{section i loop=$view}-->
+            <tr ondblclick="popupwindow('Kho-Nu-Trang-Tra-Ve-Import.php?act=view&cid=<!--{$smarty.request.cid}-->&id=<!--{$view[i].id}-->','mywindow')">
+               <td>
+                  <input type="checkbox" id="check<!--{$smarty.section.i.index}-->" name="iddel[]" value="<!--{$view[i].id}-->"/>
+               </td>
+               <td>
+                  <!--{$smarty.section.i.index+1}-->
+               </td>
+               <td>
+                  <!--{$view[i].maphieu}-->
+               </td>
+               <td>
+                  <!--{getName('admin', 'fullname', <!--{$smarty.session.admin_qlsxntjcorg_id}-->)}-->
+               </td>
+               <td>
+                  <!--{$view[i].dateimport}-->
+               </td>
+               <td>
+                  <!--{$view[i].timeimport}-->
+               </td>
+               <td>
+                  <!--{$view[i].tongslimport}-->
+               </td>
+               <td>
+                  <!--{number_format((float)$view[i].tongvh, 3)}-->
+               </td>
+               <td>
+                  <!--{number_format($view[i].tongh, 3)}-->
+               </td>
+               <td>
+                  <!--{number_format($view[i].tongv, 3)}-->
+               </td>
+               <td>
+                  <!--{number_format($view[i].tongtienhot)}-->
+               </td>
+               <td>
+                  <!--{number_format($view[i].tongtiencong)}-->
+               </td>
+               <td>
+                  <!--{number_format($view[i].tongtiendangoctrai)}-->
+               </td>
+               <td>
+                  <a href="">
+                     Duyệt chuyển
+                  </a>
+               </td>
+            </tr>
+            <!--{/section}-->
          </table>
       </div>
    </form>
