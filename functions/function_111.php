@@ -140,7 +140,6 @@ function vaUpdate($table, $arr, $where=""){
 	if ($where) $sql .= " WHERE ".$where;
 
 	// echo $sql; die();
-
 	$GLOBALS["sp"]->execute($sql);
 
 	//echo mysql_error();

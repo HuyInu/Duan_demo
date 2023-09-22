@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-09-21 14:48:07
+/* Smarty version 4.1.1, created on 2023-09-22 09:57:58
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-Nu-Trang-Tra-Ve-Import\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_650bf5375e4e43_83779756',
+  'unifunc' => 'content_650d02b6c34006_98205021',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     'cadd716541bd2229ac4171c4c1106043ab5447c7' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-Nu-Trang-Tra-Ve-Import\\list.tpl',
-      1 => 1695282480,
+      1 => 1695351475,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_650bf5375e4e43_83779756 (Smarty_Internal_Template $_smarty_tpl) {
+function content_650d02b6c34006_98205021 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="breadcrumb">
     <ul>
         <li>
@@ -99,16 +99,16 @@ function content_650bf5375e4e43_83779756 (Smarty_Internal_Template $_smarty_tpl)
                <td style="min-width:130px">
                   <strong>Giờ import</strong>
                </td>
-               <td style="min-width:130px">
+               <td style="min-width:65px">
                   <strong>Tổng số món import</strong>
                </td>
-               <td style="min-width:130px">
+               <td style="min-width:95px">
                   <strong>Tổng Trọng lượng</strong>
                </td>
-               <td style="min-width:130px">
+               <td style="min-width:95px">
                   <strong>Tổng TL Hột</strong>
                </td>
-               <td style="min-width:100px">
+               <td style="min-width:95px">
                   <strong>Tổng TL vàng</strong>
                </td>
                <td style="min-width:50px">
@@ -183,7 +183,8 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 ?>
             <tr ondblclick="popupwindow('Kho-Nu-Trang-Tra-Ve-Import.php?act=view&cid=<?php echo $_REQUEST['cid'];?>
 &id=<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
-','mywindow')">
+','mywindow')" id="g<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
+">
                <td>
                   <input type="checkbox" id="check<?php echo (isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null);?>
 " name="iddel[]" value="<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
@@ -241,9 +242,15 @@ echo getName('admin','fullname',$_prefixVariable1);?>
 
                </td>
                <td>
-                  <a href="">
-                     Duyệt chuyển
-                  </a>
+                  <?php if ($_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['typeimport'] == 0) {?>
+                     <?php if ($_smarty_tpl->tpl_vars['checkPer8']->value == "true") {?>
+                        <a href="javascript:void(0)" onclick="giahuy_chuyenKhoNguonVaogo('duyetchuyenimport', <?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
+,'1866',<?php echo $_smarty_tpl->tpl_vars['phongbanchuyen']->value;?>
+, '') ">
+                           Duyệt chuyển
+                        </a>
+                     <?php }?>
+                  <?php }?>
                </td>
             </tr>
             <?php

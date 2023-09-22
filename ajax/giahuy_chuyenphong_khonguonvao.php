@@ -12,7 +12,7 @@ if(!isset($_SESSION["store_qlsxntjcorg_login"])){
 $dateNow = date('Y-m-d');
 $timeNow = date('H:i:s');
 $act = isset($_POST['act']) ? $_POST['act'] : '';
-$idToa = isset($_POST['id']) ? $_POST['id'] : '';
+$idPhieuChon = isset($_POST['id']) ? $_POST['id'] : '';
 $phongban= isset($_POST['phongban']) ? $_POST['phongban'] : '';
 $phongbanchuyen = $cid = isset($_POST['phongbanchuyen']) ? $_POST['phongbanchuyen'] : '';
 $macode = isset($_POST['maphieu'])?$_POST['maphieu']:"";
@@ -28,9 +28,9 @@ switch($act) {
             $tablect = $rstc['tablect'];
             $tablehachtoan = $rstc['tablehachtoan'];
             
-            $ctToaList = getTableAll($tablect,' and idctnx='.$idToa.' order by id asc');
+            $ctToaList = getTableAll($tablect,' and idctnx='.$idPhieuChon.' order by id asc');
             if(count($ctToaList) > 0 ) {
-                $sqlCheckExisted = "select count(*) from $GLOBALS[db_sp].$table where id=$idToa and type = 3";
+                $sqlCheckExisted = "select count(*) from $GLOBALS[db_sp].$table where id=$idPhieuChon and type = 3";
                 $checkExisted = $GLOBALS['sp']->getOne($sqlCheckExisted);
                 if($checkExisted <=0 ) {
                     $toa = [];
@@ -40,7 +40,7 @@ switch($act) {
                     $toa['datechuyen'] = $dateNow;
                     $toa['timechuyen'] = $timeNow;
                     $toa['type'] = 3;
-                    vaUpdate($table, $toa, "id = $idToa");
+                    vaUpdate($table, $toa, "id = $idPhieuChon");
 
                     $ctToa = [];
                     foreach($ctToaList as $item) {
@@ -101,7 +101,57 @@ switch($act) {
             $error = $e;
         }
     break;
-}
-die(json_encode(array('ar'=>0, 'status'=>$error)));
+    case 'duyetchuyenimport':
+        $GLOBALS["sp"]->BeginTrans();
+        try {
+            $phieuUpdate = [];
+            $phieuCtUpdate = [];
+            $phieuUpdate['midchuyen'] = $_SESSION['admin_qlsxntjcorg_id'];
+            $phieuUpdate['phongbanchuyen'] = $phongbanchuyen;
+            $phieuUpdate['phongban'] = $phongban;
+            $phieuUpdate['datedchuyen'] = $dateNow;
+            $phieuUpdate['timechuyen'] = $timeNow;
+            $phieuUpdate['typeimport'] = 1;
+            vaUpdate('khonguonvao_khonutrangtrave', $phieuUpdate, "id = $idPhieuChon");
+
+            $phieuCtUpdate['midchuyen'] = $_SESSION['admin_qlsxntjcorg_id'];
+            $phieuCtUpdate['phongbanchuyen'] = $phongbanchuyen;
+            $phieuCtUpdate['datedchuyen'] = $dateNow;
+            $phieuCtUpdate['timechuyen'] = $timeNow;
+            $phieuCtUpdate['phongban'] = $phongban;
+            $phieuCtUpdate['typeimport'] = 1;
+            vaUpdate('khonguonvao_khonutrangtravect', $phieuCtUpdate, "idctnx = $idPhieuChon");
+            
+            $GLOBALS["sp"]->CommitTrans();
+        } catch (Exception $e) {
+            $GLOBALS["sp"]->RollbackTrans();
+            $error = $e;
+        }
+    break;
+    case 'nhapkhonutrangtrave':
+        $GLOBALS["sp"]->BeginTrans();
+        try { 
+            $sqlCateg = "select * from $GLOBALS[db_sp].categories where id=$cid";
+            $categ = $GLOBALS['sp']->getRow($sqlCateg);
+            $tableCt = $categ['tablect'];
+            $tablehachtoan = $categ['tablehachtoan'];
+
+            $phieuCtUpdate = [];
+            $phieuCtUpdate['midnhap'] = $_SESSION['admin_qlsxntjcorg_id'];
+            $phieuCtUpdate['phongbanchuyen'] = $phongbanchuyen;
+            $phieuCtUpdate['phongban'] = $phongban;
+            $phieuCtUpdate['datednhap'] = $dateNow;
+            $phieuCtUpdate['timenhap'] = $timeNow;
+            $phieuCtUpdate['type'] = 1;
+            //vaUpdate('khonguonvao_khonutrangtravect', $phieuCtUpdate, "id = $idPhieuChon");
+            giahuy_GhiHachToanKhoNuTrangTraVe ($tablehachtoan, $tableCt, $idPhieuChon);
+            $GLOBALS["sp"]->CommitTrans();
+        } catch (Exception $e) {
+            $GLOBALS["sp"]->RollbackTrans();
+            $error = $e;
+        }
+        break;
+    }
+die(json_encode(array('status'=>$error)));
 
 ?>

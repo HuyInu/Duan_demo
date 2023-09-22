@@ -2,6 +2,7 @@
 include_once("../maininclude.php");
 $act = isset($_REQUEST['act']) ? $_REQUEST['act'] : '';
 $idpem = isset($_REQUEST['cid']) ? $_REQUEST['cid'] : '';
+$smarty->assign("phongbanchuyen",$idpem);
 
 switch ($act) {
     case 'importexcel':
@@ -44,7 +45,7 @@ switch ($act) {
                     $phieu['numphieu'] = $numphieu;
                     $phieu['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
                     $phieu['phongban'] = $idpem;
-                    $phieu['dateimport'] = $dateNow;
+                    $phieu['datedimport'] = $dateNow;
                     $phieu['timeimport'] = $timeNow;
                     $phieu['tongslimport'] = $Totalrow - 2;
                     $phieu['tongh'] = number_format(trim($sheet->getCellByColumnAndRow(19,$Totalrow)->getFormattedValue()), 3);
@@ -56,20 +57,20 @@ switch ($act) {
                     $phieu['tongtienhot'] = (int)str_replace(",","",($tongtienhotStr));
                     $phieu['tongtiencong'] = (int)str_replace(",","",($tongtiencongStr));
                     $phieu['tongtiendangoctrai'] = (int)str_replace(",","",($tongtiendangoctraiStr));
-                    $phieu['type'] = 1;
+                    $phieu['type'] = 0;
                     $phieuId = vaInsert('khonguonvao_khonutrangtrave', $phieu);
 					try {
                         for($i = 2; $i <= $Totalrow - 1; $i++) {
-                            $colIndex = 1;
+                            $colIndex = 0;
                             $phieuCt = [];
-                            $phieuCt['trangthaixacnhan'] = trim($sheet->getCellByColumnAndRow($colIndex, $i)->getFormattedValue()) === 'Đã xác nhận' ? 1 : 0;
+                            $phieuCt['trangthaixacnhan'] = trim($sheet->getCellByColumnAndRow($colIndex++, $i)->getFormattedValue()) === 'Đã xác nhận' ? 1 : 0;
                             $phieuCt['cuahang'] = trim($sheet->getCellByColumnAndRow($colIndex++,$i)->getFormattedValue());
                             $phieuCt['noiden'] = trim($sheet->getCellByColumnAndRow($colIndex++,$i)->getFormattedValue());
                             $phieuCt['nhanvien'] = trim($sheet->getCellByColumnAndRow($colIndex++,$i)->getFormattedValue());
                             $dateStr = trim($sheet->getCellByColumnAndRow($colIndex++,$i)->getFormattedValue());
-                            $phieuCt['date'] = date('Y-m-d', strtotime(str_replace('/', '-', $dateStr)));
+                            $phieuCt['dated'] = date('Y-m-d', strtotime(str_replace('/', '-', $dateStr)));
                             $datexacnhanStr = trim($sheet->getCellByColumnAndRow($colIndex++,$i)->getFormattedValue());
-                            $phieuCt['datexacnhan'] = date('Y-m-d', strtotime(str_replace('/', '-', $datexacnhanStr)));
+                            $phieuCt['datedxacnhan'] = date('Y-m-d', strtotime(str_replace('/', '-', $datexacnhanStr)));
                             $phieuCt['sophieu'] = trim($sheet->getCellByColumnAndRow($colIndex++,$i)->getFormattedValue());
                             $phieuCt['cuahangtruoc'] = trim($sheet->getCellByColumnAndRow($colIndex++,$i)->getFormattedValue());
                             $phieuCt['STT'] = trim($sheet->getCellByColumnAndRow($colIndex++,$i)->getFormattedValue());
@@ -83,7 +84,7 @@ switch ($act) {
                             $phieuCt['manutrang'] = trim($sheet->getCellByColumnAndRow($colIndex++,$i)->getFormattedValue());
                             $phieuCt['macu'] = trim($sheet->getCellByColumnAndRow($colIndex++,$i)->getFormattedValue());
                             $phieuCt['ten'] = trim($sheet->getCellByColumnAndRow($colIndex++,$i)->getFormattedValue());
-                            // $phieuCt['ghichu'] = trim($sheet->getCellByColumnAndRow($colIndex++,$i)->getFormattedValue());
+                            $phieuCt['ghichu2'] = trim($sheet->getCellByColumnAndRow($colIndex++,$i)->getFormattedValue());
                             $phieuCt['gvh'] = trim($sheet->getCellByColumnAndRow($colIndex++,$i)->getFormattedValue());
                             $phieuCt['cannangvh'] = trim($sheet->getCellByColumnAndRow($colIndex++,$i)->getFormattedValue());
                             $phieuCt['cannangh'] = trim($sheet->getCellByColumnAndRow($colIndex++,$i)->getFormattedValue());
@@ -112,9 +113,10 @@ switch ($act) {
                             $phieuCt['slmon'] = trim($sheet->getCellByColumnAndRow($colIndex++,$i)->getFormattedValue());
                             $phieuCt['makhuyenmai'] = trim($sheet->getCellByColumnAndRow($colIndex++,$i)->getFormattedValue());
                             $phieuCt['giatamtinh'] = trim($sheet->getCellByColumnAndRow($colIndex++,$i)->getFormattedValue());
-                            $phieuCt['maphieu'] = 'IMSPHHTV-23';
+                            $phieuCt['maphieuimport'] = 'IMSPHHTV-23';
+                            $phieuCt['phongban'] = $pidm;
                             $phieuCt['midimport'] = $_SESSION['admin_qlsxntjcorg_id'];
-                            $phieuCt['dateimport'] = $dateNow;
+                            $phieuCt['datedimport'] = $dateNow;
                             $phieuCt['timeimport'] = $timeNow;
                             $phieuCt['idctnx'] = $phieuId;
                             vaInsert('khonguonvao_khonutrangtravect', $phieuCt);
@@ -176,8 +178,8 @@ switch ($act) {
             $page = $path_url."/sources/main.php";
             page_transfer2($page);
         } else {
-            $sql = "select * from $GLOBALS[db_sp].khonguonvao_khonutrangtrave where phongban = $idpem order by dateimport desc, maphieu asc";
-            $sql_sum = "select count(*) from $GLOBALS[db_sp].khonguonvao_khonutrangtrave where phongban = $idpem";
+            $sql = "select * from $GLOBALS[db_sp].khonguonvao_khonutrangtrave where phongban = $idpem and typeimport = 0 order by datedimport desc, maphieu asc";
+            $sql_sum = "select count(*) from $GLOBALS[db_sp].khonguonvao_khonutrangtrave where phongban = $idpem and typeimport = 0";
             $total = $count = ceil($GLOBALS['sp']->getOne($sql_sum));
             $num_rows_page = $numPageAll;
 			$num_page = ceil($total/$num_rows_page);
@@ -202,6 +204,8 @@ switch ($act) {
             $template = 'Kho-Nu-Trang-Tra-Ve-Import/list.tpl';
             if(checkPermision($idpem,3))
 				$smarty->assign("checkPer3","true");
+            if(checkPermision($idpem,8))
+				$smarty->assign("checkPer8","true");
             if(checkPermision($idpem,10))
 				$smarty->assign("checkPer10","true");
         }

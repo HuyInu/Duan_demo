@@ -225,10 +225,9 @@ function giahuy_chuyenKhoNguonVaogo(act, id, phongban, phongbanchuyen, maphieu){
 			$('#loadingAjax').show();
 			$.post('<!--{$path_url}-->/ajax/giahuy_chuyenphong_khonguonvao.php',{act:act,id:id,phongban:phongban,phongbanchuyen:phongbanchuyen,maphieu:maphieu},function(data) {																				
 				var obj = jQuery.parseJSON(data);
-				console.log(obj);
 				 if(obj.status == 'success'){
 					$('#loadingAjax').hide();
-					$('#g'+id).hide(); 
+					$('tr').remove('#g'+ id)
 				 }
 				 else{
 					$('#loadingAjax').hide();

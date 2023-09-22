@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-09-21 15:55:49
+/* Smarty version 4.1.1, created on 2023-09-22 08:07:12
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-Nu-Trang-Tra-Ve-Import\view.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_650c0515522315_33343347',
+  'unifunc' => 'content_650ce8c0f0bc82_19982213',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     '9dacb5cfbca21f9cd6e6290f6ba399f16d12374f' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-Nu-Trang-Tra-Ve-Import\\view.tpl',
-      1 => 1695286546,
+      1 => 1695344822,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_650c0515522315_33343347 (Smarty_Internal_Template $_smarty_tpl) {
+function content_650ce8c0f0bc82_19982213 (Smarty_Internal_Template $_smarty_tpl) {
 ?><link type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /calendar/jquery-ui.css" rel="stylesheet" />
 <?php echo '<script'; ?>
@@ -174,7 +174,7 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 ?>
             <tr>
                 <td>
-                    <?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['trangthaixacnhan'];?>
+                    <?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['trangthaixacnhan'] == 1 ? "Đã xác nhận" : "Chưa xác nhận";?>
 
                 </td>
                 <td>

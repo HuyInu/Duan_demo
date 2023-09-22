@@ -65,16 +65,16 @@
                <td style="min-width:130px">
                   <strong>Giờ import</strong>
                </td>
-               <td style="min-width:130px">
+               <td style="min-width:65px">
                   <strong>Tổng số món import</strong>
                </td>
-               <td style="min-width:130px">
+               <td style="min-width:95px">
                   <strong>Tổng Trọng lượng</strong>
                </td>
-               <td style="min-width:130px">
+               <td style="min-width:95px">
                   <strong>Tổng TL Hột</strong>
                </td>
-               <td style="min-width:100px">
+               <td style="min-width:95px">
                   <strong>Tổng TL vàng</strong>
                </td>
                <td style="min-width:50px">
@@ -130,7 +130,7 @@
                </td>
             </tr>
             <!--{section i loop=$view}-->
-            <tr ondblclick="popupwindow('Kho-Nu-Trang-Tra-Ve-Import.php?act=view&cid=<!--{$smarty.request.cid}-->&id=<!--{$view[i].id}-->','mywindow')">
+            <tr ondblclick="popupwindow('Kho-Nu-Trang-Tra-Ve-Import.php?act=view&cid=<!--{$smarty.request.cid}-->&id=<!--{$view[i].id}-->','mywindow')" id="g<!--{$view[i].id}-->">
                <td>
                   <input type="checkbox" id="check<!--{$smarty.section.i.index}-->" name="iddel[]" value="<!--{$view[i].id}-->"/>
                </td>
@@ -171,9 +171,13 @@
                   <!--{number_format($view[i].tongtiendangoctrai)}-->
                </td>
                <td>
-                  <a href="">
-                     Duyệt chuyển
-                  </a>
+                  <!--{if $view[i].typeimport == 0}-->
+                     <!--{if $checkPer8 eq "true"}-->
+                        <a href="javascript:void(0)" onclick="giahuy_chuyenKhoNguonVaogo('duyetchuyenimport', <!--{$view[i].id}-->,'1866',<!--{$phongbanchuyen}-->, '') ">
+                           Duyệt chuyển
+                        </a>
+                     <!--{/if}-->
+                  <!--{/if}-->
                </td>
             </tr>
             <!--{/section}-->

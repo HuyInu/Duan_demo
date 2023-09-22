@@ -129,8 +129,7 @@ function vaUpdate($table, $arr, $where=""){
 		$sql .= ", `".$keys[$i]."`='".StripSql($arr[$keys[$i]])."' ";
 	}
 	if ($where) $sql .= " WHERE ".$where;
-
-	//var_dump($sql); die();
+	//echo $sql; die();
 	$GLOBALS["sp"]->execute($sql);
 
 	//echo mysql_error();
@@ -8587,6 +8586,43 @@ function giahuy_hachToanHaoDuEdit ($idloaivang, $hao, $du, $haochenhlech, $duche
 		}
 	}
 
+}
+
+function giahuy_GhiHachToanKhoNuTrangTraVe ($tablehachtoan, $tableCt, $id) {
+	$dateDauThang = date('Y-m-01');
+	$slNhapVh = $slNhapV = $slNhapH = 0;
+	$slXuatVh = $slXuatV = $slXuatH = 0;
+
+	$sqlPhieu = "select * from $GLOBALS[db_sp].$tableCt where id=$id";
+	$phieu = $GLOBALS['sp']->getRow($sqlPhieu);
+
+	if ((int)$phieu['type'] == 1) {
+		$slNhapVh = $phieu['cannangvh'];
+		$slNhapV = $phieu['cannangv'];
+		$slNhapH = $phieu['cannangh'];
+	} else {
+		$slXuatVh = $phieu['cannangvh'];
+		$slXuatV = $phieu['cannangvh'];
+		$slXuatH = $phieu['cannangvh'];
+	}
+
+	$currentHachToan = [];
+	$sqlHachToanThisMonth = "select * from $GLOBALS[db_sp].$tablehachtoan where idloaivang = ".$phieu['idloaivang']." and dated = $dateDauThang";
+	$hachToanThisMonth = $GLOBALS['sp']->getRow($sqlHachToanThisMonth);
+	if (empty($hachToanThisMonth['id'])) {
+		$sqlHachToanLastMonth = "select * from $GLOBALS[db_sp].$tablehachtoan where idloaivang = ".$phieu['idloaivang']." order by dated desc limit 1";
+		$hachToanLastMonth = $GLOBALS['sp']->getRow($sqlHachToanLastMonth);
+		$currentHachToan['slnhapvh'] = round($hachToanLastMonth['slnhapvh'] + $slNhapVh, 3);
+		$currentHachToan['slnhapv'] = round($hachToanLastMonth['slnhapv'] + $slNhapV, 3);
+		$currentHachToan['slnhaph'] = round($hachToanLastMonth['slnhaph'] + $slNhapH, 3);
+		$currentHachToan['slxuatvh'] = round($hachToanLastMonth['slxuatvh'] + $slXuatVh, 3);
+		$currentHachToan['slxuatv'] = round($hachToanLastMonth['slxuatv'] + $slXuatV, 3);
+		$currentHachToan['slxuath'] = round($hachToanLastMonth['slxuath'] + $slXuatH, 3);
+		$currentHachToan['sltonvh'] = round(round(($hachToanLastMonth['sltonvh'] + $slNhapVh), 3) - $slXuatVh, 3);
+		$currentHachToan['sltonv'] = round(round(($hachToanLastMonth['sltonv'] + $slNhapV), 3) - $slXuatV, 3);
+		$currentHachToan['sltonh'] = round(round(($hachToanLastMonth['sltonh'] + $slNhapH), 3) - $slXuatH, 3);
+		
+	}
 }
 ?>
 
