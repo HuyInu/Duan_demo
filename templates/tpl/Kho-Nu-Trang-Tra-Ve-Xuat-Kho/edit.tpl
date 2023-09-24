@@ -21,7 +21,7 @@
                         </div>
                         
                         <div class="SubRight">
-                            <input  type="text" value="" class="InputText" readonly/>
+                            <input  type="text" value="<!--{$datedxuat}-->" name="datedxuat" class="InputText" readonly/>
                         </div>
                     </div>
                     
@@ -31,7 +31,7 @@
                         </div>
                         
                         <div class="SubRight">
-                            <input name="" value="" class="InputText" type="text" autocomplete="off" readonly/>
+                            <input value="<!--{$maphieu}-->" name="maphieu" class="InputText"  autocomplete="off" readonly/>
                         </div>
                     </div>
 
@@ -41,7 +41,11 @@
                         </div>
                         
                         <div class="SubRight">
-                            <input name="" value="" class="InputText" type="text" autocomplete="off" />
+                            <select id="sophieu" name="sophieu" form="" onchange="LoadDuLieuHangTraKho(<!--{$smarty.request.cid}-->)">
+                                <!--{section i loop=$sophieu}-->
+                                <option value="<!--{$sophieu[i]}-->"><!--{$sophieu[i]}--></option>
+                                <!--{/section}-->
+                            </select>
                         </div>
                     </div>
                     
@@ -107,7 +111,7 @@
                                 </div>
                                 
                                 <div class="SubRight">
-                                    <input type="text" class="txtdatagirld" autocomplete="off" name="" id="" value="" />
+                                    <input type="text" class="txtdatagirld autoNumeric" autocomplete="off" name="" id="" value="" />
                                 </div>
                             </div>
 
@@ -117,7 +121,7 @@
                                 </div>
                                 
                                 <div class="SubRight">
-                                    <input type="text" class="txtdatagirld" autocomplete="off" name="" id="" value="" />
+                                    <input type="text" class="txtdatagirld autoNumeric" autocomplete="off" name="" id="" value="" />
                                 </div>
                             </div>
 
@@ -127,7 +131,7 @@
                                 </div>
                                 
                                 <div class="SubRight">
-                                    <input type="text" class="txtdatagirld" autocomplete="off" name="" id="" value="" />
+                                    <input type="text" class="txtdatagirld autoNumeric" autocomplete="off" name="" id="" value="" />
                                 </div>
                             </div>
   
@@ -149,8 +153,8 @@
         <div class="box-thongin">
             <div class="title-thongtin">Nội Dung (Dữ liệu chuyển hàng trả kho)</div>
             <div class="MainTable">
-                <table class="table-bordered">
-                    <tr class="trheader" align="center">
+                <table class="table-bordered" id="DataTable">
+                    <tr id="headTableData" class="trheader" align="center">
                         <td style="min-width:30px"></td>
                         <td style="min-width:30px">
                             <strong>Trạng thái</strong>
@@ -281,3 +285,147 @@
 <script src="<!--{$path_url}-->/fancybox/jquery.fancybox-1.3.1.js"></script>
 <link rel="stylesheet" href="<!--{$path_url}-->/fancybox/jquery.fancybox-1.3.1.css">
 <link rel="stylesheet" href="<!--{$path_url}-->/popup/dialog.css">
+<script>
+    function LoadDuLieuHangTraKho (cid) {
+        const sophieu = $('#sophieu').val();
+        $('#loadingAjax').show();
+        $.post('Kho-Nu-Trang-Tra-Ve-Xuat-Kho.php',
+            {
+                act:'loaddulieutrakho',
+                cid:cid,
+                sophieu: sophieu
+            },
+            function(data) {																				
+                var obj = jQuery.parseJSON(data);
+                if(obj.status == 'success'){
+                    let data = null;
+                    $('#DataTable tr:not(.trheader)').remove();
+                    $.each(obj.phieu, function( index, phieu ) {
+                        data += `<tr>
+                                        <td></td>
+                                        <td>
+                                            <strong>Trạng thái</strong>
+                                        </td>
+                                        <td>
+                                            ${phieu.cuahang}
+                                        </td>
+                                        <td>
+                                            ${phieu.noiden}
+                                        </td>
+                                        <td>
+                                            ${phieu.nhanvien}
+                                        </td>
+                                        <td>
+                                            ${phieu.dated}
+                                        </td>
+                                        <td>
+                                            ${phieu.datedxacnhan}
+                                        </td>
+                                        <td>
+                                            ${phieu.sophieu}
+                                        </td>
+                                        <td>
+                                            ${phieu.cuahangtruoc}
+                                        </td>
+                                        <td>
+                                            ${phieu.STT}
+                                        </td>
+                                        <td>
+                                            ${phieu.ghichu}
+                                        </td>
+                                        <td>
+                                            ${phieu.nhacungcap}
+                                        </td>
+                                        <td>
+                                            
+                                        </td>
+                                        <td>
+                                            <strong>Loại nữ trang</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Mã nữ trang</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Mã cũ</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Tên</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Ghi chú</strong>
+                                        </td>
+                                        <td>
+                                            <strong>GVH</strong>
+                                        </td>
+                                        <td>
+                                            <strong>TTL</strong>
+                                        </td>
+                                        <td>
+                                            <strong>TL Hột</strong>
+                                        </td>
+                                        <td>
+                                            <strong>TL Hột(Gr)</strong>
+                                        </td>
+                                        <td>
+                                            <strong>TL Vàng</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Tiền hột</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Tiền công</strong>
+                                        </td>
+                                        <td>
+                                            <strong>CVSP</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Tiền Đá/Ngọc trai</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Tiền công hột bán</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Thành tiền</strong>
+                                        </td>
+                                        <td>
+                                            <strong>MSM</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Chi tiết hột tấm</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Chi tiết hột tấm thực tế</strong>
+                                        </td>
+                                        <td>
+                                            <strong>KH</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Mã số mẫu Catalogue 1</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Mã số mẫu Catalogue 2</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Giá bán</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Số món</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Khuyến mãi</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Giá tạm tính</strong>
+                                        </td>
+                                    </tr>`
+                    });
+                    $('#headTableData').after(data);
+                    $('#loadingAjax').hide();
+                }
+                else{
+                    $('#loadingAjax').hide();
+                    alert(obj.status);	 
+            }
+        });
+    }
+</script>

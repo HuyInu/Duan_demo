@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-08-26 07:57:07
+/* Smarty version 4.1.1, created on 2023-09-23 09:20:14
   from 'C:\wamp64\www\duan_demo\templates\tpl\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_64e94de3e65519_87849197',
+  'unifunc' => 'content_650e4b5e1981a5_07238289',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1903be22bf8d6a8c573bdf710ad482f734095d6e' => 
     array (
       0 => 'C:\\wamp64\\www\\duan_demo\\templates\\tpl\\footer.tpl',
-      1 => 1693010858,
+      1 => 1695434854,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64e94de3e65519_87849197 (Smarty_Internal_Template $_smarty_tpl) {
+function content_650e4b5e1981a5_07238289 (Smarty_Internal_Template $_smarty_tpl) {
 ?><span id="loadingAjax">
     <div class="ajax-loader"></div>
     <div class="loadajax"></div>
@@ -132,7 +132,7 @@ function exportExcelKhoKhac(url){
 		$(".vang").show();	
 		$(".kimcuong").hide();
 		if(a !='noajax' ){
-			createCookie('0','vang',1);
+			createCookie('typeVangKimCuong','vang',1);
 			if(a !='' )
 				$(location).attr('href',a);
 			reload_js('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
@@ -265,10 +265,9 @@ function giahuy_chuyenKhoNguonVaogo(act, id, phongban, phongbanchuyen, maphieu){
 			$.post('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /ajax/giahuy_chuyenphong_khonguonvao.php',{act:act,id:id,phongban:phongban,phongbanchuyen:phongbanchuyen,maphieu:maphieu},function(data) {																				
 				var obj = jQuery.parseJSON(data);
-				console.log(obj);
 				 if(obj.status == 'success'){
 					$('#loadingAjax').hide();
-					$('#g'+id).hide(); 
+					$('tr').remove('#g'+ id)
 				 }
 				 else{
 					$('#loadingAjax').hide();
@@ -803,6 +802,33 @@ function updatedongLM(act,str,id,cot,table){//id là phòng chuyển đến
 		}	
 	}
 
+	function importExcel (cid) {
+		const file = $('#excel')[0].files[0];
+		var formD = new FormData();
+		formD.append('file', file);
+  		formD.append("act", 'import');
+		formD.append("cid", cid);
+		var data = {
+				'act':'import',
+				'file': file
+			};
+		$.ajax({
+ 			type: "POST",
+			url: '<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/sources/Kho-A9-Huy-Nhap-Kho.php',
+			processData: false,
+			contentType: false,
+			dataType: 'json',
+			data: formD,
+			success: function (respone) {
+				//let result = JSON.parse(respone);
+				console.log(respone);
+			},
+			error: function (e) {
+				console.log(e);
+			}
+		})
+	}
 <?php echo '</script'; ?>
 >
 

@@ -12,7 +12,7 @@
 	<ul>
     	<li>
             <!--{if $checkPer1 eq "true" }-->
-                <a href="javascript:void(0)" title="Thêm" onclick="return ChangeAdd('<!--{$path_url}-->/sources--.php?act=add&cid=<!--{$smarty.request.cid}-->');">
+                <a href="javascript:void(0)" title="Thêm" onclick="return ChangeAdd('Kho-Nu-Trang-Tra-Ve-Xuat-Kho.php?act=add&cid=<!--{$smarty.request.cid}-->');">
                     <img src="<!--{$path_url}-->/images/add.png">
                 </a> 
             <!--{else}-->  
@@ -21,7 +21,7 @@
                 </a> 	
             <!--{/if}--> 
             <!--{if $checkPer3 eq "true" }-->
-               	<a href="javascript:void(0)" title="Delete" onclick="ChangeAction('<!--{$path_url}-->/sources/-.php?act=dellist&cid=<!--{$smarty.request.cid}-->');">
+               	<a href="javascript:void(0)" title="Delete" onclick="ChangeAction('Kho-Nu-Trang-Tra-Ve-Xuat-Kho.php?act=dellist&cid=<!--{$smarty.request.cid}-->');">
                     <img src="<!--{$path_url}-->/images/delete.png">
                	</a> 
             <!--{else}-->   
@@ -33,7 +33,7 @@
     </ul>
 </div>
 <div class="MainContent">
-	<form name="f" id="f" method="post" onsubmit="return searchKhoTemDa('<!--{$path_url}-->/sources/Da-Tem-Da-Nhap-Kho.php?cid=<!--{$smarty.request.cid}-->')"> 
+	<form name="f" id="f" method="post" onsubmit="return searchKhoTemDa('Kho-Nu-Trang-Tra-Ve-Xuat-Kho.php?cid=<!--{$smarty.request.cid}-->')"> 
         <div class="MainSearch">
         	<!--{include file="./allsearch/tungay-denngay.tpl"}-->
         </div>

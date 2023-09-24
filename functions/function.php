@@ -8607,21 +8607,34 @@ function giahuy_GhiHachToanKhoNuTrangTraVe ($tablehachtoan, $tableCt, $id) {
 	}
 
 	$currentHachToan = [];
-	$sqlHachToanThisMonth = "select * from $GLOBALS[db_sp].$tablehachtoan where idloaivang = ".$phieu['idloaivang']." and dated = $dateDauThang";
+	$sqlHachToanThisMonth = "select * from $GLOBALS[db_sp].$tablehachtoan where idloaivang = ".$phieu['idloaivang']." and dated = '$dateDauThang'";
 	$hachToanThisMonth = $GLOBALS['sp']->getRow($sqlHachToanThisMonth);
 	if (empty($hachToanThisMonth['id'])) {
 		$sqlHachToanLastMonth = "select * from $GLOBALS[db_sp].$tablehachtoan where idloaivang = ".$phieu['idloaivang']." order by dated desc limit 1";
 		$hachToanLastMonth = $GLOBALS['sp']->getRow($sqlHachToanLastMonth);
-		$currentHachToan['slnhapvh'] = round($hachToanLastMonth['slnhapvh'] + $slNhapVh, 3);
-		$currentHachToan['slnhapv'] = round($hachToanLastMonth['slnhapv'] + $slNhapV, 3);
-		$currentHachToan['slnhaph'] = round($hachToanLastMonth['slnhaph'] + $slNhapH, 3);
-		$currentHachToan['slxuatvh'] = round($hachToanLastMonth['slxuatvh'] + $slXuatVh, 3);
-		$currentHachToan['slxuatv'] = round($hachToanLastMonth['slxuatv'] + $slXuatV, 3);
-		$currentHachToan['slxuath'] = round($hachToanLastMonth['slxuath'] + $slXuatH, 3);
+		$currentHachToan['slnhapvh'] = round($slNhapVh, 3);
+		$currentHachToan['slnhapv'] = round($slNhapV, 3);
+		$currentHachToan['slnhaph'] = round($slNhapH, 3);
+		$currentHachToan['slxuatvh'] = round($slXuatVh, 3);
+		$currentHachToan['slxuatv'] = round($slXuatV, 3);
+		$currentHachToan['slxuath'] = round($slXuatH, 3);
 		$currentHachToan['sltonvh'] = round(round(($hachToanLastMonth['sltonvh'] + $slNhapVh), 3) - $slXuatVh, 3);
 		$currentHachToan['sltonv'] = round(round(($hachToanLastMonth['sltonv'] + $slNhapV), 3) - $slXuatV, 3);
 		$currentHachToan['sltonh'] = round(round(($hachToanLastMonth['sltonh'] + $slNhapH), 3) - $slXuatH, 3);
-		
+		$currentHachToan['idloaivang'] = $phieu['idloaivang'];
+		$currentHachToan['dated'] = $dateDauThang;
+		vaInsert('khonguonvao_khonutrangtrave_sodudauky', $currentHachToan);
+	} else {
+		$currentHachToan['slnhapvh'] = round($hachToanThisMonth['slnhapvh'] + $slNhapVh, 3);
+		$currentHachToan['slnhapv'] = round($hachToanThisMonth['slnhapv'] + $slNhapV, 3);
+		$currentHachToan['slnhaph'] = round($hachToanThisMonth['slnhaph'] + $slNhapH, 3);
+		$currentHachToan['slxuatvh'] = round($hachToanThisMonth['slxuatvh'] + $slXuatVh, 3);
+		$currentHachToan['slxuatv'] = round($hachToanThisMonth['slxuatv'] + $slXuatV, 3);
+		$currentHachToan['slxuath'] = round($hachToanThisMonth['slxuath'] + $slXuatH, 3);
+		$currentHachToan['sltonvh'] = round(round($hachToanThisMonth['sltonvh'] + $slNhapVh, 3) - $slXuatVh,3);
+		$currentHachToan['sltonv'] = round(round($hachToanThisMonth['sltonv'] + $slNhapV, 3) - $slXuatV,3);
+		$currentHachToan['sltonh'] = round(round($hachToanThisMonth['sltonh'] + $slNhapH, 3) - $slXuatH,3);
+		vaUpdate('khonguonvao_khonutrangtrave_sodudauky', $currentHachToan, 'id='.$hachToanThisMonth['id']);
 	}
 }
 ?>

@@ -143,7 +143,7 @@ switch($act) {
             $phieuCtUpdate['datednhap'] = $dateNow;
             $phieuCtUpdate['timenhap'] = $timeNow;
             $phieuCtUpdate['type'] = 1;
-            //vaUpdate('khonguonvao_khonutrangtravect', $phieuCtUpdate, "id = $idPhieuChon");
+            vaUpdate('khonguonvao_khonutrangtravect', $phieuCtUpdate, "id = $idPhieuChon");
             giahuy_GhiHachToanKhoNuTrangTraVe ($tablehachtoan, $tableCt, $idPhieuChon);
             $GLOBALS["sp"]->CommitTrans();
         } catch (Exception $e) {
