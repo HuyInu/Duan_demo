@@ -144,13 +144,13 @@
                   <!--{getName('admin', 'fullname', <!--{$smarty.session.admin_qlsxntjcorg_id}-->)}-->
                </td>
                <td>
-                  <!--{$view[i].dateimport}-->
+                  <!--{$view[i].dated}-->
                </td>
                <td>
-                  <!--{$view[i].timeimport}-->
+                  <!--{$view[i].time}-->
                </td>
                <td>
-                  <!--{$view[i].tongslimport}-->
+                  <!--{$view[i].slmon}-->
                </td>
                <td>
                   <!--{number_format((float)$view[i].tongvh, 3)}-->

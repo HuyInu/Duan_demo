@@ -1,41 +1,74 @@
-<div class="breadcrumb">
+<?php
+/* Smarty version 4.1.1, created on 2023-09-25 16:29:22
+  from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-Nu-Trang-Tra-Ve-Xuat-Kho\list.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.1.1',
+  'unifunc' => 'content_651152f22501a5_10992964',
+  'has_nocache_code' => true,
+  'file_dependency' => 
+  array (
+    'b6927a8a7418125244cdf1096fb811276e3ab1e9' => 
+    array (
+      0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-Nu-Trang-Tra-Ve-Xuat-Kho\\list.tpl',
+      1 => 1695634154,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:./allsearch/tungay-denngay.tpl' => 1,
+  ),
+),false)) {
+function content_651152f22501a5_10992964 (Smarty_Internal_Template $_smarty_tpl) {
+?><div class="breadcrumb">
     <ul>
         <li>
-        	<a href="<!--{$path_url}-->/sources/main.php" title="trang chủ">
+        	<a href="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/sources/main.php" title="trang chủ">
             	<i class="fa-home"></i>
             </a>    
         </li>
-       <!--{insert name="HearderCat" cid=$smarty.request.cid root=$smarty.request.root act=$smarty.request.act}-->
+       <?php echo insert_HearderCat(array('cid' => $_REQUEST['cid'], 'root' => $_REQUEST['root'], 'act' => $_REQUEST['act']),$_smarty_tpl);?>
     </ul>
 </div>
 <div class="goAction">
 	<ul>
     	<li>
-            <!--{if $checkPer1 eq "true" }-->
-                <a href="javascript:void(0)" title="Thêm" onclick="return ChangeAdd('Kho-Nu-Trang-Tra-Ve-Xuat-Kho.php?act=add&cid=<!--{$smarty.request.cid}-->');">
-                    <img src="<!--{$path_url}-->/images/add.png">
+            <?php if ($_smarty_tpl->tpl_vars['checkPer1']->value == "true") {?>
+                <a href="javascript:void(0)" title="Thêm" onclick="return ChangeAdd('Kho-Nu-Trang-Tra-Ve-Xuat-Kho.php?act=add&cid=<?php echo $_REQUEST['cid'];?>
+');">
+                    <img src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/images/add.png">
                 </a> 
-            <!--{else}-->  
+            <?php } else { ?>  
                 <a>
-                    <img src="<!--{$path_url}-->/images/add-no.png">
+                    <img src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/images/add-no.png">
                 </a> 	
-            <!--{/if}--> 
-            <!--{if $checkPer3 eq "true" }-->
-               	<a href="javascript:void(0)" title="Delete" onclick="ChangeAction('Kho-Nu-Trang-Tra-Ve-Xuat-Kho.php?act=dellist&cid=<!--{$smarty.request.cid}-->');">
-                    <img src="<!--{$path_url}-->/images/delete.png">
+            <?php }?> 
+            <?php if ($_smarty_tpl->tpl_vars['checkPer3']->value == "true") {?>
+               	<a href="javascript:void(0)" title="Delete" onclick="ChangeAction('Kho-Nu-Trang-Tra-Ve-Xuat-Kho.php?act=dellist&cid=<?php echo $_REQUEST['cid'];?>
+');">
+                    <img src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/images/delete.png">
                	</a> 
-            <!--{else}-->   
+            <?php } else { ?>   
                	<a>
-                    <img src="<!--{$path_url}-->/images/delete-no.png">
+                    <img src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/images/delete-no.png">
                	</a> 
-            <!--{/if}--> 
+            <?php }?> 
         </li>
     </ul>
 </div>
 <div class="MainContent">
-	<form name="f" id="f" method="post" onsubmit="return searchKhoTemDa('Kho-Nu-Trang-Tra-Ve-Xuat-Kho.php?cid=<!--{$smarty.request.cid}-->')"> 
+	<form name="f" id="f" method="post" onsubmit="return searchKhoTemDa('Kho-Nu-Trang-Tra-Ve-Xuat-Kho.php?cid=<?php echo $_REQUEST['cid'];?>
+')"> 
         <div class="MainSearch">
-        	<!--{include file="./allsearch/tungay-denngay.tpl"}-->
+        	<?php $_smarty_tpl->_subTemplateRender("file:./allsearch/tungay-denngay.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
         </div>
         <div class="MainTable fix-max-height">
             <table class="table-bordered">
@@ -80,13 +113,21 @@
                         <strong>Sửa/In</strong>
                     </td>
                 </tr>
-                <!--{section i loop=$view}-->
+                <?php
+$__section_i_0_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['view']->value) ? count($_loop) : max(0, (int) $_loop));
+$__section_i_0_total = $__section_i_0_loop;
+$_smarty_tpl->tpl_vars['__smarty_section_i'] = new Smarty_Variable(array());
+if ($__section_i_0_total !== 0) {
+for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] = 0; $__section_i_0_iteration <= $__section_i_0_total; $__section_i_0_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']++){
+?>
                 <tr>
                     <td>
-                        <!--{$smarty.section.i.index+1}-->
+                        <?php echo (isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)+1;?>
+
                     </td>
                     <td>
-                        <!--{$view[i].dated}-->
+                        <?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['dated'];?>
+
                     </td>
                     <td>
                         <strong>Mã phiếu xuất kho</strong>
@@ -122,8 +163,12 @@
                         <strong>Sửa/In</strong>
                     </td>
                 </tr>
-                <!--{/section}-->
+                <?php
+}
+}
+?>
             </table>
         </div>
     </form>
-</div>
+</div><?php }
+}

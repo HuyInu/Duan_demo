@@ -35,7 +35,7 @@ switch ($act) {
                     $timeNow = date('H:i:s');
                     $GLOBALS["sp"]->BeginTrans();
 
-                    $sqlMaxNumphieu = "select max(numphieu) + 1 from $GLOBALS[db_sp].khonguonvao_khonutrangtrave";
+                    $sqlMaxNumphieu = "select max(numphieu) + 1 from $GLOBALS[db_sp].khonguonvao_khonutrangtrave where type = 0";
                     $maxnumphieu = $GLOBALS["sp"]->getOne($sqlMaxNumphieu);
                     if ($maxnumphieu <= 0) {
                         $maxnumphieu = 1;
@@ -45,9 +45,9 @@ switch ($act) {
                     $phieu['numphieu'] = $numphieu;
                     $phieu['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
                     $phieu['phongban'] = $idpem;
-                    $phieu['datedimport'] = $dateNow;
-                    $phieu['timeimport'] = $timeNow;
-                    $phieu['tongslimport'] = $Totalrow - 2;
+                    $phieu['dated'] = $dateNow;
+                    $phieu['time'] = $timeNow;
+                    $phieu['slmon'] = $Totalrow - 2;
                     $phieu['tongh'] = number_format(trim($sheet->getCellByColumnAndRow(19,$Totalrow)->getFormattedValue()), 3);
                     $phieu['tongv'] = number_format(trim($sheet->getCellByColumnAndRow(21,$Totalrow)->getFormattedValue()), 3);
                     $phieu['tongvh'] = number_format(($phieu['tongh'] + $phieu['tongv']), 3);
@@ -178,7 +178,7 @@ switch ($act) {
             $page = $path_url."/sources/main.php";
             page_transfer2($page);
         } else {
-            $sql = "select * from $GLOBALS[db_sp].khonguonvao_khonutrangtrave where phongban = $idpem and typeimport = 0 order by datedimport desc, maphieu asc";
+            $sql = "select * from $GLOBALS[db_sp].khonguonvao_khonutrangtrave where phongban = $idpem and typeimport = 0 order by dated desc, maphieu asc";
             $sql_sum = "select count(*) from $GLOBALS[db_sp].khonguonvao_khonutrangtrave where phongban = $idpem and typeimport = 0";
             $total = $count = ceil($GLOBALS['sp']->getOne($sql_sum));
             $num_rows_page = $numPageAll;

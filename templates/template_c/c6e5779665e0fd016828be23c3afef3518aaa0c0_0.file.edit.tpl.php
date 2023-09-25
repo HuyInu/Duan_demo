@@ -1,15 +1,40 @@
-<div class="breadcrumb">
+<?php
+/* Smarty version 4.1.1, created on 2023-09-25 15:13:36
+  from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-Nu-Trang-Tra-Ve-Xuat-Kho\edit.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '4.1.1',
+  'unifunc' => 'content_6511413099e4d1_70384156',
+  'has_nocache_code' => true,
+  'file_dependency' => 
+  array (
+    'c6e5779665e0fd016828be23c3afef3518aaa0c0' => 
+    array (
+      0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-Nu-Trang-Tra-Ve-Xuat-Kho\\edit.tpl',
+      1 => 1695629459,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_6511413099e4d1_70384156 (Smarty_Internal_Template $_smarty_tpl) {
+?><div class="breadcrumb">
     <ul>
         <li>
-        	<a href="<!--{$path_url}-->/sources/main.php" title="trang chủ">
+        	<a href="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/sources/main.php" title="trang chủ">
             	<i class="fa-home"></i>
             </a>    
         </li>
-        <!--{insert name="HearderCat" cid=$smarty.request.cid root=$smarty.request.root act=$smarty.request.act}-->
+        <?php echo insert_HearderCat(array('cid' => $_REQUEST['cid'], 'root' => $_REQUEST['root'], 'act' => $_REQUEST['act']),$_smarty_tpl);?>
     </ul>
 </div>
 <div class="MainContent">
-	<form name="f" id="f" method="post" action="Kho-Nu-Trang-Tra-Ve-Xuat-Kho?act=<!--{if $smarty.request.act eq 'add' }-->addsm<!--{else}-->editsm<!--{/if}-->&cid=<!--{$smarty.request.cid}-->">
+	<form name="f" id="f" method="post" action="Kho-Nu-Trang-Tra-Ve-Xuat-Kho?act=<?php if ($_REQUEST['act'] == 'add') {?>addsm<?php } else { ?>editsm<?php }?>&cid=<?php echo $_REQUEST['cid'];?>
+">
         <div class="main-content padding-topfooter">
             <div class="panel-left">
                 <div class="box-thongin">
@@ -21,7 +46,8 @@
                         </div>
                         
                         <div class="SubRight">
-                            <input  type="text" value="<!--{$datedxuat}-->" name="datedxuat" class="InputText" readonly/>
+                            <input  type="text" value="<?php echo $_smarty_tpl->tpl_vars['datedxuat']->value;?>
+" name="datedxuat" class="InputText" readonly/>
                         </div>
                     </div>
                     
@@ -31,7 +57,8 @@
                         </div>
                         
                         <div class="SubRight">
-                            <input value="<!--{$maphieu}-->" name="maphieu" class="InputText"  autocomplete="off" readonly/>
+                            <input value="<?php echo $_smarty_tpl->tpl_vars['maphieu']->value;?>
+" name="maphieu" class="InputText"  autocomplete="off" readonly/>
                         </div>
                     </div>
 
@@ -41,11 +68,23 @@
                         </div>
                         
                         <div class="SubRight">
-                            <select id="sophieu" name="sophieu" onchange="LoadDuLieuHangTraKho(<!--{$smarty.request.cid}-->)">
+                            <select id="sophieu" name="sophieu" onchange="LoadDuLieuHangTraKho(<?php echo $_REQUEST['cid'];?>
+)">
                                 <option value="0" selected disabled>Chọn mã phiếu trả kho</option>
-                                <!--{section i loop=$sophieu}-->
-                                <option value="<!--{$sophieu[i]}-->"><!--{$sophieu[i]}--></option>
-                                <!--{/section}-->
+                                <?php
+$__section_i_0_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['sophieu']->value) ? count($_loop) : max(0, (int) $_loop));
+$__section_i_0_total = $__section_i_0_loop;
+$_smarty_tpl->tpl_vars['__smarty_section_i'] = new Smarty_Variable(array());
+if ($__section_i_0_total !== 0) {
+for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] = 0; $__section_i_0_iteration <= $__section_i_0_total; $__section_i_0_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']++){
+?>
+                                <option value="<?php echo $_smarty_tpl->tpl_vars['sophieu']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)];?>
+"><?php echo $_smarty_tpl->tpl_vars['sophieu']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)];?>
+</option>
+                                <?php
+}
+}
+?>
                             </select>
                         </div>
                     </div>
@@ -65,21 +104,29 @@
                                 </div>
                                 
                                 <div class="SubRight">
-                                    <input type="hidden" name="nhomnguyenlieuvang" id="nhomnguyenlieuvang" value="<!--{$viewtc[i].nhomnguyenlieuvang}-->" />
-                                    <a id="popupNhomDanhMucVang" href="<!--{$path_url}-->/popup/DanhMucNguyenLieu.php?type=vang&idnhomdm=<!--{$nhomdanhmuc.id}-->&idnhomnguyenlieuvang=<!--{$viewtc[i].nhomnguyenlieuvang}-->&idtennguyenlieuvang=<!--{$viewtc[i].tennguyenlieuvang}-->&idshow=<!--{$smarty.section.i.index+1}-->">
+                                    <input type="hidden" name="nhomnguyenlieuvang" id="nhomnguyenlieuvang" value="<?php echo $_smarty_tpl->tpl_vars['viewtc']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['nhomnguyenlieuvang'];?>
+" />
+                                    <a id="popupNhomDanhMucVang" href="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/popup/DanhMucNguyenLieu.php?type=vang&idnhomdm=<?php echo $_smarty_tpl->tpl_vars['nhomdanhmuc']->value['id'];?>
+&idnhomnguyenlieuvang=<?php echo $_smarty_tpl->tpl_vars['viewtc']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['nhomnguyenlieuvang'];?>
+&idtennguyenlieuvang=<?php echo $_smarty_tpl->tpl_vars['viewtc']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['tennguyenlieuvang'];?>
+&idshow=<?php echo (isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)+1;?>
+">
                                         <span id="showtennhomnguyenlieuvang">
-                                            <!--{if $viewtc[i].nhomnguyenlieuvang gt 0}-->
-                                                <!--{insert name='getName' table='categories' names='name_vn' id=$viewtc[i].nhomnguyenlieuvang}-->
-                                            <!--{else}-->
+                                            <?php if ($_smarty_tpl->tpl_vars['viewtc']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['nhomnguyenlieuvang'] > 0) {?>
+                                                <?php echo insert_getName(array('table' => 'categories', 'names' => 'name_vn', 'id' => $_smarty_tpl->tpl_vars['viewtc']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['nhomnguyenlieuvang']),$_smarty_tpl);?>
+                                            <?php } else { ?>
                                                 Click chọn
-                                            <!--{/if}-->    
+                                            <?php }?>    
                                         </span>
                                     </a>
-                                    <script type="text/javascript">
+                                    <?php echo '<script'; ?>
+ type="text/javascript">
                                        $(document).ready(function() {
                                             $("#popupNhomDanhMucVang").fancybox();
                                         }); 
-                                    </script>
+                                    <?php echo '</script'; ?>
+>
                                 </div>
                             </div>
                             <div class="SubAll">
@@ -90,7 +137,7 @@
                                 <div class="SubRight">
                                     <input type="hidden" name="tennguyenlieuvang" id="tennguyenlieuvang" value="" />
                                     <span id="showtennguyenlieuvang">
-                                        <!--{insert name='getName' table='categories' names='name_vn' id=$viewtc[i].tennguyenlieuvang}-->
+                                        <?php echo insert_getName(array('table' => 'categories', 'names' => 'name_vn', 'id' => $_smarty_tpl->tpl_vars['viewtc']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['tennguyenlieuvang']),$_smarty_tpl);?>
                                     </span>
                                 </div>
                             </div>
@@ -102,11 +149,22 @@
                                 <div class="SubRight">
                                     <select class="selectOption" id="idloaivang" name="idloaivang" >
                                         <option value="">--Chọn loại vàng--</option>
-                                        <!--{section name=i loop=$typegold}-->
-                                        <option value="<!--{$typegold[i].id}-->" <!--{if $viewtc.idloaivang eq $typegold[i].id}-->selected="selected"<!--{/if}-->>
-                                            <!--{$typegold[i].name_vn}-->
+                                        <?php
+$__section_i_1_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['typegold']->value) ? count($_loop) : max(0, (int) $_loop));
+$__section_i_1_total = $__section_i_1_loop;
+$_smarty_tpl->tpl_vars['__smarty_section_i'] = new Smarty_Variable(array());
+if ($__section_i_1_total !== 0) {
+for ($__section_i_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] = 0; $__section_i_1_iteration <= $__section_i_1_total; $__section_i_1_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']++){
+?>
+                                        <option value="<?php echo $_smarty_tpl->tpl_vars['typegold']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
+" <?php if ($_smarty_tpl->tpl_vars['viewtc']->value['idloaivang'] == $_smarty_tpl->tpl_vars['typegold']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id']) {?>selected="selected"<?php }?>>
+                                            <?php echo $_smarty_tpl->tpl_vars['typegold']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['name_vn'];?>
+
                                         </option>
-                                        <!--{/section}-->
+                                        <?php
+}
+}
+?>
                                     </select>
                                 </div>
                             </div>
@@ -293,17 +351,30 @@
             </div>
         </div>
         <div class="MainContent TextCenter"> 
-        	<input type="hidden" name="id" value="<!--{$edit.id}-->" />
+        	<input type="hidden" name="id" value="<?php echo $_smarty_tpl->tpl_vars['edit']->value['id'];?>
+" />
             <input type="button" class="btn-save" onclick=" return submitKhoNuTrangTraVe()" value="  Lưu " /> 
         </div>
     </form>
 </div>
-<script type="text/javascript" src="<!--{$path_url}-->/js/autoNumeric.js"></script>
-<script type="text/javascript" src="<!--{$path_url}-->/js/functions/function.js"></script>
-<script src="<!--{$path_url}-->/fancybox/jquery.fancybox-1.3.1.js"></script>
-<link rel="stylesheet" href="<!--{$path_url}-->/fancybox/jquery.fancybox-1.3.1.css">
-<link rel="stylesheet" href="<!--{$path_url}-->/popup/dialog.css">
-<script>
+<?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/js/autoNumeric.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/js/functions/function.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+ src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/fancybox/jquery.fancybox-1.3.1.js"><?php echo '</script'; ?>
+>
+<link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/fancybox/jquery.fancybox-1.3.1.css">
+<link rel="stylesheet" href="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/popup/dialog.css">
+<?php echo '<script'; ?>
+>
     function LoadDuLieuHangTraKho (cid) {
         const sophieu = $('#sophieu').val();
         $('#loadingAjax').show();
@@ -387,4 +458,6 @@
         }
         document.forms.f.submit()
     }
-</script>
+<?php echo '</script'; ?>
+><?php }
+}
