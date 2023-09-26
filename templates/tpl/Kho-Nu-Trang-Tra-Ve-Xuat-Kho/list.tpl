@@ -89,7 +89,7 @@
                         <!--{$view[i].dated}-->
                     </td>
                     <td>
-                        <strong>Mã phiếu xuất kho</strong>
+                        <!--{$view[i].maphieu}-->
                     </td>
                     <td>
                         <strong>Nhóm Nguyên Liệu</strong>
@@ -98,28 +98,40 @@
                         <strong>Tên Nguyên Liệu</strong>
                     </td>
                     <td>
-                        <strong>Loại vàng</strong>
+                         <!--{getName('loaivang', 'name_vn', $view[i].idloaivang)}-->
                     </td>
                     <td>
-                        <strong>Cân nặng V+H</strong>
+                        <!--{$view[i].cannangvh|number_format:3:".":","}-->
                     </td>
                     <td>
-                        <strong>Cân nặng H</strong>
+                        <!--{$view[i].cannangh|number_format:3:".":","}-->
                     </td>
                     <td>
-                        <strong>Cân nặng V</strong>
+                        <!--{$view[i].cannangv|number_format:3:".":","}-->
                     </td>
                     <td>
-                        <strong>Ghi Chú</strong>
+                        <!--{$view[i].ghichu}-->
                     </td>
                     <td>
-                        <strong>Mã phiếu trả kho</strong>
+                        <!--{$view[i].maphieutrakho}-->
                     </td>
                     <td>
                         <strong>Duyệt Chuyển</strong>
                     </td>
                     <td>
-                        <strong>Sửa/In</strong>
+                    <!--{if $checkPer2 eq "true" }-->
+                    <a href="<!--{$path_url}-->/sources/Kho-Nu-Trang-Tra-Ve-Xuat-Kho.php?act=edit&cid=<!--{$smarty.request.cid}-->&id=<!--{$view[i].id}-->" title="Sửa"> 
+                        <img src="<!--{$path_url}-->/images/edit.png"/> 
+                    </a>
+                    <!--{else}-->
+                        <img src="<!--{$path_url}-->/images/edit-no.png"/> 
+                    <!--{/if}--> 
+                  
+                    <!--{if $checkPer7 eq "true" }-->
+                        <a href="javascript:void(0)" onclick="popupwindow('<!--{$path_url}-->/print/khonguonvao.php?act=nhapkho&table=khonguonvao_khoachin&id=<!--{$view[i].id}-->&type=1','mywindow')" title="Print">
+                             <img class="margin-left10" width="25px" src="<!--{$path_url}-->/images/printer.png" align="top"> 
+                        </a>
+                    <!--{/if}--> 
                     </td>
                 </tr>
                 <!--{/section}-->

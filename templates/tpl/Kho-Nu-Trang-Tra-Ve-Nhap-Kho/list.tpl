@@ -1,13 +1,17 @@
 <style>
-    .MainSearch {
-        display: flex;
-        align-items: center;
+    .formsearchgroup{
+        margin: -10px 0;
     }
-    .title-thongtin {
+    .formsearchgroup .title-thongtin{
+        margin-top: -15px;
+        font-size: 12px;
         background: #eff3f8;
+        padding: 0 5px;
+        display: inline-block;
+        vertical-align: top;
     }
-    .SubAll {
-        margin-top: -21px;
+    .formsearchgroup .divitem{
+        margin-top: -15px;
     }
 </style>
 <div class="breadcrumb">
@@ -50,16 +54,13 @@
                 <input class="btn-save btn-search" onclick=" return SubmitFrom();" value="Tìm kiếm" type="submit"> 
                 <input type="reset" name="reset" value=" Làm mới " onclick=" return resetsfrsearchKeToanThuTien();" class="btn-save btn-search"/>
             </div>
-            <div class="formsearch">
+            <div class="formsearch formsearchgroup"> 
                 <div class="box-thongin">
-                    <div class="title-thongtin">Chi tiết</div>
-                    <div class="SubAll">
-                        <a href="Kho-Nu-Trang-Tra-Ve-Nhap-Kho.php?cid=<!--{$smarty.request.cid}-->&">
-                            <input class="btn-save btn-search" value="Xem" type="button"> 
-                        </a>
-                    
-                    <input class="btn-save btn-search" onclick=" return SubmitFrom();" value="In" type="button"> 
-                    <input class="btn-save btn-search" onclick=" return SubmitFrom();" value="Export Excel" type="button"> 
+                    <div class="title-thongtin"><strong>CHI TIẾT</strong></div>
+                    <div class="divitem">
+                        <a class="btn-save btn-search" onclick=" return viewVangNguyenLieuCongTyTabNhapKho('viewChiTiet',<!--{$smarty.request.cid}-->,'<!--{$fromdays}-->','<!--{$todays}-->','<!--{$strSearch}-->')" href="#">Xem</a>
+                        <input type="button" name="print" value="     In     " class="btn-save btn-search"/>
+                        <input type="button" name="print" value="Export Excel" onclick=" return ExportExcelVangNguyenLieuCongTyTabNhapKho('ExportExcelChiTiet',<!--{$smarty.request.cid}-->,'<!--{$fromdays}-->','<!--{$todays}-->','<!--{$strSearch}-->');" class="btn-save btn-search"/>
                     </div>
                 </div>
             </div>
@@ -246,7 +247,7 @@
                         <!--{$tongTienCong = 0}-->
                         <!--{$tongTienDaNgocTrai =0}-->
                         <!--{section i loop=$view}-->
-                        <tr>
+                        <tr id='g<!--{$view[i].id}-->'>
                             <td>
                                 <input type="checkbox" id="check<!--{$smarty.section.i.index}-->" name="iddel[]" value="<!--{$view[i].id}-->"/>
                             </td>
@@ -345,7 +346,7 @@
                                 <strong>Số phiếu nhập kho</strong>
                             </td>
                             <td>
-                                <!--{getName('admin', 'fullname', $view[i].midnhap)}-->
+                                <!--{getName('admin', 'fullname', $view[i].mid)}-->
                             </td>
                             <td>
                                 <!--{$view[i].datednhap}--><br><!--{$view[i].timenhap}-->

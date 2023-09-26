@@ -25,8 +25,8 @@ switch ($act) {
                     $TotalCol = PHPExcel_Cell::columnIndexFromString($LastColumn);
                     $phieu = [];
                     $phieuCt = [];
-                    $tongv = 0;
-                    $tongh = 0;
+                    $cannangv = 0;
+                    $cannangh = 0;
                     $itemAmount = 0;
                     $tongtienhot = 0;
                     $tongtiencong = 0;
@@ -48,9 +48,9 @@ switch ($act) {
                     $phieu['dated'] = $dateNow;
                     $phieu['time'] = $timeNow;
                     $phieu['slmon'] = $Totalrow - 2;
-                    $phieu['tongh'] = number_format(trim($sheet->getCellByColumnAndRow(19,$Totalrow)->getFormattedValue()), 3);
-                    $phieu['tongv'] = number_format(trim($sheet->getCellByColumnAndRow(21,$Totalrow)->getFormattedValue()), 3);
-                    $phieu['tongvh'] = number_format(($phieu['tongh'] + $phieu['tongv']), 3);
+                    $phieu['cannangh'] = number_format(trim($sheet->getCellByColumnAndRow(19,$Totalrow)->getFormattedValue()), 3);
+                    $phieu['cannangv'] = number_format(trim($sheet->getCellByColumnAndRow(21,$Totalrow)->getFormattedValue()), 3);
+                    $phieu['cannangvh'] = number_format(($phieu['cannangh'] + $phieu['cannangv']), 3);
                     $tongtienhotStr = trim($sheet->getCellByColumnAndRow(23,$Totalrow)->getFormattedValue());
                     $tongtiencongStr = trim($sheet->getCellByColumnAndRow(26,$Totalrow)->getFormattedValue());
                     $tongtiendangoctraiStr = trim($sheet->getCellByColumnAndRow(25,$Totalrow)->getFormattedValue());
@@ -114,7 +114,7 @@ switch ($act) {
                             $phieuCt['makhuyenmai'] = trim($sheet->getCellByColumnAndRow($colIndex++,$i)->getFormattedValue());
                             $phieuCt['giatamtinh'] = trim($sheet->getCellByColumnAndRow($colIndex++,$i)->getFormattedValue());
                             $phieuCt['maphieuimport'] = 'IMSPHHTV-23';
-                            $phieuCt['phongban'] = $pidm;
+                            $phieuCt['phongban'] = $idpem;
                             $phieuCt['midimport'] = $_SESSION['admin_qlsxntjcorg_id'];
                             $phieuCt['datedimport'] = $dateNow;
                             $phieuCt['timeimport'] = $timeNow;

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-09-22 15:15:53
+/* Smarty version 4.1.1, created on 2023-09-26 14:44:09
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-Nu-Trang-Tra-Ve-Nhap-Kho\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_650d4d398f8739_06255522',
+  'unifunc' => 'content_65128bc98b3322_24670949',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     'c0421cfd465b5f6216821d2e6094d079d2250115' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-Nu-Trang-Tra-Ve-Nhap-Kho\\list.tpl',
-      1 => 1695370552,
+      1 => 1695714246,
       2 => 'file',
     ),
   ),
@@ -21,17 +21,21 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:Kho-Nu-Trang-Tra-Ve-Nhap-Kho/tabMenu.tpl' => 1,
   ),
 ),false)) {
-function content_650d4d398f8739_06255522 (Smarty_Internal_Template $_smarty_tpl) {
+function content_65128bc98b3322_24670949 (Smarty_Internal_Template $_smarty_tpl) {
 ?><style>
-    .MainSearch {
-        display: flex;
-        align-items: center;
+    .formsearchgroup{
+        margin: -10px 0;
     }
-    .title-thongtin {
+    .formsearchgroup .title-thongtin{
+        margin-top: -15px;
+        font-size: 12px;
         background: #eff3f8;
+        padding: 0 5px;
+        display: inline-block;
+        vertical-align: top;
     }
-    .SubAll {
-        margin-top: -21px;
+    .formsearchgroup .divitem{
+        margin-top: -15px;
     }
 </style>
 <div class="breadcrumb">
@@ -83,17 +87,21 @@ function content_650d4d398f8739_06255522 (Smarty_Internal_Template $_smarty_tpl)
                 <input class="btn-save btn-search" onclick=" return SubmitFrom();" value="Tìm kiếm" type="submit"> 
                 <input type="reset" name="reset" value=" Làm mới " onclick=" return resetsfrsearchKeToanThuTien();" class="btn-save btn-search"/>
             </div>
-            <div class="formsearch">
+            <div class="formsearch formsearchgroup"> 
                 <div class="box-thongin">
-                    <div class="title-thongtin">Chi tiết</div>
-                    <div class="SubAll">
-                        <a href="Kho-Nu-Trang-Tra-Ve-Nhap-Kho.php?cid=<?php echo $_REQUEST['cid'];?>
-&">
-                            <input class="btn-save btn-search" value="Xem" type="button"> 
-                        </a>
-                    
-                    <input class="btn-save btn-search" onclick=" return SubmitFrom();" value="In" type="button"> 
-                    <input class="btn-save btn-search" onclick=" return SubmitFrom();" value="Export Excel" type="button"> 
+                    <div class="title-thongtin"><strong>CHI TIẾT</strong></div>
+                    <div class="divitem">
+                        <a class="btn-save btn-search" onclick=" return viewVangNguyenLieuCongTyTabNhapKho('viewChiTiet',<?php echo $_REQUEST['cid'];?>
+,'<?php echo $_smarty_tpl->tpl_vars['fromdays']->value;?>
+','<?php echo $_smarty_tpl->tpl_vars['todays']->value;?>
+','<?php echo $_smarty_tpl->tpl_vars['strSearch']->value;?>
+')" href="#">Xem</a>
+                        <input type="button" name="print" value="     In     " class="btn-save btn-search"/>
+                        <input type="button" name="print" value="Export Excel" onclick=" return ExportExcelVangNguyenLieuCongTyTabNhapKho('ExportExcelChiTiet',<?php echo $_REQUEST['cid'];?>
+,'<?php echo $_smarty_tpl->tpl_vars['fromdays']->value;?>
+','<?php echo $_smarty_tpl->tpl_vars['todays']->value;?>
+','<?php echo $_smarty_tpl->tpl_vars['strSearch']->value;?>
+');" class="btn-save btn-search"/>
                     </div>
                 </div>
             </div>
@@ -311,7 +319,8 @@ $_smarty_tpl->tpl_vars['__smarty_section_i'] = new Smarty_Variable(array());
 if ($__section_i_0_total !== 0) {
 for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] = 0; $__section_i_0_iteration <= $__section_i_0_total; $__section_i_0_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']++){
 ?>
-                        <tr>
+                        <tr id='g<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
+'>
                             <td>
                                 <input type="checkbox" id="check<?php echo (isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null);?>
 " name="iddel[]" value="<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
@@ -444,7 +453,7 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
                                 <strong>Số phiếu nhập kho</strong>
                             </td>
                             <td>
-                                <?php echo getName('admin','fullname',$_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['midnhap']);?>
+                                <?php echo getName('admin','fullname',$_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['mid']);?>
 
                             </td>
                             <td>

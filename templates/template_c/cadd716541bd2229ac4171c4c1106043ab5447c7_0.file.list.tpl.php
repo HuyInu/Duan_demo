@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-09-25 15:37:10
+/* Smarty version 4.1.1, created on 2023-09-26 14:26:18
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-Nu-Trang-Tra-Ve-Import\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_651146b6c027e3_87725363',
+  'unifunc' => 'content_6512879a304c03_85681456',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     'cadd716541bd2229ac4171c4c1106043ab5447c7' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-Nu-Trang-Tra-Ve-Import\\list.tpl',
-      1 => 1695630959,
+      1 => 1695700154,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_651146b6c027e3_87725363 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6512879a304c03_85681456 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="breadcrumb">
     <ul>
         <li>
@@ -128,16 +128,14 @@ function content_651146b6c027e3_87725363 (Smarty_Internal_Template $_smarty_tpl)
                <td></td>
                <td></td>
                <td>
-                  <input type="text" class="InputText textwsearch" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
+                  <input type="text" class="InputText textwsearch" name="maphieus" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
 " placeholder="Mã phiếu import..."  autocomplete="off"/>
                </td>
                <td>
-                  <input type="text" class="InputText textwsearch" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
+                  <input type="text" class="InputText textwsearch" name="mids" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
 " placeholder="NV import..." autocomplete="off" style="width:100% !important" />
                </td>
                <td>
-                  <input type="text" class="InputText textsearchdated" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
-" placeholder="Ngày import..." autocomplete="off" style="width:100% !important" />
                </td>
                <td>
                   <input type="text" class="InputText textwsearch" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
@@ -214,19 +212,19 @@ echo getName('admin','fullname',$_prefixVariable1);?>
 
                </td>
                <td>
-                  <?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['tongslimport'];?>
+                  <?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['slmon'];?>
 
                </td>
                <td>
-                  <?php echo number_format((float)$_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['tongvh'],3);?>
+                  <?php echo number_format((float)$_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['cannangvh'],3);?>
 
                </td>
                <td>
-                  <?php echo number_format($_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['tongh'],3);?>
+                  <?php echo number_format($_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['cannangh'],3);?>
 
                </td>
                <td>
-                  <?php echo number_format($_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['tongv'],3);?>
+                  <?php echo number_format($_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['cannangv'],3);?>
 
                </td>
                <td>

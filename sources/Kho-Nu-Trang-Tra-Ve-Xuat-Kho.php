@@ -11,6 +11,7 @@ switch($act) {
 			$page = $path_url."/sources/main.php";
 			page_transfer2($page);
 		} {
+            $dated = date('d-m-Y');
             $sqlMaxNumphieu = "select max(numphieu) + 1 from $GLOBALS[db_sp].khonguonvao_khonutrangtrave where type = 2";
             $maxNumPhieu = $GLOBALS['sp']->getOne($sqlMaxNumphieu);
             if ($maxNumPhieu <= 0) {
@@ -22,18 +23,47 @@ switch($act) {
             $sophieu = $GLOBALS['sp']->getCol($sqlGetSophieu); 
             $sqlLoaiVang = "select * from $GLOBALS[db_sp].loaivang where active = 1";
             $typegold = $GLOBALS['sp']->getAll($sqlLoaiVang);
-
-            $smarty->assign("datedxuat", date('d-m-Y'));
-            $smarty->assign("maphieu", $maphieu);
+            $viewedit = [
+                'dated'=>$dated,
+                'maphieu' => $maphieu
+            ];
             $smarty->assign("sophieu", $sophieu);
             $smarty->assign("typegold", $typegold);
+            $smarty->assign("viewedit", $viewedit);
+            $template = "Kho-Nu-Trang-Tra-Ve-Xuat-Kho/edit.tpl";
+        }
+        break;
+    case 'edit':
+        if (!checkPermision($_GET["cid"],2) ) {
+			page_permision();
+			$page = $path_url."/sources/main.php";
+			page_transfer2($page);
+		} else {
+            $idPhieu = $_GET['id'];
+            $sqlPhieu = "select * from $GLOBALS[db_sp].khonguonvao_khonutrangtrave where id=$idPhieu";
+            $phieu = $GLOBALS['sp']->getRow($sqlPhieu);
+
+            $phieu['dated'] = date('d-m-Y',strtotime($phieu['dated']));
+            $sqlLoaiVang = "select * from $GLOBALS[db_sp].loaivang where active = 1";
+            $typegold = $GLOBALS['sp']->getAll($sqlLoaiVang);
+            $sqlGetSophieu = "select DISTINCT sophieu from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where type = 1";
+            $maphieutrakho = $GLOBALS['sp']->getCol($sqlGetSophieu); 
+
+            $sqlPhieuCt = "Select * from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where sophieu = '".$phieu['maphieutrakho']."' and type = 2 and trangthai = 0 and idctnx in (0,".$phieu['id'].")";
+            $phieuCt = $GLOBALS['sp']->getAll($sqlPhieuCt); 
+            
+            $smarty->assign("sophieu", $maphieutrakho);
+            $smarty->assign("typegold", $typegold);
+            $smarty->assign("phieuXuat", $phieu);
+            $smarty->assign("phieuCt", $phieuCt);
             $template = "Kho-Nu-Trang-Tra-Ve-Xuat-Kho/edit.tpl";
         }
         break;
     case 'loaddulieutrakho':
         try {
-            $sophieu = $_POST['sophieu'] ? $_POST['sophieu'] : '';
-            $sqlPhieu = "select * from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where sophieu = '$sophieu' and type = 1";
+            $maphieutrakho = $_POST['sophieu'] ? $_POST['sophieu'] : '';
+            $idPhieuXuat = $_POST['idPhieu'] ? $_POST['idPhieu'] : '';
+            $sqlPhieu = "select * from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where sophieu = '$maphieutrakho' and type = 2 and trangthai = 0 and idctnx in (0,$idPhieuXuat)";
             $phieu = $GLOBALS['sp']->getAll($sqlPhieu);
             $html = null;
             $tongCannangVH = 0;
@@ -45,9 +75,10 @@ switch($act) {
                 $tongCannangV += round($data['cannangv'], 3);
                 $tongCannangH += round($data['cannangh'], 3);
                 $tongTienCong += round($data['tiencong'], 3);
+                $isChecked = (int)$data['idctnx'] !== 0 ? 'checked' : '';
                 $html .= "<tr>
                             <td>
-                                <input class='check-phieu' type='checkbox' id='check".$data['id']."' name='idPhieuCt[]' value='".$data['id']."' cannangvh='".number_format($data['cannangvh'], 3, '.', ',')."' cannangh='".number_format($data['cannangh'], 3, '.', ',')."' cannangv='".number_format($data['cannangv'], 3, '.', ',')."' onchange='getCell(this)'/>
+                                <input class='check-phieu' type='checkbox' id='check".$data['id']."' name='idPhieuCt[]' value='".$data['id']."' cannangvh='".number_format($data['cannangvh'], 3, '.', ',')."' cannangh='".number_format($data['cannangh'], 3, '.', ',')."' cannangv='".number_format($data['cannangv'], 3, '.', ',')."' onchange='getCell(this)' $isChecked/>
                             </td>
                             <td>
                                 ".((int)$data['trangthaixacnhan'] === 1 ? 'Đã xác nhận' : 'Chưa xác nhận')."
@@ -185,7 +216,7 @@ switch($act) {
     case 'addsm':
         if(!checkPermision($_GET["cid"],2) && !checkPermision($_GET["cid"],1) ){
 			page_permision();
-			$page = $path_url ;
+			$page = $path_url."/sources/main.php";
 			page_transfer2($page);
 		} else {
             Edit();
@@ -202,10 +233,14 @@ switch($act) {
             $sqlPhieuXuat = "select * from $GLOBALS[db_sp].khonguonvao_khonutrangtrave where type = 2 and trangthai = 0" ;
             $phieuXuat = $GLOBALS['sp']->getAll($sqlPhieuXuat);
             $template = "Kho-Nu-Trang-Tra-Ve-Xuat-Kho/list.tpl";
-            $smarty->assign("view", $sqlPhieuXuat);
+            $smarty->assign("view", $phieuXuat);
             if(checkPermision($idpem,1))
                 $smarty->assign("checkPer1","true");
+            if(checkPermision($idpem,2))
+				$smarty->assign("checkPer2","true");
             if(checkPermision($idpem,3))
+                $smarty->assign("checkPer3","true");
+            if(checkPermision($idpem,7))
                 $smarty->assign("checkPer3","true");
         }
         break;
@@ -224,13 +259,13 @@ function Edit () {
         $idPhieuCtSelected = $_POST['idPhieuCt'];
         $phieuXuat['slmon'] = count($idPhieuCtSelected);
         $phieuXuat['maphieutrakho'] = $_POST['sophieu'];
-        $phieuXuat['tongvh'] = $_POST['cannangvh'];
-        $phieuXuat['tongh'] = $_POST['cannangh'];
-        $phieuXuat['tongv'] = $_POST['cannangv'];
+        $phieuXuat['idloaivang'] = $_POST['idloaivang'];
+        $phieuXuat['cannangvh'] = $_POST['cannangvh'];
+        $phieuXuat['cannangh'] = $_POST['cannangh'];
+        $phieuXuat['cannangv'] = $_POST['cannangv'];
         $phieuXuat['ghichu'] = $_POST['ghichu'];
         $phieuXuat['type'] = 2;
         if ($act === 'addsm') {
-           
             $phieuXuat['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
             $phieuXuat['phongban'] = $idpem;
             $sqlMaxNumphieu = "select max(numphieu) + 1 from $GLOBALS[db_sp].khonguonvao_khonutrangtrave where type = 2";
@@ -244,9 +279,13 @@ function Edit () {
             $phieuXuat['numphieu'] = $numphieu;
             $phieuXuat['dated'] = $dateNow;
             $phieuXuat['time'] = $timeNow;
-            vaInsert("khonguonvao_khonutrangtrave", $phieuXuat);
+            $idPhieuXuat = vaInsert("khonguonvao_khonutrangtrave", $phieuXuat);
         }
-        
+        foreach($idPhieuCtSelected as $idPhieu) {
+            $phieuXuatCtUpdate = [];
+            $phieuXuatCtUpdate['idctnx'] = $idPhieuXuat;
+            vaUpdate('khonguonvao_khonutrangtravect', $phieuXuatCtUpdate, "id = $idPhieu");
+        }
         $GLOBALS["sp"]->CommitTrans();
     } 
     catch (Exception $e){

@@ -94,13 +94,12 @@
                <td></td>
                <td></td>
                <td>
-                  <input type="text" class="InputText textwsearch" name="" id="" value="<!--{$}-->" placeholder="Mã phiếu import..."  autocomplete="off"/>
+                  <input type="text" class="InputText textwsearch" name="maphieus" id="" value="<!--{$}-->" placeholder="Mã phiếu import..."  autocomplete="off"/>
                </td>
                <td>
-                  <input type="text" class="InputText textwsearch" name="" id="" value="<!--{$}-->" placeholder="NV import..." autocomplete="off" style="width:100% !important" />
+                  <input type="text" class="InputText textwsearch" name="mids" id="" value="<!--{$}-->" placeholder="NV import..." autocomplete="off" style="width:100% !important" />
                </td>
                <td>
-                  <input type="text" class="InputText textsearchdated" name="" id="" value="<!--{$}-->" placeholder="Ngày import..." autocomplete="off" style="width:100% !important" />
                </td>
                <td>
                   <input type="text" class="InputText textwsearch" name="" id="" value="<!--{$}-->" placeholder="Giờ import..." autocomplete="off"/>
@@ -153,13 +152,13 @@
                   <!--{$view[i].slmon}-->
                </td>
                <td>
-                  <!--{number_format((float)$view[i].tongvh, 3)}-->
+                  <!--{number_format((float)$view[i].cannangvh, 3)}-->
                </td>
                <td>
-                  <!--{number_format($view[i].tongh, 3)}-->
+                  <!--{number_format($view[i].cannangh, 3)}-->
                </td>
                <td>
-                  <!--{number_format($view[i].tongv, 3)}-->
+                  <!--{number_format($view[i].cannangv, 3)}-->
                </td>
                <td>
                   <!--{number_format($view[i].tongtienhot)}-->

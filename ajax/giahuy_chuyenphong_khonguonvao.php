@@ -137,13 +137,74 @@ switch($act) {
             $tablehachtoan = $categ['tablehachtoan'];
 
             $phieuCtUpdate = [];
-            $phieuCtUpdate['midnhap'] = $_SESSION['admin_qlsxntjcorg_id'];
+            $phieuCtUpdate['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
             $phieuCtUpdate['phongbanchuyen'] = $phongbanchuyen;
             $phieuCtUpdate['phongban'] = $phongban;
             $phieuCtUpdate['datednhap'] = $dateNow;
             $phieuCtUpdate['timenhap'] = $timeNow;
             $phieuCtUpdate['type'] = 1;
             vaUpdate('khonguonvao_khonutrangtravect', $phieuCtUpdate, "id = $idPhieuChon");
+
+            $sqlPhieuChon = "select * from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where id = $idPhieuChon";
+            $phieuChon = $GLOBALS['sp']->getRow($sqlPhieuChon);
+            $phieuCTXuat = [];
+            $phieuCTXuat['idct'] = $idPhieuChon;
+            $phieuCTXuat['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
+            $phieuCTXuat['phongban'] = $phongban;
+            $sqlMaxNumphieu = "select max(numphieu) + 1 from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where type = 2";
+            $maxNumPhieu = $GLOBALS['sp']->getOne($sqlMaxNumphieu);
+            if ($maxNumPhieu <= 0) {
+                $maxNumPhieu = 1;
+            }
+            $numphieu = convertMaso($maxNumPhieu);
+            $maphieu = 'PXKDCNTV'.$numphieu;
+            $phieuCTXuat['maphieu'] = $maphieu;
+            $phieuCTXuat['numphieu'] = $numphieu;
+            $phieuCTXuat['trangthaixacnhan'] = $phieuChon['trangthaixacnhan'];
+            $phieuCTXuat['cuahang'] = $phieuChon['cuahang'];
+            $phieuCTXuat['noiden'] = $phieuChon['noiden'];
+            $phieuCTXuat['nhanvien'] = $phieuChon['nhanvien'];
+            $phieuCTXuat['dated'] = $phieuChon['dated'];
+            $phieuCTXuat['datedxacnhan'] = $phieuChon['datedxacnhan'];
+            $phieuCTXuat['sophieu'] = $phieuChon['sophieu'];
+            $phieuCTXuat['cuahangtruoc'] = $phieuChon['cuahangtruoc'];
+            $phieuCTXuat['STT'] = $phieuChon['STT'];
+            $phieuCTXuat['ghichu'] = $phieuChon['ghichu'];
+            $phieuCTXuat['nhacungcap'] = $phieuChon['nhacungcap'];
+            $phieuCTXuat['idloaivang'] = $phieuChon['idloaivang'];
+            $phieuCTXuat['loainutrang'] = $phieuChon['loainutrang'];
+            $phieuCTXuat['manutrang'] = $phieuChon['manutrang'];
+            $phieuCTXuat['macu'] = $phieuChon['macu'];
+            $phieuCTXuat['ten'] = $phieuChon['ten'];
+            $phieuCTXuat['ghichu2'] = $phieuChon['ghichu2'];
+            $phieuCTXuat['gvh'] = $phieuChon['gvh'];
+            $phieuCTXuat['cannangvh'] = $phieuChon['cannangvh'];
+            $phieuCTXuat['cannangh'] = $phieuChon['cannangh'];
+            $phieuCTXuat['cannanghgr'] = $phieuChon['cannanghgr'];
+            $phieuCTXuat['cannangv'] = $phieuChon['cannangv'];
+            $phieuCTXuat['tienh'] = $phieuChon['tienh'];
+            $phieuCTXuat['tiencong'] = $phieuChon['tiencong'];
+            $phieuCTXuat['cvsp'] = $phieuChon['cvsp'];
+            $phieuCTXuat['tiendangoctrai'] = $phieuChon['tiendangoctrai'];
+            $phieuCTXuat['tienconghotban'] = $phieuChon['tienconghotban'];
+            $phieuCTXuat['thanhtien'] = $phieuChon['thanhtien'];
+            $phieuCTXuat['msm'] = $phieuChon['msm'];
+            $phieuCTXuat['chitiethottam'] = $phieuChon['chitiethottam'];
+            $phieuCTXuat['chitiethottamthucte'] = $phieuChon['chitiethottamthucte'];
+            $phieuCTXuat['kh'] = $phieuChon['kh'];
+            $phieuCTXuat['catalogue1'] = $phieuChon['catalogue1'];
+            $phieuCTXuat['catalogue2'] = $phieuChon['catalogue2'];
+            $phieuCTXuat['giaban'] = $phieuChon['giaban'];
+            $phieuCTXuat['slmon'] = $phieuChon['slmon'];
+            $phieuCTXuat['makhuyenmai'] = $phieuChon['makhuyenmai'];
+            $phieuCTXuat['giatamtinh'] = $phieuChon['giatamtinh'];
+            $phieuCTXuat['trangthaichuyen'] = $phieuChon['trangthaichuyen'];
+            $phieuCTXuat['numphieunhapkho'] = $phieuChon['numphieunhapkho'];
+            $phieuCTXuat['type'] = 2;
+            $phieuCTXuat['datednhap'] = $dateNow;
+            $phieuCTXuat['timenhap'] = $timeNow;
+
+            vaInsert("khonguonvao_khonutrangtravect", $phieuCTXuat);
             giahuy_GhiHachToanKhoNuTrangTraVe ($tablehachtoan, $tableCt, $idPhieuChon);
             $GLOBALS["sp"]->CommitTrans();
         } catch (Exception $e) {

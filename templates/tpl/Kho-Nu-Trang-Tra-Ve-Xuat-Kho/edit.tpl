@@ -21,7 +21,7 @@
                         </div>
                         
                         <div class="SubRight">
-                            <input  type="text" value="<!--{$datedxuat}-->" name="datedxuat" class="InputText" readonly/>
+                            <input  type="text" value="<!--{$phieuXuat.dated}-->" name="datedxuat" class="InputText" readonly/>
                         </div>
                     </div>
                     
@@ -31,7 +31,7 @@
                         </div>
                         
                         <div class="SubRight">
-                            <input value="<!--{$maphieu}-->" name="maphieu" class="InputText"  autocomplete="off" readonly/>
+                            <input value="<!--{$phieuXuat.maphieu}-->" name="maphieu" class="InputText"  autocomplete="off" readonly/>
                         </div>
                     </div>
 
@@ -41,10 +41,10 @@
                         </div>
                         
                         <div class="SubRight">
-                            <select id="sophieu" name="sophieu" onchange="LoadDuLieuHangTraKho(<!--{$smarty.request.cid}-->)">
+                            <select id="sophieu" name="sophieu" onchange="LoadDuLieuHangTraKho(<!--{$smarty.request.cid}-->, <!--{$phieuXuat.id}-->)">
                                 <option value="0" selected disabled>Chọn mã phiếu trả kho</option>
                                 <!--{section i loop=$sophieu}-->
-                                <option value="<!--{$sophieu[i]}-->"><!--{$sophieu[i]}--></option>
+                                <option value="<!--{$sophieu[i]}-->" <!--{if $phieuXuat.maphieutrakho eq $sophieu[i]}-->selected="selected"<!--{/if}-->><!--{$sophieu[i]}--></option>
                                 <!--{/section}-->
                             </select>
                         </div>
@@ -65,11 +65,11 @@
                                 </div>
                                 
                                 <div class="SubRight">
-                                    <input type="hidden" name="nhomnguyenlieuvang" id="nhomnguyenlieuvang" value="<!--{$viewtc[i].nhomnguyenlieuvang}-->" />
-                                    <a id="popupNhomDanhMucVang" href="<!--{$path_url}-->/popup/DanhMucNguyenLieu.php?type=vang&idnhomdm=<!--{$nhomdanhmuc.id}-->&idnhomnguyenlieuvang=<!--{$viewtc[i].nhomnguyenlieuvang}-->&idtennguyenlieuvang=<!--{$viewtc[i].tennguyenlieuvang}-->&idshow=<!--{$smarty.section.i.index+1}-->">
+                                    <input type="hidden" name="nhomnguyenlieuvang" id="nhomnguyenlieuvang" value="<!--{$viewedi.nhomnguyenlieuvang}-->" />
+                                    <a id="popupNhomDanhMucVang" href="<!--{$path_url}-->/popup/DanhMucNguyenLieu.php?type=vang&idnhomdm=<!--{$nhomdanhmuc.id}-->&idnhomnguyenlieuvang=<!--{$phieuXuat.nhomnguyenlieuvang}-->&idtennguyenlieuvang=<!--{$phieuXuat.tennguyenlieuvang}-->&idshow=<!--{$smarty.section.i.index+1}-->">
                                         <span id="showtennhomnguyenlieuvang">
-                                            <!--{if $viewtc[i].nhomnguyenlieuvang gt 0}-->
-                                                <!--{insert name='getName' table='categories' names='name_vn' id=$viewtc[i].nhomnguyenlieuvang}-->
+                                            <!--{if $phieuXuat.nhomnguyenlieuvang gt 0}-->
+                                                <!--{insert name='getName' table='categories' names='name_vn' id=$phieuXuat.nhomnguyenlieuvang}-->
                                             <!--{else}-->
                                                 Click chọn
                                             <!--{/if}-->    
@@ -90,7 +90,7 @@
                                 <div class="SubRight">
                                     <input type="hidden" name="tennguyenlieuvang" id="tennguyenlieuvang" value="" />
                                     <span id="showtennguyenlieuvang">
-                                        <!--{insert name='getName' table='categories' names='name_vn' id=$viewtc[i].tennguyenlieuvang}-->
+                                        <!--{insert name='getName' table='categories' names='name_vn' id=$phieuXuat.tennguyenlieuvang}-->
                                     </span>
                                 </div>
                             </div>
@@ -103,7 +103,7 @@
                                     <select class="selectOption" id="idloaivang" name="idloaivang" >
                                         <option value="">--Chọn loại vàng--</option>
                                         <!--{section name=i loop=$typegold}-->
-                                        <option value="<!--{$typegold[i].id}-->" <!--{if $viewtc.idloaivang eq $typegold[i].id}-->selected="selected"<!--{/if}-->>
+                                        <option value="<!--{$typegold[i].id}-->" <!--{if $phieuXuat.idloaivang eq $typegold[i].id}-->selected="selected"<!--{/if}-->>
                                             <!--{$typegold[i].name_vn}-->
                                         </option>
                                         <!--{/section}-->
@@ -119,7 +119,7 @@
                                 </div>
                                 
                                 <div class="SubRight">
-                                    <input type="text" class="txtdatagirld autoNumeric" autocomplete="off" name="cannangvh" id="cannangvh" value="0.000" onchange="getslcannangv('')"/>
+                                    <input type="text" class="txtdatagirld autoNumeric" autocomplete="off" name="cannangvh" id="cannangvh" value="<!--{$phieuXuat.cannangvh|number_format:3:".":","}-->" onchange="getslcannangv('')"/>
                                 </div>
                             </div>
 
@@ -129,7 +129,7 @@
                                 </div>
                                 
                                 <div class="SubRight">
-                                    <input type="text" class="txtdatagirld autoNumeric" autocomplete="off" name="cannangh" id="cannangh" value="0.000" onchange="getslcannangv('')"/>
+                                    <input type="text" class="txtdatagirld autoNumeric" autocomplete="off" name="cannangh" id="cannangh" value="<!--{$phieuXuat.cannangh|number_format:3:".":","}-->" onchange="getslcannangv('')"/>
                                 </div>
                             </div>
 
@@ -139,7 +139,7 @@
                                 </div>
                                 
                                 <div class="SubRight">
-                                    <input type="text" class="txtdatagirld autoNumeric" autocomplete="off" name="cannangv" id="cannangv" value="0.000"/>
+                                    <input type="text" class="txtdatagirld autoNumeric" autocomplete="off" name="cannangv" id="cannangv" value="<!--{$phieuXuat.cannangv|number_format:3:".":","}-->"/>
                                 </div>
                             </div>
   
@@ -149,7 +149,7 @@
                                 </div>
                                 
                                 <div class="SubRight">
-                                    <input type="text" class="" autocomplete="off" name="ghichu" id="ghichu"/>
+                                    <input type="text" class="" autocomplete="off" name="ghichu" id="ghichu" value="<!--{$phieuXuat.ghichu}-->"/>
                                 </div>
                             </div>
                         </div>
@@ -279,14 +279,143 @@
                             <strong>Giá tạm tính</strong>
                         </td>
                     </tr>
+                    <!--{$tongCannangvh = 0}-->
+                    <!--{$tongCannangh = 0}-->
+                    <!--{$tongCannangv = 0}-->
+                    <!--{$tongTienCong = 0}-->
+                    <!--{section i loop=$phieuCt}-->
+                    <tr>
+                        <td>
+                            <input class='check-phieu' type='checkbox' id='check<!--{$phieuCt[i].id}-->' name='idPhieuCt[]' value='<!--{$phieuCt[i].id}-->' cannangvh='<!--{number_format($phieuCt[i].cannangvh, 3,".", ",")}-->' cannangh='<!--{number_format($phieuCt[i].cannangh, 3,".", ",")}-->' cannangv='<!--{number_format($phieuCt[i].cannangv, 3,".", ",")}-->' onchange='getCell(this)' <!--{if (int)$phieuCt[i].idctnx neq 0}-->checked<!--{/if}-->/>
+                        </td>
+                        <td>
+                            <!--{($phieuCt[i].trangthaixacnhan == 1) ? "Đã xác nhận" : "Chưa xác nhận"}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].cuahang}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].noiden}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].nhanvien}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].dated}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].datedxacnhan}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].sophieu}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].cuahangtruoc}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].STT}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].ghichu}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].nhacungcap}-->
+                        </td>
+                        <td>
+                            
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].loainutrang}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].manutrang}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].macu}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].ten}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].ghichu2}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].gvh}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].cannangvh|number_format:3:".":","}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].cannangh|number_format:3:".":","}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].cannanghgr|number_format:3:".":","}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].cannangv|number_format:3:".":","}-->
+                        </td>
+                        <td>
+                            <!--{number_format($phieuCt[i].tienh)}-->
+                        </td>
+                        <td>
+                            <!--{number_format($phieuCt[i].tiencong)}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].cvsp}-->
+                        </td>
+                        <td>
+                            <!--{number_format($phieuCt[i].tiendangoctrai)}-->
+                        </td>
+                        <td>
+                            <!--{number_format($phieuCt[i].tienconghotban)}-->
+                        </td>
+                        <td>
+                            <!--{number_format($phieuCt[i].thanhtien)}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].msm}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].chitiethottam}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].chitiethottamthucte}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].kh}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].catalogue1}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].catalogue2}-->
+                        </td>
+                        <td>
+                            <!--{number_format($phieuCt[i].giaban)}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].slmon}-->
+                        </td>
+                        <td>
+                            <!--{$phieuCt[i].makhuyenmai}-->
+                        </td>
+                        <td>
+                            <!--{number_format($phieuCt[i].giatamtinh)}-->
+                        </td>
+                        <!--{$tongCannangvh = $tongCannangvh + $phieuCt[i].cannangvh}-->
+                        <!--{$tongCannangh = $tongCannangh + $phieuCt[i].cannangh}-->
+                        <!--{$tongCannangv = $tongCannangv + $phieuCt[i].cannangv}-->
+                        <!--{$tongTienCong = $tongTienCong + $phieuCt[i].tiencong}-->
+                    </tr>
+                    <!--{/section}-->
                     <tr class='trfooter'>
                         <td align="right" colspan="19"> <strong class="colorXanh">Tổng:</strong> </td>
-                        <td align="left"><span class="colorXanh" id="tongCannangVH"></span></td>
-                        <td align="left"><span class="colorXanh" id="tongCannangH"></span></td>
+                        <td align="left"><span class="colorXanh" id="tongCannangVH"><!--{$tongCannangvh|number_format:3:".":","}--></span></td>
+                        <td align="left"><span class="colorXanh" id="tongCannangH"><!--{$tongCannangh|number_format:3:".":","}--></span></td>
                         <td></td>
-                        <td align="left"><span class="colorXanh" id="tongCannangV"></span></td>
+                        <td align="left"><span class="colorXanh" id="tongCannangV"><!--{$tongCannangv|number_format:3:".":","}--></span></td>
                         <td align="left"></td>
-                        <td align="left"><span class="colorXanh" id="tongTienCong"></span></td>
+                        <td align="left"><span class="colorXanh" id="tongTienCong"><!--{$tongTienCong|number_format}--></span></td>
                         <td colspan="14"></td>
                     </tr>
                 </table>
@@ -304,26 +433,32 @@
 <link rel="stylesheet" href="<!--{$path_url}-->/fancybox/jquery.fancybox-1.3.1.css">
 <link rel="stylesheet" href="<!--{$path_url}-->/popup/dialog.css">
 <script>
-    function LoadDuLieuHangTraKho (cid) {
+    function LoadDuLieuHangTraKho (cid, idPhieu) {
         const sophieu = $('#sophieu').val();
         $('#loadingAjax').show();
         $.post('Kho-Nu-Trang-Tra-Ve-Xuat-Kho.php',
             {
+                idPhieu: idPhieu,
                 act:'loaddulieutrakho',
                 cid:cid,
                 sophieu: sophieu
             },
-            function(data) {																				
+            function(data) {
                 var obj = jQuery.parseJSON(data);
                 if (obj.status == 'success') {
                     let data = null;
-                    resetCannang()
                     $('#DataTable tr:not(.trheader):not(.trfooter)').remove();
                     $('#headTableData').after(obj.html);
                     $('#tongCannangVH').html(obj.tong.tongCannangVH)
                     $('#tongCannangH').html(obj.tong.tongCannangH)
                     $('#tongCannangV').html(obj.tong.tongCannangV)
                     $('#tongTienCong').html(obj.tong.tongTienCong)
+                    const checkedCboxAmount = $('.check-phieu:checkbox:checked').length
+                    if (checkedCboxAmount > 0) {
+                        restoreCannang()
+                    } else {
+                        resetCannang()
+                    }
                     $('#loadingAjax').hide();
                 } else {
                     $('#loadingAjax').hide();
@@ -359,6 +494,11 @@
         $('#cannangh').val('0.000')
         $('#cannangv').val('0.000')
     }
+    function restoreCannang () {
+        $('#cannangvh').val(<!--{$phieuXuat.cannangvh|number_format:3:".":","}-->)
+        $('#cannangh').val(<!--{$phieuXuat.cannangh|number_format:3:".":","}-->)
+        $('#cannangv').val(<!--{$phieuXuat.cannangv|number_format:3:".":","}-->)
+    }            
     function roundNumber(num, scale) {
         if(!("" + num).includes("e")) {
             return +(Math.round(num + "e+" + scale)  + "e-" + scale);
