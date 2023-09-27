@@ -28,15 +28,15 @@
       <div class="MainSearch">
          <div class="formsearch">
             <label class="Fl labelsearch"> Từ ngày: </label>
-            <input type="text" class="InputText textsearchdated" placeholder='dd/mm/yy' name="fromdays" id="fromdays" value="<!--{$fromdays}-->" onchange="DateCheck()" autocomplete="off"/>
+            <input type="text" class="SearchCtrl InputText textsearchdated" placeholder='dd/mm/yy' name="fromdays" id="fromdays" value="<!--{$fromdays}-->" onchange="DateCheck()" autocomplete="off"/>
          </div>
          <div class="formsearch">
             <label class="Fl labelsearch"> Đến ngày: </label>
-            <input type="text" class="InputText textsearchdated" placeholder='dd/mm/yy' name="todays" id="todays" value="<!--{$todays}-->" onchange="DateCheck()" autocomplete="off"/>
+            <input type="text" class="SearchCtrl InputText textsearchdated" placeholder='dd/mm/yy' name="todays" id="todays" value="<!--{$todays}-->" onchange="DateCheck()" autocomplete="off"/>
          </div>
          <div class="formsearch"> 
-            <input class="btn-save btn-search" onclick=" return SubmitFrom();" value="Tìm kiếm" type="submit"> 
-            <input type="reset" name="reset" value=" Làm mới " onclick=" return resetsfrsearch();" class="btn-save btn-search"/>
+            <input class="btn-save btn-search" value="Tìm kiếm" type="submit"> 
+            <input type="button" name="reset" value=" Làm mới " onclick="ResetSearch();" class="btn-save btn-search"/>
             <!--{if $checkPer10 eq "true" }-->
                <a href="<!--{$path_url}-->/sources/Kho-Nu-Trang-Tra-Ve-Import.php?act=importexcel&cid=<!--{$smarty.request.cid}-->" title="Import Excel">
                   <input type="button" name="importexcel" value=" Import Excel " class="btn-save btn-search"/>
@@ -94,36 +94,36 @@
                <td></td>
                <td></td>
                <td>
-                  <input type="text" class="InputText textwsearch" name="maphieus" id="" value="<!--{$}-->" placeholder="Mã phiếu import..."  autocomplete="off"/>
+                  <input type="text" class="SearchCtrl InputText textwsearch" name="maphieus" id="maphieus" value="<!--{$searchKeyword.maphieus}-->" placeholder="Mã phiếu import..."  autocomplete="off"/>
                </td>
                <td>
-                  <input type="text" class="InputText textwsearch" name="mids" id="" value="<!--{$}-->" placeholder="NV import..." autocomplete="off" style="width:100% !important" />
+                  <input type="text" class="SearchCtrl InputText textwsearch" name="midNames" id="midNames" value="<!--{$searchKeyword.midNames}-->" placeholder="NV import..." autocomplete="off" style="width:100% !important" />
                </td>
                <td>
                </td>
                <td>
-                  <input type="text" class="InputText textwsearch" name="" id="" value="<!--{$}-->" placeholder="Giờ import..." autocomplete="off"/>
+                  <input type="text" class="SearchCtrl InputText textwsearch" name="" id="" value="<!--{$}-->" placeholder="Giờ import..." autocomplete="off"/>
                </td>
                <td>
-                  <input type="text" class="InputText textwsearch text-right autoNumericInt" name="" id="" value="<!--{$}-->" placeholder="Tổng số món import..." autocomplete="off"/>
+                  <input type="text" class="SearchCtrl InputText textwsearch autoNumericInt" name="slmons" id="slmons" value="<!--{$searchKeyword.slmons}-->" placeholder="Tổng số món import..." autocomplete="off"/>
                </td>
                <td>
-                  <input type="text" class="InputText textwsearch text-right autoNumericInt" name="" id="" value="<!--{$}-->" placeholder="Tổng Trọng lượng..." autocomplete="off"/>
+                  <input type="text" class="SearchCtrl InputText textwsearch  autoNumericInt" name="cannangvhs" id="cannangvhs" value="<!--{$searchKeyword.cannangvhs}-->" placeholder="Tổng Trọng lượng..." autocomplete="off"/>
                </td>
                <td>
-                  <input type="text" class="InputText textwsearch text-right autoNumericInt" name="" id="" value="<!--{$}-->" placeholder="Tổng TL Hột..." autocomplete="off"/>
+                  <input type="text" class="SearchCtrl InputText textwsearch autoNumericInt" name="cannanghs" id="cannanghs" value="<!--{$searchKeyword.cannanghs}-->" placeholder="Tổng TL Hột..." autocomplete="off"/>
                </td>
                <td>
-                  <input type="text" class="InputText textwsearch text-right autoNumericInt" name="" id="" value="<!--{$}-->" placeholder="Tổng TL vàng..." autocomplete="off"/>
+                  <input type="text" class="SearchCtrl InputText textwsearch autoNumericInt" name="cannangvs" id="cannangvs" value="<!--{$searchKeyword.cannangvs}-->" placeholder="Tổng TL vàng..." autocomplete="off"/>
                </td>
                <td>
-                  <input type="text" class="InputText textwsearch text-right autoNumericInt" name="" id="" value="<!--{$}-->" placeholder="Tổng tiền hột..." autocomplete="off"/>
+                  <input type="text" class="SearchCtrl InputText textwsearch autoNumericInt" name="tongtienhots" id="tongtienhots" value="<!--{$searchKeyword.tongtienhots}-->" placeholder="Tổng tiền hột..." autocomplete="off"/>
                </td>
                <td>
-                  <input type="text" class="InputText textwsearch text-right autoNumericInt" name="" id="" value="<!--{$}-->" placeholder="Tổng tiền công..." autocomplete="off"/>
+                  <input type="text" class="SearchCtrl InputText textwsearch autoNumericInt" name="tongtiencongs" id="tongtiencongs" value="<!--{$searchKeyword.tongtiencongs}-->" placeholder="Tổng tiền công..." autocomplete="off"/>
                </td>
                <td>
-                  <input type="text" class="InputText textwsearch text-right autoNumericInt" name="" id="" value="<!--{$}-->" placeholder="Tổng tiền đá/ngọc trai..." autocomplete="off"/>
+                  <input type="text" class="SearchCtrl InputText textwsearch autoNumericInt" name="tongtiendangoctrais" id="tongtiendangoctrais" value="<!--{$searchKeyword.tongtiendangoctrais}-->" placeholder="Tổng tiền đá/ngọc trai..." autocomplete="off"/>
                </td>
                <td>
                </td>
@@ -204,10 +204,5 @@
 
    function resetsfrsearch () {
 
-   }
-   function searchKhoNuTrangTraVe (url) {
-      var str = null;
-      $(location).attr('href', url+str);
-		return false;
    }
 </script>

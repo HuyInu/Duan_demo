@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-09-22 14:33:39
+/* Smarty version 4.1.1, created on 2023-09-27 10:52:18
   from 'D:\wamp64\www\duan_demo\templates\tpl\footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_650d43531d5514_13418767',
+  'unifunc' => 'content_6513a6f20a4645_21334884',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c393c885ab7f245747b2d63b92de6ac012e7723f' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\footer.tpl',
-      1 => 1695367685,
+      1 => 1695786714,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_650d43531d5514_13418767 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6513a6f20a4645_21334884 (Smarty_Internal_Template $_smarty_tpl) {
 ?><span id="loadingAjax">
     <div class="ajax-loader"></div>
     <div class="loadajax"></div>
@@ -829,6 +829,9 @@ function updatedongLM(act,str,id,cot,table){//id là phòng chuyển đến
 			}
 		})
 	}
+	$(function() {
+      $(".textsearchdated").datepicker({changeMonth: true,changeYear: true,dateFormat:"dd/mm/yy"});	
+   });
 <?php echo '</script'; ?>
 >
 

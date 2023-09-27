@@ -178,8 +178,14 @@ switch ($act) {
             $page = $path_url."/sources/main.php";
             page_transfer2($page);
         } else {
-            $sql = "select * from $GLOBALS[db_sp].khonguonvao_khonutrangtrave where phongban = $idpem and typeimport = 0 order by dated desc, maphieu asc";
-            $sql_sum = "select count(*) from $GLOBALS[db_sp].khonguonvao_khonutrangtrave where phongban = $idpem and typeimport = 0";
+            include_once("search/Kho-Nu-Trang-Tra-Ve-Search.php");
+            $whereSort = $wh;
+            if (!empty($fromDate) && !empty($toDate)) {
+                $whereSort .= " and dated >= '$fromDate' and dated <= '$toDate'";
+            }
+            // dd($whereSort);
+            $sql = "select * from $GLOBALS[db_sp].khonguonvao_khonutrangtrave where phongban = $idpem and typeimport = 0 $whereSort order by dated desc, maphieu asc";
+            $sql_sum = "select count(*) from $GLOBALS[db_sp].khonguonvao_khonutrangtrave where phongban = $idpem and typeimport = 0 $whereSort";
             $total = $count = ceil($GLOBALS['sp']->getOne($sql_sum));
             $num_rows_page = $numPageAll;
 			$num_page = ceil($total/$num_rows_page);

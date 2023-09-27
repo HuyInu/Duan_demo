@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-09-26 08:08:21
+/* Smarty version 4.1.1, created on 2023-09-27 08:49:11
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-Nu-Trang-Tra-Ve-Xuat-Kho\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_65122f05300874_88212728',
+  'unifunc' => 'content_65138a17699d19_03173859',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     'b6927a8a7418125244cdf1096fb811276e3ab1e9' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-Nu-Trang-Tra-Ve-Xuat-Kho\\list.tpl',
-      1 => 1695690471,
+      1 => 1695779330,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./allsearch/tungay-denngay.tpl' => 1,
   ),
 ),false)) {
-function content_65122f05300874_88212728 (Smarty_Internal_Template $_smarty_tpl) {
+function content_65138a17699d19_03173859 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="breadcrumb">
     <ul>
         <li>
@@ -74,6 +74,9 @@ function content_65122f05300874_88212728 (Smarty_Internal_Template $_smarty_tpl)
             <table class="table-bordered">
                 <tr class="trheader" align="center">
                     <td style="min-width:30px">
+                        <input type="checkbox" onclick="checkAll(this.checked);" name="all"/>
+                    </td>
+                    <td style="min-width:30px">
                         <strong>STT</strong>
                     </td>
                     <td style="min-width:30px">
@@ -121,6 +124,11 @@ if ($__section_i_0_total !== 0) {
 for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] = 0; $__section_i_0_iteration <= $__section_i_0_total; $__section_i_0_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']++){
 ?>
                 <tr>
+                    <td>
+                        <input type="checkbox" id="check<?php echo (isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null);?>
+" name="iddel[]" value="<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
+"/>
+                    </td>
                     <td>
                         <?php echo (isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)+1;?>
 

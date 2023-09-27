@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-09-26 16:24:42
+/* Smarty version 4.1.1, created on 2023-09-27 08:56:34
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-Nu-Trang-Tra-Ve-Xuat-Kho\edit.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_6512a35a15bc23_98828931',
+  'unifunc' => 'content_65138bd28f6595_17155158',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     'c6e5779665e0fd016828be23c3afef3518aaa0c0' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-Nu-Trang-Tra-Ve-Xuat-Kho\\edit.tpl',
-      1 => 1695720276,
+      1 => 1695779244,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6512a35a15bc23_98828931 (Smarty_Internal_Template $_smarty_tpl) {
+function content_65138bd28f6595_17155158 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="breadcrumb">
     <ul>
         <li>
@@ -540,7 +540,7 @@ for ($__section_i_2_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
             </div>
         </div>
         <div class="MainContent TextCenter"> 
-        	<input type="hidden" name="id" value="<?php echo $_smarty_tpl->tpl_vars['edit']->value['id'];?>
+        	<input type="hidden" name="idPhieuXuat" value="<?php echo $_smarty_tpl->tpl_vars['phieuXuat']->value['id'];?>
 " />
             <input type="button" class="btn-save" onclick=" return submitKhoNuTrangTraVe()" value="  Lưu " /> 
         </div>

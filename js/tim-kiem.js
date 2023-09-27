@@ -536,3 +536,31 @@ function searchKhoSanXuatHaoDu(url){
 	$(location).attr('href', url+str);
 	return false;
 }
+function searchKhoNuTrangTraVe (url) {
+	var str = '';
+	str +=	GetSearchStr('fromdays')
+	str +=	GetSearchStr('todays')
+
+	str +=	GetSearchStr('maphieus')
+	str +=	GetSearchStr('midNames')
+	str +=	GetSearchStr('slmons')
+	str +=	GetSearchStr('cannangvhs')
+	str +=	GetSearchStr('cannanghs')
+	str +=	GetSearchStr('cannangvs')
+	str +=	GetSearchStr('tongtienhots')
+	str +=	GetSearchStr('tongtiencongs')
+	str +=	GetSearchStr('tongtiendangoctrais')
+
+	$(location).attr('href', url+str);
+	return false;
+}
+
+function GetSearchStr (search) {
+	var searchVal = $('#'+search).val();
+	if(searchVal != '' && searchVal !== undefined)
+		return '&'+search+'='+searchVal;
+	return '';
+}
+function ResetSearch () {
+	$('.SearchCtrl').val('')
+}

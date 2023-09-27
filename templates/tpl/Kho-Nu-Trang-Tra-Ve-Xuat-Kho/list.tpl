@@ -41,6 +41,9 @@
             <table class="table-bordered">
                 <tr class="trheader" align="center">
                     <td style="min-width:30px">
+                        <input type="checkbox" onclick="checkAll(this.checked);" name="all"/>
+                    </td>
+                    <td style="min-width:30px">
                         <strong>STT</strong>
                     </td>
                     <td style="min-width:30px">
@@ -82,6 +85,9 @@
                 </tr>
                 <!--{section i loop=$view}-->
                 <tr>
+                    <td>
+                        <input type="checkbox" id="check<!--{$smarty.section.i.index}-->" name="iddel[]" value="<!--{$view[i].id}-->"/>
+                    </td>
                     <td>
                         <!--{$smarty.section.i.index+1}-->
                     </td>

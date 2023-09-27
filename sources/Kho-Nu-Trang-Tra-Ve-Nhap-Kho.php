@@ -21,12 +21,12 @@ switch ($act) {
                     break;
             }
             $sqlTong = "select sum(slmon) as tongallslmon,
-             sum(Round(cannangvh, 3)) as tongallcannangvh,
-              sum(Round(cannangh, 3)) as tongallcannangh,
-               sum(Round(cannangv, 3)) as tongallcannangv,
+                sum(Round(cannangvh, 3)) as tongallcannangvh,
+                sum(Round(cannangh, 3)) as tongallcannangh,
+                sum(Round(cannangv, 3)) as tongallcannangv,
                 sum(tienh) as tongalltienh,
-                 sum(tiencong) as tongalltiencong,
-                  sum(tiendangoctrai) as tongalltiendangoctrai from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where typeimport = 1 and (phongban = $idpem or phongbanchuyen = $idpem) and ".$sqlTypeWhere;
+                sum(tiencong) as tongalltiencong,
+                sum(tiendangoctrai) as tongalltiendangoctrai from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where typeimport = 1 and (phongban = $idpem or phongbanchuyen = $idpem) and ".$sqlTypeWhere;
             $tongAll = $GLOBALS['sp']->getRow($sqlTong);
             $smarty->assign("tongAll",$tongAll);
             $sql = "select * from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where typeimport = 1 and (phongban = $idpem or phongbanchuyen = $idpem) and ".$sqlTypeWhere;

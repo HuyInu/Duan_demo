@@ -766,6 +766,9 @@ function updatedongLM(act,str,id,cot,table){//id là phòng chuyển đến
 			}
 		})
 	}
+	$(function() {
+      $(".textsearchdated").datepicker({changeMonth: true,changeYear: true,dateFormat:"dd/mm/yy"});	
+   });
 </script>
 
 <script type="text/javascript">

@@ -213,7 +213,7 @@ switch($act) {
                             'tong'=>$tong
                             )));
         break;
-    case 'addsm':
+    case 'addsm': case 'editsm':
         if(!checkPermision($_GET["cid"],2) && !checkPermision($_GET["cid"],1) ){
 			page_permision();
 			$page = $path_url."/sources/main.php";
@@ -222,6 +222,29 @@ switch($act) {
             Edit();
             $url = "Kho-Nu-Trang-Tra-Ve-Xuat-Kho.php?cid=".$_GET['cid'];
 			page_transfer2($url);
+        }
+        break;
+    case 'dellist':
+        if(!checkPermision($_GET["cid"],3)){
+			page_permision();
+			$page = $path_url."/sources/main.php";
+			page_transfer2($page);
+		} else {
+            $GLOBALS["sp"]->BeginTrans();
+            try{
+                $idPhieuXuatList = $_POST['iddel'];
+                foreach($idPhieuXuatList as $idPhieuXuat) {
+                    vaUpdate('khonguonvao_khonutrangtravect', ['idctnx' => 0], "idctnx=$idPhieuXuat");
+                    vaDelete('khonguonvao_khonutrangtrave', "id=$idPhieuXuat");
+                }
+                $GLOBALS["sp"]->CommitTrans();
+                $url = "Kho-Nu-Trang-Tra-Ve-Xuat-Kho.php?cid=".$_GET['cid'];
+			    page_transfer2($url);
+            }
+            catch (Exception $e){
+                $GLOBALS["sp"]->RollbackTrans();
+                die($errorTransetion);
+            }
         }
         break;
     default:
@@ -280,17 +303,28 @@ function Edit () {
             $phieuXuat['dated'] = $dateNow;
             $phieuXuat['time'] = $timeNow;
             $idPhieuXuat = vaInsert("khonguonvao_khonutrangtrave", $phieuXuat);
+
+            AddPhieuCtToPhieuXuat($idPhieuCtSelected, $idPhieuXuat);
+        } else {
+            $idPhieuXuat = $_POST['idPhieuXuat'];
+            vaUpdate("khonguonvao_khonutrangtrave", $phieuXuat, "id=$idPhieuXuat");
+            vaUpdate('khonguonvao_khonutrangtravect', ['idctnx'=>0], "idctnx = $idPhieuXuat");
+            AddPhieuCtToPhieuXuat($idPhieuCtSelected, $idPhieuXuat);
         }
-        foreach($idPhieuCtSelected as $idPhieu) {
-            $phieuXuatCtUpdate = [];
-            $phieuXuatCtUpdate['idctnx'] = $idPhieuXuat;
-            vaUpdate('khonguonvao_khonutrangtravect', $phieuXuatCtUpdate, "id = $idPhieu");
-        }
+        
         $GLOBALS["sp"]->CommitTrans();
-    } 
+    }
     catch (Exception $e){
         $GLOBALS["sp"]->RollbackTrans();
         die($errorTransetion);
+    }
+}
+
+function AddPhieuCtToPhieuXuat ($idPhieuCtSelected, $idPhieuXuat) {
+    foreach($idPhieuCtSelected as $idPhieuCt) {
+        $phieuXuatCtUpdate = [];
+        $phieuXuatCtUpdate['idctnx'] = $idPhieuXuat;
+        vaUpdate('khonguonvao_khonutrangtravect', $phieuXuatCtUpdate, "id = $idPhieuCt");
     }
 }
 ?>

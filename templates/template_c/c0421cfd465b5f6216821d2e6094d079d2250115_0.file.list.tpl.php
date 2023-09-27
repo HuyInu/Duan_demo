@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-09-26 14:44:09
+/* Smarty version 4.1.1, created on 2023-09-27 11:46:23
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-Nu-Trang-Tra-Ve-Nhap-Kho\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_65128bc98b3322_24670949',
+  'unifunc' => 'content_6513b39fc3d4b5_90767581',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     'c0421cfd465b5f6216821d2e6094d079d2250115' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-Nu-Trang-Tra-Ve-Nhap-Kho\\list.tpl',
-      1 => 1695714246,
+      1 => 1695786006,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:Kho-Nu-Trang-Tra-Ve-Nhap-Kho/tabMenu.tpl' => 1,
   ),
 ),false)) {
-function content_65128bc98b3322_24670949 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6513b39fc3d4b5_90767581 (Smarty_Internal_Template $_smarty_tpl) {
 ?><style>
     .formsearchgroup{
         margin: -10px 0;

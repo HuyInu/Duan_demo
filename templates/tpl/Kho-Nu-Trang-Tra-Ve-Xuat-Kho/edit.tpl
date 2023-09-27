@@ -422,7 +422,7 @@
             </div>
         </div>
         <div class="MainContent TextCenter"> 
-        	<input type="hidden" name="id" value="<!--{$edit.id}-->" />
+        	<input type="hidden" name="idPhieuXuat" value="<!--{$phieuXuat.id}-->" />
             <input type="button" class="btn-save" onclick=" return submitKhoNuTrangTraVe()" value="  Lưu " /> 
         </div>
     </form>
