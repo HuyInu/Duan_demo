@@ -8602,8 +8602,8 @@ function giahuy_GhiHachToanKhoNuTrangTraVe ($tablehachtoan, $tableCt, $id) {
 		$slNhapH = $phieu['cannangh'];
 	} else {
 		$slXuatVh = $phieu['cannangvh'];
-		$slXuatV = $phieu['cannangvh'];
-		$slXuatH = $phieu['cannangvh'];
+		$slXuatV = $phieu['cannangv'];
+		$slXuatH = $phieu['cannangh'];
 	}
 
 	$currentHachToan = [];
@@ -8637,6 +8637,7 @@ function giahuy_GhiHachToanKhoNuTrangTraVe ($tablehachtoan, $tableCt, $id) {
 		vaUpdate('khonguonvao_khonutrangtrave_sodudauky', $currentHachToan, 'id='.$hachToanThisMonth['id']);
 	}
 }
+
 ?>
 
 

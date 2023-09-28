@@ -11,7 +11,9 @@ switch($act) {
             $page = $path_url."/sources/main.php";
             page_transfer2($page);
         } else {
-            include_once("search/Kho-Nu-Trang-Tra-Ve-Search.php");
+            include_once("search/Kho-Nu-Trang-Tra-Ve-Ct-Search.php");
+            $whereSort = $wh;
+            // dd($whereSort);
             if (!empty($fromDate) && !empty($toDate)) {
                 $sqlTong = "select sum(slmon) as tongallslmon,
                 sum(Round(cannangvh, 3)) as tongallcannangvh,
@@ -19,12 +21,12 @@ switch($act) {
                 sum(Round(cannangv, 3)) as tongallcannangv,
                 sum(tienh) as tongalltienh,
                 sum(tiencong) as tongalltiencong,
-                sum(tiendangoctrai) as tongalltiendangoctrai from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where type = 1 and datednhap >= '$fromDate' and datednhap <= '$toDate'";
+                sum(tiendangoctrai) as tongalltiendangoctrai from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where type = 1 and datednhap >= '$fromDate' and datednhap <= '$toDate' $whereSort";
                 $tongAll = $GLOBALS['sp']->getRow($sqlTong);
                 $smarty->assign("tongAll",$tongAll);
                 
-                $sql = "select * from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where type = 1 and datednhap >= '$fromDate' and datednhap <= '$toDate'";
-                $sql_sum = "select count(*) from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where type = 1 and datednhap >= '$fromDate' and datednhap <= '$toDate'";
+                $sql = "select * from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where type = 1 and datednhap >= '$fromDate' and datednhap <= '$toDate' $whereSort";
+                $sql_sum = "select count(*) from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where type = 1 and datednhap >= '$fromDate' and datednhap <= '$toDate' $whereSort";
                 $total = $count = ceil($GLOBALS['sp']->getOne($sql_sum));
                 $num_rows_page = $numPageAll;
                 $num_page = ceil($total/$num_rows_page);

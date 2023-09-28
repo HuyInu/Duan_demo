@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-09-27 13:55:51
+/* Smarty version 4.1.1, created on 2023-09-28 16:28:01
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-Nu-Trang-Tra-Ve-Thong-Ke\nhap-kho.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_6513d1f7e4baa4_85247150',
+  'unifunc' => 'content_65154721194618_32894280',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     '8963aa6d4325ad95769bbc3c599478949efb19bc' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-Nu-Trang-Tra-Ve-Thong-Ke\\nhap-kho.tpl',
-      1 => 1695797749,
+      1 => 1695893270,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6513d1f7e4baa4_85247150 (Smarty_Internal_Template $_smarty_tpl) {
+function content_65154721194618_32894280 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\libraries\\smarty4\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
 <style>
@@ -189,18 +189,20 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\
 " placeholder="Ngày/giờ duyệt kho..."  autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textwsearch" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
-" placeholder="Cửa hàng..."  autocomplete="off"/>
+                                <input type="text" class="SearchCtrl InputText textwsearch text-right" name="cuahangs" id="cuahangs" value="<?php echo $_smarty_tpl->tpl_vars['cuahangs']->value;?>
+" placeholder="Cửa hàng..." autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textwsearch" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
-" placeholder="Nơi đến..."  autocomplete="off"/>
+                                <input type="text" class="SearchCtrl InputText textwsearch text-right" name="noidens" id="noidens" value="<?php echo $_smarty_tpl->tpl_vars['noidens']->value;?>
+" placeholder="Nơi đến..." autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textsearchdated" name="" id="" value="" placeholder="Ngày xác nhận..."  autocomplete="off"/>
+                                <input type="text" class="SearchCtrl InputText textsearchdated" name="datedxacnhans" id="datedxacnhans" value="<?php echo $_smarty_tpl->tpl_vars['datedxacnhans']->value;?>
+" placeholder="Ngày xác nhận..." autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textwsearch" name="" id="" value="" placeholder="Số phiếu..."  autocomplete="off"/>
+                                <input type="text" class="SearchCtrl InputText textwsearch" name="sophieus" id="sophieus" value="<?php echo $_smarty_tpl->tpl_vars['sophieus']->value;?>
+" placeholder="Số phiếu..." autocomplete="off"/>
                             </td>
                             <td>
                                 <input type="text" class="InputText textwsearch" name="" id="" value="" placeholder="Ghi chú..."  autocomplete="off"/>
@@ -254,6 +256,13 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\
                                 <input type="text" class="InputText textwsearch" name="" id="" value="" placeholder="Giờ Import..."  autocomplete="off"/>
                             </td>
                         </tr>
+                        <?php $_smarty_tpl->_assignInScope('slmon', 0);?>
+                        <?php $_smarty_tpl->_assignInScope('tongCannangvh', 0);?>
+                        <?php $_smarty_tpl->_assignInScope('tongCannangv', 0);?>
+                        <?php $_smarty_tpl->_assignInScope('tongCannangh', 0);?>
+                        <?php $_smarty_tpl->_assignInScope('tongTienHot', 0);?>
+                        <?php $_smarty_tpl->_assignInScope('tongTienCong', 0);?>
+                        <?php $_smarty_tpl->_assignInScope('tongTienDaNgocTrai', 0);?>
                         <?php
 $__section_i_0_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['view']->value) ? count($_loop) : max(0, (int) $_loop));
 $__section_i_0_total = $__section_i_0_loop;
@@ -368,7 +377,14 @@ echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smar
                                 <?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['timeimport'];?>
 
                             </td>
-                        </tr>   
+                        </tr>
+                        <?php $_smarty_tpl->_assignInScope('slmon', $_smarty_tpl->tpl_vars['slmon']->value+$_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['slmon']);?>
+                        <?php $_smarty_tpl->_assignInScope('tongCannangvh', $_smarty_tpl->tpl_vars['tongCannangvh']->value+$_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['cannangvh']);?>
+                        <?php $_smarty_tpl->_assignInScope('tongCannangv', $_smarty_tpl->tpl_vars['tongCannangv']->value+$_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['cannangv']);?>
+                        <?php $_smarty_tpl->_assignInScope('tongCannangh', $_smarty_tpl->tpl_vars['tongCannangh']->value+$_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['cannangh']);?>
+                        <?php $_smarty_tpl->_assignInScope('tongTienHot', $_smarty_tpl->tpl_vars['tongTienHot']->value+$_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['tienh']);?>
+                        <?php $_smarty_tpl->_assignInScope('tongTienCong', $_smarty_tpl->tpl_vars['tongTienCong']->value+$_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['tiencong']);?>
+                        <?php $_smarty_tpl->_assignInScope('tongTienDaNgocTrai', $_smarty_tpl->tpl_vars['tongTienDaNgocTrai']->value+$_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['tiendangoctrai']);?>
                         <?php
 }
 }

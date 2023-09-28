@@ -136,22 +136,23 @@ function CheckHasChild(chk){
 
 function checkAll()
 {
-	if(document.f.all.checked == true)
-	{
-		for(var i=0;i<200;i++)
-		{
-			console.log(document.getElementById("check"+i).checked);
-			document.getElementById("check"+i).checked = true;
-		}
-	}
-	else
-	{
-		for(var i=0;i<200;i++)
-		{
-			
-			document.getElementById("check"+i).checked = false;
-		}
-	}
+	// if(document.f.all.checked == true)
+	// {
+	// 	for(var i=0;i<200;i++)
+	// 	{
+	// 		document.getElementById("check"+i).checked = true;
+	// 	}
+	// }
+	// else
+	// {
+	// 	for(var i=0;i<200;i++)
+	// 	{
+	// 		document.getElementById("check"+i).checked = false;
+	// 	}
+	// }
+	$("table [id^='check']").each(function (index) {
+        $(this).prop('checked',  !$(this).prop('checked'));
+    });
 }
 
 function ChangeAction(url)

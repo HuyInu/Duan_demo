@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-09-27 11:46:23
+/* Smarty version 4.1.1, created on 2023-09-28 14:11:57
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-Nu-Trang-Tra-Ve-Nhap-Kho\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_6513b39fc3d4b5_90767581',
+  'unifunc' => 'content_6515273d563bd5_58321569',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     'c0421cfd465b5f6216821d2e6094d079d2250115' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-Nu-Trang-Tra-Ve-Nhap-Kho\\list.tpl',
-      1 => 1695786006,
+      1 => 1695885114,
       2 => 'file',
     ),
   ),
@@ -21,8 +21,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:Kho-Nu-Trang-Tra-Ve-Nhap-Kho/tabMenu.tpl' => 1,
   ),
 ),false)) {
-function content_6513b39fc3d4b5_90767581 (Smarty_Internal_Template $_smarty_tpl) {
-?><style>
+function content_6515273d563bd5_58321569 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\libraries\\smarty4\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
+?>
+<style>
     .formsearchgroup{
         margin: -10px 0;
     }
@@ -69,39 +71,32 @@ function content_6513b39fc3d4b5_90767581 (Smarty_Internal_Template $_smarty_tpl)
    </ul>
 </div>
 <div class="MainContent">
-   <form name="f" id="f" method="post" onsubmit="return searchKhoTemDa('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
-/sources/Kho-Nu-Trang-Tra-Ve-Nhap-Kho.php?cid=<?php echo $_REQUEST['cid'];?>
+   <form name="f" id="f" method="post" onsubmit="return searchKhoNuTrangTraVeCt('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/sources/Kho-Nu-Trang-Tra-Ve-Nhap-Kho.php?act=<?php echo $_REQUEST['act'];?>
+&cid=<?php echo $_REQUEST['cid'];?>
 ')"> 
         <div class="MainSearch">
             <div class="formsearch">
                 <label class="Fl labelsearch"> Từ ngày: </label>
-                <input type="text" class="InputText textsearchdated" placeholder='dd/mm/yy' name="fromdays" id="fromdays" value="<?php echo $_smarty_tpl->tpl_vars['fromdays']->value;?>
+                <input type="text" class="SearchCtrl InputText textsearchdated" placeholder='dd/mm/yy' name="fromdays" id="fromdays" value="<?php echo $_smarty_tpl->tpl_vars['fromdays']->value;?>
 " onchange="DateCheck()" autocomplete="off"/>
             </div>
             <div class="formsearch">
                 <label class="Fl labelsearch"> Đến ngày: </label>
-                <input type="text" class="InputText textsearchdated" placeholder='dd/mm/yy' name="todays" id="todays" value="<?php echo $_smarty_tpl->tpl_vars['todays']->value;?>
+                <input type="text" class="SearchCtrl InputText textsearchdated" placeholder='dd/mm/yy' name="todays" id="todays" value="<?php echo $_smarty_tpl->tpl_vars['todays']->value;?>
 " onchange="DateCheck()" autocomplete="off"/>
             </div>
             <div class="formsearch"> 
-                <input class="btn-save btn-search" onclick=" return SubmitFrom();" value="Tìm kiếm" type="submit"> 
-                <input type="reset" name="reset" value=" Làm mới " onclick=" return resetsfrsearchKeToanThuTien();" class="btn-save btn-search"/>
+                <input class="btn-save btn-search" value="Tìm kiếm" type="submit"> 
+                <input type="button" name="reset" value=" Làm mới " onclick="ResetSearch();" class="btn-save btn-search"/>
             </div>
             <div class="formsearch formsearchgroup"> 
                 <div class="box-thongin">
                     <div class="title-thongtin"><strong>CHI TIẾT</strong></div>
                     <div class="divitem">
-                        <a class="btn-save btn-search" onclick=" return viewVangNguyenLieuCongTyTabNhapKho('viewChiTiet',<?php echo $_REQUEST['cid'];?>
-,'<?php echo $_smarty_tpl->tpl_vars['fromdays']->value;?>
-','<?php echo $_smarty_tpl->tpl_vars['todays']->value;?>
-','<?php echo $_smarty_tpl->tpl_vars['strSearch']->value;?>
-')" href="#">Xem</a>
+                        <a class="btn-save btn-search" onclick="ViewDetail()" href="#">Xem</a>
                         <input type="button" name="print" value="     In     " class="btn-save btn-search"/>
-                        <input type="button" name="print" value="Export Excel" onclick=" return ExportExcelVangNguyenLieuCongTyTabNhapKho('ExportExcelChiTiet',<?php echo $_REQUEST['cid'];?>
-,'<?php echo $_smarty_tpl->tpl_vars['fromdays']->value;?>
-','<?php echo $_smarty_tpl->tpl_vars['todays']->value;?>
-','<?php echo $_smarty_tpl->tpl_vars['strSearch']->value;?>
-');" class="btn-save btn-search"/>
+                        <input type="button" name="print" value="Export Excel" class="btn-save btn-search"/>
                     </div>
                 </div>
             </div>
@@ -114,7 +109,7 @@ function content_6513b39fc3d4b5_90767581 (Smarty_Internal_Template $_smarty_tpl)
                     <table  class="table-bordered scroll-table">
                         <tr class="trheader" align="center">
                             <td style="min-width:30px">
-                                <input type="checkbox" onclick="checkAll(this.checked);" name="all"/>
+                                <input type="checkbox" onclick="checkAll();" name="all"/>
                             </td>
                             <td style="min-width:30px">
                                 <strong>STT</strong>
@@ -205,39 +200,42 @@ function content_6513b39fc3d4b5_90767581 (Smarty_Internal_Template $_smarty_tpl)
                             <td></td>
                             <td></td>
                             <td>
-                                <input type="text" class="InputText textwsearch" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
+                                <input type="text" class="SearchCtrl InputText textwsearch" name="maphieuimports" id="maphieuimports" value="<?php echo $_smarty_tpl->tpl_vars['maphieuimports']->value;?>
 " placeholder="Mã phiếu import..."  autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textwsearch" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
+                                <input type="text" class="SearchCtrl InputText textwsearch" name="midimports" id="midimports" value="<?php echo $_smarty_tpl->tpl_vars['midimports']->value;?>
 " placeholder="NV import..." autocomplete="off" style="width:100% !important" />
                             </td>
                             <td>
-                                <input type="text" class="InputText textsearchdated" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
-" placeholder="Ngày import..." autocomplete="off" style="width:100% !important" />
+                                
                             </td>
                             <td>
                                 <input type="text" class="InputText textwsearch" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
 " placeholder="Giờ import..." autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textwsearch text-right" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
+                                <input type="text" class="SearchCtrl InputText textwsearch text-right" name="cuahangs" id="cuahangs" value="<?php echo $_smarty_tpl->tpl_vars['cuahangs']->value;?>
 " placeholder="Cửa hàng..." autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textwsearch text-right" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
+                                <input type="text" class="SearchCtrl InputText textwsearch text-right" name="noidens" id="noidens" value="<?php echo $_smarty_tpl->tpl_vars['noidens']->value;?>
 " placeholder="Nơi đến..." autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textwsearch" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
+                                <input type="text" class="SearchCtrl InputText textsearchdated" name="datedxacnhans" id="datedxacnhans" value="<?php echo $_smarty_tpl->tpl_vars['datedxacnhans']->value;?>
+" placeholder="Ngày xác nhận..." autocomplete="off"/>
+                            </td>
+                            <td>
+                                <input type="text" class="SearchCtrl InputText textwsearch" name="sophieus" id="sophieus" value="<?php echo $_smarty_tpl->tpl_vars['sophieus']->value;?>
 " placeholder="Số phiếu..." autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textwsearch" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
+                                <input type="text" class="SearchCtrl InputText textwsearch" name="ghichus" id="ghichus" value="<?php echo $_smarty_tpl->tpl_vars['ghichus']->value;?>
 " placeholder="Ghi chú..." autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textwsearch" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
+                                <input type="text" class="SearchCtrl InputText textwsearch" name="idloaivangs" id="idloaivangs" value="<?php echo $_smarty_tpl->tpl_vars['idloaivangs']->value;?>
 " placeholder="Loại vàng..." autocomplete="off"/>
                             </td>
                             <td>
@@ -249,39 +247,39 @@ function content_6513b39fc3d4b5_90767581 (Smarty_Internal_Template $_smarty_tpl)
 " placeholder="Mã nữ trang..." autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textwsearch" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
+                                <input type="text" class="SearchCtrl InputText textwsearch" name="macus" id="macus" value="<?php echo $_smarty_tpl->tpl_vars['macus']->value;?>
 " placeholder="Mã cũ..." autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textwsearch" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
+                                <input type="text" class="SearchCtrl InputText textwsearch" name="tens" id="tens" value="<?php echo $_smarty_tpl->tpl_vars['tens']->value;?>
 " placeholder="Tên..." autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textwsearch" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
+                                <input type="text" class="SearchCtrl InputText textwsearch" name="slmons" id="slmons" value="<?php echo $_smarty_tpl->tpl_vars['slmons']->value;?>
 " placeholder="Số món..." autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textwsearch autoNumericInt" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
+                                <input type="text" class="SearchCtrl InputText textwsearch autoNumericInt" name="cannangvhs" id="cannangvhs" value="<?php echo $_smarty_tpl->tpl_vars['cannangvhs']->value;?>
 " placeholder="Trọng lượng..." autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textwsearch autoNumericInt" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
+                                <input type="text" class="SearchCtrl InputText textwsearch autoNumericInt" name="cannanghs" id="cannanghs" value="<?php echo $_smarty_tpl->tpl_vars['cannanghs']->value;?>
 " placeholder="TL hột..." autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textwsearch autoNumericInt" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
+                                <input type="text" class="SearchCtrl InputText textwsearch autoNumericInt" name="cannangvs" id="cannangvs" value="<?php echo $_smarty_tpl->tpl_vars['cannangvs']->value;?>
 " placeholder="TL vàng..." autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textwsearch autoNumericInt" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
+                                <input type="text" class="SearchCtrl InputText textwsearch autoNumericInt" name="tienhs" id="tienhs" value="<?php echo $_smarty_tpl->tpl_vars['tienhs']->value;?>
 " placeholder="Tiền hột..." autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textwsearch autoNumericInt" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
+                                <input type="text" class="SearchCtrl InputText textwsearch autoNumericInt" name="tiencongs" id="tiencongs" value="<?php echo $_smarty_tpl->tpl_vars['tiencongs']->value;?>
 " placeholder="Tiền công..." autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textwsearch autoNumericInt" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
+                                <input type="text" class="SearchCtrl InputText textwsearch autoNumericInt" name="tiendangoctrais" id="tiendangoctrais" value="<?php echo $_smarty_tpl->tpl_vars['tiendangoctrais']->value;?>
 " placeholder="Tiền đá/ngọc trai..." autocomplete="off"/>
                             </td>
                             <td>
@@ -289,15 +287,21 @@ function content_6513b39fc3d4b5_90767581 (Smarty_Internal_Template $_smarty_tpl)
                             <td>
                             </td>
                             <td>
-                                <input type="text" class="InputText textwsearch" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
-" placeholder="Trạng thái..." autocomplete="off"/>
-                            </td>
+                                <?php if (($_REQUEST['act'] != 'uninsertShow') && ($_REQUEST['act'] != 'insertedShow')) {?>
+                                <select class="SearchCtrl" id="trangthaiduyets" name="trangthaiduyets" style="width:100%">
+                                    <option value=""> Tất cả </option>
+                                    <option value="0" <?php echo $_smarty_tpl->tpl_vars['types']->value === '0' ? 'selected' : '';?>
+> Đang chờ nhập kho  </option>
+                                    <option value="1" <?php echo $_smarty_tpl->tpl_vars['types']->value === '1' ? 'selected' : '';?>
+> Đã nhập kho  </option>
+                                </select>
+                                <?php }?>
                             <td>
-                                <input type="text" class="InputText textwsearch" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
+                                <input type="text" class="SearchCtrl InputText textwsearch" name="maphieus" id="maphieus" value="<?php echo $_smarty_tpl->tpl_vars['maphieus']->value;?>
 " placeholder="Số phiếu nhập kho..." autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textwsearch" name="" id="" value="<?php echo $_smarty_tpl->tpl_vars['']->value;?>
+                                <input type="text" class="SearchCtrl InputText textwsearch" name="mids" id="mids" value="<?php echo $_smarty_tpl->tpl_vars['mids']->value;?>
 " placeholder="NV duyệt nhập kho..." autocomplete="off"/>
                             </td>
                             <td>
@@ -322,7 +326,7 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
                         <tr id='g<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
 '>
                             <td>
-                                <input type="checkbox" id="check<?php echo (isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null);?>
+                                <input type="checkbox" class="check-phieu" id="check<?php echo (isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null);?>
 " name="iddel[]" value="<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
 "/>
                             </td>
@@ -339,7 +343,7 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 
                             </td>
                             <td>
-                                <?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['datedimport'];?>
+                                <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['datedimport'],'%d/%m/%Y');?>
 
                             </td>
                             <td>
@@ -355,7 +359,7 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 
                             </td>
                             <td>
-                                <?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['datedxacnhan'];?>
+                                <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['datedxacnhan'],'%d/%m/%Y');?>
 
                             </td>
                             <td>
@@ -546,5 +550,19 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 <?php echo '<script'; ?>
  type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /js/tim-kiem.js"><?php echo '</script'; ?>
+>
+<?php echo '<script'; ?>
+>
+function ViewDetail () {
+    $urlParam = ''
+    $('.check-phieu:checkbox:checked').each(function () {
+        $urlParam += `&phieuid[]=${$(this).val()}`
+    });
+    console.log($urlParam)
+    popupwindow('Kho-Nu-Trang-Tra-Ve-Nhap-Kho.php?act=view&cid=<?php echo $_REQUEST['cid'];?>
+&id=<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
+'+$urlParam,'mywindow')
+}
+<?php echo '</script'; ?>
 ><?php }
 }

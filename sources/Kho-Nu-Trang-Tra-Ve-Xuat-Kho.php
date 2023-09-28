@@ -23,13 +23,13 @@ switch($act) {
             $sophieu = $GLOBALS['sp']->getCol($sqlGetSophieu); 
             $sqlLoaiVang = "select * from $GLOBALS[db_sp].loaivang where active = 1";
             $typegold = $GLOBALS['sp']->getAll($sqlLoaiVang);
-            $viewedit = [
+            $phieuXuat = [
                 'dated'=>$dated,
                 'maphieu' => $maphieu
             ];
             $smarty->assign("sophieu", $sophieu);
             $smarty->assign("typegold", $typegold);
-            $smarty->assign("viewedit", $viewedit);
+            $smarty->assign("phieuXuat", $phieuXuat);
             $template = "Kho-Nu-Trang-Tra-Ve-Xuat-Kho/edit.tpl";
         }
         break;
@@ -49,7 +49,7 @@ switch($act) {
             $sqlGetSophieu = "select DISTINCT sophieu from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where type = 1";
             $maphieutrakho = $GLOBALS['sp']->getCol($sqlGetSophieu); 
 
-            $sqlPhieuCt = "Select * from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where sophieu = '".$phieu['maphieutrakho']."' and type = 2 and trangthai = 0 and idctnx in (0,".$phieu['id'].")";
+            $sqlPhieuCt = "Select * from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where sophieu = '".$phieu['maphieutrakho']."' and type = 2 and trangthai = 0 and idctnx in (0,".$phieu['id'].") order by idctnx desc";
             $phieuCt = $GLOBALS['sp']->getAll($sqlPhieuCt); 
             
             $smarty->assign("sophieu", $maphieutrakho);
@@ -62,7 +62,7 @@ switch($act) {
     case 'loaddulieutrakho':
         try {
             $maphieutrakho = $_POST['sophieu'] ? $_POST['sophieu'] : '';
-            $idPhieuXuat = $_POST['idPhieu'] ? $_POST['idPhieu'] : '';
+            $idPhieuXuat = $_POST['idPhieu'] ? $_POST['idPhieu'] : '0';
             $sqlPhieu = "select * from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where sophieu = '$maphieutrakho' and type = 2 and trangthai = 0 and idctnx in (0,$idPhieuXuat)";
             $phieu = $GLOBALS['sp']->getAll($sqlPhieu);
             $html = null;

@@ -339,6 +339,33 @@ switch($act) {
 			$error = $e;
         }
     break;
+    case 'xacnhankhonutrangtrave':
+        $GLOBALS["sp"]->BeginTrans();
+        try{
+            $sqlCategChuyen = "select * from $GLOBALS[db_sp].categories where id = 1867";
+            $categChuyen = $GLOBALS['sp']->getRow($sqlCategChuyen);
+            $tableChuyen = $categChuyen['table'];
+            $tableCtChuyen = $categChuyen['tablect'];
+            $tableHachToanChuyen = $categChuyen['tablehachtoan'];
+
+            $sqlPhieuXuatCt = "select id from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where idctnx = $idPhieu";
+            $phieuXuatCt = $GLOBALS['sp']->getCol($sqlPhieuXuatCt);
+            $phieuXuatCtUpdate = [];
+            $phieuXuatCtUpdate['trangthai'] = 2;
+            $phieuXuatCtUpdate['datedxuat'] = $dateNow;
+            $phieuXuatCtUpdate['timexuat'] = $timeNow;
+            vaUpdate($tableCtChuyen, $phieuXuatCtUpdate, "idctnx=$idPhieu");
+
+            foreach($phieuXuatCt as $id) {
+                giahuy_GhiHachToanKhoNuTrangTraVe ($tableHachToanChuyen, $tableCtChuyen, $id);
+            }
+            
+            $GLOBALS["sp"]->CommitTrans();
+        } catch (Exception $e) {
+            $GLOBALS["sp"]->RollbackTrans();
+			$error = $e;
+        }
+        break;
 }
 
 die(json_encode(array('status'=>$error,'name'=>$name,'soducon'=>$soducon)));

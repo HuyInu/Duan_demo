@@ -5,12 +5,25 @@ $idpem = isset($_REQUEST['cid']) ? $_REQUEST['cid'] : '';
 $smarty->assign("phongbanchuyen",$idpem);
 
 switch ($act) {
+    case 'view':
+        $idPhieuSelectedArray = $_GET['phieuid'];
+        $whereIdSql = implode(',',$idPhieuSelectedArray);
+        $sql = "select * from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where id in ($whereIdSql)";
+        $phieuNhap = $GLOBALS['sp']->getAll($sql);
+        $smarty->assign("view",$phieuNhap);
+        $template = 'Kho-Nu-Trang-Tra-Ve-Nhap-Kho/view.tpl';
+        break;
     default:
         if(!checkPermision($idpem,5)){
             page_permision();
             $page = $path_url."/sources/main.php";
             page_transfer2($page);
         } else {
+            include_once("search/Kho-Nu-Trang-Tra-Ve-Ct-Search.php");
+            $whereSort = $wh;
+            if (!empty($fromDate) && !empty($toDate)) {
+                $whereSort .= " and datedimport >= '$fromDate' and datedimport <= '$toDate'";
+            }
             $sqlTypeWhere = "type in (0, 1)";
             switch($act) {
                 case 'insertedShow':
@@ -26,11 +39,11 @@ switch ($act) {
                 sum(Round(cannangv, 3)) as tongallcannangv,
                 sum(tienh) as tongalltienh,
                 sum(tiencong) as tongalltiencong,
-                sum(tiendangoctrai) as tongalltiendangoctrai from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where typeimport = 1 and (phongban = $idpem or phongbanchuyen = $idpem) and ".$sqlTypeWhere;
+                sum(tiendangoctrai) as tongalltiendangoctrai from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where typeimport = 1 and (phongban = $idpem or phongbanchuyen = $idpem) and $sqlTypeWhere $whereSort";
             $tongAll = $GLOBALS['sp']->getRow($sqlTong);
             $smarty->assign("tongAll",$tongAll);
-            $sql = "select * from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where typeimport = 1 and (phongban = $idpem or phongbanchuyen = $idpem) and ".$sqlTypeWhere;
-            $sql_sum = "select count(*) from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where typeimport = 1 and (phongban = $idpem or phongbanchuyen = $idpem) and ".$sqlTypeWhere;
+            $sql = "select * from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where typeimport = 1 and (phongban = $idpem or phongbanchuyen = $idpem) and $sqlTypeWhere $whereSort";
+            $sql_sum = "select count(*) from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where typeimport = 1 and (phongban = $idpem or phongbanchuyen = $idpem) and $sqlTypeWhere $whereSort";
             $total = $count = ceil($GLOBALS['sp']->getOne($sql_sum));
             $num_rows_page = $numPageAll;
 			$num_page = ceil($total/$num_rows_page);

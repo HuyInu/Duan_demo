@@ -122,7 +122,7 @@
                         <!--{$view[i].maphieutrakho}-->
                     </td>
                     <td>
-                        <strong>Duyệt Chuyển</strong>
+                        <a href="#" onclick="giahuy_xacnhanchuyenKhoSanXuat('xacnhankhonutrangtrave', 2, <!--{$view[i].id}-->, 'abc')">Duyệt Chuyển</a>
                     </td>
                     <td>
                     <!--{if $checkPer2 eq "true" }-->

@@ -147,16 +147,16 @@
                                 <input type="text" class="InputText textwsearch" name="" id="" value="<!--{$}-->" placeholder="Ngày/giờ duyệt kho..."  autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textwsearch" name="" id="" value="<!--{$}-->" placeholder="Cửa hàng..."  autocomplete="off"/>
+                                <input type="text" class="SearchCtrl InputText textwsearch text-right" name="cuahangs" id="cuahangs" value="<!--{$cuahangs}-->" placeholder="Cửa hàng..." autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textwsearch" name="" id="" value="<!--{$}-->" placeholder="Nơi đến..."  autocomplete="off"/>
+                                <input type="text" class="SearchCtrl InputText textwsearch text-right" name="noidens" id="noidens" value="<!--{$noidens}-->" placeholder="Nơi đến..." autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textsearchdated" name="" id="" value="" placeholder="Ngày xác nhận..."  autocomplete="off"/>
+                                <input type="text" class="SearchCtrl InputText textsearchdated" name="datedxacnhans" id="datedxacnhans" value="<!--{$datedxacnhans}-->" placeholder="Ngày xác nhận..." autocomplete="off"/>
                             </td>
                             <td>
-                                <input type="text" class="InputText textwsearch" name="" id="" value="" placeholder="Số phiếu..."  autocomplete="off"/>
+                                <input type="text" class="SearchCtrl InputText textwsearch" name="sophieus" id="sophieus" value="<!--{$sophieus}-->" placeholder="Số phiếu..." autocomplete="off"/>
                             </td>
                             <td>
                                 <input type="text" class="InputText textwsearch" name="" id="" value="" placeholder="Ghi chú..."  autocomplete="off"/>
@@ -210,6 +210,13 @@
                                 <input type="text" class="InputText textwsearch" name="" id="" value="" placeholder="Giờ Import..."  autocomplete="off"/>
                             </td>
                         </tr>
+                        <!--{$slmon = 0}-->
+                        <!--{$tongCannangvh = 0}-->
+                        <!--{$tongCannangv = 0}-->
+                        <!--{$tongCannangh = 0}-->
+                        <!--{$tongTienHot = 0}-->
+                        <!--{$tongTienCong = 0}-->
+                        <!--{$tongTienDaNgocTrai =0}-->
                         <!--{section i loop=$view}-->
                         <tr>
                             <td>
@@ -290,7 +297,14 @@
                             <td>
                                 <!--{$view[i].timeimport}-->
                             </td>
-                        </tr>   
+                        </tr>
+                        <!--{$slmon = $slmon + $view[i].slmon}-->
+                        <!--{$tongCannangvh = $tongCannangvh + $view[i].cannangvh}-->
+                        <!--{$tongCannangv = $tongCannangv + $view[i].cannangv}-->
+                        <!--{$tongCannangh = $tongCannangh + $view[i].cannangh}-->
+                        <!--{$tongTienHot = $tongTienHot + $view[i].tienh}-->
+                        <!--{$tongTienCong = $tongTienCong + $view[i].tiencong}-->
+                        <!--{$tongTienDaNgocTrai = $tongTienDaNgocTrai + $view[i].tiendangoctrai}-->
                         <!--{/section}-->
                         <tr class="Paging fontSizeTon">
                             <td align="right" colspan="15"> <strong class="colorXanh">Tổng/trang:</strong> </td>

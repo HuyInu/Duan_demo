@@ -183,7 +183,6 @@ switch ($act) {
             if (!empty($fromDate) && !empty($toDate)) {
                 $whereSort .= " and dated >= '$fromDate' and dated <= '$toDate'";
             }
-            // dd($whereSort);
             $sql = "select * from $GLOBALS[db_sp].khonguonvao_khonutrangtrave where phongban = $idpem and typeimport = 0 $whereSort order by dated desc, maphieu asc";
             $sql_sum = "select count(*) from $GLOBALS[db_sp].khonguonvao_khonutrangtrave where phongban = $idpem and typeimport = 0 $whereSort";
             $total = $count = ceil($GLOBALS['sp']->getOne($sql_sum));

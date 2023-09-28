@@ -536,7 +536,7 @@ function searchKhoSanXuatHaoDu(url){
 	$(location).attr('href', url+str);
 	return false;
 }
-function searchKhoNuTrangTraVe (url) {
+function searchKhoNuTrangTraVeTest (url) {
 	var str = '';
 	str +=	GetSearchStr('fromdays')
 	str +=	GetSearchStr('todays')
@@ -554,7 +554,16 @@ function searchKhoNuTrangTraVe (url) {
 	$(location).attr('href', url+str);
 	return false;
 }
-
+function searchKhoNuTrangTraVe (url) {
+	var str = '';
+	let idElement = null;
+	$('.SearchCtrl').each(function () {
+		idElement = $(this).attr('id')
+		str += GetSearchStr(idElement)
+	});
+	$(location).attr('href', url+str);
+	return false;
+}
 function GetSearchStr (search) {
 	var searchVal = $('#'+search).val();
 	if(searchVal != '' && searchVal !== undefined)

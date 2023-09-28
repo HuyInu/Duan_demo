@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-09-27 08:49:11
+/* Smarty version 4.1.1, created on 2023-09-28 15:30:34
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-Nu-Trang-Tra-Ve-Xuat-Kho\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_65138a17699d19_03173859',
+  'unifunc' => 'content_651539aa465b73_25625581',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     'b6927a8a7418125244cdf1096fb811276e3ab1e9' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-Nu-Trang-Tra-Ve-Xuat-Kho\\list.tpl',
-      1 => 1695779330,
+      1 => 1695889475,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:./allsearch/tungay-denngay.tpl' => 1,
   ),
 ),false)) {
-function content_65138a17699d19_03173859 (Smarty_Internal_Template $_smarty_tpl) {
+function content_651539aa465b73_25625581 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="breadcrumb">
     <ul>
         <li>
@@ -172,7 +172,8 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 
                     </td>
                     <td>
-                        <strong>Duyệt Chuyển</strong>
+                        <a href="#" onclick="giahuy_xacnhanchuyenKhoSanXuat('xacnhankhonutrangtrave', 2, <?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
+, 'abc')">Duyệt Chuyển</a>
                     </td>
                     <td>
                     <?php if ($_smarty_tpl->tpl_vars['checkPer2']->value == "true") {?>
