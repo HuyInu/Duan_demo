@@ -2,7 +2,7 @@
 $wh = $strSearch = '';
 $fromDate = trim(striptags($_GET['fromdays']));
 $toDate = trim(striptags($_GET['todays']));
-if($act != 'ChiTietTon'){
+if($act == 'ChiTietTon'){
 	if(empty($fromDate)){ /// nếu chưa chọn ngày lấy ngày hiện tại
 		$fromDate = date("d/m/Y");
 	}

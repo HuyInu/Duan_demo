@@ -59,8 +59,8 @@
                     <div class="title-thongtin"><strong>CHI TIẾT</strong></div>
                     <div class="divitem">
                         <a class="btn-save btn-search" onclick="ViewDetail()" href="#">Xem</a>
-                        <input type="button" name="print" value="     In     " class="btn-save btn-search"/>
-                        <input type="button" name="print" value="Export Excel" class="btn-save btn-search"/>
+                        <input type="button" name="print" value="     In     " class="btn-save btn-search" onclick="printKhoNuTrangTraVe('nhapkho')"/>
+                        <input type="button" name="print" value="Export Excel" class="btn-save btn-search" onclick="exportExcel()"/>
                     </div>
                 </div>
             </div>
@@ -149,7 +149,7 @@
                             <td style="min-width:133px">
                                 <strong>Trạng  thái</strong>
                             </td>
-                            <td style="min-width:50px">
+                            <td style="min-width:135px">
                                 <strong>Số phiếu nhập kho</strong>
                             </td>
                             <td style="min-width:122px">
@@ -351,13 +351,13 @@
                                 <!--{($view[i].type eq '0') ? 'Đang chờ nhập kho' : 'Đã nhập kho'}-->
                             </td>
                             <td>
-                                <strong>Số phiếu nhập kho</strong>
+                                <!--{$view[i].maphieu}-->
                             </td>
                             <td>
                                 <!--{getName('admin', 'fullname', $view[i].mid)}-->
                             </td>
                             <td>
-                                <!--{$view[i].datednhap}--><br><!--{$view[i].timenhap}-->
+                                <!--{$view[i].datednhap|date_format:'%d/%m/%Y'}--><br><!--{$view[i].timenhap}-->
                             </td>
                         </tr>
                         <!--{$slmon = $slmon + $view[i].slmon}-->
@@ -417,5 +417,21 @@ function ViewDetail () {
     });
     console.log($urlParam)
     popupwindow('Kho-Nu-Trang-Tra-Ve-Nhap-Kho.php?act=view&cid=<!--{$smarty.request.cid}-->&id=<!--{$view[i].id}-->'+$urlParam,'mywindow')
+}
+function printKhoNuTrangTraVe(act) {
+    var str = "";
+    str = `act=${act}&cid=<!--{$smarty.request.cid}-->&tab=<!--{$smarty.request.act}-->`;
+    str += GetAllSearchStr();
+    url = '<!--{$path_url}-->/print/print-kho-nu-trang-tra-ve.php?'+str;
+    popupwindow(url, 'In')
+    return false;	
+}
+function exportExcel(act) {
+    var str = "";
+    str = `act=exportexcel&cid=<!--{$smarty.request.cid}-->&tab=<!--{$smarty.request.act}-->`;
+    str += GetAllSearchStr();
+    url = '<!--{$path_url}-->/sources/Kho-Nu-Trang-Tra-Ve-Nhap-Kho.php?'+str;
+    popupwindow(url, 'In')
+    return false;
 }
 </script>

@@ -8428,6 +8428,53 @@ function giahuy_dieuChinhSoLieuHachToanKhoNguonVao($table,$tablehachtoan,$idloai
 		vaUpdate($tablehachtoan, $hachToanUpdate, "id = ".$hachToan[$i]['id']);
 	}
 }
+function giahuy_dieuChinhSoLieuHachToanKhoNuTrangTraVe($table,$tablehachtoan,$idloaivang) {
+	$sqlHachToan = "select * from $GLOBALS[db_sp].$tablehachtoan where idloaivang=$idloaivang order by dated desc limit 3";
+	$hachToan = $GLOBALS['sp']->getAll($sqlHachToan);
+	$hachToanLenght = count($hachToan);
+	
+	for($i=$hachToanLenght-1; $i>=0; $i--) {
+		$dateDauThang = $hachToan[$i]['dated'];
+		$dateCuoiThang = date('Y-m-t', strtotime($dateDauThang));
+
+		$hachToanUpdate = [];
+
+		$sqlTongNhap = "select ROUND(SUM(cannangvh), 3) as cannangvh, 
+					ROUND(SUM(cannangh), 3) as cannangh, 
+					ROUND(SUM(cannangv), 3) as cannangv
+					from $GLOBALS[db_sp].$table where idloaivang=$idloaivang and type=2 and datednhap >= '$dateDauThang' and datednhap <= '$dateCuoiThang'";
+		$tongNhap = $GLOBALS['sp']->getRow($sqlTongNhap);
+
+		$sqlTongXuat = "select ROUND(SUM(cannangvh), 3) as cannangvh, 
+					ROUND(SUM(cannangh), 3) as cannangh, 
+					ROUND(SUM(cannangv), 3) as cannangv
+					from $GLOBALS[db_sp].$table where idloaivang=$idloaivang and type=2 and trangthai = 2 and datedxuat >= '$dateDauThang' and datedxuat <= '$dateCuoiThang'";
+		$tongXuat = $GLOBALS['sp']->getRow($sqlTongXuat);
+		
+		if((float)$tongNhap['cannangv'] != (float)$hachToan[$i]['slnhapv']) {
+			$hachToanUpdate['slnhapvh'] = $tongNhap['cannangvh'];
+			$hachToanUpdate['slnhaph'] = $tongNhap['cannangh'];
+			$hachToanUpdate['slnhapv'] = $tongNhap['cannangv'];
+		}
+
+		if((float)$tongXuat['cannangv'] != (float)$hachToan[$i]['slxuatv']) {
+			$hachToanUpdate['slxuatvh'] = $tongXuat['cannangvh'];
+			$hachToanUpdate['slxuath'] = $tongXuat['cannangh'];
+			$hachToanUpdate['slxuatv'] = $tongXuat['cannangv'];
+			
+		}
+		// dd($hachToanUpdate);
+		// dd((float)$tongXuat['cannangv'] .'-'. (float)$hachToan[$i]['slxuatv']);
+		$sqlSlTonThangTruoc = "select sltonvh, sltonh, sltonv from $GLOBALS[db_sp].$tablehachtoan where idloaivang = $idloaivang and dated < '$dateDauThang' order by dated desc limit 1";
+		$slTonThangTruoc = $GLOBALS['sp']->getRow($sqlSlTonThangTruoc); 
+
+		$hachToanUpdate['sltonvh'] = Round((float)$slTonThangTruoc['sltonvh'] + (float)$tongNhap['cannangvh'] - (float)$tongXuat['cannangvh'],3);
+		$hachToanUpdate['sltonh'] = Round((float)$slTonThangTruoc['sltonh'] + (float)$tongNhap['cannangh'] - (float)$tongXuat['cannangh'],3);
+		$hachToanUpdate['sltonv'] = Round((float)$slTonThangTruoc['sltonv'] + (float)$tongNhap['cannangv'] - (float)$tongXuat['cannangv'],3);
+
+		vaUpdate($tablehachtoan, $hachToanUpdate, "id = ".$hachToan[$i]['id']);
+	}
+}
 function giahuy_dieuChinhSoLieuHachToanKimCuongKhoNguonVao ($tableCt, $tablehachtoan) {
 	$sql = "select * from $GLOBALS[db_sp].$tablehachtoan where typevkc = 2 order by dated desc limit 2";
 	$rs = $GLOBALS['sp']->getAll($sql);
@@ -8637,7 +8684,58 @@ function giahuy_GhiHachToanKhoNuTrangTraVe ($tablehachtoan, $tableCt, $id) {
 		vaUpdate('khonguonvao_khonutrangtrave_sodudauky', $currentHachToan, 'id='.$hachToanThisMonth['id']);
 	}
 }
+function GetNameFromSelect($table, $names, $select){
+	$name = '';
+	if($select != ''){
+		$sql = "select ".$names." from $GLOBALS[db_sp].".$table." where id= ($select)";
+		$name = $GLOBALS["sp"]->getOne($sql);
+	}
+	return $name;
+}
+function ThongKeKhoNuTrangTraVe ($cid, $idloaivang, $fromDate, $toDate) {
+	$sqlCateg = "select * from $GLOBALS[db_sp].categories where id = $cid";
+	$category = $GLOBALS['sp']->getRow($sqlCateg);
+	$tableCt= $category['tablect'];
+	$tableHachToan = $category['tablehachtoan'];
+	$thongKe = [];
+	if (!empty($category['tablect']) && !empty($category['tablehachtoan'])) {
+		if (!empty($fromDate)) {
+			$fromDate = date('Y-m-d', strtotime(str_replace('/', '-', $fromDate)));
+		}
+		if (!empty($toDate)) {
+			$toDate = date('Y-m-d', strtotime(str_replace('/', '-', $toDate)));
+		}
+		if ($idloaivang >= 0) {
+			$sqlCheckVang = "select id from $GLOBALS[db_sp].$tableCt where idloaivang = $idloaivang limit 1";
+			$checkVang = $GLOBALS['sp']->getOne($sqlCheckVang);
+			if (ceil($checkVang) > 0) {
+				if (empty($fromDate)) {
+					$dateDauThang = date('Y-m-01');
+					$dateThangTruoc = date('Y-m-01', strtotime("$dateDauThang -1 month"));
+					$sqlHaoDuSddk = "select ROUND(SUM(hao), 3), ROUND(SUM(du), 3) from $GLOBALS[db_sp].$tableHachToan where idloaivang = $idloaivang and dated <= '$dateThangTruoc'";
+					$haoDuSddk = $GLOBALS['sp']->getRow($sqlHaoDuSddk);
+					$sqlTonSddk = "select sltonv from $GLOBALS[db_sp].$tableHachToan where idloaivang = $idloaivang and dated <= '$dateThangTruoc' order by dated desc limit 1";
+					$tonSddk = $GLOBALS['sp']->getOne($sqlTonSddk);
 
+					$tonDk = round(($tonSddk - $haoDuSddk['hao']), 3) + $haoDuSddk['du'];
+					$thongKe['sltonsddk'] = $tonDk;
+
+					$sqlHaoDuHienTai = "select ROUND(SUM(hao), 3), ROUND(SUM(du), 3) from $GLOBALS[db_sp].$tableHachToan where idloaivang = $idloaivang and dated <= '$dateDauThang'";
+					$haoDuHienTai = $GLOBALS['sp']->getRow($sqlHaoDuHienTai);
+					$sqlTonHienTai = "select * from $GLOBALS[db_sp].$tableHachToan where idloaivang = $idloaivang and dated = '$dateDauThang'";
+					$tonHienTai = $GLOBALS['sp']->getRow($sqlTonHienTai);
+
+					$tonHienTai = round(($tonHienTai['sltonv'] - $haoDuHienTai['hao']),3) + $haoDuHienTai['du'] + $tonDk;
+					$thongKe['slton'] = $tonHienTai;
+					$thongKe['slnhap'] = $haoDuHienTai['slnhapv'];
+					$thongKe['slxuat'] = $haoDuHienTai['slxuatv'];
+				}
+				$thongKe['idloaivang'] = $idloaivang;
+			}
+		}
+	}
+	return $thongKe;
+}
 ?>
 
 

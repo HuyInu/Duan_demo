@@ -138,6 +138,15 @@ switch($act) {
 
             $phieuCtUpdate = [];
             $phieuCtUpdate['mid'] = $_SESSION['admin_qlsxntjcorg_id'];
+            $sqlMaxNumphieu = "select max(numphieu) + 1 from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where type = 1";
+            $maxNumPhieu = $GLOBALS['sp']->getOne($sqlMaxNumphieu);
+            if ($maxNumPhieu <= 0) {
+                $maxNumPhieu = 1;
+            }
+            $numphieu = convertMaso($maxNumPhieu);
+            $maphieu = 'NKSPHHTV'.$numphieu;
+            $phieuCtUpdate['maphieu'] = $maphieu;
+            $phieuCtUpdate['numphieu'] = $numphieu;
             $phieuCtUpdate['phongbanchuyen'] = $phongbanchuyen;
             $phieuCtUpdate['phongban'] = $phongban;
             $phieuCtUpdate['datednhap'] = $dateNow;

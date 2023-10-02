@@ -10,10 +10,34 @@
 </div>
 <div class="MainContent">
 	<form name="f" id="f" method="post" onsubmit="return searchKhoKhacKhoTongDeCucThongKe('<!--{$path_url}-->/sources/Kho-A9-Thong-Ke.php?act=<!--{$smarty.request.act}-->&cid=<!--{$smarty.request.cid}-->')"> 
-        <div class="MainSearch">            
-             <!--{include file="./allsearch/tungay-denngay-thong-ke-kho-san-xuat.tpl"}-->
-             <!--{include file="./allsearch/print-nguon-vao-nodated.tpl"}-->
-             <input type="hidden" id="getUrlPrintKhoNguonVao" value="act=tonkho&cid=<!--{$phongbanchuyen}-->"  />
+        <div class="MainSearch">
+            <div class="formsearch">
+                <label class="Fl labelsearch"> Từ ngày: </label>
+                <input type="text" class="SearchCtrl InputText textsearchdated" placeholder='dd/mm/yy' name="fromdays" id="fromdays" value="<!--{$fromdays}-->" onchange="DateCheck()" autocomplete="off"/>
+            </div>
+            <div class="formsearch">
+                <label class="Fl labelsearch"> Đến ngày: </label>
+                <input type="text" class="SearchCtrl InputText textsearchdated" placeholder='dd/mm/yy' name="todays" id="todays" value="<!--{$todays}-->" onchange="DateCheck()" autocomplete="off"/>
+            </div>
+            <div class="formsearch">
+                <select class="selectOption" id="idloaivang" name="idloaivang" >
+                    <option value="">--Chọn loại vàng--</option>
+                    <!--{section name=i loop=$typegold}-->
+                        <option value="<!--{$typegold[i].id}-->" <!--{if $idloaivang eq $typegold[i].id}-->selected="selected"<!--{/if}-->>
+                            <!--{$typegold[i].name_vn}-->
+                        </option>
+                    <!--{/section}-->
+                </select>
+            </div>
+            <div class="formsearch"> 
+                <input class="btn-save btn-search" value="Tìm kiếm" type="submit"> 
+                <input type="button" name="reset" value=" Làm mới " onclick="ResetSearch();" class="btn-save btn-search"/>
+            <!--{if $checkPer10 eq "true" }-->
+                <a href="<!--{$path_url}-->/sources/Kho-Nu-Trang-Tra-Ve-Import.php?act=importexcel&cid=<!--{$smarty.request.cid}-->" title="Import Excel">
+                    <input type="button" name="importexcel" value=" Import Excel " class="btn-save btn-search"/>
+                </a>
+            <!--{/if}-->
+            </div>
         </div>
         <div class="MainTable">
     		<table  class="table-bordered">
@@ -46,7 +70,7 @@
                 </tr>
                 <!--{assign var="tongQ10" value=0}-->
 				<!--{section name=i loop=$typegoldview}-->
-                	<!--{insert name="thongKeKhoNguonVaoTonKho" cid="$phongbanchuyen" fromdays=$fromdays todays=$todays idloaivang=$typegoldview[i].id assign="viewdl"}-->
+                	<!--{$viewdl = ThongKeKhoNuTrangTraVe($smarty.request.cid, $typegoldview[i].id, $fromDate, $toDate)}-->
                     <!--{if $viewdl.idloaivang gt 0}-->
                         <tr class="fontSizeTon">
                             <td align="right">

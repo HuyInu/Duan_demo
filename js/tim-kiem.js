@@ -555,12 +555,7 @@ function searchKhoNuTrangTraVeTest (url) {
 	return false;
 }
 function searchKhoNuTrangTraVe (url) {
-	var str = '';
-	let idElement = null;
-	$('.SearchCtrl').each(function () {
-		idElement = $(this).attr('id')
-		str += GetSearchStr(idElement)
-	});
+	var str = GetAllSearchStr();
 	$(location).attr('href', url+str);
 	return false;
 }
@@ -569,6 +564,15 @@ function GetSearchStr (search) {
 	if(searchVal != '' && searchVal !== undefined)
 		return '&'+search+'='+searchVal;
 	return '';
+}
+function GetAllSearchStr () {
+	var str = '';
+	let idElement = null;
+	$('.SearchCtrl').each(function () {
+		idElement = $(this).attr('id')
+		str += GetSearchStr(idElement)
+	});
+	return str;
 }
 function ResetSearch () {
 	$('.SearchCtrl').val('')

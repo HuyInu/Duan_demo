@@ -13,6 +13,104 @@ switch ($act) {
         $smarty->assign("view",$phieuNhap);
         $template = 'Kho-Nu-Trang-Tra-Ve-Nhap-Kho/view.tpl';
         break;
+    case 'exportexcel':
+        require_once("../Classes-PHPExcel/PHPExcel.php");
+        $objPHPExcel = new PHPExcel();
+        include_once("search/Kho-Nu-Trang-Tra-Ve-Ct-Search.php");
+        $tab = isset($_REQUEST['tab'])?$_REQUEST['tab']:"";
+        $dateNow = date('Y-m-d');
+        $timeNow = date('H:i:s');
+        $whereSort = $wh;
+        if (!empty($fromDate) && !empty($toDate)) {
+            $whereSort .= " and datedimport >= '$fromDate' and datedimport <= '$toDate'";
+        }
+        $sqlTypeWhere = "type in (0, 1)";
+        switch($tab) {
+            case 'insertedShow':
+                $sqlTypeWhere = "type = 1";
+                break;
+            case 'uninsertShow':
+                $sqlTypeWhere = "type = 0";
+                break;
+        }
+        $sql = "select * from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where typeimport = 1 and (phongban = $idpem or phongbanchuyen = $idpem) and $sqlTypeWhere $whereSort order by datednhap desc, timenhap desc";
+        $phieuCt = $GLOBALS["sp"]->getAll($sql);
+        $sqlCount = "select count(*) from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where typeimport = 1 and (phongban = $idpem or phongbanchuyen = $idpem) and $sqlTypeWhere $whereSort order by datednhap desc, timenhap desc";
+        $row_last = $GLOBALS["sp"]->getOne($sqlCount);
+
+        $objPHPExcel->setActiveSheetIndex(0);
+		$sheet = $objPHPExcel->getActiveSheet();
+        $titleExcle = 'KHONUTRANGTRAVE-NHAPKHO-'.$datenow;
+		$setTitle = 'KHO NU TRANG';
+		$title = 'KHO NỮ TRANG NHẬP KHO';
+		$strdate = 'Ngày in: '.date("d/m/Y",strtotime($datenow)).' Giờ in: '.$timenow;
+        $objPHPExcel->createSheet();
+		$objPHPExcel->setActiveSheetIndex(0);
+		$objPHPExcel->getActiveSheet()->setTitle($setTitle);
+        $BStyle = array(
+			'borders' => array(
+				'allborders' => array(
+					'style' => PHPExcel_Style_Border::BORDER_THIN
+				)
+			)
+		);
+		$ColorStyle = array(
+			'fill' => array(
+				'type' => PHPExcel_Style_Fill::FILL_SOLID,
+				'color' => array('rgb' => 'bab8b8')
+			)  
+		);
+        $arrCell = [
+			['STT',5,'center'],
+            ['MÃ PHIẾU IMPORT', 20]
+        ];
+
+        $column = 'A';
+		$row_last = $row_last + 4; // + 3 ROW TIÊU ĐỀ + 1 ROW TỔNG
+		foreach($arrCell as $key => $value){
+			$sheet->getColumnDimension($column)->setWidth($value[1]);
+			$sheet->setCellValue($column.'3', $value[0]);
+			if($value[2] == 'right')
+				$sheet->getStyle($column.'4:'.$column.$row_last)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_RIGHT);
+			else if($value[2] == 'center')
+				$sheet->getStyle($column.'4:'.$column.$row_last)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+			else
+				$sheet->getStyle($column.'4:'.$column.$row_last)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_LEFT);
+			$col_last = $column;
+			$column++;
+		}
+
+        $sheet->getDefaultRowDimension()->setRowHeight(25);
+        $sheet->mergeCells('A1:'.$col_last.'1');
+		$sheet->mergeCells('A2:'.$col_last.'2');
+        $sheet->getDefaultRowDimension()->setRowHeight(25);
+		$sheet->mergeCells('A1:'.$col_last.'1');
+		$sheet->mergeCells('A2:'.$col_last.'2');
+		$sheet->getStyle('A1')->getFont()->setSize(16);
+		$sheet->getStyle('A1:'.$col_last.$row_last)->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
+		$sheet->getStyle('A1:'.$col_last.'3')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+		$sheet->getStyle('A1:'.$col_last.'3')->getFont()->setBold(true);
+		$sheet->getStyle('A'.$row_last.':'.$col_last.$row_last)->getFont()->setBold(true);
+		$sheet->setCellValue('A1', $title);
+		$sheet->setCellValue('A2', $strdate);
+		$sheet->getStyle('A3:'.$col_last.'3')->applyFromArray($ColorStyle);
+		$sheet->getStyle('A3:'.$col_last.'3')->getAlignment()->setWrapText(true);
+		$sheet->getStyle('A3:'.$col_last.$row_last)->applyFromArray($BStyle);
+
+        $numRow = 4;
+        foreach($phieuCt as $index => $phieu) {
+            $arr_body = [];
+            $arr_body[] = $index + 1;
+            $arr_body[] = $phieu['maphieuimport'];
+            $sheet->fromArray($arr_body, NULL, 'A'.$numRow);
+        }
+
+        ob_end_clean();
+        header('Content-type: application/vnd.ms-excel');
+		header('Content-Disposition: attachment; filename='.$titleExcle.'.xls');
+		PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5')->save('php://output');
+        die();
+        break;
     default:
         if(!checkPermision($idpem,5)){
             page_permision();
@@ -42,7 +140,7 @@ switch ($act) {
                 sum(tiendangoctrai) as tongalltiendangoctrai from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where typeimport = 1 and (phongban = $idpem or phongbanchuyen = $idpem) and $sqlTypeWhere $whereSort";
             $tongAll = $GLOBALS['sp']->getRow($sqlTong);
             $smarty->assign("tongAll",$tongAll);
-            $sql = "select * from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where typeimport = 1 and (phongban = $idpem or phongbanchuyen = $idpem) and $sqlTypeWhere $whereSort";
+            $sql = "select * from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where typeimport = 1 and (phongban = $idpem or phongbanchuyen = $idpem) and $sqlTypeWhere $whereSort order by datednhap desc, timenhap desc";
             $sql_sum = "select count(*) from $GLOBALS[db_sp].khonguonvao_khonutrangtravect where typeimport = 1 and (phongban = $idpem or phongbanchuyen = $idpem) and $sqlTypeWhere $whereSort";
             $total = $count = ceil($GLOBALS['sp']->getOne($sql_sum));
             $num_rows_page = $numPageAll;

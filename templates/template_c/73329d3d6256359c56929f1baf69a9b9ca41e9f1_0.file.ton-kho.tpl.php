@@ -1,28 +1,26 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-09-27 09:59:15
+/* Smarty version 4.1.1, created on 2023-10-02 15:35:54
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-Nu-Trang-Tra-Ve-Thong-Ke\ton-kho.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_65139a835c02a1_56204302',
+  'unifunc' => 'content_651a80ea6c05e6_19222091',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     '73329d3d6256359c56929f1baf69a9b9ca41e9f1' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-Nu-Trang-Tra-Ve-Thong-Ke\\ton-kho.tpl',
-      1 => 1695783468,
+      1 => 1696235753,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
-    'file:./allsearch/tungay-denngay-thong-ke-kho-san-xuat.tpl' => 1,
-    'file:./allsearch/print-nguon-vao-nodated.tpl' => 1,
   ),
 ),false)) {
-function content_65139a835c02a1_56204302 (Smarty_Internal_Template $_smarty_tpl) {
+function content_651a80ea6c05e6_19222091 (Smarty_Internal_Template $_smarty_tpl) {
 ?><div class="breadcrumb">
     <ul>
         <li>
@@ -39,13 +37,49 @@ function content_65139a835c02a1_56204302 (Smarty_Internal_Template $_smarty_tpl)
 /sources/Kho-A9-Thong-Ke.php?act=<?php echo $_REQUEST['act'];?>
 &cid=<?php echo $_REQUEST['cid'];?>
 ')"> 
-        <div class="MainSearch">            
-             <?php $_smarty_tpl->_subTemplateRender("file:./allsearch/tungay-denngay-thong-ke-kho-san-xuat.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+        <div class="MainSearch">
+            <div class="formsearch">
+                <label class="Fl labelsearch"> Từ ngày: </label>
+                <input type="text" class="SearchCtrl InputText textsearchdated" placeholder='dd/mm/yy' name="fromdays" id="fromdays" value="<?php echo $_smarty_tpl->tpl_vars['fromdays']->value;?>
+" onchange="DateCheck()" autocomplete="off"/>
+            </div>
+            <div class="formsearch">
+                <label class="Fl labelsearch"> Đến ngày: </label>
+                <input type="text" class="SearchCtrl InputText textsearchdated" placeholder='dd/mm/yy' name="todays" id="todays" value="<?php echo $_smarty_tpl->tpl_vars['todays']->value;?>
+" onchange="DateCheck()" autocomplete="off"/>
+            </div>
+            <div class="formsearch">
+                <select class="selectOption" id="idloaivang" name="idloaivang" >
+                    <option value="">--Chọn loại vàng--</option>
+                    <?php
+$__section_i_0_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['typegold']->value) ? count($_loop) : max(0, (int) $_loop));
+$__section_i_0_total = $__section_i_0_loop;
+$_smarty_tpl->tpl_vars['__smarty_section_i'] = new Smarty_Variable(array());
+if ($__section_i_0_total !== 0) {
+for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] = 0; $__section_i_0_iteration <= $__section_i_0_total; $__section_i_0_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']++){
 ?>
-             <?php $_smarty_tpl->_subTemplateRender("file:./allsearch/print-nguon-vao-nodated.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+                        <option value="<?php echo $_smarty_tpl->tpl_vars['typegold']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
+" <?php if ($_smarty_tpl->tpl_vars['idloaivang']->value == $_smarty_tpl->tpl_vars['typegold']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id']) {?>selected="selected"<?php }?>>
+                            <?php echo $_smarty_tpl->tpl_vars['typegold']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['name_vn'];?>
+
+                        </option>
+                    <?php
+}
+}
 ?>
-             <input type="hidden" id="getUrlPrintKhoNguonVao" value="act=tonkho&cid=<?php echo $_smarty_tpl->tpl_vars['phongbanchuyen']->value;?>
-"  />
+                </select>
+            </div>
+            <div class="formsearch"> 
+                <input class="btn-save btn-search" value="Tìm kiếm" type="submit"> 
+                <input type="button" name="reset" value=" Làm mới " onclick="ResetSearch();" class="btn-save btn-search"/>
+            <?php if ($_smarty_tpl->tpl_vars['checkPer10']->value == "true") {?>
+                <a href="<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/sources/Kho-Nu-Trang-Tra-Ve-Import.php?act=importexcel&cid=<?php echo $_REQUEST['cid'];?>
+" title="Import Excel">
+                    <input type="button" name="importexcel" value=" Import Excel " class="btn-save btn-search"/>
+                </a>
+            <?php }?>
+            </div>
         </div>
         <div class="MainTable">
     		<table  class="table-bordered">
@@ -78,13 +112,13 @@ function content_65139a835c02a1_56204302 (Smarty_Internal_Template $_smarty_tpl)
                 </tr>
                 <?php $_smarty_tpl->_assignInScope('tongQ10', 0);?>
 				<?php
-$__section_i_0_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['typegoldview']->value) ? count($_loop) : max(0, (int) $_loop));
-$__section_i_0_total = $__section_i_0_loop;
+$__section_i_1_loop = (is_array(@$_loop=$_smarty_tpl->tpl_vars['typegoldview']->value) ? count($_loop) : max(0, (int) $_loop));
+$__section_i_1_total = $__section_i_1_loop;
 $_smarty_tpl->tpl_vars['__smarty_section_i'] = new Smarty_Variable(array());
-if ($__section_i_0_total !== 0) {
-for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] = 0; $__section_i_0_iteration <= $__section_i_0_total; $__section_i_0_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']++){
+if ($__section_i_1_total !== 0) {
+for ($__section_i_1_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] = 0; $__section_i_1_iteration <= $__section_i_1_total; $__section_i_1_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']++){
 ?>
-                	<?php $_smarty_tpl->assign("viewdl" , insert_thongKeKhoNguonVaoTonKho (array('cid' => ((string)$_smarty_tpl->tpl_vars['phongbanchuyen']->value), 'fromdays' => $_smarty_tpl->tpl_vars['fromdays']->value, 'todays' => $_smarty_tpl->tpl_vars['todays']->value, 'idloaivang' => $_smarty_tpl->tpl_vars['typegoldview']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id']),$_smarty_tpl), true);?>
+                	<?php $_smarty_tpl->_assignInScope('viewdl', ThongKeKhoNuTrangTraVe($_REQUEST['cid'],$_smarty_tpl->tpl_vars['typegoldview']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'],$_smarty_tpl->tpl_vars['fromDate']->value,$_smarty_tpl->tpl_vars['toDate']->value));?>
                     <?php if ($_smarty_tpl->tpl_vars['viewdl']->value['idloaivang'] > 0) {?>
                         <tr class="fontSizeTon">
                             <td align="right">

@@ -86,9 +86,9 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `hamfucntion` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `loadtheoloaivang` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1868 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1874 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Dumping data for table demo_huy.categories: ~1,847 rows (approximately)
+-- Dumping data for table demo_huy.categories: ~1,853 rows (approximately)
 DELETE FROM `categories`;
 INSERT INTO `categories` (`id`, `name_vn`, `table`, `tablect`, `tablehachtoan`, `phongbancatalog`, `maphongban`, `num`, `pid`, `has_child`, `comp`, `active`, `typephongban`, `typegiaonhan`, `nopermission`, `content_vn`, `content_en`, `unique_key`, `chonshowmuclon`, `istktoantaisan`, `istkkimcuong`, `hamfucntion`, `loadtheoloaivang`) VALUES
 	(1, 'QLSX', NULL, NULL, NULL, NULL, NULL, 0, 0, 1, 0, 0, 0, 0, 0, NULL, NULL, 'menu', 0, 0, 0, NULL, NULL),
@@ -1938,11 +1938,17 @@ INSERT INTO `categories` (`id`, `name_vn`, `table`, `tablect`, `tablehachtoan`, 
 	(1860, 'test1', NULL, NULL, NULL, NULL, '', 0, 1858, 1, 0, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
 	(1861, 'KHO VÀNG NGUYÊN LIỆU CÔNG TY', NULL, NULL, NULL, NULL, '', 0, 2, 1, 0, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
 	(1862, 'KHO SP, HH ĐKD TRẢ VỀ (THANH TUYỀN)', NULL, NULL, NULL, NULL, '', 0, 1861, 1, 0, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
-	(1863, 'Import file excel chuyển hàng về kho cũ QLTT', NULL, NULL, NULL, NULL, '', 0, 1861, 0, 693, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
-	(1864, 'KHO NỮ TRANG CÔNG TY TRẢ VỀ', NULL, NULL, NULL, NULL, '', 0, 1862, 1, 0, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
-	(1865, 'Nghiệp vụ', NULL, NULL, NULL, NULL, '', 0, 1864, 1, 0, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(1863, 'Import file excel chuyển hàng về kho cũ QLTT', NULL, NULL, NULL, NULL, '', 1, 1862, 0, 693, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(1864, 'KHO NỮ TRANG CÔNG TY TRẢ VỀ', NULL, NULL, NULL, NULL, '', 2, 1862, 1, 0, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(1865, 'Nghiệp vụ', NULL, NULL, NULL, NULL, '', 1, 1864, 1, 0, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
 	(1866, 'Nhập kho nữ trang từ kho 00 về kho cũ', 'khonguonvao_khonutrangtrave', 'khonguonvao_khonutrangtravect', 'khonguonvao_khonutrangtrave_sodudauky', NULL, '', 1, 1865, 0, 694, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
-	(1867, 'Xuất kho nữ trang', 'khonguonvao_khonutrangtrave', 'khonguonvao_khonutrangtravect', 'khonguonvao_khonutrangtrave_sodudauky', NULL, '', 2, 1865, 0, 695, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL);
+	(1867, 'Xuất kho nữ trang', 'khonguonvao_khonutrangtrave', 'khonguonvao_khonutrangtravect', 'khonguonvao_khonutrangtrave_sodudauky', NULL, '', 2, 1865, 0, 695, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(1868, 'Thông kê', NULL, NULL, NULL, NULL, '', 2, 1864, 1, 0, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(1869, 'Tồn kho', 'khonguonvao_khonutrangtrave', 'khonguonvao_khonutrangtravect', 'khonguonvao_khonutrangtrave_sodudauky', NULL, '', 1, 1868, 0, 696, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(1870, 'Tồn kho chi tiết', 'khonguonvao_khonutrangtrave', 'khonguonvao_khonutrangtravect', 'khonguonvao_khonutrangtrave_sodudauky', NULL, '', 2, 1868, 0, 697, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(1871, 'Thống kê nhập kho', 'khonguonvao_khonutrangtrave', 'khonguonvao_khonutrangtravect', 'khonguonvao_khonutrangtrave_sodudauky', NULL, '', 3, 1868, 0, 698, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(1872, 'Thống kê xuất kho', 'khonguonvao_khonutrangtrave', 'khonguonvao_khonutrangtravect', 'khonguonvao_khonutrangtrave_sodudauky', NULL, '', 4, 1868, 0, 699, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL),
+	(1873, 'Thống kê chờ nhập kho', 'khonguonvao_khonutrangtrave', 'khonguonvao_khonutrangtravect', 'khonguonvao_khonutrangtrave_sodudauky', NULL, '', 5, 1868, 0, 700, 1, 0, 0, 0, NULL, NULL, NULL, 0, 0, 0, NULL, NULL);
 
 -- Dumping structure for table demo_huy.categories_bk
 CREATE TABLE IF NOT EXISTS `categories_bk` (
@@ -3823,7 +3829,7 @@ CREATE TABLE IF NOT EXISTS `check_datenow` (
 DELETE FROM `check_datenow`;
 /*!40000 ALTER TABLE `check_datenow` DISABLE KEYS */;
 INSERT INTO `check_datenow` (`id`, `dated`) VALUES
-	(1, '2023-09-22');
+	(1, '2023-09-29');
 /*!40000 ALTER TABLE `check_datenow` ENABLE KEYS */;
 
 -- Dumping structure for table demo_huy.check_update_tonkho
@@ -3904,9 +3910,9 @@ CREATE TABLE IF NOT EXISTS `component` (
   `front_link` text CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci,
   `active` tinyint DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=696 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=701 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Dumping data for table demo_huy.component: 683 rows
+-- Dumping data for table demo_huy.component: 688 rows
 DELETE FROM `component`;
 /*!40000 ALTER TABLE `component` DISABLE KEYS */;
 INSERT INTO `component` (`id`, `name`, `do`, `act`, `back_link`, `front_link`, `active`) VALUES
@@ -4592,7 +4598,12 @@ INSERT INTO `component` (`id`, `name`, `do`, `act`, `back_link`, `front_link`, `
 	(692, 'Huy menu', 'thuchanh.php', 'list', NULL, '?', 1),
 	(693, 'Kho nữ trang trả về import', 'Kho-Nu-Trang-Tra-Ve-Import.php', 'list', NULL, '?', 1),
 	(694, 'Kho nữ trang trả về Nhap Kho', 'Kho-Nu-Trang-Tra-Ve-Nhap-Kho.php', 'list', NULL, '?', 1),
-	(695, 'Kho nữ trang trả về Xuat Kho', 'Kho-Nu-Trang-Tra-Ve-Xuat-Kho.php', 'list', NULL, '?', 1);
+	(695, 'Kho nữ trang trả về Xuat Kho', 'Kho-Nu-Trang-Tra-Ve-Xuat-Kho.php', 'list', NULL, '?', 1),
+	(696, 'Kho nữ trang trả về Thông kê tồn kho', 'Kho-Nu-Trang-Tra-Ve-Thong-Ke.php', 'list', NULL, '?', 1),
+	(697, 'Kho nữ trang tra về Thống kê tồn kho chi tiết', 'Kho-Nu-Trang-Tra-Ve-Thong-Ke.php', 'list', NULL, '?act=ChiTietTon&', 1),
+	(698, 'Kho nữ trang trả về Thống kê nhập kho', 'Kho-Nu-Trang-Tra-Ve-Thong-Ke.php', 'list', NULL, '?act=NhapKho&', 1),
+	(699, 'Kho nữ trang trả về Thống kê xuất kho', 'Kho-Nu-Trang-Tra-Ve-Thong-Ke.php', 'list', NULL, '?act=XuatKho&', 1),
+	(700, 'Kho nữ trang trả về Thống kê chờ nhập kho', 'Kho-Nu-Trang-Tra-Ve-Thong-Ke.php', 'list', NULL, '?act=ChoNhapKho&', 1);
 /*!40000 ALTER TABLE `component` ENABLE KEYS */;
 
 -- Dumping structure for table demo_huy.ghichu
@@ -4821,33 +4832,42 @@ CREATE TABLE IF NOT EXISTS `khonguonvao_khonutrangtrave` (
   `phongbanchuyen` bigint DEFAULT '0',
   `maphieu` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
   `numphieu` bigint DEFAULT '0',
-  `datedimport` date DEFAULT NULL,
-  `timeimport` time DEFAULT NULL,
-  `tongslimport` bigint DEFAULT '0',
-  `tongvh` double DEFAULT '0',
-  `tongh` double DEFAULT '0',
-  `tongv` double DEFAULT '0',
+  `dated` date DEFAULT NULL,
+  `time` time DEFAULT NULL,
+  `slmon` bigint DEFAULT '0',
+  `cannangvh` double DEFAULT '0',
+  `cannangh` double DEFAULT '0',
+  `cannangv` double DEFAULT '0',
   `tongtienhot` bigint DEFAULT '0',
   `tongtiencong` bigint DEFAULT '0',
   `tongtiendangoctrai` bigint DEFAULT '0',
+  `ghichu` text COLLATE utf8mb3_unicode_ci,
+  `maphieutrakho` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_unicode_ci DEFAULT NULL,
+  `idloaivang` bigint DEFAULT '0',
   `datedchuyen` date DEFAULT NULL,
   `timechuyen` time DEFAULT NULL,
+  `datedxuat` date DEFAULT NULL,
+  `timexuat` time DEFAULT NULL,
   `type` tinyint(1) DEFAULT '0',
   `typeimport` tinyint(1) DEFAULT '0',
+  `trangthai` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
--- Dumping data for table demo_huy.khonguonvao_khonutrangtrave: ~1 rows (approximately)
+-- Dumping data for table demo_huy.khonguonvao_khonutrangtrave: ~3 rows (approximately)
 DELETE FROM `khonguonvao_khonutrangtrave`;
-INSERT INTO `khonguonvao_khonutrangtrave` (`id`, `mid`, `midchuyen`, `phongban`, `phongbanchuyen`, `maphieu`, `numphieu`, `datedimport`, `timeimport`, `tongslimport`, `tongvh`, `tongh`, `tongv`, `tongtienhot`, `tongtiencong`, `tongtiendangoctrai`, `datedchuyen`, `timechuyen`, `type`, `typeimport`) VALUES
-	(4, 2, 2, 1866, 1863, 'IMSPHHTV-23-000001', 1, '2023-09-22', '10:16:23', 9, 9.425, 0.27, 9.155, 19621000, 19621000, 0, '2023-09-22', '10:18:31', 0, 1);
+INSERT INTO `khonguonvao_khonutrangtrave` (`id`, `mid`, `midchuyen`, `phongban`, `phongbanchuyen`, `maphieu`, `numphieu`, `dated`, `time`, `slmon`, `cannangvh`, `cannangh`, `cannangv`, `tongtienhot`, `tongtiencong`, `tongtiendangoctrai`, `ghichu`, `maphieutrakho`, `idloaivang`, `datedchuyen`, `timechuyen`, `datedxuat`, `timexuat`, `type`, `typeimport`, `trangthai`) VALUES
+	(2, 2, 2, 1866, 1863, 'IMSPHHTV-23-000001', 1, '2023-09-26', '14:36:29', 5, 8.58, 0.16, 8.42, 23607000, 84921000, 0, NULL, NULL, 0, '2023-09-26', '14:36:55', NULL, NULL, 0, 1, 0),
+	(5, 2, 2, 1866, 1863, 'IMSPHHTV-23-000002', 2, '2023-09-27', '14:52:23', 9, 9.425, 0.27, 9.155, 19621000, 19621000, 0, NULL, NULL, 0, '2023-09-29', '07:39:19', NULL, NULL, 0, 1, 0),
+	(6, 2, 0, 1867, 0, 'PXKDCNTV000001', 1, '2023-09-28', '14:53:58', 1, 1.29, 0.06, 1.23, 0, 0, 0, 'ABC CBA', 'DC08/23-123777', 0, NULL, NULL, NULL, NULL, 2, 0, 0);
 
 -- Dumping structure for table demo_huy.khonguonvao_khonutrangtravect
 CREATE TABLE IF NOT EXISTS `khonguonvao_khonutrangtravect` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `idctnx` bigint NOT NULL DEFAULT '0',
+  `idct` bigint NOT NULL DEFAULT '0',
   `midimport` bigint DEFAULT '0',
-  `midnhap` bigint DEFAULT '0',
+  `mid` bigint DEFAULT '0',
   `midchuyen` tinyint(1) DEFAULT '0',
   `phongban` bigint DEFAULT NULL,
   `phongbanchuyen` bigint DEFAULT NULL,
@@ -4903,24 +4923,38 @@ CREATE TABLE IF NOT EXISTS `khonguonvao_khonutrangtravect` (
   `datednhap` date DEFAULT NULL,
   `timenhap` time DEFAULT NULL,
   `datedchuyen` date DEFAULT NULL,
+  `timexuat` time DEFAULT NULL,
+  `datedxuat` date DEFAULT NULL,
   `timechuyen` time DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idctnx` (`idctnx`)
-) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table demo_huy.khonguonvao_khonutrangtravect: 9 rows
+-- Dumping data for table demo_huy.khonguonvao_khonutrangtravect: 18 rows
 DELETE FROM `khonguonvao_khonutrangtravect`;
 /*!40000 ALTER TABLE `khonguonvao_khonutrangtravect` DISABLE KEYS */;
-INSERT INTO `khonguonvao_khonutrangtravect` (`id`, `idctnx`, `midimport`, `midnhap`, `midchuyen`, `phongban`, `phongbanchuyen`, `maphieuimport`, `numphieuimport`, `maphieu`, `numphieu`, `datedimport`, `timeimport`, `trangthaixacnhan`, `cuahang`, `noiden`, `nhanvien`, `dated`, `datedxacnhan`, `sophieu`, `cuahangtruoc`, `STT`, `ghichu`, `nhacungcap`, `idloaivang`, `loainutrang`, `manutrang`, `macu`, `ten`, `ghichu2`, `gvh`, `cannangvh`, `cannangh`, `cannanghgr`, `cannangv`, `tienh`, `tiencong`, `cvsp`, `tiendangoctrai`, `tienconghotban`, `thanhtien`, `msm`, `chitiethottam`, `chitiethottamthucte`, `kh`, `catalogue1`, `catalogue2`, `giaban`, `slmon`, `makhuyenmai`, `giatamtinh`, `trangthaichuyen`, `numphieunhapkho`, `type`, `trangthai`, `typeimport`, `datednhap`, `timenhap`, `datedchuyen`, `timechuyen`) VALUES
-	(20, 4, 2, 0, 2, 1866, 1863, 'IMSPHHTV-23', NULL, NULL, NULL, '2023-09-22', '10:16:23', 1, '00', 'Kho cũ', 614, '2023-08-22', '2023-08-22', 'DC08/23-123776', '', 2, 'Trả kho 3 vòng hủy theo đề xuất CHÚ ký', 'NCC-02', 1, '18K', '2200001302', 'NI 40', 'Vòng', '', 0, 0.89, 0, 0, 0.89, 0, 1088000, 0, 0, 1088000, 0, '', '', '', '', 'LVVETVV0001H618', '', 0, 0, 'B28', 0, 0, NULL, 0, 0, 1, NULL, NULL, '2023-09-22', '10:18:31'),
-	(21, 4, 2, 0, 2, 1866, 1863, 'IMSPHHTV-23', NULL, NULL, NULL, '2023-09-22', '10:16:23', 1, '00', 'Kho cũ', 614, '2023-08-22', '2023-08-22', 'DC08/23-123776', '', 1, 'Trả kho 3 vòng hủy theo đề xuất CHÚ ký', 'NCC-02', 1, '18K', '2200001328', 'NI 42', 'Vòng', '', 0, 0.87, 0, 0, 0.87, 0, 1088000, 0, 0, 1088000, 0, '', '', '', '', 'LVVETVV0001H618', '', 0, 0, 'B28', 0, 0, NULL, 0, 0, 1, NULL, NULL, '2023-09-22', '10:18:31'),
-	(22, 4, 2, 0, 2, 1866, 1863, 'IMSPHHTV-23', NULL, NULL, NULL, '2023-09-22', '10:16:23', 1, '00', 'Kho cũ', 615, '2023-08-22', '2023-08-22', 'DC08/23-123774', '', 1, 'Trả kho 1 vòng hủy theo đề xuất CHÚ ký', 'NCC-02', 0, 'W750', '2200012752', 'Ni 34', 'Vòng', '', 0, 0.595, 0, 0, 0.595, 0, 1251000, 750600, 0, 1251000, 0, '', '', '', 'P', 'LVVETTT0000H618', '', 0, 0, 'LVVETTT0000H618', 0, 0, NULL, 0, 0, 1, NULL, NULL, '2023-09-22', '10:18:31'),
-	(23, 4, 2, 0, 2, 1866, 1863, 'IMSPHHTV-23', NULL, NULL, NULL, '2023-09-22', '10:16:23', 1, '00', 'Kho cũ', 615, '2023-08-22', '2023-08-22', 'DC08/23-123775', '', 2, 'Trả kho 2 món hủy theo đề xuất CHÚ ký', 'NCC-02', 0, 'W750', '2200012770', 'Ni 38', 'Vòng', '', 0, 0.665, 0, 0, 0.665, 0, 1251000, 750600, 0, 1251000, 0, '', '', '', 'P', 'LVVETTT0000H618', '', 0, 0, 'LVVETTT0000H618', 0, 0, NULL, 0, 0, 1, NULL, NULL, '2023-09-22', '10:18:31'),
-	(24, 4, 2, 0, 2, 1866, 1863, 'IMSPHHTV-23', NULL, NULL, NULL, '2023-09-22', '10:16:23', 1, '00', 'Kho cũ', 615, '2023-08-22', '2023-08-22', 'DC08/23-123780', '', 1, 'Trả kho 1 MĐ hủy theo đề xuất CHÚ ký', 'NCC-02', 0, 'W750', '2200030143', '4T40', 'Mặt dây', '', 0, 0.445, 0.01, 0, 0.435, 0, 2790000, 1674000, 0, 2790000, 0, 'KHM', '', '', 'P', 'DVMUTTT0001I858', '', 0, 0, 'KHM', 0, 0, NULL, 0, 0, 1, NULL, NULL, '2023-09-22', '10:18:31'),
-	(25, 4, 2, 0, 2, 1866, 1863, 'IMSPHHTV-23', NULL, NULL, NULL, '2023-09-22', '10:16:23', 1, '00', 'Kho cũ', 614, '2023-08-22', '2023-08-22', 'DC08/23-123776', '', 3, 'Trả kho 3 vòng hủy theo đề xuất CHÚ ký', 'NCC-02', 1, '18K', '2200046364', 'NI 36', 'Vòng', '', 0, 0.61, 0, 0, 0.61, 0, 1088000, 489600, 0, 1088000, 0, '', '', '', '', 'LVVETVV0000H618', '', 0, 0, 'B28', 0, 0, NULL, 0, 0, 1, NULL, NULL, '2023-09-22', '10:18:31'),
-	(26, 4, 2, 0, 2, 1866, 1863, 'IMSPHHTV-23', NULL, NULL, NULL, '2023-09-22', '10:16:23', 1, '00', 'Kho cũ', 614, '2023-08-22', '2023-08-22', 'DC08/23-123779', '', 1, 'Trả kho 1 nhẫn hủy theo đề xuất CHÚ ký', 'NCC-02', 1, '18K', '2200047094', 'NI 13.5', 'Nhẫn', '', 0, 2.08, 0.1, 0, 1.98, 0, 3474000, 2006904, 0, 3474000, 0, 'SWRED-SWAROVSKI', 'T1.0=8,T1.2=53,T1.5=42,TM1.2=2', '', '', 'DWNUTVV0000D900', '', 0, 0, 'B167', 0, 0, NULL, 0, 0, 1, NULL, NULL, '2023-09-22', '10:18:31'),
-	(27, 4, 2, 0, 2, 1866, 1863, 'IMSPHHTV-23', NULL, NULL, NULL, '2023-09-22', '10:16:23', 1, '00', 'Kho cũ', 615, '2023-08-22', '2023-08-22', 'DC08/23-123775', '', 1, 'Trả kho 2 món hủy theo đề xuất CHÚ ký', 'NCC-02', 0, 'W750', '2200049344', 'NI 12.5', 'Nhẫn', '', 0, 1.98, 0.1, 0, 1.88, 0, 3996000, 2406504, 0, 3996000, 0, 'SWRED-SWAROVSKI', 'T1.0=8,T1.2=53,T1.5=42,TM1.2=2', '', 'P', 'DWNUTTT0000D900', '', 0, 0, '', 0, 0, NULL, 0, 0, 1, NULL, NULL, '2023-09-22', '10:18:31'),
-	(28, 4, 2, 2, 2, 1867, 1866, 'IMSPHHTV-23', NULL, NULL, NULL, '2023-09-22', '10:16:23', 1, '00', 'Kho cũ', 615, '2023-08-22', '2023-08-22', 'DC08/23-123777', '', 1, 'Trả kho 1 nhẫn làm ĐK nhập J07', 'NCC-02', 0, 'W750', '2300006526', 'NI 15', 'Nhẫn', '', 0, 1.29, 0.06, 0, 1.23, 0, 3595000, 2160648, 0, 3595000, 0, 'SWAROVSKI-T', 'T1.0=38,T1.1=6,T1.2=4,T5.0=1', '', 'P', 'DVNUTTT0000Q518', '', 0, 0, '', 0, 0, NULL, 1, 0, 1, '2023-09-22', '14:42:09', '2023-09-22', '10:18:31');
+INSERT INTO `khonguonvao_khonutrangtravect` (`id`, `idctnx`, `idct`, `midimport`, `mid`, `midchuyen`, `phongban`, `phongbanchuyen`, `maphieuimport`, `numphieuimport`, `maphieu`, `numphieu`, `datedimport`, `timeimport`, `trangthaixacnhan`, `cuahang`, `noiden`, `nhanvien`, `dated`, `datedxacnhan`, `sophieu`, `cuahangtruoc`, `STT`, `ghichu`, `nhacungcap`, `idloaivang`, `loainutrang`, `manutrang`, `macu`, `ten`, `ghichu2`, `gvh`, `cannangvh`, `cannangh`, `cannanghgr`, `cannangv`, `tienh`, `tiencong`, `cvsp`, `tiendangoctrai`, `tienconghotban`, `thanhtien`, `msm`, `chitiethottam`, `chitiethottamthucte`, `kh`, `catalogue1`, `catalogue2`, `giaban`, `slmon`, `makhuyenmai`, `giatamtinh`, `trangthaichuyen`, `numphieunhapkho`, `type`, `trangthai`, `typeimport`, `datednhap`, `timenhap`, `datedchuyen`, `timexuat`, `datedxuat`, `timechuyen`) VALUES
+	(10, 2, 0, 2, 2, 2, 1867, 1866, 'IMSPHHTV-23', NULL, NULL, NULL, '2023-09-26', '14:36:29', 1, '00', 'Kho cũ', 615, '2023-09-18', '2023-09-18', 'DC09/23-123836', '', 1, 'Trả kho 1 nhẫn sai Ni, đóng lại NI 15.5 nhập KTP', 'NCC-02', 0, 'W750', '2300016884', 'NI 16.5', 'Nhẫn', '', 0, 2.855, 0.16, 0, 2.695, 0, 4859000, 2920280, 0, 4859000, 0, 'SWAROVSKI-T', 'T1.2=44,T1.5=12,T1.7=18,T6.0=1', '', 'P', 'DVNATTT0000D302', '', 0, 0, '', 0, 0, NULL, 1, 0, 1, '2023-09-26', '14:44:54', '2023-09-26', NULL, NULL, '14:36:55'),
+	(9, 2, 0, 2, 2, 2, 1867, 1866, 'IMSPHHTV-23', NULL, NULL, NULL, '2023-09-26', '14:36:29', 1, '00', 'Kho cũ', 614, '2023-09-18', '2023-09-18', 'DC09/23-123842', '', 1, 'Trả kho 1 lắc làm ĐK, nhập N10', 'NCC-02', 1, '18K', '2300015991', 'NI 50', 'Vòng', '', 0, 2.67, 0, 0, 2.67, 0, 4413000, 2647800, 0, 4413000, 0, '', '', '', '', 'DVVDTVV0000Q848', '', 0, 0, '', 0, 0, NULL, 1, 0, 1, '2023-09-28', '15:48:48', '2023-09-26', NULL, NULL, '14:36:55'),
+	(8, 2, 0, 2, 2, 2, 1867, 1866, 'IMSPHHTV-23', NULL, 'NKSPHHTV000001', 1, '2023-09-26', '14:36:29', 1, '00', 'Kho cũ', 620, '2023-09-18', '2023-09-18', 'DC09/23-123840', '', 1, 'Trả jho 1 nhẫn hủy theo YC Dì, nhập lại HX', 'NCC-02', 0, 'AU750', '2300001833', 'NI 12.5', 'Nhẫn', 'NS: NHẪN NỮ(540/E/IF/2G/3EX)(762642)', 0, 2.125, 0, 0, 2.125, 61314000, 8305000, 4983000, 0, 69619000, 0, '', 'T1.1=16,T1.2=8,T1.3=8,T1.4=16,T1.5=2,T2.3=2,T2.4=12,T2.5=2,T2.6=2,T3.5=2,HC5.1-5.9', '', 'P', 'DKNUTKC0100C797', '', 0, 0, 'B252', 0, 0, NULL, 1, 0, 1, '2023-09-29', '09:19:02', '2023-09-26', NULL, NULL, '14:36:55'),
+	(7, 2, 0, 2, 2, 2, 1867, 1866, 'IMSPHHTV-23', NULL, NULL, NULL, '2023-09-26', '14:36:29', 1, '00', 'Kho cũ', 615, '2023-09-18', '2023-09-18', 'DC09/23-123838', '', 1, 'Trả kho 2 MĐ xoàn hủy theo YC Dì, nhập lại HX', 'NCC-02', 0, 'AU750', '2200026576', '', 'Mặt dây', 'NS: Mặt dây (360/E/2G/3EX)(425N19-63)', 0, 0.465, 0, 0, 0.465, 0, 3015000, 1809000, 0, 3015000, 0, '', 'HC3.5-4.0', '', 'P', 'DKMUTKC0000C324', '', 0, 0, 'B47', 0, 0, NULL, 1, 0, 1, '2023-09-26', '14:49:35', '2023-09-26', NULL, NULL, '14:36:55'),
+	(6, 2, 0, 2, 2, 2, 1867, 1866, 'IMSPHHTV-23', NULL, NULL, NULL, '2023-09-26', '14:36:29', 1, '00', 'Kho cũ', 615, '2023-09-18', '2023-09-18', 'DC09/23-123838', '', 2, 'Trả kho 2 MĐ xoàn hủy theo YC Dì, nhập lại HX', 'NCC-02', 0, 'AU750', '2200024716', '', 'Mặt dây', 'NS: Mặt dây (350/E/PNJ)(336E22-1)', 0, 0.465, 0, 0, 0.465, 0, 3015000, 1809000, 0, 3015000, 0, '', 'HC3.0-3.4', '', 'P', 'DKMUTKC0100C324', '', 0, 0, 'B47', 0, 0, NULL, 1, 0, 1, '2023-09-26', '14:49:43', '2023-09-26', NULL, NULL, '14:36:55'),
+	(11, 0, 10, 0, 2, 0, 1867, NULL, NULL, NULL, 'PXKDCNTV000001', 1, NULL, NULL, 1, '00', 'Kho cũ', 615, '2023-09-18', '2023-09-18', 'DC09/23-123836', '', 1, 'Trả kho 1 nhẫn sai Ni, đóng lại NI 15.5 nhập KTP', 'NCC-02', 0, 'W750', '2300016884', 'NI 16.5', 'Nhẫn', '', 0, 2.855, 0.16, 0, 2.695, 0, 4859000, 2920280, 0, 4859000, 0, 'SWAROVSKI-T', 'T1.2=44,T1.5=12,T1.7=18,T6.0=1', '', 'P', 'DVNATTT0000D302', '', 0, 1, '', 1235656, 0, 0, 2, 0, 0, '2023-09-26', '14:44:54', NULL, NULL, NULL, NULL),
+	(12, 0, 7, 0, 2, 0, 1867, NULL, NULL, NULL, 'PXKDCNTV000002', 2, NULL, NULL, 1, '00', 'Kho cũ', 615, '2023-09-18', '2023-09-18', 'DC09/23-123838', '', 1, 'Trả kho 2 MĐ xoàn hủy theo YC Dì, nhập lại HX', 'NCC-02', 0, 'AU750', '2200026576', '', 'Mặt dây', 'NS: Mặt dây (360/E/2G/3EX)(425N19-63)', 0, 0.465, 0, 0, 0.465, 0, 3015000, 1809000, 0, 3015000, 0, '', 'HC3.5-4.0', '', 'P', 'DKMUTKC0000C324', '', 0, 0, 'B47', 0, 0, 0, 2, 2, 0, '2023-09-26', '14:49:35', NULL, '15:46:44', '2023-09-28', NULL),
+	(13, 0, 6, 0, 2, 0, 1867, NULL, NULL, NULL, 'PXKDCNTV000003', 3, NULL, NULL, 1, '00', 'Kho cũ', 615, '2023-09-18', '2023-09-18', 'DC09/23-123838', '', 2, 'Trả kho 2 MĐ xoàn hủy theo YC Dì, nhập lại HX', 'NCC-02', 0, 'AU750', '2200024716', '', 'Mặt dây', 'NS: Mặt dây (350/E/PNJ)(336E22-1)', 0, 0.465, 0, 0, 0.465, 0, 3015000, 1809000, 0, 3015000, 0, '', 'HC3.0-3.4', '', 'P', 'DKMUTKC0100C324', '', 0, 4, 'B47', 5522333, 0, 0, 2, 0, 0, '2023-09-26', '14:49:43', NULL, NULL, NULL, NULL),
+	(14, 5, 0, 2, 2, 2, 1867, 1866, 'IMSPHHTV-23', NULL, 'NKSPHHTV000002', 2, '2023-09-27', '14:52:23', 1, '00', 'Kho cũ', 614, '2023-08-22', '2023-08-22', 'DC08/23-123776', '', 2, 'Trả kho 3 vòng hủy theo đề xuất CHÚ ký', 'NCC-02', 1, '18K', '2200001302', 'NI 40', 'Vòng', '', 0, 0.89, 0, 0, 0.89, 0, 1088000, 0, 0, 1088000, 0, '', '', '', '', 'LVVETVV0001H618', '', 0, 0, 'B28', 0, 0, NULL, 1, 0, 1, '2023-09-29', '15:14:18', '2023-09-29', NULL, NULL, '07:39:19'),
+	(15, 5, 0, 2, 0, 2, 1866, 1863, 'IMSPHHTV-23', NULL, NULL, NULL, '2023-09-27', '14:52:23', 1, '00', 'Kho cũ', 614, '2023-08-22', '2023-08-22', 'DC08/23-123776', '', 1, 'Trả kho 3 vòng hủy theo đề xuất CHÚ ký', 'NCC-02', 1, '18K', '2200001328', 'NI 42', 'Vòng', '', 0, 0.87, 0, 0, 0.87, 0, 1088000, 0, 0, 1088000, 0, '', '', '', '', 'LVVETVV0001H618', '', 0, 0, 'B28', 0, 0, NULL, 0, 0, 1, NULL, NULL, '2023-09-29', NULL, NULL, '07:39:19'),
+	(16, 5, 0, 2, 0, 2, 1866, 1863, 'IMSPHHTV-23', NULL, NULL, NULL, '2023-09-27', '14:52:23', 1, '00', 'Kho cũ', 615, '2023-08-22', '2023-08-22', 'DC08/23-123774', '', 1, 'Trả kho 1 vòng hủy theo đề xuất CHÚ ký', 'NCC-02', 0, 'W750', '2200012752', 'Ni 34', 'Vòng', '', 0, 0.595, 0, 0, 0.595, 0, 1251000, 750600, 0, 1251000, 0, '', '', '', 'P', 'LVVETTT0000H618', '', 0, 0, 'LVVETTT0000H618', 0, 0, NULL, 0, 0, 1, NULL, NULL, '2023-09-29', NULL, NULL, '07:39:19'),
+	(17, 5, 0, 2, 0, 2, 1866, 1863, 'IMSPHHTV-23', NULL, NULL, NULL, '2023-09-27', '14:52:23', 1, '00', 'Kho cũ', 615, '2023-08-22', '2023-08-22', 'DC08/23-123775', '', 2, 'Trả kho 2 món hủy theo đề xuất CHÚ ký', 'NCC-02', 0, 'W750', '2200012770', 'Ni 38', 'Vòng', '', 0, 0.665, 0, 0, 0.665, 0, 1251000, 750600, 0, 1251000, 0, '', '', '', 'P', 'LVVETTT0000H618', '', 0, 0, 'LVVETTT0000H618', 0, 0, NULL, 0, 0, 1, NULL, NULL, '2023-09-29', NULL, NULL, '07:39:19'),
+	(18, 5, 0, 2, 0, 2, 1866, 1863, 'IMSPHHTV-23', NULL, NULL, NULL, '2023-09-27', '14:52:23', 1, '00', 'Kho cũ', 615, '2023-08-22', '2023-08-22', 'DC08/23-123780', '', 1, 'Trả kho 1 MĐ hủy theo đề xuất CHÚ ký', 'NCC-02', 0, 'W750', '2200030143', '4T40', 'Mặt dây', '', 0, 0.445, 0.01, 0, 0.435, 0, 2790000, 1674000, 0, 2790000, 0, 'KHM', '', '', 'P', 'DVMUTTT0001I858', '', 0, 0, 'KHM', 0, 0, NULL, 0, 0, 1, NULL, NULL, '2023-09-29', NULL, NULL, '07:39:19'),
+	(19, 5, 0, 2, 0, 2, 1866, 1863, 'IMSPHHTV-23', NULL, NULL, NULL, '2023-09-27', '14:52:23', 1, '00', 'Kho cũ', 614, '2023-08-22', '2023-08-22', 'DC08/23-123776', '', 3, 'Trả kho 3 vòng hủy theo đề xuất CHÚ ký', 'NCC-02', 1, '18K', '2200046364', 'NI 36', 'Vòng', '', 0, 0.61, 0, 0, 0.61, 0, 1088000, 489600, 0, 1088000, 0, '', '', '', '', 'LVVETVV0000H618', '', 0, 0, 'B28', 0, 0, NULL, 0, 0, 1, NULL, NULL, '2023-09-29', NULL, NULL, '07:39:19'),
+	(20, 5, 0, 2, 0, 2, 1866, 1863, 'IMSPHHTV-23', NULL, NULL, NULL, '2023-09-27', '14:52:23', 1, '00', 'Kho cũ', 614, '2023-08-22', '2023-08-22', 'DC08/23-123779', '', 1, 'Trả kho 1 nhẫn hủy theo đề xuất CHÚ ký', 'NCC-02', 1, '18K', '2200047094', 'NI 13.5', 'Nhẫn', '', 0, 2.08, 0.1, 0, 1.98, 0, 3474000, 2006904, 0, 3474000, 0, 'SWRED-SWAROVSKI', 'T1.0=8,T1.2=53,T1.5=42,TM1.2=2', '', '', 'DWNUTVV0000D900', '', 0, 0, 'B167', 0, 0, NULL, 0, 0, 1, NULL, NULL, '2023-09-29', NULL, NULL, '07:39:19'),
+	(21, 5, 0, 2, 0, 2, 1866, 1863, 'IMSPHHTV-23', NULL, NULL, NULL, '2023-09-27', '14:52:23', 1, '00', 'Kho cũ', 615, '2023-08-22', '2023-08-22', 'DC08/23-123775', '', 1, 'Trả kho 2 món hủy theo đề xuất CHÚ ký', 'NCC-02', 0, 'W750', '2200049344', 'NI 12.5', 'Nhẫn', '', 0, 1.98, 0.1, 0, 1.88, 0, 3996000, 2406504, 0, 3996000, 0, 'SWRED-SWAROVSKI', 'T1.0=8,T1.2=53,T1.5=42,TM1.2=2', '', 'P', 'DWNUTTT0000D900', '', 0, 0, '', 0, 0, NULL, 0, 0, 1, NULL, NULL, '2023-09-29', NULL, NULL, '07:39:19'),
+	(22, 5, 0, 2, 2, 2, 1867, 1866, 'IMSPHHTV-23', NULL, NULL, NULL, '2023-09-27', '14:52:23', 1, '00', 'Kho cũ', 615, '2023-08-22', '2023-08-22', 'DC08/23-123777', '', 1, 'Trả kho 1 nhẫn làm ĐK nhập J07', 'NCC-02', 0, 'W750', '2300006526', 'NI 15', 'Nhẫn', '', 0, 1.29, 0.06, 0, 1.23, 0, 3595000, 2160648, 0, 3595000, 0, 'SWAROVSKI-T', 'T1.0=38,T1.1=6,T1.2=4,T5.0=1', '', 'P', 'DVNUTTT0000Q518', '', 0, 0, '', 0, 0, NULL, 1, 0, 1, '2023-09-29', '08:37:30', '2023-09-29', NULL, NULL, '07:39:19'),
+	(23, 0, 9, 0, 2, 0, 1867, NULL, NULL, NULL, 'PXKDCNTV000004', 4, NULL, NULL, 1, '00', 'Kho cũ', 614, '2023-09-18', '2023-09-18', 'DC09/23-123842', '', 1, 'Trả kho 1 lắc làm ĐK, nhập N10', 'NCC-02', 1, '18K', '2300015991', 'NI 50', 'Vòng', '', 0, 2.67, 0, 0, 2.67, 0, 4413000, 2647800, 0, 4413000, 0, '', '', '', '', 'DVVDTVV0000Q848', '', 0, 3, '', 6415235, 0, 0, 2, 0, 0, '2023-09-28', '15:48:48', NULL, NULL, NULL, NULL),
+	(24, 6, 22, 0, 2, 0, 1867, NULL, NULL, NULL, 'PXKDCNTV000005', 5, NULL, NULL, 1, '00', 'Kho cũ', 615, '2023-08-22', '2023-08-22', 'DC08/23-123777', '', 1, 'Trả kho 1 nhẫn làm ĐK nhập J07', 'NCC-02', 0, 'W750', '2300006526', 'NI 15', 'Nhẫn', '', 0, 1.29, 0.06, 0, 1.23, 0, 3595000, 2160648, 0, 3595000, 0, 'SWAROVSKI-T', 'T1.0=38,T1.1=6,T1.2=4,T5.0=1', '', 'P', 'DVNUTTT0000Q518', '', 0, 0, '', 0, 0, 0, 2, 2, 0, '2023-09-29', '08:37:30', NULL, '08:45:21', '2023-09-29', NULL),
+	(25, 0, 8, 0, 2, 0, 1867, NULL, NULL, NULL, 'PXKDCNTV000006', 6, NULL, NULL, 1, '00', 'Kho cũ', 620, '2023-09-18', '2023-09-18', 'DC09/23-123840', '', 1, 'Trả jho 1 nhẫn hủy theo YC Dì, nhập lại HX', 'NCC-02', 0, 'AU750', '2300001833', 'NI 12.5', 'Nhẫn', 'NS: NHẪN NỮ(540/E/IF/2G/3EX)(762642)', 0, 2.125, 0, 0, 2.125, 61314000, 8305000, 4983000, 0, 69619000, 0, '', 'T1.1=16,T1.2=8,T1.3=8,T1.4=16,T1.5=2,T2.3=2,T2.4=12,T2.5=2,T2.6=2,T3.5=2,HC5.1-5.9', '', 'P', 'DKNUTKC0100C797', '', 0, 5, 'B252', 8563215, 0, 0, 2, 0, 0, '2023-09-29', '09:19:02', NULL, NULL, NULL, NULL),
+	(26, 0, 14, 0, 2, 0, 1867, NULL, NULL, NULL, 'PXKDCNTV000007', 7, NULL, NULL, 1, '00', 'Kho cũ', 614, '2023-08-22', '2023-08-22', 'DC08/23-123776', '', 2, 'Trả kho 3 vòng hủy theo đề xuất CHÚ ký', 'NCC-02', 1, '18K', '2200001302', 'NI 40', 'Vòng', '', 0, 0.89, 0, 0, 0.89, 0, 1088000, 0, 0, 1088000, 0, '', '', '', '', 'LVVETVV0001H618', '', 0, 0, 'B28', 0, 0, 0, 2, 0, 0, '2023-09-29', '15:14:18', NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `khonguonvao_khonutrangtravect` ENABLE KEYS */;
 
 -- Dumping structure for table demo_huy.khonguonvao_khonutrangtrave_sodudauky
@@ -4940,10 +4974,13 @@ CREATE TABLE IF NOT EXISTS `khonguonvao_khonutrangtrave_sodudauky` (
   `du` double DEFAULT '0',
   `dated` date DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table demo_huy.khonguonvao_khonutrangtrave_sodudauky: ~0 rows (approximately)
+-- Dumping data for table demo_huy.khonguonvao_khonutrangtrave_sodudauky: ~2 rows (approximately)
 DELETE FROM `khonguonvao_khonutrangtrave_sodudauky`;
+INSERT INTO `khonguonvao_khonutrangtrave_sodudauky` (`id`, `idloaivang`, `slnhapvh`, `slxuatvh`, `sltonvh`, `slnhaph`, `slxuath`, `sltonh`, `slnhapv`, `slxuatv`, `sltonv`, `hao`, `du`, `dated`) VALUES
+	(1, 0, 7.2, 1.755, 5.445, 0.22, 0.06, 0.16, 6.98, 1.695, 5.285, 0, 0, '2023-09-01'),
+	(2, 1, 3.56, 0, 3.56, 0, 0, 0, 3.56, 0, 3.56, 0, 0, '2023-09-01');
 
 -- Dumping structure for table demo_huy.khosanxuat_khotest
 CREATE TABLE IF NOT EXISTS `khosanxuat_khotest` (
@@ -5017,7 +5054,7 @@ CREATE TABLE IF NOT EXISTS `khosanxuat_khotest` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table demo_huy.khosanxuat_khotest: ~7 rows (approximately)
+-- Dumping data for table demo_huy.khosanxuat_khotest: ~8 rows (approximately)
 DELETE FROM `khosanxuat_khotest`;
 INSERT INTO `khosanxuat_khotest` (`id`, `mid`, `midchuyen`, `cid`, `idchuyen`, `cidchuyen`, `chonphongbanin`, `madhin`, `typekhodau`, `typekho`, `idmaphieukho`, `idctnx`, `idct`, `iddhsx`, `madonhangsx`, `midedit`, `numphieu`, `maphieu`, `nhomdm`, `nhomnguyenlieuvang`, `tennguyenlieuvang`, `idloaivang`, `cannangvh`, `cannangh`, `cannangv`, `cannangvhnoedit`, `cannanghnoedit`, `cannangvnoedit`, `tuoivang`, `tienmatvang`, `ghichuvang`, `ghichueditvang`, `hao`, `du`, `haochuyen`, `duchuyen`, `ghichu`, `type`, `typechuyen`, `typevkc`, `time`, `dated`, `timexuat`, `datedxuat`, `phongban`, `phongbanchuyen`, `timechuyen`, `datechuyen`, `trangthai`, `tralai`, `typechinhsuasolieu`, `datedieuchinh`, `nhomnguyenlieukimcuong`, `tennguyenlieukimcuong`, `idkimcuong`, `codegdpnj`, `codecgta`, `kichthuoc`, `trongluonghot`, `dotinhkhiet`, `capdomau`, `domaibong`, `kichthuocban`, `tienmatkimcuong`, `dongiaban`, `ghichukimcuong`, `ghichueditkimcuong`) VALUES
 	(7, 2, 2, 1845, 0, 1835, 1845, 0, 'khosanxuat_vmnt', 'khosanxuat', 6, 0, 0, 0, '', 0, 0, 'PXSNKVMNT000001', 0, 0, 0, 28, 4, 2, 2, 0, 0, 0, 0.1, NULL, 'abc', NULL, 0, 0, 0, 0, '', 1, 2, 1, '10:26:56', '2023-08-30', NULL, NULL, 1845, 1835, '10:28:33', '2023-08-30', 0, 0, 0, NULL, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL),

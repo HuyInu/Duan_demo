@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 4.1.1, created on 2023-09-28 14:11:57
+/* Smarty version 4.1.1, created on 2023-10-02 11:17:57
   from 'D:\wamp64\www\duan_demo\templates\tpl\Kho-Nu-Trang-Tra-Ve-Nhap-Kho\list.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '4.1.1',
-  'unifunc' => 'content_6515273d563bd5_58321569',
+  'unifunc' => 'content_651a44754c2014_34831990',
   'has_nocache_code' => true,
   'file_dependency' => 
   array (
     'c0421cfd465b5f6216821d2e6094d079d2250115' => 
     array (
       0 => 'D:\\wamp64\\www\\duan_demo\\templates\\tpl\\Kho-Nu-Trang-Tra-Ve-Nhap-Kho\\list.tpl',
-      1 => 1695885114,
+      1 => 1696220141,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:Kho-Nu-Trang-Tra-Ve-Nhap-Kho/tabMenu.tpl' => 1,
   ),
 ),false)) {
-function content_6515273d563bd5_58321569 (Smarty_Internal_Template $_smarty_tpl) {
+function content_651a44754c2014_34831990 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\libraries\\smarty4\\libs\\plugins\\modifier.date_format.php','function'=>'smarty_modifier_date_format',),));
 ?>
 <style>
@@ -71,7 +71,7 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\
    </ul>
 </div>
 <div class="MainContent">
-   <form name="f" id="f" method="post" onsubmit="return searchKhoNuTrangTraVeCt('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+   <form name="f" id="f" method="post" onsubmit="return searchKhoNuTrangTraVe('<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
 /sources/Kho-Nu-Trang-Tra-Ve-Nhap-Kho.php?act=<?php echo $_REQUEST['act'];?>
 &cid=<?php echo $_REQUEST['cid'];?>
 ')"> 
@@ -95,8 +95,8 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\
                     <div class="title-thongtin"><strong>CHI TIẾT</strong></div>
                     <div class="divitem">
                         <a class="btn-save btn-search" onclick="ViewDetail()" href="#">Xem</a>
-                        <input type="button" name="print" value="     In     " class="btn-save btn-search"/>
-                        <input type="button" name="print" value="Export Excel" class="btn-save btn-search"/>
+                        <input type="button" name="print" value="     In     " class="btn-save btn-search" onclick="printKhoNuTrangTraVe('nhapkho')"/>
+                        <input type="button" name="print" value="Export Excel" class="btn-save btn-search" onclick="exportExcel()"/>
                     </div>
                 </div>
             </div>
@@ -186,7 +186,7 @@ $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'D:\\wamp64\\www\\duan_demo\\
                             <td style="min-width:133px">
                                 <strong>Trạng  thái</strong>
                             </td>
-                            <td style="min-width:50px">
+                            <td style="min-width:135px">
                                 <strong>Số phiếu nhập kho</strong>
                             </td>
                             <td style="min-width:122px">
@@ -454,14 +454,15 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 
                             </td>
                             <td>
-                                <strong>Số phiếu nhập kho</strong>
+                                <?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['maphieu'];?>
+
                             </td>
                             <td>
                                 <?php echo getName('admin','fullname',$_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['mid']);?>
 
                             </td>
                             <td>
-                                <?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['datednhap'];?>
+                                <?php echo smarty_modifier_date_format($_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['datednhap'],'%d/%m/%Y');?>
 <br><?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['timenhap'];?>
 
                             </td>
@@ -562,6 +563,28 @@ function ViewDetail () {
     popupwindow('Kho-Nu-Trang-Tra-Ve-Nhap-Kho.php?act=view&cid=<?php echo $_REQUEST['cid'];?>
 &id=<?php echo $_smarty_tpl->tpl_vars['view']->value[(isset($_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']) ? $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] : null)]['id'];?>
 '+$urlParam,'mywindow')
+}
+function printKhoNuTrangTraVe(act) {
+    var str = "";
+    str = `act=${act}&cid=<?php echo $_REQUEST['cid'];?>
+&tab=<?php echo $_REQUEST['act'];?>
+`;
+    str += GetAllSearchStr();
+    url = '<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/print/print-kho-nu-trang-tra-ve.php?'+str;
+    popupwindow(url, 'In')
+    return false;	
+}
+function exportExcel(act) {
+    var str = "";
+    str = `act=exportexcel&cid=<?php echo $_REQUEST['cid'];?>
+&tab=<?php echo $_REQUEST['act'];?>
+`;
+    str += GetAllSearchStr();
+    url = '<?php echo $_smarty_tpl->tpl_vars['path_url']->value;?>
+/sources/Kho-Nu-Trang-Tra-Ve-Nhap-Kho.php?'+str;
+    popupwindow(url, 'In')
+    return false;
 }
 <?php echo '</script'; ?>
 ><?php }
